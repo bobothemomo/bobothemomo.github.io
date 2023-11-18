@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablo</title>
+
+    <style>
+
+        .table-main{
+            width: 99vw; 
+            height: 30vh; 
+            margin-top: 30px;
+
+            background-color: midnightblue;
+
+        }
+
+        .row1{
+            background-color: cadetblue;
+        }
+
+        .row2-col1{
+            color: brown;
+            background-color: darkorchid;
+        }
+
+        .row2-col2{
+            color: magenta;
+            background-color: mediumvioletred;
+        }
+
+        .row3{
+            background-color: darkcyan;
+            color: aliceblue;
+        }
+    </style>
+
+
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <table border="1" style="width: 99vw; height: 30vh;">
+        <tr style="background-color: black; color: orange;">
+            <td colspan="8">Col1</td>
+            <td colspan="8">Col2</td>
+            <td colspan="8">Col3</td>
+        </tr>
+
+        <tr>
+            <td rowspan="8" colspan="8" style="background-color: burlywood;">row1 cell1</td>
+            <td colspan="8" style="background-color: cadetblue;">Row 1 cell2</td> 
+            <td colspan="8" style="background-color: bisque;">Row 1 cell3</td>
+        </tr>
+
+        <tr>
+            <td colspan="8" style="background-color: aqua;">row2 cell2</td>
+            <td colspan="8" style="background-color: black; color: wheat;">row2 cell3</td>
+        </tr>
+
+        <tr>
+            <td colspan="24" style="background-color: goldenrod;">row3 cell1</td>
+        </tr>
+    </table>
+
+
+
+        <table border="1" class="table-main">
+            <tr>
+                <td colspan="8">Col1</td>
+                <td colspan="8">Col2</td>
+                <td colspan="8">Col3</td>
+            </tr>
+    
+            <tr class="row1">
+                <td rowspan="8" colspan="8">row1 cell1</td>
+                <td colspan="8">Row 1 cell2</td> 
+                <td colspan="8">Row 1 cell3</td>
+            </tr>
+    
+            <tr class="row2">
+                <td colspan="8" class="row2-col1">row2 cell2</td>
+                <td colspan="8" class="row2-col2">row2 cell3</td>
+            </tr>
+    
+            <tr class="row3">
+                <td colspan="24">row3 cell1</td>
+            </tr>
+        </table>
+
+
+
+        <table border="1" class="table-main">
+            <tr class="main-tr">
+                <td colspan="8">Col1</td>
+                <td colspan="8">Col2</td>
+                <td colspan="8">Col3</td>
+            </tr>
+    
+            <tr class="row1">
+                <td colspan="8" rowspan="8" class="row1-col1">row1 cell1</td>
+                <td colspan="8" class="row1-col2">Row 1 cell2</td> 
+                <td colspan="8" class="row1-col2">Row 1 cell3</td>
+            </tr>
+    
+            <tr class="row2">
+                <td colspan="8" class="row2-col1">row2 cell2</td>
+                <td colspan="8" class="row2-col2">row2 cell3</td>
+            </tr>
+    
+            <tr class="row3">
+                <td colspan="24">row3 cell1</td>
+            </tr>
+        </table>
+</body>
+</html>
