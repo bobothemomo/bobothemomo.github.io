@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
   function showRandomImages() {
     var imageContainer = document.getElementById('imageContainer');
-    var images = ['image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg', 'image5.jpg', 'image6.jpg', 'image7.jpg', 'image8.jpg', 'image9.jpg', 'image10.jpg'];
+    var images = ['skeletonnnn.jpg', 'skeletonnn.jpg', 'skeletonn', 'skeleton.jpg'];
   
     for (var i = 0; i < 3; i++) {
       var randomImage = images[Math.floor(Math.random() * images.length)];
