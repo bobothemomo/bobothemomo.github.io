@@ -40,20 +40,22 @@
 </head>
 <body>
 
-<button onclick="showAnnouncement()">Duyuru Göster</button>
+<button onclick="showAnnouncement()">Bas</button>
 
 <div id="announcement">
-    <p>Bu bir duyuru penceresidir. İsteğe bağlı metin buraya eklenebilir.</p>
+    <p>Burası 5 saniye açık kalacaktır.</p>
 </div>
 
 <script>
     function showAnnouncement() {
         var announcement = document.getElementById('announcement');
         announcement.style.display = 'block';
+        announcement.style.animation = 'none'; // Animasyonu durdur
+        announcement.style.opacity = 1; // Opacity'yi sıfırla
 
         // Belirtilen süre sonra pencereyi kapat
         setTimeout(function() {
-            announcement.style.animation = 'none'; // Animasyonu durdur
+            announcement.style.animation = 'fadeInOut 1s ease-in-out forwards'; // Animasyonu başlat
             announcement.style.opacity = 0; // Opacity'yi sıfırla
             setTimeout(function() {
                 announcement.style.display = 'none'; // Pencereyi gizle
