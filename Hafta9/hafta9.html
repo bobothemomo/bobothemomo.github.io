@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        #announcement {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            animation: fadeInOut 1s ease-in-out forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            25% { opacity: 1; }
+            75% { opacity: 1; }
+            100% { opacity: 0; display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<button onclick="showAnnouncement()">Duyuru Göster</button>
+
+<div id="announcement">
+    <p>Bu bir duyuru penceresidir. İsteğe bağlı metin buraya eklenebilir.</p>
+</div>
+
+<script>
+    function showAnnouncement() {
+        var announcement = document.getElementById('announcement');
+        announcement.style.display = 'block';
+
+        // Belirtilen süre sonra pencereyi kapat
+        setTimeout(function() {
+            announcement.style.animation = 'none'; // Animasyonu durdur
+            announcement.style.opacity = 0; // Opacity'yi sıfırla
+            setTimeout(function() {
+                announcement.style.display = 'none'; // Pencereyi gizle
+            }, 1000); // Animasyon süresi kadar beklet
+        }, 5000); // 5 saniye sonra kapat
+    }
+</script>
+
+</body>
+</html>
