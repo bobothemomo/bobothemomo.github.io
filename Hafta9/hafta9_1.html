@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        canvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="myCanvas" width="500" height="500"></canvas>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        // Kareleri çizmek için bir döngü kullanalım
+        var squareSize = 50; // Kare boyutu
+        var numRows = 10; // Satır sayısı
+        var numCols = 10; // Sütun sayısı
+
+        for (var row = 0; row < numRows; row++) {
+            for (var col = 0; col < numCols; col++) {
+                // Rastgele renk oluştur
+                var randomColor = getRandomColor();
+
+                // Kareyi çiz
+                ctx.fillStyle = randomColor;
+                ctx.fillRect(col * squareSize, row * squareSize, squareSize, squareSize);
+            }
+        }
+
+        // Rastgele renk oluşturan fonksiyon
+        function getRandomColor() {
+            var letters = "0123456789ABCDEF";
+            var color = "#";
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    });
+</script>
+
+</body>
+</html>

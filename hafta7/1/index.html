@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animation</title>
+
+    <style>
+        @keyframes MoveUpDown {
+
+            0%,
+            100% {
+                top: 0;
+            }
+
+            50% {
+                top: 500px;
+            }
+        }
+
+        .ani-1 {
+            animation: MoveUpDown 6s linear infinite;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: aqua;
+            width: 200px;
+            height: 200px;
+        }
+
+
+
+        @keyframes changeColors {
+
+            0%,
+            100% {
+                background-color: blueviolet;
+                width: 100px;
+                height: 100px;
+            }
+
+            50% {
+                background-color: cadetblue;
+                width: 300px;
+                height: 300px;
+            }
+        }
+
+
+        .ani-2 {
+            animation: changeColors 6s linear infinite;
+            position: absolute;
+            left: 300px;
+            top: 0;
+            background-color: crimson;
+            width: 100px;
+            height: 100px;
+        }
+
+
+        @keyframes transparentt {
+
+            0%,
+            100% {
+                opacity: 100%;
+            }
+
+            50% {
+                opacity: 0%;
+            }
+        }
+
+
+        .ani-3 {
+            animation: transparentt 6s linear infinite;
+            position: absolute;
+            left: 700px;
+            top: 0;
+            background-color: crimson;
+            width: 200px;
+            height: 200px;
+        }
+
+
+        @keyframes LeftandRight {
+
+            0%,
+            100% {
+                left: 950px;
+            }
+
+            50% {
+                left: 1300px;
+            }
+        }
+
+        .ani-4 {
+            animation: LeftandRight 4s linear infinite;
+            position: absolute;
+            left: 900px;
+            top: 0;
+            background-color: coral;
+            width: 200px;
+            height: 200px;
+        }
+
+
+        @keyframes rotateAni {
+
+            0%,
+            100% {
+                rotate: 0deg;
+            }
+
+            50% {
+                rotate: 360deg;
+            }
+        }
+
+        .ani-5 {
+            animation: rotateAni 6s linear infinite;
+            position: absolute;
+            left: 1600px;
+            top: 50px;
+            background-color: darkgray;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="div ani-1"></div>
+        <div class="div ani-2"></div>
+        <div class="div ani-3"></div>
+        <div class="div ani-4"></div>
+        <div class="div ani-5"></div>
+
+
+
+    </div>
+</body>
+
+</html>
