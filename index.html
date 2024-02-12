@@ -112,13 +112,108 @@
         </section>
         <!-- Gallery -->
         <section data-bs-spy="scroll" data-bs-target="#scrolling_navbar" class="bg-dark py-5" id="travel">
+          <style>
+            body {font-family: Arial, Helvetica, sans-serif;}
+            
+            #myImg {
+              border-radius: 5px;
+              cursor: pointer;
+              transition: 0.3s;
+            }
+            
+            #myImg:hover {opacity: 0.7;}
+            
+            /* The Modal (background) */
+            .modal {
+              display: none; /* Hidden by default */
+              position: fixed; /* Stay in place */
+              z-index: 1; /* Sit on top */
+              padding-top: 100px; /* Location of the box */
+              left: 0;
+              top: 0;
+              width: 100%; /* Full width */
+              height: 100%; /* Full height */
+              overflow: auto; /* Enable scroll if needed */
+              background-color: rgb(0,0,0); /* Fallback color */
+              background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+            }
+            
+            /* Modal Content (image) */
+            .modal-content {
+              margin: auto;
+              display: block;
+              width: 80%;
+              max-width: 700px;
+            }
+            
+            /* Caption of Modal Image */
+            #caption {
+              margin: auto;
+              display: block;
+              width: 80%;
+              max-width: 700px;
+              text-align: center;
+              color: #ccc;
+              padding: 10px 0;
+              height: 150px;
+            }
+            
+            /* Add Animation */
+            .modal-content, #caption {  
+              -webkit-animation-name: zoom;
+              -webkit-animation-duration: 0.6s;
+              animation-name: zoom;
+              animation-duration: 0.6s;
+            }
+            
+            @-webkit-keyframes zoom {
+              from {-webkit-transform:scale(0)} 
+              to {-webkit-transform:scale(1)}
+            }
+            
+            @keyframes zoom {
+              from {transform:scale(0)} 
+              to {transform:scale(1)}
+            }
+            
+            /* The Close Button */
+            .close {
+              position: absolute;
+              top: 15px;
+              right: 35px;
+              color: #f1f1f1;
+              font-size: 40px;
+              font-weight: bold;
+              transition: 0.3s;
+            }
+            
+            .close:hover,
+            .close:focus {
+              color: #bbb;
+              text-decoration: none;
+              cursor: pointer;
+            }
+            
+            /* 100% Image Width on Smaller Screens */
+            @media only screen and (max-width: 700px){
+              .modal-content {
+                width: 100%;
+              }
+            }
+            </style>
+            
+            </script>
+            
+            </body>
+            </html>
           <div class="container">
               <div class="text-white text-center py-5">
                   <h2 class="fw-bolder">My products</h2>
                   <p class="fs-5">These images contains my art, my illustration works, video game screenshots, 3D models, and products for who I working/worked for.</p>
               </div>
 <div class="row">
-  <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+  <div class="text-white col-lg-4 col-md-12 mb-4 mb-lg-0">
+    <h2 class="fw-bolder">Sketch & Mockup</h2>
     <img
       src="./image/p1.jpg"
       class="w-100 shadow-1-strong rounded mb-4"
@@ -126,12 +221,12 @@
     />
 
     <img
-      src="./image/p2.png"
+      src="./image/p3.jpg"
       class="w-100 shadow-1-strong rounded mb-4"
       alt="Wintry Mountain Landscape"
     />
     <img
-      src="./image/p8.JPG"
+      src="./image/p4.jpg"
       class="w-100 shadow-1-strong rounded mb-4"
       alt="a"
     />
@@ -139,22 +234,27 @@
    
    
     <img
-    src="./image/p12.png"
+    src="./image/p5.jpg"
     class="w-100 shadow-1-strong rounded mb-4"
     alt="a"
   />
-  
+  <img
+  src="./image/p7.jpg"
+  class="w-100 shadow-1-strong rounded mb-4"
+  alt="Waves at Sea"
+/>
   </div>
 
-  <div class="col-lg-4 mb-4 mb-lg-0">
+  <div class="text-white col-lg-4 mb-4 mb-lg-0">
+    <h2 class="fw-bolder">Community Products</h2>
     <img
-      src="./image/p3.jpg"
+      src="./image/p6.png"
       class="w-100 shadow-1-strong rounded mb-4"
       alt="Mountains in the Clouds"
     />
 
     <img
-      src="./image/p4.jpg"
+      src="./image/p8.JPG"
       class="w-100 shadow-1-strong rounded mb-4"
       alt="Boat on Calm Water"
     />
@@ -164,42 +264,39 @@
       alt="a"
     />
     <img
-    src="./image/p10.jpg"
+    src="./image/p13.png"
     class="w-100 shadow-1-strong rounded mb-4"
     alt="a"
   />
   <img
-    src="./image/p11.png"
+    src="./image/p14.png"
     class="w-100 shadow-1-strong rounded mb-4"
     alt="a"
     />
   </div>
 
-  <div class="col-lg-4 mb-4 mb-lg-0">
-    <img
-      src="./image/p5.jpg"
-      class="w-100 shadow-1-strong rounded mb-4"
-      alt="Waves at Sea"
-    />
+  <div class="text-white col-lg-4 mb-4 mb-lg-0">
+    <h2 class="fw-bolder">My School Works</h2>
+   
 
     <img
-      src="./image/p7.jpg"
+      src="./image/p12.png"
       class="w-100 shadow-1-strong rounded mb-4"
       alt="Yosemite National Park"
     />
     
     <img
-src="./image/p6.png"
+src="./image/p11.png"
 class="w-100 shadow-1-strong rounded mb-4"
 alt="a"
 />
 <img
-  src="./image/p13.png"
+  src="./image/p10.jpg"
   class="w-100 shadow-1-strong rounded mb-4"
   alt="a"
 />
 <img
-  src="./image/p14.png"
+  src="./image/p2.png"
   class="w-100 shadow-1-strong rounded mb-4"
   alt="a"
 />
