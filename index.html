@@ -524,36 +524,99 @@
         <script src="js/main.js"></script>
         
         <script>
-            // Image Modal Functionality with navigation
+            // Enhanced Image Modal Functionality
             const images = Array.from(document.querySelectorAll('.image-clickable'));
             let currentImageIndex = 0;
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
             const prevBtn = document.getElementById('prevImageBtn');
             const nextBtn = document.getElementById('nextImageBtn');
+            const modalCaption = document.getElementById('modalImageCaption');
+            let bsModal = null;
 
             function showImageModal(index) {
                 currentImageIndex = index;
+                modalImg.classList.remove('loaded');
                 modalImg.src = images[index].src;
                 modalImg.alt = images[index].alt;
-                const bsModal = new bootstrap.Modal(modal);
+                modalCaption.textContent = images[index].alt || '';
+                bsModal = new bootstrap.Modal(modal);
                 bsModal.show();
+                setTimeout(() => prevBtn.focus(), 300); // Focus for accessibility
             }
+
+            modalImg.onload = function() {
+                modalImg.classList.add('loaded');
+            };
+            modalImg.onerror = function() {
+                modalImg.src = 'https://via.placeholder.com/600x400?text=Image+not+found';
+                modalCaption.textContent = 'Image not found';
+            };
 
             images.forEach((img, idx) => {
                 img.addEventListener('click', () => showImageModal(idx));
             });
 
-            prevBtn.addEventListener('click', () => {
+            function showPrevImage() {
                 currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+                modalImg.classList.remove('loaded');
                 modalImg.src = images[currentImageIndex].src;
                 modalImg.alt = images[currentImageIndex].alt;
-            });
-
-            nextBtn.addEventListener('click', () => {
+                modalCaption.textContent = images[currentImageIndex].alt || '';
+            }
+            function showNextImage() {
                 currentImageIndex = (currentImageIndex + 1) % images.length;
+                modalImg.classList.remove('loaded');
                 modalImg.src = images[currentImageIndex].src;
                 modalImg.alt = images[currentImageIndex].alt;
+                modalCaption.textContent = images[currentImageIndex].alt || '';
+            }
+
+            prevBtn.addEventListener('click', showPrevImage);
+            nextBtn.addEventListener('click', showNextImage);
+
+            // Keyboard navigation
+            modal.addEventListener('shown.bs.modal', function () {
+                document.addEventListener('keydown', modalKeyHandler);
+                trapFocus(modal);
+            });
+            modal.addEventListener('hidden.bs.modal', function () {
+                document.removeEventListener('keydown', modalKeyHandler);
+            });
+            function modalKeyHandler(e) {
+                if (e.key === 'ArrowLeft') showPrevImage();
+                if (e.key === 'ArrowRight') showNextImage();
+                if (e.key === 'Escape') bsModal.hide();
+            }
+            // Focus trap for accessibility
+            function trapFocus(element) {
+                const focusableEls = element.querySelectorAll('button, [tabindex]:not([tabindex="-1"])');
+                const firstFocusableEl = focusableEls[0];
+                const lastFocusableEl = focusableEls[focusableEls.length - 1];
+                element.addEventListener('keydown', function(e) {
+                    if (e.key !== 'Tab') return;
+                    if (e.shiftKey) {
+                        if (document.activeElement === firstFocusableEl) {
+                            lastFocusableEl.focus();
+                            e.preventDefault();
+                        }
+                    } else {
+                        if (document.activeElement === lastFocusableEl) {
+                            firstFocusableEl.focus();
+                            e.preventDefault();
+                        }
+                    }
+                });
+            }
+            // Touch swipe for mobile
+            let touchStartX = 0;
+            modalImg.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            modalImg.addEventListener('touchend', function(e) {
+                const touchEndX = e.changedTouches[0].screenX;
+                if (touchEndX - touchStartX > 50) showPrevImage();
+                if (touchStartX - touchEndX > 50) showNextImage();
             });
 
             // Dark mode toggle functionality
