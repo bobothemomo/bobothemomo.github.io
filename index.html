@@ -13,18 +13,86 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23007bff'/%3E%3Ctext x='50%' y='54%' text-anchor='middle' font-size='32' fill='white' font-family='Nunito, Arial, sans-serif' font-weight='bold' dy='.1em'%3EBD%3C/text%3E%3C/svg%3E">
 
     <!--
     Images are from https://unsplash.com/
     -->
 
-
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        #scrollToTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            z-index: 9999;
+            background: var(--color-primary);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        #scrollToTopBtn:hover {
+            background: #0056b3;
+        }
+        /* Timeline styles */
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+            padding-left: 30px;
+            border-left: 3px solid var(--color-primary);
+        }
+        .timeline-item {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -13px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: var(--color-primary);
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0 0 0 2px var(--color-primary);
+        }
+        .timeline-content {
+            background: #fff;
+            color: var(--color-text);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            margin-left: 20px;
+        }
+        body.darkmode .timeline-content {
+            background: #232526;
+            color: var(--color-text);
+        }
+        /* Contact form contrast */
+        .contact-form input, .contact-form textarea {
+            background: #fff;
+            color: #222;
+        }
+        body.darkmode .contact-form input, body.darkmode .contact-form textarea {
+            background: #232526;
+            color: #f1f1f1;
+        }
+    </style>
 </head>
 <body>
     <nav id="scrolling_navbar" class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
-                <span class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center me-2 hover-scale" style="width: 40px; height: 40px; transition: transform 0.3s ease;">BD</span>
+                <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="me-2"><circle cx="32" cy="32" r="32" fill="#007bff"/><text x="50%" y="54%" text-anchor="middle" font-size="32" fill="white" font-family="Nunito, Arial, sans-serif" font-weight="bold" dy=".1em">BD</text></svg>
                 <span class="d-none d-sm-inline">Barış Değirmenci</span>
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,9 +168,24 @@
                             <a href="https://github.com/bobothemomo" class="text-dark fs-4"><i class="fab fa-github"></i></a>
                             <a href="https://www.linkedin.com/in/barış-değirmenci-98559a21b/" class="text-dark fs-4"><i class="fab fa-linkedin"></i></a>
                         </div>
+                        <a href="Baris_Degirmenci_CV.pdf" class="btn btn-outline-primary rounded-pill mt-3" download>Download CV</a>
                     </div>
                     <div class="col-lg-8">
                         <p class="lead mb-4">I am a Computer Education and Instructional Technologies student at Hacettepe University, currently serving as President of the Knights Boardgame University Community. My passion lies at the intersection of technology, design, and education.</p>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <strong>2021 - Present:</strong> Hacettepe University, Computer Education & Instructional Technologies (BSc)
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <strong>2017 - 2021:</strong> Sample High School, Science Track
+                                </div>
+                            </div>
+                        </div>
                         <p class="mb-4">My expertise spans across multiple domains:</p>
                         <div class="row g-4 mb-4">
                             <div class="col-md-6">
@@ -206,9 +289,8 @@
                 </div>
                 
                 <div class="row g-4">
-                    <!-- Sketch & Mockup -->
                     <div class="col-lg-4">
-                        <div class="card h-100 shadow-sm">
+                        <div class="card h-100 shadow-sm project-card" data-title="Sketch & Mockup" data-description="A collection of sketches and mockups for various projects." data-link="https://github.com/bobothemomo/sketch-mockup" data-demo="https://demo.example.com/sketch-mockup">
                             <div class="card-header bg-primary text-white">
                                 <h3 class="h5 mb-0">Sketch & Mockup</h3>
                             </div>
@@ -220,13 +302,10 @@
                                     <div class="col-6">
                                         <img src="./image/p3.jpg" class="img-fluid rounded image-clickable" alt="Sketch 2">
                                     </div>
-                                    <div class="col-6">
-                                        <img src="./image/p4.jpg" class="img-fluid rounded image-clickable" alt="Sketch 3">
-                                    </div>
-                                    <div class="col-6">
-                                        <img src="./image/p5.jpg" class="img-fluid rounded image-clickable" alt="Sketch 4">
-                                    </div>
                                 </div>
+                                <button class="btn btn-sm btn-outline-primary mt-3 project-details-btn">Details</button>
+                                <a href="https://github.com/bobothemomo/sketch-mockup" class="btn btn-sm btn-link" target="_blank">GitHub</a>
+                                <a href="https://demo.example.com/sketch-mockup" class="btn btn-sm btn-link" target="_blank">Live Demo</a>
                             </div>
                         </div>
                     </div>
@@ -335,22 +414,18 @@
                 
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
-                        <div class="row g-4">
-                            <div class="col-md-6 text-center">
-                                <div class="contact-item p-4 bg-white rounded-3 shadow-sm">
-                                    <i class="fab fa-github fa-3x text-dark mb-3"></i>
-                                    <h4 class="h5 mb-3">GitHub</h4>
-                                    <a href="https://github.com/bobothemomo" class="btn btn-outline-dark rounded-pill" target="_blank">Visit Profile</a>
-                                </div>
+                        <form class="contact-form" action="https://formspree.io/f/mnqekgqj" method="POST">
+                            <div class="mb-3">
+                                <input type="text" name="name" class="form-control" placeholder="Your Name" required>
                             </div>
-                            <div class="col-md-6 text-center">
-                                <div class="contact-item p-4 bg-white rounded-3 shadow-sm">
-                                    <i class="fab fa-linkedin fa-3x text-primary mb-3"></i>
-                                    <h4 class="h5 mb-3">LinkedIn</h4>
-                                    <a href="https://www.linkedin.com/in/barış-değirmenci-98559a21b/" class="btn btn-outline-primary rounded-pill" target="_blank">Connect</a>
-                                </div>
+                            <div class="mb-3">
+                                <input type="email" name="email" class="form-control" placeholder="Your Email" required>
                             </div>
-                        </div>
+                            <div class="mb-3">
+                                <textarea name="message" class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary rounded-pill">Send Message</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -383,6 +458,20 @@
                     <div class="modal-body p-0">
                         <img src="" class="img-fluid" id="modalImage">
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Details Modal -->
+        <div class="modal fade" id="projectDetailsModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="projectDetailsTitle"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="projectDetailsBody"></div>
+                    <div class="modal-footer" id="projectDetailsFooter"></div>
                 </div>
             </div>
         </div>
@@ -432,6 +521,33 @@
                 const isDark = document.body.classList.toggle('darkmode');
                 localStorage.setItem('theme', isDark ? 'dark' : 'light');
                 setTheme(isDark ? 'dark' : 'light');
+            });
+
+            // Scroll to Top Button
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.style.display = 'block';
+                } else {
+                    scrollToTopBtn.style.display = 'none';
+                }
+            });
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Project Details Modal
+            document.querySelectorAll('.project-details-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const card = btn.closest('.project-card');
+                    document.getElementById('projectDetailsTitle').textContent = card.getAttribute('data-title');
+                    document.getElementById('projectDetailsBody').textContent = card.getAttribute('data-description');
+                    document.getElementById('projectDetailsFooter').innerHTML =
+                        `<a href="${card.getAttribute('data-link')}" class="btn btn-primary btn-sm me-2" target="_blank">GitHub</a>` +
+                        `<a href="${card.getAttribute('data-demo')}" class="btn btn-success btn-sm" target="_blank">Live Demo</a>`;
+                    const modal = new bootstrap.Modal(document.getElementById('projectDetailsModal'));
+                    modal.show();
+                });
             });
         </script>
     </div>
