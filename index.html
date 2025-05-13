@@ -57,6 +57,9 @@
                         </a>
                     </li>
                 </ul>
+                <button id="darkModeToggle" class="btn btn-outline-secondary ms-3" aria-label="Toggle dark mode">
+                    <i id="darkModeIcon" class="fas fa-moon"></i>
+                </button>
             </div>
         </div>
     </nav>
@@ -399,10 +402,91 @@
                     modal.show();
                 });
             });
+
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const darkModeIcon = document.getElementById('darkModeIcon');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const savedTheme = localStorage.getItem('theme');
+
+            function setTheme(theme) {
+                if (theme === 'dark') {
+                    document.body.classList.add('darkmode');
+                    darkModeIcon.classList.remove('fa-moon');
+                    darkModeIcon.classList.add('fa-sun');
+                } else {
+                    document.body.classList.remove('darkmode');
+                    darkModeIcon.classList.remove('fa-sun');
+                    darkModeIcon.classList.add('fa-moon');
+                }
+            }
+
+            // Initial theme
+            if (savedTheme) {
+                setTheme(savedTheme);
+            } else if (prefersDark) {
+                setTheme('dark');
+            }
+
+            darkModeToggle.addEventListener('click', function() {
+                const isDark = document.body.classList.toggle('darkmode');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                setTheme(isDark ? 'dark' : 'light');
+            });
         </script>
     </div>
 
     <style>
+        :root {
+            --color-bg: #fff;
+            --color-text: #222;
+            --color-muted: #666;
+            --color-primary: #007bff;
+            --color-footer-gradient: linear-gradient(90deg, #a8edea 0%, #fed6e3 100%);
+            --color-footer-icon: #444;
+            --color-footer-icon-hover: #007bff;
+        }
+        body {
+            background: var(--color-bg);
+            color: var(--color-text);
+        }
+        .footer-minimal {
+            background: var(--color-footer-gradient);
+            border-top: none;
+        }
+        .footer-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--color-text);
+            letter-spacing: 0.5px;
+        }
+        .footer-icon {
+            color: var(--color-footer-icon);
+            font-size: 1.4rem;
+            opacity: 0.8;
+            transition: color 0.2s, opacity 0.2s, transform 0.2s;
+        }
+        .footer-icon:hover {
+            color: var(--color-footer-icon-hover);
+            opacity: 1;
+            transform: scale(1.15);
+        }
+        .footer-copy {
+            color: var(--color-muted);
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+        }
+        .navbar, .navbar-nav .nav-link {
+            background: transparent;
+            color: var(--color-text) !important;
+        }
+        .navbar .navbar-brand, .navbar .nav-link {
+            color: var(--color-text) !important;
+        }
+        .bg-light {
+            background-color: #f8f9fa !important;
+        }
         .hover-scale:hover {
             transform: scale(1.1);
         }
@@ -410,7 +494,7 @@
             transition: all 0.3s ease;
         }
         .hover-link:hover {
-            color: var(--bs-primary) !important;
+            color: var(--color-primary) !important;
             transform: translateX(5px);
         }
         .nav-indicator {
@@ -419,7 +503,7 @@
             left: 50%;
             width: 0;
             height: 2px;
-            background-color: var(--bs-primary);
+            background-color: var(--color-primary);
             transition: all 0.3s ease;
             transform: translateX(-50%);
         }
@@ -429,37 +513,30 @@
         .nav-link.active .nav-indicator {
             width: 100%;
         }
-        .footer-minimal {
-            background: linear-gradient(90deg, #a8edea 0%, #fed6e3 100%);
-            border-top: none;
-        }
-        .footer-name {
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: #222;
-            letter-spacing: 0.5px;
-        }
-        .footer-icon {
-            color: #444;
-            font-size: 1.4rem;
-            opacity: 0.8;
-            transition: color 0.2s, opacity 0.2s, transform 0.2s;
-        }
-        .footer-icon:hover {
-            color: #007bff;
-            opacity: 1;
-            transform: scale(1.15);
-        }
-        .footer-copy {
-            color: #666;
-            font-size: 0.95rem;
-            font-weight: 400;
-            letter-spacing: 0.2px;
-        }
         @media (max-width: 991px) {
             .footer-minimal .row > div {
                 text-align: center !important;
             }
+        }
+        /* Dark mode styles */
+        body.darkmode {
+            --color-bg: #181a1b;
+            --color-text: #f1f1f1;
+            --color-muted: #b0b0b0;
+            --color-primary: #4fc3f7;
+            --color-footer-gradient: linear-gradient(90deg, #232526 0%, #414345 100%);
+            --color-footer-icon: #e0e0e0;
+            --color-footer-icon-hover: #4fc3f7;
+        }
+        body.darkmode .bg-light {
+            background-color: #232526 !important;
+        }
+        body.darkmode .navbar, body.darkmode .navbar-nav .nav-link {
+            background: transparent;
+            color: var(--color-text) !important;
+        }
+        body.darkmode .navbar .navbar-brand, body.darkmode .navbar .nav-link {
+            color: var(--color-text) !important;
         }
     </style>
 </body>
