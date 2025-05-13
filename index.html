@@ -493,8 +493,12 @@
                     <div class="modal-header">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body p-0">
+                    <div class="modal-body p-0 d-flex flex-column align-items-center">
                         <img src="" class="img-fluid" id="modalImage">
+                        <div class="d-flex justify-content-between w-100 mt-3 px-4">
+                            <button id="prevImageBtn" class="btn btn-outline-secondary">&larr; Prev</button>
+                            <button id="nextImageBtn" class="btn btn-outline-secondary">Next &rarr;</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -520,13 +524,36 @@
         <script src="js/main.js"></script>
         
         <script>
-            // Image Modal Functionality
-            document.querySelectorAll('.image-clickable').forEach(img => {
-                img.addEventListener('click', function() {
-                    const modal = new bootstrap.Modal(document.getElementById('imageModal'));
-                    document.getElementById('modalImage').src = this.src;
-                    modal.show();
-                });
+            // Image Modal Functionality with navigation
+            const images = Array.from(document.querySelectorAll('.image-clickable'));
+            let currentImageIndex = 0;
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const prevBtn = document.getElementById('prevImageBtn');
+            const nextBtn = document.getElementById('nextImageBtn');
+
+            function showImageModal(index) {
+                currentImageIndex = index;
+                modalImg.src = images[index].src;
+                modalImg.alt = images[index].alt;
+                const bsModal = new bootstrap.Modal(modal);
+                bsModal.show();
+            }
+
+            images.forEach((img, idx) => {
+                img.addEventListener('click', () => showImageModal(idx));
+            });
+
+            prevBtn.addEventListener('click', () => {
+                currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+                modalImg.src = images[currentImageIndex].src;
+                modalImg.alt = images[currentImageIndex].alt;
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+                modalImg.src = images[currentImageIndex].src;
+                modalImg.alt = images[currentImageIndex].alt;
             });
 
             // Dark mode toggle functionality
