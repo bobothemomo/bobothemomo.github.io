@@ -81,10 +81,20 @@
         .contact-form input, .contact-form textarea {
             background: #fff;
             color: #222;
+            border: 1px solid #bbb;
+        }
+        .contact-form input::placeholder, .contact-form textarea::placeholder {
+            color: #888;
+            opacity: 1;
         }
         body.darkmode .contact-form input, body.darkmode .contact-form textarea {
             background: #232526;
             color: #f1f1f1;
+            border: 1px solid #444;
+        }
+        body.darkmode .contact-form input::placeholder, body.darkmode .contact-form textarea::placeholder {
+            color: #ccc;
+            opacity: 1;
         }
     </style>
 </head>
@@ -406,7 +416,7 @@
                 
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
-                        <form class="contact-form" action="https://formspree.io/f/mnqekgqj" method="POST">
+                        <form class="contact-form" action="https://formspree.io/f/mpwdojad" method="POST">
                             <div class="mb-3">
                                 <input type="text" name="name" class="form-control" placeholder="Your Name" required>
                             </div>
