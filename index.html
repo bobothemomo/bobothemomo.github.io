@@ -290,7 +290,7 @@
                 
                 <div class="row g-4">
                     <div class="col-lg-4">
-                        <div class="card h-100 shadow-sm project-card" data-title="Sketch & Mockup" data-description="A collection of sketches and mockups for various projects." data-link="https://github.com/bobothemomo/sketch-mockup" data-demo="https://demo.example.com/sketch-mockup">
+                        <div class="card h-100 shadow-sm project-card" data-title="Sketch & Mockup" data-description="A collection of sketches and mockups for various projects.">
                             <div class="card-header bg-primary text-white">
                                 <h3 class="h5 mb-0">Sketch & Mockup</h3>
                             </div>
@@ -303,9 +303,6 @@
                                         <img src="./image/p3.jpg" class="img-fluid rounded image-clickable" alt="Sketch 2">
                                     </div>
                                 </div>
-                                <button class="btn btn-sm btn-outline-primary mt-3 project-details-btn">Details</button>
-                                <a href="https://github.com/bobothemomo/sketch-mockup" class="btn btn-sm btn-link" target="_blank">GitHub</a>
-                                <a href="https://demo.example.com/sketch-mockup" class="btn btn-sm btn-link" target="_blank">Live Demo</a>
                             </div>
                         </div>
                     </div>
@@ -471,7 +468,6 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" id="projectDetailsBody"></div>
-                    <div class="modal-footer" id="projectDetailsFooter"></div>
                 </div>
             </div>
         </div>
@@ -542,9 +538,6 @@
                     const card = btn.closest('.project-card');
                     document.getElementById('projectDetailsTitle').textContent = card.getAttribute('data-title');
                     document.getElementById('projectDetailsBody').textContent = card.getAttribute('data-description');
-                    document.getElementById('projectDetailsFooter').innerHTML =
-                        `<a href="${card.getAttribute('data-link')}" class="btn btn-primary btn-sm me-2" target="_blank">GitHub</a>` +
-                        `<a href="${card.getAttribute('data-demo')}" class="btn btn-success btn-sm" target="_blank">Live Demo</a>`;
                     const modal = new bootstrap.Modal(document.getElementById('projectDetailsModal'));
                     modal.show();
                 });
@@ -561,10 +554,38 @@
             --color-footer-gradient: linear-gradient(90deg, #a8edea 0%, #fed6e3 100%);
             --color-footer-icon: #444;
             --color-footer-icon-hover: #007bff;
+            --transition-speed: 0.15s;
         }
         body {
             background: var(--color-bg);
             color: var(--color-text);
+            transition: background var(--transition-speed), color var(--transition-speed);
+        }
+        .footer-minimal, .navbar, .navbar-nav .nav-link, .footer-name, .footer-copy, .footer-icon {
+            transition: background var(--transition-speed), color var(--transition-speed), opacity var(--transition-speed);
+        }
+        .footer-icon, .navbar .navbar-brand svg text {
+            fill: var(--color-text);
+            color: var(--color-footer-icon);
+        }
+        .footer-icon:hover {
+            color: var(--color-footer-icon-hover);
+            opacity: 1;
+            transform: scale(1.15);
+        }
+        .navbar .navbar-brand svg text {
+            fill: var(--color-text);
+            transition: fill var(--transition-speed);
+        }
+        .navbar .navbar-brand svg circle {
+            fill: var(--color-primary);
+            transition: fill var(--transition-speed);
+        }
+        .footer-name, .footer-copy {
+            color: var(--color-text);
+        }
+        .footer-copy {
+            color: var(--color-muted);
         }
         .footer-minimal {
             background: var(--color-footer-gradient);
@@ -573,25 +594,11 @@
         .footer-name {
             font-weight: 700;
             font-size: 1.1rem;
-            color: var(--color-text);
             letter-spacing: 0.5px;
         }
         .footer-icon {
-            color: var(--color-footer-icon);
             font-size: 1.4rem;
             opacity: 0.8;
-            transition: color 0.2s, opacity 0.2s, transform 0.2s;
-        }
-        .footer-icon:hover {
-            color: var(--color-footer-icon-hover);
-            opacity: 1;
-            transform: scale(1.15);
-        }
-        .footer-copy {
-            color: var(--color-muted);
-            font-size: 0.95rem;
-            font-weight: 400;
-            letter-spacing: 0.2px;
         }
         .navbar, .navbar-nav .nav-link {
             background: transparent;
@@ -607,7 +614,7 @@
             transform: scale(1.1);
         }
         .hover-link {
-            transition: all 0.3s ease;
+            transition: all var(--transition-speed) ease;
         }
         .hover-link:hover {
             color: var(--color-primary) !important;
@@ -620,13 +627,10 @@
             width: 0;
             height: 2px;
             background-color: var(--color-primary);
-            transition: all 0.3s ease;
+            transition: all var(--transition-speed) ease;
             transform: translateX(-50%);
         }
-        .nav-link:hover .nav-indicator {
-            width: 100%;
-        }
-        .nav-link.active .nav-indicator {
+        .nav-link:hover .nav-indicator, .nav-link.active .nav-indicator {
             width: 100%;
         }
         @media (max-width: 991px) {
@@ -653,6 +657,25 @@
         }
         body.darkmode .navbar .navbar-brand, body.darkmode .navbar .nav-link {
             color: var(--color-text) !important;
+        }
+        /* Image Modal Sizing */
+        #imageModal .modal-dialog {
+            max-width: 500px;
+        }
+        #imageModal .modal-body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+        }
+        #modalImage {
+            max-width: 100%;
+            max-height: 70vh;
+            width: auto;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 8px;
         }
     </style>
 </body>
