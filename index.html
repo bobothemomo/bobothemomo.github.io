@@ -117,66 +117,6 @@
         body.darkmode .video-card .card-title {
             color: #f1f1f1;
         }
-        .image-modal-modern {
-            background: #232526;
-            border-radius: 18px;
-            box-shadow: 0 8px 40px rgba(0,0,0,0.35);
-            overflow: hidden;
-        }
-        .image-modal-container {
-            min-height: 48vh;
-            height: 48vh;
-            max-height: 48vh;
-            position: relative;
-        }
-        .image-modal-img {
-            transition: opacity 0.3s;
-            opacity: 0;
-            background: #181a1b;
-        }
-        .image-modal-img.loaded {
-            opacity: 1;
-        }
-        .image-nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 2;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(30,30,30,0.7);
-            color: #fff;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.18);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-            outline: none;
-        }
-        .image-nav-btn:hover {
-            background: #007bff;
-            transform: translateY(-50%) scale(1.08);
-        }
-        .image-nav-btn-left {
-            left: 16px;
-        }
-        .image-nav-btn-right {
-            right: 16px;
-        }
-        @media (max-width: 768px) {
-            .image-modal-container, .modal-body {
-                min-height: 32vh !important;
-                height: 32vh !important;
-                max-height: 32vh !important;
-            }
-            .image-modal-img {
-                max-height: 32vh !important;
-            }
-        }
     </style>
 </head>
 <body>
@@ -549,17 +489,16 @@
         <!-- Modal for Image Preview -->
         <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
-                <div class="modal-content image-modal-modern">
-                    <div class="modal-header border-0">
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body p-0 d-flex flex-column align-items-center justify-content-center" style="min-height: 60vh; height: 60vh; max-height: 80vh;">
-                        <div class="image-modal-container position-relative w-100 h-100 d-flex align-items-center justify-content-center">
-                            <button id="prevImageBtn" class="image-nav-btn image-nav-btn-left" aria-label="Previous image">&#8592;</button>
-                            <img src="" class="img-fluid image-modal-img fade-in" id="modalImage" style="max-height: 48vh; max-width: 90%; object-fit: contain; border-radius: 16px; box-shadow: 0 4px 32px rgba(0,0,0,0.25); background: #181a1b;" />
-                            <button id="nextImageBtn" class="image-nav-btn image-nav-btn-right" aria-label="Next image">&#8594;</button>
+                    <div class="modal-body p-0 d-flex flex-column align-items-center">
+                        <img src="" class="img-fluid" id="modalImage">
+                        <div class="d-flex justify-content-between w-100 mt-3 px-4">
+                            <button id="prevImageBtn" class="btn btn-outline-secondary">&larr; Prev</button>
+                            <button id="nextImageBtn" class="btn btn-outline-secondary">Next &rarr;</button>
                         </div>
-                        <div id="modalImageCaption" class="mt-3 text-center text-light small" style="min-height:2em;"></div>
                     </div>
                 </div>
             </div>
@@ -585,28 +524,21 @@
         <script src="js/main.js"></script>
         
         <script>
-            // Image Modal Functionality with navigation and modern look
+            // Image Modal Functionality with navigation
             const images = Array.from(document.querySelectorAll('.image-clickable'));
             let currentImageIndex = 0;
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
             const prevBtn = document.getElementById('prevImageBtn');
             const nextBtn = document.getElementById('nextImageBtn');
-            const modalCaption = document.getElementById('modalImageCaption');
 
             function showImageModal(index) {
                 currentImageIndex = index;
-                modalImg.classList.remove('loaded');
                 modalImg.src = images[index].src;
                 modalImg.alt = images[index].alt;
-                modalCaption.textContent = images[index].alt || '';
                 const bsModal = new bootstrap.Modal(modal);
                 bsModal.show();
             }
-
-            modalImg.onload = function() {
-                modalImg.classList.add('loaded');
-            };
 
             images.forEach((img, idx) => {
                 img.addEventListener('click', () => showImageModal(idx));
@@ -614,18 +546,14 @@
 
             prevBtn.addEventListener('click', () => {
                 currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-                modalImg.classList.remove('loaded');
                 modalImg.src = images[currentImageIndex].src;
                 modalImg.alt = images[currentImageIndex].alt;
-                modalCaption.textContent = images[currentImageIndex].alt || '';
             });
 
             nextBtn.addEventListener('click', () => {
                 currentImageIndex = (currentImageIndex + 1) % images.length;
-                modalImg.classList.remove('loaded');
                 modalImg.src = images[currentImageIndex].src;
                 modalImg.alt = images[currentImageIndex].alt;
-                modalCaption.textContent = images[currentImageIndex].alt || '';
             });
 
             // Dark mode toggle functionality
