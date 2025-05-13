@@ -24,7 +24,7 @@
     <nav id="scrolling_navbar" class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
-                <span class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center me-2" style="width: 40px; height: 40px;">BD</span>
+                <span class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center me-2 hover-scale" style="width: 40px; height: 40px; transition: transform 0.3s ease;">BD</span>
                 <span class="d-none d-sm-inline">Barış Değirmenci</span>
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,16 +33,28 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav fw-bold">
                     <li class="nav-item">
-                        <a class="nav-link px-3" href="#home">Home</a>
+                        <a class="nav-link px-3 position-relative" href="#home">
+                            Home
+                            <span class="nav-indicator"></span>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link px-3" href="#about">About</a>
+                        <a class="nav-link px-3 position-relative" href="#about">
+                            About
+                            <span class="nav-indicator"></span>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link px-3" href="#projects">Projects</a>
+                        <a class="nav-link px-3 position-relative" href="#projects">
+                            Projects
+                            <span class="nav-indicator"></span>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link px-3" href="#contact">Contact</a>
+                        <a class="nav-link px-3 position-relative" href="#contact">
+                            Contact
+                            <span class="nav-indicator"></span>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -345,23 +357,47 @@
             <div class="container">
                 <div class="row g-4">
                     <div class="col-lg-4">
-                        <h5 class="mb-4">Barış Değirmenci</h5>
-                        <p class="text-muted">Computer Education & Instructional Technologies Student | Graphic Designer | Game Developer</p>
+                        <h5 class="mb-4 fw-bold">Barış Değirmenci</h5>
+                        <p class="text-muted mb-4">Computer Education & Instructional Technologies Student | Graphic Designer | Game Developer</p>
                     </div>
                     <div class="col-lg-4">
-                        <h5 class="mb-4">Quick Links</h5>
+                        <h5 class="mb-4 fw-bold">Quick Links</h5>
                         <ul class="list-unstyled">
-                            <li class="mb-2"><a href="#home" class="text-muted text-decoration-none">Home</a></li>
-                            <li class="mb-2"><a href="#about" class="text-muted text-decoration-none">About</a></li>
-                            <li class="mb-2"><a href="#projects" class="text-muted text-decoration-none">Projects</a></li>
-                            <li class="mb-2"><a href="#contact" class="text-muted text-decoration-none">Contact</a></li>
+                            <li class="mb-2">
+                                <a href="#home" class="text-muted text-decoration-none d-flex align-items-center hover-link">
+                                    <i class="fas fa-chevron-right me-2 fa-sm"></i>
+                                    Home
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#about" class="text-muted text-decoration-none d-flex align-items-center hover-link">
+                                    <i class="fas fa-chevron-right me-2 fa-sm"></i>
+                                    About
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#projects" class="text-muted text-decoration-none d-flex align-items-center hover-link">
+                                    <i class="fas fa-chevron-right me-2 fa-sm"></i>
+                                    Projects
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#contact" class="text-muted text-decoration-none d-flex align-items-center hover-link">
+                                    <i class="fas fa-chevron-right me-2 fa-sm"></i>
+                                    Contact
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <div class="col-lg-4">
-                        <h5 class="mb-4">Connect</h5>
+                        <h5 class="mb-4 fw-bold">Connect</h5>
                         <div class="d-flex gap-3 mb-4">
-                            <a href="https://github.com/bobothemomo" class="text-white fs-4" target="_blank"><i class="fab fa-github"></i></a>
-                            <a href="https://www.linkedin.com/in/barış-değirmenci-98559a21b/" class="text-white fs-4" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/bobothemomo" class="text-white fs-4 hover-scale" target="_blank" style="transition: transform 0.3s ease;">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/barış-değirmenci-98559a21b/" class="text-white fs-4 hover-scale" target="_blank" style="transition: transform 0.3s ease;">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
                         </div>
                         <p class="text-muted mb-0">© 2024 Barış Değirmenci. All rights reserved.</p>
                     </div>
@@ -400,5 +436,34 @@
             });
         </script>
     </div>
+
+    <style>
+        .hover-scale:hover {
+            transform: scale(1.1);
+        }
+        .hover-link {
+            transition: all 0.3s ease;
+        }
+        .hover-link:hover {
+            color: var(--bs-primary) !important;
+            transform: translateX(5px);
+        }
+        .nav-indicator {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--bs-primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        .nav-link:hover .nav-indicator {
+            width: 100%;
+        }
+        .nav-link.active .nav-indicator {
+            width: 100%;
+        }
+    </style>
 </body>
 </html>
