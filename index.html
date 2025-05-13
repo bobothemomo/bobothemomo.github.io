@@ -96,6 +96,27 @@
             color: #ccc;
             opacity: 1;
         }
+        .video-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e0e0e0;
+        }
+        .video-card .card-title {
+            color: #222;
+            font-weight: 500;
+            padding: 0.5rem 1rem 1rem 1rem;
+        }
+        body.darkmode .video-card {
+            background: #232526;
+            border: 1px solid #333;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+        }
+        body.darkmode .video-card .card-title {
+            color: #f1f1f1;
+        }
     </style>
 </head>
 <body>
@@ -148,7 +169,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 text-center text-lg-start">
                         <h1 class="display-4 fw-bold mb-4">Hi, I'm Barış Değirmenci</h1>
-                        <p class="lead mb-4">Computer Education & Instructional Technologies Student | Graphic Designer | Game Developer</p>
+                        <p class="lead mb-4">Computer Education & Instructional Technologies Student | Graphic Designer | Game Developer | UX/UI Designer</p>
                         <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
                             <a class="btn btn-primary btn-lg rounded-pill" href="#about">About Me</a>
                             <a class="btn btn-outline-primary btn-lg rounded-pill" href="#contact">Contact</a>
@@ -229,6 +250,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-object-group text-primary me-3 fs-4"></i>
+                                    <div>
+                                        <h5 class="mb-0">UX/UI Designer</h5>
+                                        <p class="mb-0">Designing user-friendly digital experiences</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <h3 class="fw-bold fs-4 mb-4">Technical Skills</h3>
                         <div class="row g-4">
@@ -246,7 +276,7 @@
                             <div class="col-md-6">
                                 <div class="skill-item">
                                     <div class="d-flex justify-content-between mb-2">
-                                        <span>Adobe Premiere Pro</span>
+                                        <span>Adobe Creative Suite</span>
                                         <span>70%</span>
                                     </div>
                                     <div class="progress">
@@ -306,6 +336,15 @@
                                     </div>
                                     <div class="col-6">
                                         <img src="./image/p3.jpg" class="img-fluid rounded image-clickable" alt="Sketch 2">
+                                    </div>
+                                    <div class="col-6">
+                                        <img src="./image/p4.jpg" class="img-fluid rounded image-clickable" alt="Sketch 3">
+                                    </div>
+                                    <div class="col-6">
+                                        <img src="./image/p5.jpg" class="img-fluid rounded image-clickable" alt="Sketch 4">
+                                    </div>
+                                    <div class="col-6">
+                                        <img src="./image/p7.jpg" class="img-fluid rounded image-clickable" alt="Sketch 5">
                                     </div>
                                 </div>
                             </div>
@@ -368,33 +407,27 @@
                     <h3 class="text-center mb-4">Featured Videos</h3>
                     <div class="row g-4">
                         <div class="col-lg-4">
-                            <div class="card h-100 shadow-sm">
+                            <div class="card h-100 shadow-sm video-card">
                                 <div class="ratio ratio-16x9">
                                     <iframe src="https://www.youtube.com/embed/M8eoCbo5je8" title="YouTube video" allowfullscreen></iframe>
                                 </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Sergio</h5>
-                                </div>
+                                <div class="card-title">Sergio</div>
                             </div>
                         </div>
                         <div class="col-lg-4">
-                            <div class="card h-100 shadow-sm">
+                            <div class="card h-100 shadow-sm video-card">
                                 <div class="ratio ratio-16x9">
                                     <iframe src="https://www.youtube.com/embed/HBKviZ6l_bE" title="YouTube video" allowfullscreen></iframe>
                                 </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">The Pearl</h5>
-                                </div>
+                                <div class="card-title">The Pearl</div>
                             </div>
                         </div>
                         <div class="col-lg-4">
-                            <div class="card h-100 shadow-sm">
+                            <div class="card h-100 shadow-sm video-card">
                                 <div class="ratio ratio-16x9">
                                     <iframe src="https://www.youtube.com/embed/3NCzQ8MkVKU" title="YouTube video" allowfullscreen></iframe>
                                 </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Academia of Googlewoods</h5>
-                                </div>
+                                <div class="card-title">Academia of Googlewoods</div>
                             </div>
                         </div>
                     </div>
