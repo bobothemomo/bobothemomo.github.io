@@ -262,3 +262,37 @@ body {
 #exampleModal.custom .carousel-indicators li.active {
   background: white;
 }
+
+/* --- Mobile Fixes: Header, Modal, Images --- */
+@media (max-width: 991px) {
+  body {
+    padding-top: 70px !important; /* Adjust if your navbar is taller/shorter */
+  }
+}
+
+@media (max-width: 768px) {
+  /* Modal image sizing for mobile */
+  #imageModal .modal-dialog {
+    max-width: 98vw !important;
+    margin: 0 auto;
+  }
+  #imageModal .modal-body,
+  .image-modal-container {
+    min-height: 60vw !important;
+    height: 60vw !important;
+    max-height: 80vw !important;
+  }
+  #modalImage {
+    max-width: 96vw !important;
+    max-height: 60vw !important;
+  }
+  /* Project images larger on mobile */
+  .card-body .row.g-3 > .col-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .img-fluid {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
