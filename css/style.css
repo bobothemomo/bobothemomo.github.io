@@ -1,5 +1,9 @@
 body {
   font-family: "Nunito", sans-serif;
+  background: linear-gradient(90deg, #a8edea 0%, #fed6e3 100%);
+}
+body.darkmode {
+  background: linear-gradient(90deg, #232526 0%, #414345 100%);
 }
 
 .nav-link.active {
@@ -326,4 +330,8 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+body, .footer-minimal, .navbar, .navbar-nav .nav-link, .footer-name, .footer-copy, .footer-icon {
+  transition: background 0.05s, color 0.05s, opacity 0.05s !important;
 }
