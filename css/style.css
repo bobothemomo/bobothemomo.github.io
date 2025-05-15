@@ -1,6 +1,6 @@
 body {
   font-family: "Nunito", sans-serif;
-  background: linear-gradient(90deg, #a8edea 0%, #fed6e3 100%);
+  background: linear-gradient(90deg, #a8edea 0%, #fed6e3 100%) !important;
 }
 body.darkmode {
   background: #181a1b;
@@ -334,4 +334,8 @@ body.darkmode {
 
 body, .footer-minimal, .navbar, .navbar-nav .nav-link, .footer-name, .footer-copy, .footer-icon {
   transition: background 0.05s, color 0.05s, opacity 0.05s !important;
+}
+
+.container, .section, .row, .col-lg-6, .col-lg-5, .col-lg-7 {
+  background: transparent !important;
 }
