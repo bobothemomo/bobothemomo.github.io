@@ -642,3 +642,27 @@ body.darkmode .footer-name,
 body.darkmode .footer-copy {
   color: #f1f1f1;
 }
+
+.timeline-dot {
+  position: absolute;
+  left: -13px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background: var(--color-skill-dot, var(--color-primary));
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 2px var(--color-skill-dot, var(--color-primary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skill-icon {
+  color: var(--color-skill-dot, var(--color-primary));
+}
+
+body.darkmode {
+  --color-skill-dot: #4fc3f7;
+}
