@@ -3,6 +3,10 @@
   --transition-timing: 0.3s ease;
 }
 
+body, .navbar, .card, .footer-minimal, .modal-content, .timeline-content, .form-control, .card-header, .footer-icon, .image-modal-modern {
+  transition: background-color var(--transition-timing), color var(--transition-timing) !important;
+}
+
 body {
   font-family: "Nunito", sans-serif;
   background: var(--color-bg);
