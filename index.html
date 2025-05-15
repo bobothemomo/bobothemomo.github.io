@@ -674,17 +674,7 @@
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             const savedTheme = localStorage.getItem('theme');
 
-            function setTheme(theme) {
-                if (theme === 'dark') {
-                    document.body.classList.add('darkmode');
-                    darkModeIcon.classList.remove('fa-moon');
-                    darkModeIcon.classList.add('fa-sun');
-                } else {
-                    document.body.classList.remove('darkmode');
-                    darkModeIcon.classList.remove('fa-sun');
-                    darkModeIcon.classList.add('fa-moon');
-                }
-            }
+                        function setTheme(theme) {                if (theme === 'dark') {                    document.body.classList.add('darkmode');                    darkModeIcon.classList.remove('fa-moon');                    darkModeIcon.classList.add('fa-sun');                    document.documentElement.style.setProperty('--color-bg', '#181a1b');                    document.documentElement.style.setProperty('--color-text', '#f1f1f1');                } else {                    document.body.classList.remove('darkmode');                    darkModeIcon.classList.remove('fa-sun');                    darkModeIcon.classList.add('fa-moon');                    document.documentElement.style.setProperty('--color-bg', '#fff');                    document.documentElement.style.setProperty('--color-text', '#222');                }            }
 
             // Initial theme
             if (savedTheme) {

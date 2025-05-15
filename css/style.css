@@ -1,9 +1,12 @@
 body {
   font-family: "Nunito", sans-serif;
   background: linear-gradient(90deg, #a8edea 0%, #fed6e3 100%) !important;
+  color: #222;
+  transition: background-color 0.3s, color 0.3s;
 }
 body.darkmode {
-  background: #181a1b;
+  background: linear-gradient(90deg, #232526 0%, #414345 100%) !important;
+  color: #f1f1f1;
 }
 
 .nav-link.active {
@@ -338,4 +341,80 @@ body, .footer-minimal, .navbar, .navbar-nav .nav-link, .footer-name, .footer-cop
 
 .container, .section, .row, .col-lg-6, .col-lg-5, .col-lg-7 {
   background: transparent !important;
+}
+
+/* Dark mode overrides */
+body.darkmode .card {
+  background-color: #232526;
+  border-color: #333;
+}
+
+body.darkmode .card-header {
+  background-color: #2c3032;
+  border-bottom-color: #333;
+}
+
+body.darkmode .bg-light {
+  background-color: #232526 !important;
+}
+
+body.darkmode .text-dark {
+  color: #f1f1f1 !important;
+}
+
+body.darkmode .navbar {
+  background: rgba(30, 30, 30, 0.96);
+}
+
+body.darkmode .navbar-toggler {
+  color: #f1f1f1;
+}
+
+body.darkmode .form-control {
+  background-color: #2c3032;
+  border-color: #444;
+  color: #f1f1f1;
+}
+
+body.darkmode .form-control::placeholder {
+  color: #999;
+}
+
+body.darkmode .timeline-content {
+  background: #232526;
+  color: #f1f1f1;
+}
+
+body.darkmode .modern-progress {
+  background: #2c3032;
+}
+
+body.darkmode .skill-label {
+  color: #f1f1f1;
+}
+
+body.darkmode .video-card {
+  background: #232526;
+  border-color: #333;
+}
+
+body.darkmode .video-card .card-title {
+  color: #f1f1f1;
+}
+
+body.darkmode .footer-minimal {
+  background: linear-gradient(90deg, #232526 0%, #414345 100%);
+}
+
+body.darkmode .footer-icon {
+  color: #e0e0e0;
+}
+
+body.darkmode .footer-icon:hover {
+  color: #4fc3f7;
+}
+
+body.darkmode .footer-name,
+body.darkmode .footer-copy {
+  color: #f1f1f1;
 }
