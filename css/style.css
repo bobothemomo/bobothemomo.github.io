@@ -1,3 +1,151 @@
+/* Base styles */
+:root {
+  --transition-timing: 0.3s ease;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition: background-color var(--transition-timing),
+              color var(--transition-timing);
+}
+
+/* Navbar styles */
+.navbar {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  transition: background-color var(--transition-timing);
+}
+
+body.darkmode .navbar {
+  background: rgba(24, 26, 27, 0.95);
+}
+
+.nav-link {
+  color: var(--color-text) !important;
+  transition: color var(--transition-timing);
+}
+
+/* Card styles */
+.card {
+  background: var(--color-bg);
+  border-color: var(--color-muted);
+  transition: background-color var(--transition-timing),
+              border-color var(--transition-timing);
+}
+
+.card-header {
+  background: var(--color-bg);
+  border-bottom-color: var(--color-muted);
+}
+
+/* Form styles */
+.form-control {
+  background: var(--color-bg);
+  border-color: var(--color-muted);
+  color: var(--color-text);
+  transition: background-color var(--transition-timing),
+              border-color var(--transition-timing),
+              color var(--transition-timing);
+}
+
+.form-control:focus {
+  background: var(--color-bg);
+  border-color: var(--color-primary);
+  color: var(--color-text);
+}
+
+/* Timeline styles */
+.timeline-content {
+  background: var(--color-bg);
+  color: var(--color-text);
+  border: 1px solid var(--color-muted);
+  transition: background-color var(--transition-timing),
+              color var(--transition-timing),
+              border-color var(--transition-timing);
+}
+
+/* Progress bar styles */
+.modern-progress {
+  background: var(--color-muted);
+  transition: background-color var(--transition-timing);
+}
+
+.progress-bar {
+  background: var(--color-primary);
+  transition: background-color var(--transition-timing);
+}
+
+/* Footer styles */
+.footer-minimal {
+  background: var(--color-footer-gradient);
+  transition: background var(--transition-timing);
+}
+
+.footer-icon {
+  color: var(--color-footer-icon);
+  transition: color var(--transition-timing),
+              transform var(--transition-timing);
+}
+
+.footer-icon:hover {
+  color: var(--color-footer-icon-hover);
+  transform: scale(1.15);
+}
+
+/* Modal styles */
+.modal-content {
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition: background-color var(--transition-timing),
+              color var(--transition-timing);
+}
+
+.btn-close {
+  filter: invert(var(--color-invert));
+}
+
+/* Dark mode specific overrides */
+body.darkmode {
+  --color-invert: 1;
+}
+
+body:not(.darkmode) {
+  --color-invert: 0;
+}
+
+/* Ensure text contrast */
+body.darkmode .text-dark {
+  color: var(--color-text) !important;
+}
+
+/* Image modal styles */
+.image-modal-modern {
+  background: var(--color-bg);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.35);
+}
+
+.image-modal-img {
+  background: var(--color-bg);
+}
+
+/* Button styles */
+.btn-primary {
+  background-color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+}
+
+.btn-outline-primary {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
 body {
   font-family: "Nunito", sans-serif;
   background: linear-gradient(90deg, #a8edea 0%, #fed6e3 100%) !important;
