@@ -619,3 +619,22 @@ body.darkmode .footer-name,
 body.darkmode .footer-copy {
   color: #f1f1f1;
 }
+
+.image-modal-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: blur(24px) brightness(0.6);
+  transition: background-image 0.3s;
+}
+.image-modal-img {
+  position: relative;
+  z-index: 1;
+}
+.image-modal-container {
+  position: relative;
+  overflow: hidden;
+}

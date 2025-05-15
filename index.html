@@ -544,6 +544,7 @@
                     </div>
                     <div class="modal-body p-0 d-flex flex-column align-items-center justify-content-center" style="min-height: 60vh; height: 60vh; max-height: 80vh;">
                         <div class="image-modal-container position-relative w-100 h-100 d-flex align-items-center justify-content-center">
+                            <div class="image-modal-bg"></div>
                             <button id="prevImageBtn" class="image-nav-btn image-nav-btn-left" aria-label="Previous image">&#8592;</button>
                             <img src="" class="img-fluid image-modal-img fade-in" id="modalImage" style="max-height: 48vh; max-width: 90%; object-fit: contain; border-radius: 16px; box-shadow: 0 4px 32px rgba(0,0,0,0.25); background: #181a1b;" />
                             <button id="nextImageBtn" class="image-nav-btn image-nav-btn-right" aria-label="Next image">&#8594;</button>
@@ -582,6 +583,7 @@
             const prevBtn = document.getElementById('prevImageBtn');
             const nextBtn = document.getElementById('nextImageBtn');
             const modalCaption = document.getElementById('modalImageCaption');
+            const modalBg = document.querySelector('.image-modal-bg');
             let bsModal = null;
 
             function showImageModal(index) {
@@ -590,6 +592,8 @@
                 modalImg.src = images[index].src;
                 modalImg.alt = images[index].alt;
                 modalCaption.textContent = images[index].alt || '';
+                // Set blurred background
+                modalBg.style.backgroundImage = `url('${images[index].src}')`;
                 bsModal = new bootstrap.Modal(modal);
                 bsModal.show();
                 setTimeout(() => prevBtn.focus(), 300); // Focus for accessibility
@@ -601,6 +605,7 @@
             modalImg.onerror = function() {
                 modalImg.src = 'https://via.placeholder.com/600x400?text=Image+not+found';
                 modalCaption.textContent = 'Image not found';
+                modalBg.style.backgroundImage = '';
             };
 
             images.forEach((img, idx) => {
@@ -613,6 +618,7 @@
                 modalImg.src = images[currentImageIndex].src;
                 modalImg.alt = images[currentImageIndex].alt;
                 modalCaption.textContent = images[currentImageIndex].alt || '';
+                modalBg.style.backgroundImage = `url('${images[currentImageIndex].src}')`;
             }
             function showNextImage() {
                 currentImageIndex = (currentImageIndex + 1) % images.length;
@@ -620,6 +626,7 @@
                 modalImg.src = images[currentImageIndex].src;
                 modalImg.alt = images[currentImageIndex].alt;
                 modalCaption.textContent = images[currentImageIndex].alt || '';
+                modalBg.style.backgroundImage = `url('${images[currentImageIndex].src}')`;
             }
 
             prevBtn.addEventListener('click', showPrevImage);
