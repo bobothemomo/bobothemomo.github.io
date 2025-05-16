@@ -191,4 +191,10 @@ body.darkmode #navbarLogo {
     background-color: var(--color-primary);
     border-color: var(--color-primary);
     color: #fff;
+}
+
+body.darkmode .card-header {
+    background-color: #232b2b !important;
+    color: #f1f1f1 !important;
+    border-bottom: none;
 } 
