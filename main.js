@@ -21,3 +21,47 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Add overlay if not present
+  if (!document.querySelector('.card-overlay')) {
+    const overlay = document.createElement('div');
+    overlay.className = 'card-overlay';
+    document.body.appendChild(overlay);
+  }
+  const overlay = document.querySelector('.card-overlay');
+  const cards = document.querySelectorAll('.expandable-card');
+  let expandedCard = null;
+
+  cards.forEach(card => {
+    card.addEventListener('click', function(e) {
+      // Prevent click on close button from toggling
+      if (e.target.classList.contains('close-card-btn')) return;
+      if (expandedCard && expandedCard !== card) {
+        expandedCard.classList.remove('expanded-card');
+        expandedCard.querySelector('.close-card-btn').style.display = 'none';
+      }
+      if (!card.classList.contains('expanded-card')) {
+        card.classList.add('expanded-card');
+        card.querySelector('.close-card-btn').style.display = 'block';
+        overlay.classList.add('active');
+        expandedCard = card;
+      }
+    });
+    card.querySelector('.close-card-btn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      card.classList.remove('expanded-card');
+      this.style.display = 'none';
+      overlay.classList.remove('active');
+      expandedCard = null;
+    });
+  });
+  overlay.addEventListener('click', function() {
+    if (expandedCard) {
+      expandedCard.classList.remove('expanded-card');
+      expandedCard.querySelector('.close-card-btn').style.display = 'none';
+      overlay.classList.remove('active');
+      expandedCard = null;
+    }
+  });
+});
