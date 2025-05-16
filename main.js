@@ -65,22 +65,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Modal image navigation
+  // --- Robust Modal Image Viewer ---
   const images = Array.from(document.querySelectorAll('.image-clickable'));
-  let currentImageIndex = 0;
   const modal = document.getElementById('imageModal');
   const modalImg = document.getElementById('modalImage');
   const prevBtn = document.getElementById('prevImageBtn');
   const nextBtn = document.getElementById('nextImageBtn');
   const modalCaption = document.getElementById('modalImageCaption');
+  let currentImageIndex = 0;
 
   function showImageModal(index) {
+    if (!images[index]) return;
     currentImageIndex = index;
     modalImg.classList.remove('loaded');
     modalImg.src = images[index].src;
     modalImg.alt = images[index].alt;
     modalCaption.textContent = images[index].alt || '';
-    // Show modal (Bootstrap modal)
     if (typeof bootstrap !== 'undefined' && modal.classList.contains('modal')) {
       const bsModal = bootstrap.Modal.getOrCreateInstance(modal);
       bsModal.show();
@@ -106,15 +106,13 @@ document.addEventListener('DOMContentLoaded', function() {
   if (prevBtn) {
     prevBtn.addEventListener('click', function(e) {
       e.stopPropagation();
-      currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-      showImageModal(currentImageIndex);
+      showImageModal((currentImageIndex - 1 + images.length) % images.length);
     });
   }
   if (nextBtn) {
     nextBtn.addEventListener('click', function(e) {
       e.stopPropagation();
-      currentImageIndex = (currentImageIndex + 1) % images.length;
-      showImageModal(currentImageIndex);
+      showImageModal((currentImageIndex + 1) % images.length);
     });
   }
   // Keyboard navigation
