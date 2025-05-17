@@ -236,3 +236,19 @@
     }
   }
   
+  #projectImageModal .modal-content {
+    background: #232526;
+    border-radius: 18px;
+  }
+  #projectModalImg {
+    max-height: 60vh;
+    max-width: 90vw;
+    object-fit: contain;
+  }
+  @media (max-width: 768px) {
+    #projectModalImg {
+      max-height: 40vh;
+      max-width: 98vw;
+    }
+  }
+  

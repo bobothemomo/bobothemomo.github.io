@@ -65,69 +65,52 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // --- Robust Modal Image Viewer ---
+  // --- Project Image Modal Logic ---
   const images = Array.from(document.querySelectorAll('.image-clickable'));
-  const modal = document.getElementById('imageModal');
-  const modalImg = document.getElementById('modalImage');
-  const prevBtn = document.getElementById('prevImageBtn');
-  const nextBtn = document.getElementById('nextImageBtn');
-  const modalCaption = document.getElementById('modalImageCaption');
-  let currentImageIndex = 0;
+  const modal = document.getElementById('projectImageModal');
+  const modalImg = document.getElementById('projectModalImg');
+  const modalCaption = document.getElementById('projectModalCaption');
+  const prevBtn = document.getElementById('imgPrevBtn');
+  const nextBtn = document.getElementById('imgNextBtn');
+  let currentIndex = 0;
 
-  function showImageModal(index) {
+  function showModal(index) {
     if (!images[index]) return;
-    currentImageIndex = index;
-    modalImg.classList.remove('loaded');
+    currentIndex = index;
     modalImg.src = images[index].src;
     modalImg.alt = images[index].alt;
     modalCaption.textContent = images[index].alt || '';
-    if (typeof bootstrap !== 'undefined' && modal.classList.contains('modal')) {
-      const bsModal = bootstrap.Modal.getOrCreateInstance(modal);
-      bsModal.show();
-    } else {
-      modal.style.display = 'block';
-    }
+    const bsModal = bootstrap.Modal.getOrCreateInstance(modal);
+    bsModal.show();
   }
-  if (modalImg) {
-    modalImg.onload = function() {
-      modalImg.classList.add('loaded');
-    };
-    modalImg.onerror = function() {
-      modalImg.src = 'https://via.placeholder.com/600x400?text=Image+not+found';
-      modalCaption.textContent = 'Image not found';
-    };
-  }
+
   images.forEach((img, idx) => {
     img.addEventListener('click', function(e) {
-      e.stopPropagation();
-      showImageModal(idx);
+      e.preventDefault();
+      showModal(idx);
     });
   });
-  if (prevBtn) {
-    prevBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      showImageModal((currentImageIndex - 1 + images.length) % images.length);
-    });
-  }
-  if (nextBtn) {
-    nextBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      showImageModal((currentImageIndex + 1) % images.length);
-    });
-  }
+
+  prevBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    showModal((currentIndex - 1 + images.length) % images.length);
+  });
+  nextBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    showModal((currentIndex + 1) % images.length);
+  });
+
   // Keyboard navigation
-  if (modal) {
-    modal.addEventListener('shown.bs.modal', function () {
-      document.addEventListener('keydown', modalKeyHandler);
-    });
-    modal.addEventListener('hidden.bs.modal', function () {
-      document.removeEventListener('keydown', modalKeyHandler);
-    });
-  }
-  function modalKeyHandler(e) {
-    if (e.key === 'ArrowLeft') prevBtn && prevBtn.click();
-    if (e.key === 'ArrowRight') nextBtn && nextBtn.click();
-    if (e.key === 'Escape' && typeof bootstrap !== 'undefined') {
+  modal.addEventListener('shown.bs.modal', function () {
+    document.addEventListener('keydown', keyHandler);
+  });
+  modal.addEventListener('hidden.bs.modal', function () {
+    document.removeEventListener('keydown', keyHandler);
+  });
+  function keyHandler(e) {
+    if (e.key === 'ArrowLeft') prevBtn.click();
+    if (e.key === 'ArrowRight') nextBtn.click();
+    if (e.key === 'Escape') {
       const bsModal = bootstrap.Modal.getOrCreateInstance(modal);
       bsModal.hide();
     }

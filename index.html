@@ -553,32 +553,21 @@
             </div>
         </footer>
 
-        <!-- Modal for Image Preview -->
-        <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
-                <div class="modal-content image-modal-modern">
+        <!-- Image Modal for Projects -->
+        <div class="modal fade" id="projectImageModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content" style="background: #232526; border-radius: 18px;">
                     <div class="modal-header border-0">
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="image-modal-container">
-                        <button id="prevImageBtn" class="image-nav-btn image-nav-btn-left" aria-label="Previous image">&#8592;</button>
-                        <img src="" class="img-fluid image-modal-img fade-in" id="modalImage" alt="" />
-                        <button id="nextImageBtn" class="image-nav-btn image-nav-btn-right" aria-label="Next image">&#8594;</button>
+                    <div class="modal-body d-flex flex-column align-items-center justify-content-center" style="min-height: 60vh;">
+                        <div class="w-100 d-flex align-items-center justify-content-center position-relative" style="min-height: 50vh;">
+                            <button id="imgPrevBtn" class="btn btn-dark position-absolute start-0 top-50 translate-middle-y" style="z-index:2; border-radius:50%; width:44px; height:44px;">&#8592;</button>
+                            <img id="projectModalImg" src="" alt="" class="img-fluid rounded shadow" style="max-height:60vh; max-width:90vw; object-fit:contain;">
+                            <button id="imgNextBtn" class="btn btn-dark position-absolute end-0 top-50 translate-middle-y" style="z-index:2; border-radius:50%; width:44px; height:44px;">&#8594;</button>
+                        </div>
+                        <div id="projectModalCaption" class="text-light mt-3 small text-center" style="min-height:2em;"></div>
                     </div>
-                    <div id="modalImageCaption" class="text-center text-light small py-2"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Project Details Modal -->
-        <div class="modal fade" id="projectDetailsModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="projectDetailsTitle"></h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body" id="projectDetailsBody"></div>
                 </div>
             </div>
         </div>
