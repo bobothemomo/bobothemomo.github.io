@@ -251,6 +251,7 @@
       max-width: 98vw;
     }
   }
+<<<<<<< HEAD
   
 :root {
   --color-bg: #fff;
@@ -300,4 +301,6 @@ body.darkmode .card-header {
   color: #f1f1f1;
   border-bottom-color: #333;
 }
+=======
+>>>>>>> 41085213483141dced25f53d4eb2d84bdbecdce9
   
