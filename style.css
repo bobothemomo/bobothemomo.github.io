@@ -236,3 +236,68 @@
     }
   }
   
+  #projectImageModal .modal-content {
+    background: #232526;
+    border-radius: 18px;
+  }
+  #projectModalImg {
+    max-height: 60vh;
+    max-width: 90vw;
+    object-fit: contain;
+  }
+  @media (max-width: 768px) {
+    #projectModalImg {
+      max-height: 40vh;
+      max-width: 98vw;
+    }
+  }
+  
+:root {
+  --color-bg: #fff;
+  --color-text: #222;
+  --color-muted: #666;
+  --color-primary: #007bff;
+  --color-footer-gradient: linear-gradient(90deg, #a8edea 0%, #fed6e3 100%);
+  --color-footer-icon: #444;
+  --color-footer-icon-hover: #007bff;
+  --transition-timing: 0.3s ease;
+}
+body {
+  font-family: "Nunito", sans-serif;
+  background: var(--color-bg) !important;
+  color: var(--color-text);
+  transition: background-color var(--transition-timing), color var(--transition-timing);
+}
+body.darkmode {
+  --color-bg: #181a1b;
+  --color-text: #f1f1f1;
+  --color-muted: #b0b0b0;
+  --color-primary: #4fc3f7;
+  --color-footer-gradient: linear-gradient(90deg, #232526 0%, #414345 100%);
+  --color-footer-icon: #e0e0e0;
+  --color-footer-icon-hover: #4fc3f7;
+  background: var(--color-bg) !important;
+  color: var(--color-text);
+}
+.card {
+  background: var(--color-bg);
+  color: var(--color-text);
+  border-color: var(--color-muted);
+  transition: background-color var(--transition-timing), color var(--transition-timing), border-color var(--transition-timing);
+}
+body.darkmode .card {
+  background: #232526;
+  color: #f1f1f1;
+  border-color: #333;
+}
+.card-header {
+  background: var(--color-bg);
+  color: var(--color-text);
+  border-bottom-color: var(--color-muted);
+}
+body.darkmode .card-header {
+  background: #2c3032;
+  color: #f1f1f1;
+  border-bottom-color: #333;
+}
+  
