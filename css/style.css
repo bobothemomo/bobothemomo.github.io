@@ -666,3 +666,27 @@ body.darkmode .footer-copy {
 body.darkmode {
   --color-skill-dot: #4fc3f7;
 }
+
+/* Stronger modal backdrop with blur */
+.modal-backdrop.show {
+  opacity: 0.7 !important;
+  backdrop-filter: blur(6px) brightness(0.7);
+  -webkit-backdrop-filter: blur(6px) brightness(0.7);
+}
+
+/* Make modal content stand out more */
+.image-modal-modern {
+  box-shadow: 0 8px 40px rgba(0,0,0,0.55) !important;
+  border-radius: 24px !important;
+  background: #232526 !important;
+}
+
+/* Ensure .image-modal-bg is always behind */
+.image-modal-bg {
+  z-index: 0 !important;
+}
+
+/* Remove/override any old modal overlay styles that might conflict */
+.modal {
+  background: none !important;
+}
