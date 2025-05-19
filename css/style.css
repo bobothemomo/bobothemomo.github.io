@@ -715,3 +715,34 @@ body.darkmode {
   min-height: 100% !important;
   overflow: visible !important;
 }
+
+/* Force image modal to fullscreen on all devices */
+#imageModal .modal-dialog,
+#imageModal .modal-content,
+#imageModal .image-modal-modern,
+#imageModal .image-modal-container {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  min-height: 100vh !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+#imageModal .image-modal-img,
+#imageModal #modalImage {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  object-fit: contain !important;
+  display: block;
+  margin: 0 auto;
+  background: transparent;
+  border-radius: 0 !important;
+}
