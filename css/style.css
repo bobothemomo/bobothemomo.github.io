@@ -746,3 +746,11 @@ body.darkmode {
   background: transparent;
   border-radius: 0 !important;
 }
+
+/* Visually align skill icons with the timeline dot */
+.row.g-4.mb-4 {
+  margin-left: 48px; /* Increased for better symmetry */
+}
+.row.g-4.mb-4 .d-flex.align-items-center {
+  padding-left: 8px; /* Fine-tune for perfect alignment */
+}
