@@ -43,3 +43,8 @@
     cursor: pointer;
   }
   
+  /* Visually align skill icons with the timeline dot */
+  .row.g-4.mb-4 {
+    margin-left: 34px; /* Adjust this value if needed for perfect alignment */
+  }
+  
