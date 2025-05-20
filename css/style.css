@@ -759,25 +759,22 @@ body.darkmode {
   padding-left: 8px; /* Fine-tune for perfect alignment */
 }
 
-/* Animated nav indicator underline */
+/* Modern animated navbar underline indicator */
+.nav-underline-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, #007bff 0%, #4fc3f7 100%);
+  border-radius: 2px;
+  transition: left 0.35s cubic-bezier(.77,0,.18,1), width 0.35s cubic-bezier(.77,0,.18,1), background 0.35s;
+  z-index: 10;
+  pointer-events: none;
+}
 .navbar-nav {
   position: relative;
 }
-.nav-indicator {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 4px;
-  width: 100%;
-  background: #ff0099;
-  border-radius: 2px;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s cubic-bezier(.77,0,.18,1);
-  z-index: 1;
-}
-.nav-link.active .nav-indicator,
-.nav-link:focus .nav-indicator,
-.nav-link:hover .nav-indicator {
-  transform: scaleX(1);
-}
+
+/* Remove old nav-indicator styles if present */
+.nav-indicator { display: none !important; }
