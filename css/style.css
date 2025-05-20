@@ -29,6 +29,8 @@ body.darkmode .navbar {
 .nav-link {
   color: var(--color-text) !important;
   transition: color var(--transition-timing);
+  position: relative;
+  overflow: hidden;
 }
 
 /* Card styles */
@@ -755,4 +757,27 @@ body.darkmode {
 }
 .row.g-4.mb-4 .d-flex.align-items-center {
   padding-left: 8px; /* Fine-tune for perfect alignment */
+}
+
+/* Animated nav indicator underline */
+.navbar-nav {
+  position: relative;
+}
+.nav-indicator {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  width: 100%;
+  background: #ff0099;
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(.77,0,.18,1);
+  z-index: 1;
+}
+.nav-link.active .nav-indicator,
+.nav-link:focus .nav-indicator,
+.nav-link:hover .nav-indicator {
+  transform: scaleX(1);
 }
