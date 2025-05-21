@@ -937,3 +937,33 @@ body.darkmode .nav-underline-indicator {
   background: linear-gradient(90deg, #4fc3f7 0%, #007bff 100%) !important;
   opacity: 1 !important;
 }
+
+/* Sliding animated navbar active background */
+.navbar-nav {
+  position: relative;
+}
+.nav-active-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #007bff 0%, #4fc3f7 100%);
+  border-radius: 18px;
+  z-index: 1;
+  transition: left 0.45s cubic-bezier(.77,0,.18,1), width 0.45s cubic-bezier(.77,0,.18,1), background 0.35s;
+  opacity: 0.95;
+  pointer-events: none;
+}
+body.darkmode .nav-active-bg {
+  background: linear-gradient(90deg, #232526 0%, #1e3c72 60%, #2a5298 100%);
+  opacity: 0.92;
+}
+.navbar-nav .nav-link {
+  background: transparent !important;
+  z-index: 2;
+}
+.navbar-nav .nav-link.active {
+  background: transparent !important;
+  color: #fff !important;
+}
