@@ -825,3 +825,15 @@ body.darkmode {
 .section-title:hover .section-underline {
   width: 100%;
 }
+
+.text-center .divider-custom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.text-center .divider-custom-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
