@@ -824,10 +824,11 @@ body.darkmode .navbar-nav .nav-link:focus {
   box-shadow: 0 4px 16px rgba(79,195,247,0.18) !important;
 }
 body.darkmode .navbar-nav .nav-link.active {
-  background: linear-gradient(90deg, #4fc3f7 0%, #007bff 100%) !important;
-  color: #fff !important;
-  box-shadow: 0 6px 24px rgba(79,195,247,0.28) !important;
+  background: linear-gradient(90deg, #232526 0%, #1e3c72 60%, #2a5298 100%) !important;
+  color: #4fc3f7 !important;
+  box-shadow: none !important;
   border-radius: 18px !important;
+  transition: none !important;
 }
 
 /* Remove old nav-indicator styles if present */
