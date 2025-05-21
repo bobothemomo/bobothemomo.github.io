@@ -802,3 +802,26 @@ body.darkmode {
   background: #007bff;
   color: #fff;
 }
+
+/* Section title underline */
+.section-title {
+  display: inline-block;
+  position: relative;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+.section-underline {
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 60%;
+  height: 4px;
+  background: linear-gradient(90deg, #007bff 0%, #4fc3f7 100%);
+  border-radius: 2px;
+  transition: width 0.4s cubic-bezier(.77,0,.18,1);
+}
+.section-title:hover .section-underline {
+  width: 100%;
+}
