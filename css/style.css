@@ -778,3 +778,27 @@ body.darkmode {
 
 /* Remove old nav-indicator styles if present */
 .nav-indicator { display: none !important; }
+
+/* Modal close (X) button styles */
+.modal-close-btn {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  background: rgba(30,30,30,0.7);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.modal-close-btn:hover {
+  background: #007bff;
+  color: #fff;
+}
