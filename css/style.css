@@ -938,11 +938,12 @@ body.darkmode .nav-underline-indicator {
   opacity: 1 !important;
 }
 
-/* Sliding animated navbar active background */
-.navbar-nav {
+/* Sliding animated navbar active background - wrapper fix */
+.navbar-nav-wrapper {
   position: relative;
+  height: 100%;
 }
-.nav-active-bg {
+.navbar-nav-wrapper .nav-active-bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -955,15 +956,16 @@ body.darkmode .nav-underline-indicator {
   opacity: 0.95;
   pointer-events: none;
 }
-body.darkmode .nav-active-bg {
+body.darkmode .navbar-nav-wrapper .nav-active-bg {
   background: linear-gradient(90deg, #232526 0%, #1e3c72 60%, #2a5298 100%);
   opacity: 0.92;
 }
-.navbar-nav .nav-link {
+.navbar-nav-wrapper .navbar-nav .nav-link {
   background: transparent !important;
   z-index: 2;
+  position: relative;
 }
-.navbar-nav .nav-link.active {
+.navbar-nav-wrapper .navbar-nav .nav-link.active {
   background: transparent !important;
   color: #fff !important;
 }
