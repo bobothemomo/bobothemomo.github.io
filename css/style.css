@@ -786,7 +786,11 @@ body.darkmode {
   transform: scaleY(1.4);
 }
 
-/* Smoother nav-link transitions */
+/* Remove sliding animated navbar active background styles */
+/* Restore previous navbar button styles */
+.navbar-nav {
+  position: relative;
+}
 .navbar-nav .nav-link {
   position: relative !important;
   padding: 0.75rem 1.7rem !important;
@@ -797,6 +801,7 @@ body.darkmode {
   background: transparent !important;
   box-shadow: 0 2px 8px rgba(79,195,247,0.04) !important;
   transition: background 0.35s cubic-bezier(.77,0,.18,1), color 0.35s cubic-bezier(.77,0,.18,1), box-shadow 0.28s, border-radius 0.28s;
+  z-index: 2;
 }
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link:focus {
@@ -810,8 +815,6 @@ body.darkmode {
   box-shadow: 0 6px 24px rgba(0,123,255,0.18) !important;
   border-radius: 18px !important;
 }
-
-/* Dark mode navbar button improvements */
 body.darkmode .navbar-nav .nav-link {
   color: #f1f1f1 !important;
   background: transparent !important;
@@ -828,7 +831,7 @@ body.darkmode .navbar-nav .nav-link.active {
   color: #4fc3f7 !important;
   box-shadow: none !important;
   border-radius: 18px !important;
-  transition: background 0.35s cubic-bezier(.77,0,.18,1), color 0.35s cubic-bezier(.77,0,.18,1);
+  transition: background 0.35s cubic-bezier(.77,0,.18,1), color 0.35s cubic-bezier(.77,0,.18,1), border-radius 0.28s;
 }
 
 /* Remove old nav-indicator styles if present */
@@ -936,36 +939,4 @@ body.darkmode .navbar-nav .nav-link.active {
 body.darkmode .nav-underline-indicator {
   background: linear-gradient(90deg, #4fc3f7 0%, #007bff 100%) !important;
   opacity: 1 !important;
-}
-
-/* Sliding animated navbar active background - wrapper fix */
-.navbar-nav-wrapper {
-  position: relative;
-  height: 100%;
-}
-.navbar-nav-wrapper .nav-active-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 0;
-  background: linear-gradient(90deg, #007bff 0%, #4fc3f7 100%);
-  border-radius: 18px;
-  z-index: 1;
-  transition: left 0.45s cubic-bezier(.77,0,.18,1), width 0.45s cubic-bezier(.77,0,.18,1), background 0.35s;
-  opacity: 0.95;
-  pointer-events: none;
-}
-body.darkmode .navbar-nav-wrapper .nav-active-bg {
-  background: linear-gradient(90deg, #232526 0%, #1e3c72 60%, #2a5298 100%);
-  opacity: 0.92;
-}
-.navbar-nav-wrapper .navbar-nav .nav-link {
-  background: transparent !important;
-  z-index: 2;
-  position: relative;
-}
-.navbar-nav-wrapper .navbar-nav .nav-link.active {
-  background: transparent !important;
-  color: #fff !important;
 }
