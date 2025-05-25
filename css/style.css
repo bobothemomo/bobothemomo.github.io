@@ -199,8 +199,9 @@ body.darkmode .text-dark {
 
 /* Button styles */
 .btn-primary {
-  background-color: var(--color-primary) !important;
-  border-color: var(--color-primary) !important;
+  background: linear-gradient(90deg, #c2f0f3 0%, #f8d6e5 100%) !important;
+  border: none !important;
+  color: #222 !important;
 }
 
 .btn-outline-primary {
