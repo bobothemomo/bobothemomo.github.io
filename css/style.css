@@ -199,9 +199,9 @@ body.darkmode .text-dark {
 
 /* Button styles */
 .btn-primary {
-  background: linear-gradient(90deg, #c2f0f3 0%, #f8d6e5 100%) !important;
-  border: none !important;
-  color: #222 !important;
+  background-color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  color: #fff !important;
 }
 
 .btn-outline-primary {
@@ -811,9 +811,9 @@ body.darkmode {
   box-shadow: 0 4px 16px rgba(79,195,247,0.10) !important;
 }
 .navbar-nav .nav-link.active {
-  background: linear-gradient(90deg, #007bff 0%, #00eaff 100%) !important;
-  color: #fff !important;
-  box-shadow: 0 6px 24px rgba(0,123,255,0.18) !important;
+  background: linear-gradient(90deg, #c2f0f3 0%, #f8d6e5 100%) !important;
+  color: #222 !important;
+  box-shadow: 0 6px 24px rgba(0,123,255,0.10) !important;
   border-radius: 18px !important;
 }
 body.darkmode .navbar-nav .nav-link {
@@ -828,11 +828,13 @@ body.darkmode .navbar-nav .nav-link:focus {
   box-shadow: 0 4px 16px rgba(79,195,247,0.18) !important;
 }
 body.darkmode .navbar-nav .nav-link.active {
-  background: linear-gradient(90deg, #232526 0%, #1e3c72 60%, #2a5298 100%) !important;
-  color: #4fc3f7 !important;
-  box-shadow: none !important;
-  border-radius: 18px !important;
-  transition: background 0.35s cubic-bezier(.77,0,.18,1), color 0.35s cubic-bezier(.77,0,.18,1), border-radius 0.28s;
+  background: linear-gradient(90deg, #232526 0%, #4fc3f7 100%) !important;
+  color: #fff !important;
+  box-shadow: 0 2px 8px rgba(79,195,247,0.18) !important;
+}
+body.darkmode .nav-underline-indicator {
+  background: linear-gradient(90deg, #4fc3f7 0%, #007bff 100%) !important;
+  opacity: 1 !important;
 }
 
 /* Remove old nav-indicator styles if present */
