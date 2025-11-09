@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+        <link rel="stylesheet" href="assets/css/styles.css">
+        <title>Community Products - Barış Değirmenci</title>
+        
+        <style>
+            .gallery-page { padding: 6rem 0 2rem; min-height: 100vh; }
+            .breadcrumb {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-bottom: 2rem;
+                font-size: 0.875rem;
+                color: #666;
+            }
+            .breadcrumb a {
+                color: #6f42c1;
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+            .breadcrumb a:hover {
+                color: #5a32a3;
+            }
+            .breadcrumb-separator {
+                color: #999;
+            }
+            .gallery-header { text-align: center; margin-bottom: 3rem; }
+            .gallery-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2rem;
+                margin-bottom: 3rem;
+            }
+            .gallery-item {
+                position: relative;
+                border-radius: 1rem;
+                overflow: hidden;
+                cursor: pointer;
+                transition: transform 0.3s;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            }
+            .gallery-item:hover { transform: translateY(-10px); }
+            .gallery-item img {
+                width: 100%;
+                height: 300px;
+                object-fit: cover;
+                display: block;
+            }
+            .gallery-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+                opacity: 0;
+                transition: opacity 0.3s;
+                display: flex;
+                align-items: flex-end;
+                padding: 1.5rem;
+            }
+            .gallery-item:hover .gallery-overlay { opacity: 1; }
+            .gallery-overlay-text { color: white; font-weight: 500; }
+            .lightbox {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0,0,0,0.95);
+                z-index: 10000;
+                align-items: center;
+                justify-content: center;
+                padding: 2rem;
+            }
+            .lightbox.active { display: flex; }
+            .lightbox-content { max-width: 90%; max-height: 90vh; position: relative; }
+            .lightbox-img { max-width: 100%; max-height: 85vh; object-fit: contain; }
+            .lightbox-close {
+                position: absolute;
+                top: -50px;
+                right: 0;
+                color: white;
+                font-size: 2rem;
+                cursor: pointer;
+                background: none;
+                border: none;
+                padding: 0.5rem 1rem;
+            }
+            .lightbox-nav {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(255,255,255,0.2);
+                color: white;
+                border: none;
+                padding: 1rem;
+                font-size: 2rem;
+                cursor: pointer;
+                border-radius: 50%;
+                transition: background 0.3s;
+            }
+            .lightbox-nav:hover { background: rgba(255,255,255,0.3); }
+            .lightbox-prev { left: -60px; }
+            .lightbox-next { right: -60px; }
+            .back-button {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-bottom: 2rem;
+                padding: 0.75rem 1.5rem;
+                background: var(--first-color);
+                color: white;
+                border-radius: 0.5rem;
+                text-decoration: none;
+                transition: background 0.3s;
+            }
+            .back-button:hover { background: var(--first-color-alt); }
+        </style>
+    </head>
+    <body>
+        <div class="gallery-page">
+            <div class="container">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="index.html#portfolio">Portfolio</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span>Community Products</span>
+                </nav>
+                
+                <a href="index.html#portfolio" class="back-button">
+                    <i class="uil uil-arrow-left"></i>
+                    Back to Portfolio
+                </a>
+                
+                <div class="gallery-header">
+                    <h1 class="section__title">Community Products</h1>
+                    <p class="section__subtitle">Design work for community projects and social initiatives</p>
+                </div>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-item" onclick="openLightbox(0)">
+                        <img src="assets/img/community-1.png" alt="Community Project 1">
+                        <div class="gallery-overlay">
+                            <span class="gallery-overlay-text">Click to view full size</span>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" onclick="openLightbox(1)">
+                        <img src="assets/img/community-2.jpg" alt="Community Project 2">
+                        <div class="gallery-overlay">
+                            <span class="gallery-overlay-text">Click to view full size</span>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" onclick="openLightbox(2)">
+                        <img src="assets/img/community-3.jpg" alt="Community Project 3">
+                        <div class="gallery-overlay">
+                            <span class="gallery-overlay-text">Click to view full size</span>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" onclick="openLightbox(3)">
+                        <img src="assets/img/community-4.png" alt="Community Project 4">
+                        <div class="gallery-overlay">
+                            <span class="gallery-overlay-text">Click to view full size</span>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" onclick="openLightbox(4)">
+                        <img src="assets/img/community-5.png" alt="Community Project 5">
+                        <div class="gallery-overlay">
+                            <span class="gallery-overlay-text">Click to view full size</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+            <div class="lightbox-content">
+                <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+                <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1, event)">&#8249;</button>
+                <img src="" alt="" class="lightbox-img" id="lightbox-img">
+                <button class="lightbox-nav lightbox-next" onclick="changeImage(1, event)">&#8250;</button>
+            </div>
+        </div>
+
+        <script>
+            const images = [
+                'assets/img/community-1.png',
+                'assets/img/community-2.jpg',
+                'assets/img/community-3.jpg',
+                'assets/img/community-4.png',
+                'assets/img/community-5.png'
+            ];
+            
+            let currentIndex = 0;
+            
+            function openLightbox(index) {
+                currentIndex = index;
+                document.getElementById('lightbox').classList.add('active');
+                document.getElementById('lightbox-img').src = images[currentIndex];
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeLightbox(event) {
+                if (event.target.id === 'lightbox' || event.target.classList.contains('lightbox-close')) {
+                    document.getElementById('lightbox').classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            }
+            
+            function changeImage(direction, event) {
+                event.stopPropagation();
+                currentIndex += direction;
+                if (currentIndex < 0) currentIndex = images.length - 1;
+                if (currentIndex >= images.length) currentIndex = 0;
+                document.getElementById('lightbox-img').src = images[currentIndex];
+            }
+            
+            document.addEventListener('keydown', function(e) {
+                const lightbox = document.getElementById('lightbox');
+                if (lightbox.classList.contains('active')) {
+                    if (e.key === 'ArrowLeft') changeImage(-1, e);
+                    if (e.key === 'ArrowRight') changeImage(1, e);
+                    if (e.key === 'Escape') closeLightbox({ target: lightbox });
+                }
+            });
+        </script>
+    </body>
+</html>
+

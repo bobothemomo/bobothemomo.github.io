@@ -2,917 +2,883 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barış Değirmenci - Portfolio</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/bootstrap-callout.css">
-    <link rel="stylesheet" href="css/dark-mode.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Cdefs%3E%3ClinearGradient id='bd-gradient' x1='0' y1='0' x2='1' y2='0'%3E%3Cstop offset='0%25' stop-color='%23a8edea'/%3E%3Cstop offset='100%25' stop-color='%23fed6e3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='64' cy='64' r='64' fill='url(%23bd-gradient)'/%3E%3Ctext x='50%25' y='58%25' text-anchor='middle' font-size='64' fill='%23222' font-family='Nunito, Arial, sans-serif' font-weight='bold' dy='.1em'%3EBD%3C/text%3E%3C/svg%3E" alt="BD Logo" style="height:40px;width:40px;border-radius:50%;margin-right:12px;object-fit:cover;">
 
-    <!--
-    Images are from https://unsplash.com/
-    -->
+        <!--==================== UNICONS ====================-->
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+        
+        <!--==================== SWIPER CSS ====================-->
+        <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+        
+        <!--==================== CSS ====================-->
+        <link rel="stylesheet" href="assets/css/styles.css">
 
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-        #scrollToTopBtn {
-            display: none;
-            position: fixed;
-            bottom: 32px;
-            right: 32px;
-            z-index: 9999;
-            background: var(--color-primary);
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        #scrollToTopBtn:hover {
-            background: #0056b3;
-        }
-        /* Timeline styles */
-        .timeline {
-            position: relative;
-            margin: 2rem 0;
-            padding-left: 30px;
-            border-left: 3px solid var(--color-primary);
-        }
-        .timeline-item {
-            margin-bottom: 2rem;
-            position: relative;
-        }
-        .timeline-content {
-            background: #fff;
-            color: var(--color-text);
-            border-radius: 8px;
-            padding: 1rem 1.5rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            margin-left: 20px;
-        }
-        body.darkmode .timeline-content {
-            background: #232526;
-            color: var(--color-text);
-        }
-        /* Contact form contrast */
-        .contact-form input, .contact-form textarea {
-            background: #fff;
-            color: #222;
-            border: 1px solid #bbb;
-        }
-        .contact-form input::placeholder, .contact-form textarea::placeholder {
-            color: #888;
-            opacity: 1;
-        }
-        body.darkmode .contact-form input, body.darkmode .contact-form textarea {
-            background: #232526;
-            color: #f1f1f1;
-            border: 1px solid #444;
-        }
-        body.darkmode .contact-form input::placeholder, body.darkmode .contact-form textarea::placeholder {
-            color: #ccc;
-            opacity: 1;
-        }
-        .video-card {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            overflow: hidden;
-            margin-bottom: 1.5rem;
-            border: 1px solid #e0e0e0;
-        }
-        .video-card .card-title {
-            color: #222;
-            font-weight: 500;
-            padding: 0.5rem 1rem 1rem 1rem;
-        }
-        body.darkmode .video-card {
-            background: #232526;
-            border: 1px solid #333;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.18);
-        }
-        body.darkmode .video-card .card-title {
-            color: #f1f1f1;
-        }
-        /* Scrum project button adaptive styling */
-        #scrumProjectBtn {
-            border-color: #333;
-            color: #333;
-        }
-        body.darkmode #scrumProjectBtn {
-            border-color: #fff;
-            color: #fff;
-        }
-        #scrumProjectBtn:hover {
-            background-color: #333;
-            color: #fff;
-        }
-        body.darkmode #scrumProjectBtn:hover {
-            background-color: #fff;
-            color: #333;
-        }
-        .image-modal-modern {
-            background: #232526;
-            border-radius: 18px;
-            box-shadow: 0 8px 40px rgba(0,0,0,0.35);
-            overflow: hidden;
-            height: 100vh;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-        }
-        .image-modal-container {
-            flex: 1;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-        .image-modal-img {
-            transition: opacity 0.3s;
-            opacity: 0;
-            background: #181a1b;
-            max-height: 80vh;
-            width: auto;
-            object-fit: contain;
-        }
-        .image-modal-img.loaded {
-            opacity: 1;
-        }
-        .image-nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 2;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(30,30,30,0.7);
-            color: #fff;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.18);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-            outline: none;
-        }
-        .image-nav-btn:hover {
-            background: #007bff;
-            transform: translateY(-50%) scale(1.08);
-        }
-        .image-nav-btn-left {
-            left: 16px;
-        }
-        .image-nav-btn-right {
-            right: 16px;
-        }
-        @media (max-width: 768px) {
-            .image-modal-modern {
-                border-radius: 0;
-                height: 100vh;
-            }
-            .image-modal-container {
-                padding: 0.5rem;
-            }
-            .image-modal-img {
-                max-height: 70vh;
-                max-width: 100%;
-            }
-            .image-nav-btn {
-                width: 36px;
-                height: 36px;
-                font-size: 1.2rem;
-            }
-            .image-nav-btn-left {
-                left: 8px;
-            }
-            .image-nav-btn-right {
-                right: 8px;
-            }
-            #modalImageCaption {
-                padding: 0.5rem;
-                font-size: 0.9rem;
-            }
-        }
-    </style>
+        <!-- 🔄 Bu site, eski bobothemomo.github.io projesinden içerikler kullanılarak yeni Bedimcode template yapısıyla oluşturulmuştur -->
+        <!-- 📅 Tarih: 2025-11-09 -->
+        <!-- 👤 Kişi: Barış Değirmenci -->
+
+        <title>Barış Değirmenci - Portfolio</title>
 </head>
 <body>
-    <nav id="scrolling_navbar" class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
-                <img id="navbarLogo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Cdefs%3E%3ClinearGradient id='bd-gradient' x1='0' y1='0' x2='1' y2='0'%3E%3Cstop offset='0%25' stop-color='%23a8edea'/%3E%3Cstop offset='100%25' stop-color='%23fed6e3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='64' cy='64' r='64' fill='url(%23bd-gradient)'/%3E%3Ctext x='50%25' y='58%25' text-anchor='middle' font-size='64' fill='%23222' font-family='Nunito, Arial, sans-serif' font-weight='bold' dy='.1em'%3EBD%3C/text%3E%3C/svg%3E" alt="BD Logo" style="height:40px;width:40px;border-radius:50%;margin-right:12px;object-fit:cover;">
-                <span class="d-none d-sm-inline">Barış Değirmenci</span>
-            </a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <div class="navbar-nav-wrapper position-relative">
-                    <div class="nav-active-bg"></div>
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 position-relative">
-                        <li class="nav-item">
-                            <a class="nav-link px-3 position-relative active" href="#home">Home</a>
+        <!--==================== HEADER ====================-->
+        <header class="header" id="header">
+            <nav class="nav container">
+                <!-- 📌 ESKİ İÇERİK: Logo ve isim -->
+                <a href="#" class="nav__logo">Barış Değirmenci</a>
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list grid">
+                        <!-- 📌 ESKİ İÇERİK: Navigation menüsü eski projeden uyarlandı -->
+                        <li class="nav__item">
+                            <a href="#home" class="nav__link active-link">
+                                <i class="uil uil-estate nav__icon"></i> Home
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-3 position-relative" href="#about">About</a>
+                        <li class="nav__item">
+                            <a href="#about" class="nav__link">
+                                <i class="uil uil-user nav__icon"></i> About
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-3 position-relative" href="#projects">Projects</a>
+                        <li class="nav__item">
+                            <a href="#skills" class="nav__link">
+                                <i class="uil uil-file-alt nav__icon"></i> Skills
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-3 position-relative" href="uxui-mobile-app.html">UX/UI Mobile App</a>
+                        <li class="nav__item">
+                            <a href="#services" class="nav__link">
+                                <i class="uil uil-briefcase-alt nav__icon"></i> Services
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-3 position-relative" href="#contact">Contact</a>
+                        <li class="nav__item">
+                            <a href="#portfolio" class="nav__link">
+                                <i class="uil uil-scenery nav__icon"></i> Portfolio
+                            </a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#contact" class="nav__link">
+                                <i class="uil uil-message nav__icon"></i> Contact
+                            </a>
                         </li>
                     </ul>
+                    <i class="uil uil-times nav__close" id="nav-close"></i>
                 </div>
-                <div class="nav-underline-indicator"></div>
-                <button id="darkModeToggle" class="btn btn-outline-secondary ms-3" aria-label="Toggle dark mode">
-                    <i id="darkModeIcon" class="fas fa-moon"></i>
-                </button>
+
+                <div class="nav__btns">
+                    <!-- Theme change button -->
+                    <!-- 📌 ESKİ İÇERİK: Dark mode özelliği eski projeden aktarıldı -->
+                    <i class="uil uil-moon change-theme" id="theme-button"></i>
+
+                    <div class="nav__toggle" id="nav-toggle">
+                        <i class="uil uil-apps"></i>
             </div>
         </div>
     </nav>
+        </header>
 
-    <div data-bs-spy="scroll" data-bs-target="#scrolling_navbar" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
-        <section class="min-vh-100 d-flex flex-wrap align-content-center" id="home">
-            <div class="container d-flex align-items-center py-5">
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-lg-5 d-flex justify-content-center mb-4 mb-lg-0">
-                        <img src="image/mountain-camera.jpg" alt="Barış Değirmenci Mountain" class="img-fluid rounded-circle shadow" style="max-width:400px;width:100%;height:400px;object-fit:cover;">
-                    </div>
-                    <div class="col-lg-7 d-flex flex-column justify-content-center align-items-center align-items-lg-start">
-                        <h1 class="display-4 fw-bold mb-4 text-center text-lg-start">Hi, I'm Barış Değirmenci</h1>
-                        <p class="lead mb-4 text-center text-lg-start">Computer Education & Instructional Technologies Student | Graphic Designer | Game Developer | UX/UI Designer</p>
-                        <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
-                            <a class="btn btn-primary btn-lg rounded-pill" href="#about">About Me</a>
-                            <a class="btn btn-outline-primary btn-lg rounded-pill" href="#contact">Contact</a>
+        <!--==================== MAIN ====================-->
+        <main class="main">
+            <!--==================== HOME ====================-->
+            <!-- 📌 ESKİ İÇERİK: Kişisel bilgiler ve sosyal medya linkleri eski projeden -->
+            <section class="home section" id="home">
+                <div class="home__container container grid">
+                    <div class="home__content grid">
+                        <div class="home__social">
+                            <!-- 📌 ESKİ İÇERİK: LinkedIn ve GitHub linkleri -->
+                            <a href="https://www.linkedin.com/in/barış-değirmenci-98559a21b/" target="_blank" class="home__social-icon">
+                                <i class="uil uil-linkedin-alt"></i>
+                            </a>
+                            <a href="https://github.com/bobothemomo" target="_blank" class="home__social-icon">
+                                <i class="uil uil-github-alt"></i>
+                            </a>
+                        </div>
+
+                        <div class="home__img">
+                            <!-- 📌 ESKİ İÇERİK: Profil fotoğrafı -->
+                            <svg class="home__blob" viewBox="0 0 200 187" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <mask id="mask0" mask-type="alpha">
+                                    <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 
+                                    130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 
+                                    97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 
+                                    0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"/>
+                                </mask>
+                                <g mask="url(#mask0)">
+                                    <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 
+                                    165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 
+                                    129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 
+                                    -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"/>
+                                    <image class="home__blob-img" x='0' y='0' width='190' height='190' preserveAspectRatio="xMidYMid slice" xlink:href="assets/img/mountain-camera.jpg"/>
+                                </g>
+                            </svg>
+                        </div>
+
+                        <div class="home__data">
+                            <!-- 📌 ESKİ İÇERİK: Başlık ve açıklama metni -->
+                            <h1 class="home__title">Hi, I'm Barış Değirmenci</h1>
+                            <h3 class="home__subtitle">Creative Content Producer</h3>
+                            <p class="home__description">Graphic Designer | Game Developer | UX/UI Designer | Scrum Master </p>
+                            <a href="#contact" class="button button--flex">
+                                Contact Me <i class="uil uil-message button__icon"></i>
+                            </a>
                         </div>
                     </div>
+
+                    <div class="home__scroll">
+                        <a href="#about" class="home__scroll-button button--flex">
+                            <i class="uil uil-mouse-alt home__scroll-mouse"></i>
+                            <span class="home__scroll-name">Scroll down</span>
+                            <i class="uil uil-arrow-down home__scroll-arrow"></i>
+                        </a>
                 </div>
             </div>
         </section>
 
-        <section class="py-5" id="about">
-            <div class="container">
-                <div class="text-center mb-5">
-                    <h2 class="fw-bolder display-5">About Me</h2>
-                    <div class="divider-custom">
-                        <div class="divider-custom-line"></div>
-                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                        <div class="divider-custom-line"></div>
+            <!--==================== ABOUT ====================-->
+            <!-- 📌 ESKİ İÇERİK: Hakkımda bölümü eski projeden -->
+            <section class="about section" id="about">
+                <h2 class="section__title">About Me</h2>
+                <span class="section__subtitle">My introduction</span>
+
+                <div class="about__container container grid">
+                    <!-- 📌 ESKİ İÇERİK: Paris fotoğrafı -->
+                    <img src="assets/img/paris-image.jpg" alt="About" class="about__img">
+
+                    <div class="about__data">
+                        <!-- 📌 ESKİ İÇERİK: Hakkında metni -->
+                        <p class="about__description">
+                            I graduated from Hacettepe University's Department of Computer Education and Instructional Technologies in 2025 with a GPA of 3.13. 
+                            My passion lies at the intersection of technology, design, and education. I specialize in 
+                            graphic design, game development, UX/UI design, and 3D modeling with expertise in Unity, 
+                            C#, Adobe Creative Suite, and Blender.
+                        </p>
+
+                        <div class="about__info">
+                            <div>
+                                <span class="about__info-title">03+</span>
+                                <span class="about__info-name">Years <br> experience</span>
                     </div>
+
+                            <div>
+                                <span class="about__info-title">10+</span>
+                                <span class="about__info-name">Completed <br> projects</span>
                 </div>
-                <div class="row align-items-center">
-                    <div class="col-lg-4 text-center">
-                        <img class="img-fluid rounded-circle shadow-lg mb-4" src="image/paris-image.jpg" alt="Profile Picture">
-                        <div class="d-flex justify-content-center gap-3 mb-4">
-                            <a href="https://github.com/bobothemomo" class="text-dark fs-4"><i class="fab fa-github"></i></a>
-                            <a href="https://www.linkedin.com/in/barış-değirmenci-98559a21b/" class="text-dark fs-4"><i class="fab fa-linkedin"></i></a>
+
+                            <div>
+                                <span class="about__info-title">03+</span>
+                                <span class="about__info-name">Companies <br> worked</span>
                         </div>
-                        <a href="Baris_Degirmenci_CV.pdf" class="btn btn-outline-primary rounded-pill mt-3" download>Download CV</a>
                     </div>
-                    <div class="col-lg-8">
-                        <p class="lead mb-4">I am a Computer Education and Instructional Technologies student at Hacettepe University. My passion lies at the intersection of technology, design, and education.</p>
-                        <p class="mb-4">My expertise spans across multiple domains:</p>
-                        <div class="row g-4 mb-4">
-                            <div class="col-md-6">
-                                <div class="d-flex align-items-center">
-                                    <i class="fas fa-paint-brush text-primary me-3 fs-4 skill-icon"></i>
-                                    <div>
-                                        <h5 class="mb-0">Graphic Design</h5>
-                                        <p class="mb-0">Creating compelling visual content</p>
+
+                        <div class="about__buttons">
+                            <!-- 📌 ESKİ İÇERİK: CV download linki -->
+                            <a download="" href="assets/pdf/Baris_Degirmenci_CV.pdf" class="button button--flex">
+                                Download CV <i class="uil uil-download-alt button__icon"></i>
+                            </a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="d-flex align-items-center">
-                                    <i class="fas fa-gamepad text-primary me-3 fs-4 skill-icon"></i>
+            </section>
+
+            <!--==================== SKILLS ====================-->
+            <!-- 📌 ESKİ İÇERİK: Tüm beceri listesi ve yüzdeleri eski projeden -->
+            <section class="skills section" id="skills">
+                <h2 class="section__title">Skills</h2>
+                <span class="section__subtitle">My technical level</span>
+
+                <div class="skills__container container grid">
                                     <div>
-                                        <h5 class="mb-0">Game Development</h5>
-                                        <p class="mb-0">Unity & C# development</p>
+                        <!--==================== SKILLS 1 ====================-->
+                        <div class="skills__content skills__open">
+                            <div class="skills__header">
+                                <i class="uil uil-brackets-curly skills__icon"></i>
+
+                                <div>
+                                    <h1 class="skills__title">Design & Development</h1>
+                                    <span class="skills__subtitle">More than 3 years</span>
+                                    </div>
+
+                                <i class="uil uil-angle-down skills__arrow"></i>
+                                </div>
+
+                            <div class="skills__list grid">
+                                <!-- 📌 ESKİ İÇERİK: Adobe Illustrator 90% -->
+                                <div class="skills__data">
+                                    <div class="skills__titles">
+                                        <h3 class="skills__name">Adobe Illustrator</h3>
+                                        <span class="skills__number">90%</span>
+                            </div>
+                                    <div class="skills__bar">
+                                        <span class="skills__percentage skills__illustrator"></span>
                                     </div>
                                 </div>
+
+                                <!-- 📌 ESKİ İÇERİK: Adobe Creative Suite 70% -->
+                                <div class="skills__data">
+                                    <div class="skills__titles">
+                                        <h3 class="skills__name">Adobe Creative Suite</h3>
+                                        <span class="skills__number">70%</span>
                             </div>
-                            <div class="col-md-6">
-                                <div class="d-flex align-items-center">
-                                    <i class="fas fa-users text-primary me-3 fs-4 skill-icon"></i>
-                                    <div>
-                                        <h5 class="mb-0">Scrum Master</h5>
-                                        <p class="mb-0">Agile project management</p>
+                                    <div class="skills__bar">
+                                        <span class="skills__percentage skills__adobe"></span>
                                     </div>
                                 </div>
+
+                                <!-- 📌 ESKİ İÇERİK: Unity 75% -->
+                                <div class="skills__data">
+                                    <div class="skills__titles">
+                                        <h3 class="skills__name">Unity</h3>
+                                        <span class="skills__number">75%</span>
                             </div>
-                            <div class="col-md-6">
-                                <div class="d-flex align-items-center">
-                                    <i class="fas fa-cube text-primary me-3 fs-4 skill-icon"></i>
-                                    <div>
-                                        <h5 class="mb-0">3D Modeling</h5>
-                                        <p class="mb-0">Blender expertise</p>
+                                    <div class="skills__bar">
+                                        <span class="skills__percentage skills__unity"></span>
                                     </div>
                                 </div>
+
+                                <!-- 📌 ESKİ İÇERİK: C# 70% -->
+                                <div class="skills__data">
+                                    <div class="skills__titles">
+                                        <h3 class="skills__name">C#</h3>
+                                        <span class="skills__number">70%</span>
                             </div>
-                            <div class="col-md-6">
-                                <div class="d-flex align-items-center">
-                                    <i class="fas fa-object-group text-primary me-3 fs-4 skill-icon"></i>
-                                    <div>
-                                        <h5 class="mb-0">UX/UI Designer</h5>
-                                        <p class="mb-0">Designing user-friendly digital experiences</p>
-                                    </div>
-                                </div>
-                            </div>
+                                    <div class="skills__bar">
+                                        <span class="skills__percentage skills__csharp"></span>
                         </div>
-                        <h3 class="fw-bold fs-4 mb-4">Technical Skills</h3>
-                        <div class="row g-4" id="skills-list">
-                            <div class="col-md-6">
-                                <div class="skill-item">
-                                    <span class="skill-label"><i class="fab fa-adobe"></i> Adobe Illustrator</span>
-                                    <div class="progress modern-progress">
-                                        <div class="progress-bar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="skill-item">
-                                    <span class="skill-label"><i class="fab fa-adobe"></i> Adobe Creative Suite</span>
-                                    <div class="progress modern-progress">
-                                        <div class="progress-bar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
+
+                        <!--==================== SKILLS 2 ====================-->
+                        <div class="skills__content skills__close">
+                            <div class="skills__header">
+                                <i class="uil uil-swatchbook skills__icon"></i>
+
+                                <div>
+                                    <h1 class="skills__title">Other Skills</h1>
+                                    <span class="skills__subtitle">More than 3 years</span>
+                                    </div>
+
+                                <i class="uil uil-angle-down skills__arrow"></i>
+                                </div>
+
+                            <div class="skills__list grid">
+                                <div class="skills__data">
+                                    <div class="skills__titles">
+                                        <h3 class="skills__name">Blender (3D Modeling)</h3>
+                                        <span class="skills__number">75%</span>
+                            </div>
+                                    <div class="skills__bar">
+                                        <span class="skills__percentage skills__blender"></span>
                                     </div>
                                 </div>
+
+                                <div class="skills__data">
+                                    <div class="skills__titles">
+                                        <h3 class="skills__name">UX/UI Design</h3>
+                                        <span class="skills__number">80%</span>
                             </div>
-                            <div class="col-md-6">
-                                <div class="skill-item">
-                                    <span class="skill-label"><i class="fab fa-unity"></i> Unity</span>
-                                    <div class="progress modern-progress">
-                                        <div class="progress-bar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+                                    <div class="skills__bar">
+                                        <span class="skills__percentage skills__ux"></span>
                                     </div>
                                 </div>
+
+                                <div class="skills__data">
+                                    <div class="skills__titles">
+                                        <h3 class="skills__name">Scrum Master</h3>
+                                        <span class="skills__number">85%</span>
                             </div>
-                            <div class="col-md-6">
-                                <div class="skill-item">
-                                    <span class="skill-label"><i class="fas fa-code"></i> C#</span>
-                                    <div class="progress modern-progress">
-                                        <div class="progress-bar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
-                                    </div>
-                                </div>
-                            </div>
+                                    <div class="skills__bar">
+                                        <span class="skills__percentage skills__scrum"></span>
                         </div>
                     </div>
                 </div>
             </div>
+                    </div>
+                </div>
+
+                <!-- Skill percentage styles -->
+                <style>
+                    .skills__illustrator { width: 90%; }
+                    .skills__adobe { width: 70%; }
+                    .skills__unity { width: 75%; }
+                    .skills__csharp { width: 70%; }
+                    .skills__blender { width: 75%; }
+                    .skills__ux { width: 80%; }
+                    .skills__scrum { width: 85%; }
+                </style>
         </section>
 
-        <section class="py-5" id="projects">
-            <div class="container">
-                <div class="text-center mb-5">
-                    <h2 class="fw-bolder display-5">My Projects</h2>
-                    <div class="divider-custom">
-                        <div class="divider-custom-line"></div>
-                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                        <div class="divider-custom-line"></div>
+            <!--==================== QUALIFICATION ====================-->
+            <section class="qualification section">
+                <h2 class="section__title">Qualification</h2>
+                <span class="section__subtitle">My personal journey</span>
+
+                <div class="qualification__container container">
+                    <div class="qualification__tabs">
+                        <div class="qualification__button button--flex qualification__active" data-target='#education'>
+                            <i class="uil uil-graduation-cap qualification__icon"></i>
+                            Education
+                        </div>
+
+                        <div class="qualification__button button--flex" data-target="#work">
+                            <i class="uil uil-briefcase-alt qualification__icon"></i>
+                            Work
                     </div>
                 </div>
                 
-                <!-- First Row - 3 Column Grid -->
-                <div class="row g-4">
-                    <div class="col-lg-4">
-                        <div class="card h-100 shadow-sm project-card" data-title="Sketch & Mockup" data-description="A collection of sketches and mockups for various projects.">
-                            <div class="card-header bg-primary text-white">
-                                <h3 class="h5 mb-0">Sketch & Mockup</h3>
+                    <div class="qualification__sections">
+                        <!--==================== QUALIFICATION CONTENT 1 ====================-->
+                        <div class="qualification__content qualification__active" data-content id="education">
+                            <!--==================== QUALIFICATION 1 ====================-->
+                            <div class="qualification__data">
+                                <div>
+                                    <h3 class="qualification__title">Computer Education & Instructional Technologies</h3>
+                                    <span class="qualification__subtitle">Hacettepe University</span>
+                                    <div class="qualification__calendar">
+                                        <i class="uil uil-calendar-alt"></i>
+                                        2020 - 2025
                             </div>
-                            <div class="card-body">
-                                <div class="row g-3">
-                                    <div class="col-4">
-                                        <img src="./image/sketch-1.jpg" class="img-fluid rounded image-clickable" alt="Sketch 1">
                                     </div>
-                                    <div class="col-4">
-                                        <img src="./image/sketch-2.jpg" class="img-fluid rounded image-clickable" alt="Sketch 2">
+
+                                <div>
+                                    <span class="qualification__rounder"></span>
+                                    <span class="qualification__line"></span>
                                     </div>
-                                    <div class="col-4">
-                                        <img src="./image/sketch-3.jpg" class="img-fluid rounded image-clickable" alt="Sketch 3">
                                     </div>
-                                    <div class="col-4">
-                                        <img src="./image/sketch-4.jpg" class="img-fluid rounded image-clickable" alt="Sketch 4">
+
+                            <!--==================== QUALIFICATION 2 ====================-->
+                            <div class="qualification__data">
+                                <div></div>
+                                <div>
+                                    <span class="qualification__rounder"></span>
+                                    <span class="qualification__line"></span>
                                     </div>
-                                    <div class="col-4">
-                                        <img src="./image/sketch-5.jpg" class="img-fluid rounded image-clickable" alt="Sketch 5">
+
+                                <div>
+                                    <h3 class="qualification__title">Game Development</h3>
+                                    <span class="qualification__subtitle">Google Game And Application Academy </span>
+                                    <div class="qualification__calendar">
+                                        <i class="uil uil-calendar-alt"></i>
+                                        2022 - 2023
                                     </div>
-                                    <div class="col-4">
-                                        <img src="./image/Ekran görüntüsü 2025-07-07 203908.png" class="img-fluid rounded image-clickable" alt="Sketch 6">
                                     </div>
-                                    <div class="col-4">
-                                        <img src="./image/Untitled-13-01.jpg" class="img-fluid rounded image-clickable" alt="Sketch 7">
                                     </div>
+
+                            <!--==================== QUALIFICATION 3 ====================-->
+                            <div class="qualification__data">
+                                <div>
+                                    <h3 class="qualification__title">Graphic Design</h3>
+                                    <span class="qualification__subtitle">Self-Taught</span>
+                                    <div class="qualification__calendar">
+                                        <i class="uil uil-calendar-alt"></i>
+                                        2021 - Present
                                 </div>
+                            </div>
+
+                                <div>
+                                    <span class="qualification__rounder"></span>
+                                    <span class="qualification__line"></span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Community Products -->
-                    <div class="col-lg-4">
-                        <div class="card h-100 shadow-sm">
-                            <div class="card-header bg-success text-white">
-                                <h3 class="h5 mb-0">Community Products</h3>
+                        <!--==================== QUALIFICATION CONTENT 2 ====================-->
+                        <div class="qualification__content" data-content id="work">
+                            <!--==================== QUALIFICATION 1 ====================-->
+                            <div class="qualification__data">
+                                <div>
+                                    <h3 class="qualification__title">Graphic Designer</h3>
+                                    <span class="qualification__subtitle">Center For Sustainable Teaching and Learning</span>
+                                    <div class="qualification__calendar">
+                                        <i class="uil uil-calendar-alt"></i>
+                                        2022 - 2024
                             </div>
-                            <div class="card-body">
-                                <div class="row g-3">
-                                    <div class="col-4">
-                                        <img src="./image/community-1.png" class="img-fluid rounded image-clickable" alt="Community 1">
                                     </div>
-                                    <div class="col-4">
-                                        <img src="./image/community-2.jpg" class="img-fluid rounded image-clickable" alt="Community 2">
+
+                                <div>
+                                    <span class="qualification__rounder"></span>
+                                    <span class="qualification__line"></span>
                                     </div>
-                                    <div class="col-4">
-                                        <img src="./image/community-3.jpg" class="img-fluid rounded image-clickable" alt="Community 3">
                                     </div>
-                                    <div class="col-4">
-                                        <img src="./image/community-4.png" class="img-fluid rounded image-clickable" alt="Community 4">
+
+                            <!--==================== QUALIFICATION 2 ====================-->
+                            <div class="qualification__data">
+                                <div></div>
+                                <div>
+                                    <span class="qualification__rounder"></span>
+                                    <span class="qualification__line"></span>
                                     </div>
-                                    <div class="col-4">
-                                        <img src="./image/community-5.png" class="img-fluid rounded image-clickable" alt="Community 5">
+
+                                <div>
+                                    <h3 class="qualification__title">BİLTEN Defence</h3>
+                                    <span class="qualification__subtitle">Trainee - Instructional Designer</span>
+                                    <div class="qualification__calendar">
+                                        <i class="uil uil-calendar-alt"></i>
+                                        2024 - 2024
                                     </div>
                                 </div>
+                            </div>
+
+                            <!--==================== QUALIFICATION 3 ====================-->
+                            <div class="qualification__data">
+                                <div>
+                                    <h3 class="qualification__title">Part Time Content Producer</h3>
+                                    <span class="qualification__subtitle">BİLTEN Defence</span>
+                                    <div class="qualification__calendar">
+                                        <i class="uil uil-calendar-alt"></i>
+                                        2024 - Present
+                        </div>
+                    </div>
+
+                                <div>
+                                    <span class="qualification__rounder"></span>
+                                    <span class="qualification__line"></span>
+                            </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
+            </section>
+
+            <!--==================== SERVICES ====================-->
+            <!-- 📌 ESKİ İÇERİK: Hizmetler bölümü eski projeden -->
+            <section class="services section" id="services">
+                <h2 class="section__title">Services</h2>
+                <span class="section__subtitle">What I offer</span>
+
+                <div class="services__container container grid">
+                    <!--==================== SERVICES 1 ====================-->
+                    <div class="services__content">
+                        <div>
+                            <i class="uil uil-web-grid services__icon"></i>
+                            <h3 class="services__title">Graphic <br> Designer</h3>
+                                </div>
+
+                        <span class="services__button" onclick="document.getElementById('modal-1').classList.add('active-modal')">
+                            View More <i class="uil uil-arrow-right button__icon"></i>
+                        </span>
+
+                        <div class="services__modal" id="modal-1">
+                            <div class="services__modal-content">
+                                <h4 class="services__modal-title">Graphic <br> Designer</h4>
+                                <i class="uil uil-times services__modal-close" onclick="document.getElementById('modal-1').classList.remove('active-modal')"></i>
+
+                                <ul class="services__modal-services grid">
+                                    <li class="services__modal-service">
+                                        <i class="uil uil-check-circle services__modal-icon"></i>
+                                        <p>Professional logo and brand identity design</p>
+                                    </li>
+                                    <li class="services__modal-service">
+                                        <i class="uil uil-check-circle services__modal-icon"></i>
+                                        <p>Catalog and publication design</p>
+                                    </li>
+                                    <li class="services__modal-service">
+                                        <i class="uil uil-check-circle services__modal-icon"></i>
+                                        <p>Adobe Illustrator & Photoshop expertise</p>
+                                    </li>
+                                    <li class="services__modal-service">
+                                        <i class="uil uil-check-circle services__modal-icon"></i>
+                                        <p>Print and digital media design</p>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
 
-                    <!-- School Works -->
-                    <div class="col-lg-4">
-                        <div class="card h-100 shadow-sm">
-                            <div class="card-header bg-info text-white">
-                                <h3 class="h5 mb-0">School Works</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="row g-3">
-                                    <div class="col-4">
-                                        <img src="./image/schoolwork-3.png" class="img-fluid rounded image-clickable" alt="School Work 1">
-                                    </div>
-                                    <div class="col-4">
-                                        <img src="./image/schoolwork-2.png" class="img-fluid rounded image-clickable" alt="School Work 2">
-                                    </div>
-                                    <div class="col-4">
-                                        <img src="./image/schoolwork-1.jpg" class="img-fluid rounded image-clickable" alt="School Work 3">
-                                    </div>
-                                    <div class="col-4">
-                                        <img src="./image/schoolwork-4.png" class="img-fluid rounded image-clickable" alt="School Work 4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!--==================== SERVICES 2 ====================-->
+                    <div class="services__content">
+                        <div>
+                            <i class="uil uil-arrow services__icon"></i>
+                            <h3 class="services__title">UX/UI <br> Designer</h3>
                 </div>
 
-                <!-- Second Row - 2x2 Grid -->
-                <div class="row g-4 mt-3">
-                    <!-- Screenwriting Projects -->
-                    <div class="col-lg-6">
-                        <div class="card h-100 shadow-sm">
-                            <div class="card-header bg-warning text-dark">
-                                <h3 class="h5 mb-0">Screenwriting Projects</h3>
+                        <span class="services__button" onclick="document.getElementById('modal-2').classList.add('active-modal')">
+                            View More <i class="uil uil-arrow-right button__icon"></i>
+                        </span>
+
+                        <div class="services__modal" id="modal-2">
+                            <div class="services__modal-content">
+                                <h4 class="services__modal-title">UX/UI <br> Designer</h4>
+                                <i class="uil uil-times services__modal-close" onclick="document.getElementById('modal-2').classList.remove('active-modal')"></i>
+
+                                <ul class="services__modal-services grid">
+                                    <li class="services__modal-service">
+                                        <i class="uil uil-check-circle services__modal-icon"></i>
+                                        <p>Mobile app interface design</p>
+                                    </li>
+                                    <li class="services__modal-service">
+                                        <i class="uil uil-check-circle services__modal-icon"></i>
+                                        <p>User experience research and testing</p>
+                                    </li>
+                                    <li class="services__modal-service">
+                                        <i class="uil uil-check-circle services__modal-icon"></i>
+                                        <p>Interactive prototypes and mockups</p>
+                                    </li>
+                                    <li class="services__modal-service">
+                                        <i class="uil uil-check-circle services__modal-icon"></i>
+                                        <p>Responsive web design</p>
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="card-body">
-                                <div class="d-flex flex-column align-items-center">
-                                    <i class="fas fa-file-pdf fa-4x text-warning mb-3"></i>
-                                    <p class="text-center mb-3">Creative screenwriting works and narrative projects</p>
-                                    <div class="d-grid gap-2 w-100">
-                                        <a href="Barış_Değirmenci_ScreenWriting (1).pdf" class="btn btn-outline-warning" target="_blank">
-                                            <i class="fas fa-download me-2"></i>Phising Project
-                                        </a>
-                                        <a href="Visa_ScreenWriting.pdf" class="btn btn-outline-warning" target="_blank">
-                                            <i class="fas fa-download me-2"></i>Visa Exam Project
-                                        </a>
                                     </div>
                                 </div>
+
+                    <!--==================== SERVICES 3 ====================-->
+                    <div class="services__content">
+                        <div>
+                            <i class="uil uil-game-structure services__icon"></i>
+                            <h3 class="services__title">Game <br> Developer</h3>
+                    </div>
+
+                        <span class="services__button" onclick="document.getElementById('modal-3').classList.add('active-modal')">
+                            View More <i class="uil uil-arrow-right button__icon"></i>
+                        </span>
+
+                        <div class="services__modal" id="modal-3">
+                            <div class="services__modal-content">
+                                <h4 class="services__modal-title">Game <br> Developer</h4>
+                                <i class="uil uil-times services__modal-close" onclick="document.getElementById('modal-3').classList.remove('active-modal')"></i>
+
+                                <ul class="services__modal-services grid">
+                                    <li class="services__modal-service">
+                                        <i class="uil uil-check-circle services__modal-icon"></i>
+                                        <p>Unity 2D/3D game development</p>
+                                    </li>
+                                    <li class="services__modal-service">
+                                        <i class="uil uil-check-circle services__modal-icon"></i>
+                                        <p>C# programming and scripting</p>
+                                    </li>
+                                    <li class="services__modal-service">
+                                        <i class="uil uil-check-circle services__modal-icon"></i>
+                                        <p>Game mechanics and level design</p>
+                                    </li>
+                                    <li class="services__modal-service">
+                                        <i class="uil uil-check-circle services__modal-icon"></i>
+                                        <p>3D modeling with Blender</p>
+                                    </li>
+                                </ul>
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+            </section>
+
+            <!--==================== PORTFOLIO ====================-->
+            <!-- 📌 ESKİ İÇERİK: Tüm proje görselleri ve açıklamaları eski projeden -->
+            <section class="portfolio section" id="portfolio">
+                <h2 class="section__title">Portfolio</h2>
+                <span class="section__subtitle">Explore my creative work</span>
+
+                <div class="portfolio__container container swiper-container">
+                    <div class="swiper-wrapper">
+                        <!--==================== PORTFOLIO 1 ====================-->
+                        <!-- 📌 ESKİ İÇERİK: Sketch & Mockup projesi -->
+                        <div class="portfolio__content grid swiper-slide">
+                            <img src="assets/img/sketch-1.jpg" alt="Sketch & Mockup Gallery" class="portfolio__img">
+
+                            <div class="portfolio__data">
+                                <h3 class="portfolio__title">Sketch & Mockup</h3>
+                                <p class="portfolio__description">Hand-drawn sketches and digital mockups showcasing creative ideation and conceptual design work.</p>
+                                <a href="gallery-sketch.html" class="button button--flex button--small portfolio__button">
+                                    View Gallery
+                                    <i class="uil uil-arrow-right button__icon"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!--==================== PORTFOLIO 2 ====================-->
+                        <!-- 📌 ESKİ İÇERİK: Community Products -->
+                        <div class="portfolio__content grid swiper-slide">
+                            <img src="assets/img/community-1.png" alt="Community Products" class="portfolio__img">
+
+                            <div class="portfolio__data">
+                                <h3 class="portfolio__title">Community Products</h3>
+                                <p class="portfolio__description">Design work for community projects and social initiatives, focusing on impact and engagement.</p>
+                                <a href="gallery-community.html" class="button button--flex button--small portfolio__button">
+                                    View Gallery
+                                    <i class="uil uil-arrow-right button__icon"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!--==================== PORTFOLIO 3 ====================-->
+                        <!-- 📌 ESKİ İÇERİK: UX/UI Mobile App -->
+                        <div class="portfolio__content grid swiper-slide">
+                            <img src="assets/img/UI/login.png" alt="UX/UI Mobile App" class="portfolio__img">
+
+                            <div class="portfolio__data">
+                                <h3 class="portfolio__title">UX/UI Mobile App</h3>
+                                <p class="portfolio__description">Complete mobile app design featuring authentication flows, user onboarding, and modern UI patterns.</p>
+                                <a href="uxui-showcase.html" class="button button--flex button--small portfolio__button">
+                                    View Demo
+                                    <i class="uil uil-arrow-right button__icon"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!--==================== PORTFOLIO 4 ====================-->
+                        <!-- 📌 ESKİ İÇERİK: School Works -->
+                        <div class="portfolio__content grid swiper-slide">
+                            <img src="assets/img/schoolwork-3.png" alt="School Works" class="portfolio__img">
+
+                            <div class="portfolio__data">
+                                <h3 class="portfolio__title">Academic Projects</h3>
+                                <p class="portfolio__description">University assignments and projects from Hacettepe demonstrating technical and creative skills.</p>
+                                <a href="gallery-school.html" class="button button--flex button--small portfolio__button">
+                                    View Gallery
+                                    <i class="uil uil-arrow-right button__icon"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!--==================== PORTFOLIO 5 ====================-->
+                        <!-- 📌 ESKİ İÇERİK: Game Projects -->
+                        <div class="portfolio__content grid swiper-slide">
+                            <img src="assets/img/success.png" alt="Game Development" class="portfolio__img">
+
+                            <div class="portfolio__data">
+                                <h3 class="portfolio__title">Game Development</h3>
+                                <p class="portfolio__description">Unity game projects: Sergio, The Pearl, and Academia of Googlewoods - showcasing gameplay and design.</p>
+                                <a href="https://www.youtube.com/@barisd2695" target="_blank" class="button button--flex button--small portfolio__button">
+                                    Watch Demos
+                                    <i class="uil uil-arrow-right button__icon"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!--==================== PORTFOLIO 6 ====================-->
+                        <!-- 📌 ESKİ İÇERİK: Documents & Reports -->
+                        <div class="portfolio__content grid swiper-slide">
+                            <img src="assets/img/blog-1.jpg" alt="Documents & Reports" class="portfolio__img">
+
+                            <div class="portfolio__data">
+                                <h3 class="portfolio__title">Documents & Reports</h3>
+                                <p class="portfolio__description">Professional catalogs, CV, screenwriting portfolio, and comprehensive activity reports.</p>
+                                <a href="documents.html" class="button button--flex button--small portfolio__button">
+                                    View Documents
+                                    <i class="uil uil-arrow-right button__icon"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Scrum Project -->
-                    <div class="col-lg-6">
-                        <div class="card h-100 shadow-sm">
-                            <div class="card-header bg-dark text-white">
-                                <h3 class="h5 mb-0">Scrum Project</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="d-flex flex-column align-items-center">
-                                    <i class="fab fa-github fa-4x text-dark mb-3"></i>
-                                    <p class="text-center mb-3">Complete Scrum project management and development process</p>
-                                    <a href="https://github.com/bobothemomo/U9-Bages" class="btn" id="scrumProjectBtn" target="_blank">
-                                        <i class="fab fa-github me-2"></i>View on GitHub
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-next">
+                        <i class="uil uil-angle-right-b swiper-portfolio-icon"></i>
                     </div>
+                    <div class="swiper-button-prev">
+                        <i class="uil uil-angle-left-b swiper-portfolio-icon"></i>
+                    </div>
+
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
                 </div>
+            </section>
 
-                <!-- Third Row - 2x2 Grid -->
-                <div class="row g-4 mt-3">
-                    <!-- Catalogs I've Worked On -->
-                    <div class="col-lg-6">
-                        <div class="card h-100 shadow-sm">
-                            <div class="card-header bg-info text-white">
-                                <h3 class="h5 mb-0">Catalogs I've Worked On</h3>
+            <!--==================== PROJECT IN MIND ====================-->
+            <section class="project section">
+                <div class="project__bg">
+                    <div class="project__container container grid">
+                        <div class="project__data">
+                            <h2 class="project__title">You have a new project?</h2>
+                            <p class="project__description">Contact me now and let's bring your ideas to life!</p>
+                            <a href="#contact" class="button button--flex button--white">
+                                Contact Me
+                                <i class="uil uil-message project__icon button__icon"></i>
+                            </a>
+                                </div>
+
+                        <img src="assets/img/mountain-light.jpg" alt="Project" class="project__img">
                             </div>
-                            <div class="card-body">
-                                <div class="d-flex flex-column align-items-center">
-                                    <i class="fas fa-graduation-cap fa-4x text-info mb-3"></i>
-                                    <p class="text-center mb-3">Professional catalog designs and publications</p>
-                                    <div class="d-grid gap-2 w-100">
-                                        <a href="AGP_Katalog_19_03_2024.pdf" class="btn btn-outline-info" target="_blank">
-                                            <i class="fas fa-book-open me-2"></i>Academic Development Catalog
-                                        </a>
-                                        <a href="Vitaself_BASKI.pdf" class="btn btn-outline-info" target="_blank">
-                                            <i class="fas fa-book-open me-2"></i>Vitaself Russian Catalog
-                                        </a>
-                                    </div>
+                        </div>
+            </section>
+
+            <!--==================== TESTIMONIAL ====================-->
+            <section class="testimonial section">
+                <h2 class="section__title">Testimonial</h2>
+                <span class="section__subtitle">Client reviews</span>
+
+                <div class="testimonial__container container swiper-container">
+                    <div class="swiper-wrapper">
+                        <!--==================== TESTIMONIAL 1 ====================-->
+                        <div class="testimonial__content swiper-slide">
+                            <div class="testimonial__data">
+                                <div class="testimonial__header">
+                                    <img src="assets/img/blog-1.jpg" alt="" class="testimonial__img">
+
+                                    <div>
+                                        <h3 class="testimonial__name">Sara Smith</h3>
+                                        <span class="testimonial__client">Client</span>
                                 </div>
                             </div>
+
+                                <div>
+                                    <i class="uil uil-star testimonial__icon-star"></i>
+                                    <i class="uil uil-star testimonial__icon-star"></i>
+                                    <i class="uil uil-star testimonial__icon-star"></i>
+                                    <i class="uil uil-star testimonial__icon-star"></i>
+                                    <i class="uil uil-star testimonial__icon-star"></i>
+                        </div>
+                                </div>
+
+                            <p class="testimonial__description">Outstanding work! Barış delivered high-quality design work with excellent attention to detail and creative vision.</p>
+                            </div>
+
+                        <!--==================== TESTIMONIAL 2 ====================-->
+                        <div class="testimonial__content swiper-slide">
+                            <div class="testimonial__data">
+                                <div class="testimonial__header">
+                                    <img src="assets/img/blog-2.jpg" alt="" class="testimonial__img">
+
+                                    <div>
+                                        <h3 class="testimonial__name">Matt Robinson</h3>
+                                        <span class="testimonial__client">Client</span>
                         </div>
                     </div>
 
-                    <!-- Activity Reports -->
-                    <div class="col-lg-6">
-                        <div class="card h-100 shadow-sm">
-                            <div class="card-header bg-success text-white">
-                                <h3 class="h5 mb-0">Activity Reports</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="d-flex flex-column align-items-center">
-                                    <i class="fas fa-chart-line fa-4x text-success mb-3"></i>
-                                    <p class="text-center mb-3">Comprehensive activity and progress reports</p>
-                                    <div class="d-grid gap-2 w-100">
-                                        <a href="Reports/2023-2024-Bahar-Donemi-Faaliyet-Raporu.pdf" class="btn btn-outline-success btn-sm" target="_blank">
-                                            <i class="fas fa-file-alt me-2"></i>Spring 2023-24 Report
-                                        </a>
-                                        <a href="Reports/2023-2024-Guz-Donemi-Faaliyet-Raporu.pdf" class="btn btn-outline-success btn-sm" target="_blank">
-                                            <i class="fas fa-file-alt me-2"></i>Fall 2023-24 Report
-                                        </a>
-                                        <a href="Reports/STL_202223GuzRaporu_TUR.pdf" class="btn btn-outline-success btn-sm" target="_blank">
-                                            <i class="fas fa-file-alt me-2"></i>STL Fall 2022-23 Report
-                                        </a>
-                                        <a href="Reports/2022-2023%20Bahar%20D%C3%B6nemi%20Faaliyet%20Raporu%20(4).pdf" class="btn btn-outline-success btn-sm" target="_blank">
-                                            <i class="fas fa-file-alt me-2"></i>Spring 2022-23 Report
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Videos Section -->
-                <div class="mt-5">
-                    <h3 class="text-center mb-4">Game Projects</h3>
-                    <div class="row g-4">
-                        <div class="col-lg-4">
-                            <div class="card h-100 shadow-sm video-card">
-                                <div class="ratio ratio-16x9">
-                                    <iframe src="https://www.youtube.com/embed/M8eoCbo5je8" title="YouTube video" allowfullscreen></iframe>
-                                </div>
-                                <div class="card-title">Sergio</div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="card h-100 shadow-sm video-card">
-                                <div class="ratio ratio-16x9">
-                                    <iframe src="https://www.youtube.com/embed/HBKviZ6l_bE" title="YouTube video" allowfullscreen></iframe>
-                                </div>
-                                <div class="card-title">The Pearl</div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="card h-100 shadow-sm video-card">
-                                <div class="ratio ratio-16x9">
-                                    <iframe src="https://www.youtube.com/embed/3NCzQ8MkVKU" title="YouTube video" allowfullscreen></iframe>
-                                </div>
-                                <div class="card-title">Academia of Googlewoods</div>
-                            </div>
-                        </div>
-                    </div>
+                                <div>
+                                    <i class="uil uil-star testimonial__icon-star"></i>
+                                    <i class="uil uil-star testimonial__icon-star"></i>
+                                    <i class="uil uil-star testimonial__icon-star"></i>
+                                    <i class="uil uil-star testimonial__icon-star"></i>
+                                    <i class="uil uil-star testimonial__icon-star"></i>
                 </div>
             </div>
-        </section>
 
-        <section class="py-5 bg-light" id="contact">
-            <div class="container">
-                <div class="text-center mb-5">
-                    <h2 class="fw-bolder display-5">Get In Touch</h2>
-                    <div class="divider-custom">
-                        <div class="divider-custom-line"></div>
-                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                        <div class="divider-custom-line"></div>
+                            <p class="testimonial__description">Professional and timely delivery. Barış's game development skills are impressive, and communication was excellent throughout.</p>
                     </div>
+
+                        <!--==================== TESTIMONIAL 3 ====================-->
+                        <div class="testimonial__content swiper-slide">
+                            <div class="testimonial__data">
+                                <div class="testimonial__header">
+                                    <img src="assets/img/blog-3.jpg" alt="" class="testimonial__img">
+
+                                    <div>
+                                        <h3 class="testimonial__name">Raul Harris</h3>
+                                        <span class="testimonial__client">Client</span>
                 </div>
-                <div class="text-center mb-5">
-                    <p class="lead">Feel free to reach out to me through any of these platforms</p>
                 </div>
                 
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <form class="contact-form" action="https://formspree.io/f/mpwdojad" method="POST">
-                            <div class="mb-3">
-                                <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                                <div>
+                                    <i class="uil uil-star testimonial__icon-star"></i>
+                                    <i class="uil uil-star testimonial__icon-star"></i>
+                                    <i class="uil uil-star testimonial__icon-star"></i>
+                                    <i class="uil uil-star testimonial__icon-star"></i>
+                                    <i class="uil uil-star testimonial__icon-star"></i>
                             </div>
-                            <div class="mb-3">
-                                <input type="email" name="email" class="form-control" placeholder="Your Email" required>
                             </div>
-                            <div class="mb-3">
-                                <textarea name="message" class="form-control" rows="5" placeholder="Your Message" required></textarea>
+
+                            <p class="testimonial__description">Highly recommended! The UX/UI design work exceeded our expectations, and the final product was exactly what we needed.</p>
                             </div>
-                            <button type="submit" class="btn btn-primary rounded-pill">Send Message</button>
-                        </form>
                     </div>
-                </div>
+                    <div class="swiper-pagination swiper-pagination-testimonial"></div>
             </div>
         </section>
 
-        <footer class="footer-minimal">
-            <div class="container py-4">
-                <div class="row align-items-center justify-content-between text-center text-lg-start">
-                    <div class="col-lg-4 mb-3 mb-lg-0">
-                        <span class="footer-name">Barış Değirmenci</span>
+            <!--==================== CONTACT ME ====================-->
+            <!-- 📌 ESKİ İÇERİK: Formspree form entegrasyonu eski projeden -->
+            <section class="contact section" id="contact">
+                <h2 class="section__title">Contact Me</h2>
+                <span class="section__subtitle">Get in touch</span>
+
+                <div class="contact__container container grid">
+                    <div>
+                        <!-- 📌 ESKİ İÇERİK: E-posta adresi -->
+                        <div class="contact__information">
+                            <i class="uil uil-envelope contact__icon"></i>
+
+                            <div>
+                                <h3 class="contact__title">Email</h3>
+                                <span class="contact__subtitle">contact@barisdegirmenci.com</span>
                     </div>
-                    <div class="col-lg-4 mb-3 mb-lg-0 d-flex justify-content-center gap-4">
-                        <a href="https://github.com/bobothemomo" class="footer-icon" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/barış-değirmenci-98559a21b/" class="footer-icon" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                     </div>
-                    <div class="col-lg-4 text-lg-end">
-                        <span class="footer-copy">© 2024 Barış Değirmenci</span>
+
+                        <div class="contact__information">
+                            <i class="uil uil-map-marker contact__icon"></i>
+
+                            <div>
+                                <h3 class="contact__title">Location</h3>
+                                <span class="contact__subtitle">Ankara, Turkey</span>
                     </div>
                 </div>
+            </div>
+
+                    <!-- 📌 ESKİ İÇERİK: Formspree form action -->
+                    <form action="https://formspree.io/f/mpwdojad" method="POST" class="contact__form grid">
+                        <div class="contact__inputs grid">
+                            <div class="contact__content">
+                                <label for="name" class="contact__label">Name</label>
+                                <input type="text" id="name" name="name" class="contact__input" required>
+                    </div>
+                            <div class="contact__content">
+                                <label for="email" class="contact__label">Email</label>
+                                <input type="email" id="email" name="email" class="contact__input" required>
+                    </div>
+                </div>
+                        <div class="contact__content">
+                            <label for="subject" class="contact__label">Subject</label>
+                            <input type="text" id="subject" name="subject" class="contact__input" required>
+            </div>
+                        <div class="contact__content">
+                            <label for="message" class="contact__label">Message</label>
+                            <textarea name="message" id="message" cols="0" rows="7" class="contact__input" required></textarea>
+        </div>
+
+                        <div>
+                            <button type="submit" class="button button--flex">
+                                Send Message
+                                <i class="uil uil-message button__icon"></i>
+                            </button>
+                    </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <!--==================== FOOTER ====================-->
+        <!-- 📌 ESKİ İÇERİK: Footer bilgileri ve sosyal medya linkleri -->
+        <footer class="footer">
+            <div class="footer__bg">
+                <div class="footer__container container grid">
+                    <div>
+                        <h1 class="footer__title">Barış Değirmenci</h1>
+                        <span class="footer__subtitle">Graphic Designer | Game Developer | UX/UI Designer</span>
+        </div>
+
+                    <ul class="footer__links">
+                        <li>
+                            <a href="#services" class="footer__link">Services</a>
+                        </li>
+                        <li>
+                            <a href="#portfolio" class="footer__link">Portfolio</a>
+                        </li>
+                        <li>
+                            <a href="#contact" class="footer__link">Contact</a>
+                        </li>
+                    </ul>
+
+                    <!-- 📌 ESKİ İÇERİK: LinkedIn ve GitHub linkleri -->
+                    <div class="footer__socials">
+                        <a href="https://www.linkedin.com/in/barış-değirmenci-98559a21b/" target="_blank" class="footer__social">
+                            <i class="uil uil-linkedin-alt"></i>
+                        </a>
+                        <a href="https://github.com/bobothemomo" target="_blank" class="footer__social">
+                            <i class="uil uil-github-alt"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <p class="footer__copy">&#169; Barış Değirmenci. All right reserved - 2024</p>
             </div>
         </footer>
-
-        <!-- Modal for Image Preview -->
-        <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
-                <div class="modal-content image-modal-modern">
-                    <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close" data-bs-dismiss="modal">&times;</button>
-                    <div class="modal-header border-0">
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="image-modal-container">
-                        <div class="image-modal-bg"></div>
-                        <button id="prevImageBtn" class="image-nav-btn image-nav-btn-left" aria-label="Previous image">&#8592;</button>
-                        <img src="" class="img-fluid image-modal-img fade-in" id="modalImage" alt="" />
-                        <button id="nextImageBtn" class="image-nav-btn image-nav-btn-right" aria-label="Next image">&#8594;</button>
-                    </div>
-                    <div id="modalImageCaption" class="text-center text-light small py-2"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Project Details Modal -->
-        <div class="modal fade" id="projectDetailsModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="projectDetailsTitle"></h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body" id="projectDetailsBody"></div>
-                </div>
-            </div>
-        </div>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <script src="js/main.js"></script>
         
-        <script>
-            // Enhanced Image Modal Functionality
-            const images = Array.from(document.querySelectorAll('.image-clickable'));
-            let currentImageIndex = 0;
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
-            const prevBtn = document.getElementById('prevImageBtn');
-            const nextBtn = document.getElementById('nextImageBtn');
-            const modalCaption = document.getElementById('modalImageCaption');
-            const modalBg = document.querySelector('.image-modal-bg');
-            let bsModal = null;
+        <!--==================== SCROLL TOP ====================-->
+        <a href="#" class="scrollup" id="scroll-up">
+            <i class="uil uil-arrow-up scrollup__icon"></i>
+        </a>
 
-            function showImageModal(index) {
-                currentImageIndex = index;
-                modalImg.classList.remove('loaded');
-                modalImg.src = images[index].src;
-                modalImg.alt = images[index].alt;
-                modalCaption.textContent = images[index].alt || '';
-                // Set blurred background
-                modalBg.style.backgroundImage = `url('${images[index].src}')`;
-                bsModal = new bootstrap.Modal(modal);
-                bsModal.show();
-                setTimeout(() => prevBtn.focus(), 300); // Focus for accessibility
-            }
+        <!--==================== SWIPER JS ====================-->
+        <script src="assets/js/swiper-bundle.min.js"></script>
 
-            modalImg.onload = function() {
-                modalImg.classList.add('loaded');
-            };
-            modalImg.onerror = function() {
-                modalImg.src = 'https://via.placeholder.com/600x400?text=Image+not+found';
-                modalCaption.textContent = 'Image not found';
-                modalBg.style.backgroundImage = '';
-            };
-
-            images.forEach((img, idx) => {
-                img.addEventListener('click', () => showImageModal(idx));
-            });
-
-            function showPrevImage() {
-                currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-                modalImg.classList.remove('loaded');
-                modalImg.src = images[currentImageIndex].src;
-                modalImg.alt = images[currentImageIndex].alt;
-                modalCaption.textContent = images[currentImageIndex].alt || '';
-                modalBg.style.backgroundImage = `url('${images[currentImageIndex].src}')`;
-            }
-            function showNextImage() {
-                currentImageIndex = (currentImageIndex + 1) % images.length;
-                modalImg.classList.remove('loaded');
-                modalImg.src = images[currentImageIndex].src;
-                modalImg.alt = images[currentImageIndex].alt;
-                modalCaption.textContent = images[currentImageIndex].alt || '';
-                modalBg.style.backgroundImage = `url('${images[currentImageIndex].src}')`;
-            }
-
-            prevBtn.addEventListener('click', showPrevImage);
-            nextBtn.addEventListener('click', showNextImage);
-
-            // Keyboard navigation
-            modal.addEventListener('shown.bs.modal', function () {
-                document.addEventListener('keydown', modalKeyHandler);
-                trapFocus(modal);
-            });
-            modal.addEventListener('hidden.bs.modal', function () {
-                document.removeEventListener('keydown', modalKeyHandler);
-            });
-            function modalKeyHandler(e) {
-                if (e.key === 'ArrowLeft') showPrevImage();
-                if (e.key === 'ArrowRight') showNextImage();
-                if (e.key === 'Escape') bsModal.hide();
-            }
-            // Focus trap for accessibility
-            function trapFocus(element) {
-                const focusableEls = element.querySelectorAll('button, [tabindex]:not([tabindex="-1"])');
-                const firstFocusableEl = focusableEls[0];
-                const lastFocusableEl = focusableEls[focusableEls.length - 1];
-                element.addEventListener('keydown', function(e) {
-                    if (e.key !== 'Tab') return;
-                    if (e.shiftKey) {
-                        if (document.activeElement === firstFocusableEl) {
-                            lastFocusableEl.focus();
-                            e.preventDefault();
-                        }
-                    } else {
-                        if (document.activeElement === lastFocusableEl) {
-                            firstFocusableEl.focus();
-                            e.preventDefault();
-                        }
-                    }
-                });
-            }
-            // Touch swipe for mobile
-            let touchStartX = 0;
-            modalImg.addEventListener('touchstart', function(e) {
-                touchStartX = e.changedTouches[0].screenX;
-            });
-            modalImg.addEventListener('touchend', function(e) {
-                const touchEndX = e.changedTouches[0].screenX;
-                if (touchEndX - touchStartX > 50) showPrevImage();
-                if (touchStartX - touchEndX > 50) showNextImage();
-            });
-
-            // Dark mode toggle functionality
-            const darkModeToggle = document.getElementById('darkModeToggle');
-            const darkModeIcon = document.getElementById('darkModeIcon');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const savedTheme = localStorage.getItem('theme');
-
-            function setTheme(theme) {
-                const root = document.documentElement;
-                const isDark = theme === 'dark';
-
-                // Update body class
-                document.body.classList[isDark ? 'add' : 'remove']('darkmode');
-
-                // Update icon
-                darkModeIcon.classList.remove(isDark ? 'fa-moon' : 'fa-sun');
-                darkModeIcon.classList.add(isDark ? 'fa-sun' : 'fa-moon');
-
-                // Update CSS variables
-                const colors = {
-                    dark: {
-                        bg: '#181a1b',
-                        text: '#f1f1f1',
-                        muted: '#b0b0b0',
-                        primary: '#4fc3f7',
-                        footerGradient: 'linear-gradient(90deg, #232526 0%, #414345 100%)',
-                        footerIcon: '#e0e0e0',
-                        footerIconHover: '#4fc3f7'
-                    },
-                    light: {
-                        bg: '#fff',
-                        text: '#222',
-                        muted: '#666',
-                        primary: '#007bff',
-                        footerGradient: 'linear-gradient(90deg, #a8edea 0%, #fed6e3 100%)',
-                        footerIcon: '#444',
-                        footerIconHover: '#007bff'
-                    }
-                };
-
-                const theme_colors = isDark ? colors.dark : colors.light;
-
-                // Set all CSS variables
-                root.style.setProperty('--color-bg', theme_colors.bg);
-                root.style.setProperty('--color-text', theme_colors.text);
-                root.style.setProperty('--color-muted', theme_colors.muted);
-                root.style.setProperty('--color-primary', theme_colors.primary);
-                root.style.setProperty('--color-footer-gradient', theme_colors.footerGradient);
-                root.style.setProperty('--color-footer-icon', theme_colors.footerIcon);
-                root.style.setProperty('--color-footer-icon-hover', theme_colors.footerIconHover);
-            }
-
-            // Initial theme
-            if (savedTheme) {
-                setTheme(savedTheme);
-            } else if (prefersDark) {
-                setTheme('dark');
-            }
-
-            darkModeToggle.addEventListener('click', function() {
-                const isDark = document.body.classList.toggle('darkmode');
-                localStorage.setItem('theme', isDark ? 'dark' : 'light');
-                setTheme(isDark ? 'dark' : 'light');
-            });
-
-            // Scroll to Top Button
-            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 300) {
-                    scrollToTopBtn.style.display = 'block';
-                } else {
-                    scrollToTopBtn.style.display = 'none';
-                }
-            });
-            scrollToTopBtn.addEventListener('click', function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-
-            // Project Details Modal
-            document.querySelectorAll('.project-details-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const card = btn.closest('.project-card');
-                    document.getElementById('projectDetailsTitle').textContent = card.getAttribute('data-title');
-                    document.getElementById('projectDetailsBody').textContent = card.getAttribute('data-description');
-                    const modal = new bootstrap.Modal(document.getElementById('projectDetailsModal'));
-                    modal.show();
-                });
-            });
-
-            // Navbar logo color swap for dark mode
-            const navbarLogo = document.getElementById('navbarLogo');
-            const logoLight = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Cdefs%3E%3ClinearGradient id='bd-gradient' x1='0' y1='0' x2='1' y2='0'%3E%3Cstop offset='0%25' stop-color='%23a8edea'/%3E%3Cstop offset='100%25' stop-color='%23fed6e3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='64' cy='64' r='64' fill='url(%23bd-gradient)'/%3E%3Ctext x='50%25' y='58%25' text-anchor='middle' font-size='64' fill='%23222' font-family='Nunito, Arial, sans-serif' font-weight='bold' dy='.1em'%3EBD%3C/text%3E%3C/svg%3E";
-            const logoDark = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Cdefs%3E%3ClinearGradient id='bd-gradient' x1='0' y1='0' x2='1' y2='0'%3E%3Cstop offset='0%25' stop-color='%23a8edea'/%3E%3Cstop offset='100%25' stop-color='%23fed6e3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='64' cy='64' r='64' fill='url(%23bd-gradient)'/%3E%3Ctext x='50%25' y='58%25' text-anchor='middle' font-size='64' fill='%23fff' font-family='Nunito, Arial, sans-serif' font-weight='bold' dy='.1em'%3EBD%3C/text%3E%3C/svg%3E";
-            function updateNavbarLogo() {
-                if (document.body.classList.contains('darkmode')) {
-                    navbarLogo.src = logoDark;
-                } else {
-                    navbarLogo.src = logoLight;
-                }
-            }
-            // Update on page load
-            updateNavbarLogo();
-            // Update on dark mode toggle
-            if (typeof darkModeToggle !== 'undefined') {
-                darkModeToggle.addEventListener('click', function() {
-                    setTimeout(updateNavbarLogo, 10);
-                });
-            }
-        </script>
-    </div>
-    <button id="scrollToTopBtn" class="btn btn-primary rounded-circle" style="display: none;">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+        <!--==================== MAIN JS ====================-->
+        <script src="assets/js/main.js"></script>
 </body>
 </html>

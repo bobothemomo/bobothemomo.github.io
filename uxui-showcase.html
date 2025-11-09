@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+        <link rel="stylesheet" href="assets/css/styles.css">
+        <title>UX/UI Mobile App Design - Barış Değirmenci</title>
+        
+        <style>
+            .uxui-page {
+                padding: 6rem 0 2rem;
+                min-height: 100vh;
+            }
+            
+            .breadcrumb {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-bottom: 2rem;
+                font-size: 0.875rem;
+                color: #666;
+            }
+            
+            .breadcrumb a {
+                color: #6f42c1;
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+            
+            .breadcrumb a:hover {
+                color: #5a32a3;
+            }
+            
+            .breadcrumb-separator {
+                color: #999;
+            }
+            
+            .uxui-header {
+                text-align: center;
+                margin-bottom: 3rem;
+                max-width: 800px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .uxui-header h1 {
+                margin-bottom: 1rem;
+            }
+            
+            .uxui-description {
+                font-size: var(--normal-font-size);
+                color: var(--text-color);
+                line-height: 1.8;
+                margin-bottom: 2rem;
+            }
+            
+            .uxui-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+                justify-content: center;
+                margin-bottom: 3rem;
+            }
+            
+            .uxui-tag {
+                padding: 0.5rem 1rem;
+                background: var(--first-color-lighter);
+                color: var(--first-color);
+                border-radius: 2rem;
+                font-size: var(--small-font-size);
+                font-weight: var(--font-medium);
+            }
+            
+            .uxui-section {
+                margin-bottom: 4rem;
+            }
+            
+            .uxui-section-title {
+                font-size: var(--h2-font-size);
+                margin-bottom: 2rem;
+                text-align: center;
+                color: var(--title-color);
+            }
+            
+            .uxui-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: 2rem;
+                margin-bottom: 3rem;
+            }
+            
+            .uxui-item {
+                position: relative;
+                border-radius: 1rem;
+                overflow: hidden;
+                cursor: pointer;
+                transition: transform 0.3s, box-shadow 0.3s;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                background: white;
+                padding: 1rem;
+            }
+            
+            .uxui-item:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            }
+            
+            .uxui-item img {
+                width: 100%;
+                height: auto;
+                display: block;
+                border-radius: 0.5rem;
+            }
+            
+            .uxui-item-title {
+                text-align: center;
+                margin-top: 1rem;
+                font-size: var(--small-font-size);
+                color: var(--title-color);
+                font-weight: var(--font-medium);
+            }
+            
+            .lightbox {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0,0,0,0.95);
+                z-index: 10000;
+                align-items: center;
+                justify-content: center;
+                padding: 2rem;
+            }
+            
+            .lightbox.active {
+                display: flex;
+            }
+            
+            .lightbox-content {
+                max-width: 90%;
+                max-height: 90vh;
+                position: relative;
+            }
+            
+            .lightbox-img {
+                max-width: 100%;
+                max-height: 85vh;
+                object-fit: contain;
+            }
+            
+            .lightbox-title {
+                color: white;
+                text-align: center;
+                margin-top: 1rem;
+                font-size: var(--normal-font-size);
+            }
+            
+            .lightbox-close {
+                position: absolute;
+                top: -50px;
+                right: 0;
+                color: white;
+                font-size: 2rem;
+                cursor: pointer;
+                background: none;
+                border: none;
+                padding: 0.5rem 1rem;
+            }
+            
+            .lightbox-nav {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(255,255,255,0.2);
+                color: white;
+                border: none;
+                padding: 1rem;
+                font-size: 2rem;
+                cursor: pointer;
+                border-radius: 50%;
+                transition: background 0.3s;
+            }
+            
+            .lightbox-nav:hover {
+                background: rgba(255,255,255,0.3);
+            }
+            
+            .lightbox-prev {
+                left: -60px;
+            }
+            
+            .lightbox-next {
+                right: -60px;
+            }
+            
+            .back-button {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-bottom: 2rem;
+                padding: 0.75rem 1.5rem;
+                background: var(--first-color);
+                color: white;
+                border-radius: 0.5rem;
+                text-decoration: none;
+                transition: background 0.3s;
+            }
+            
+            .back-button:hover {
+                background: var(--first-color-alt);
+            }
+            
+            @media screen and (max-width: 768px) {
+                .uxui-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 1rem;
+                }
+                
+                .lightbox-nav {
+                    font-size: 1.5rem;
+                    padding: 0.5rem;
+                }
+                
+                .lightbox-prev {
+                    left: 0;
+                }
+                
+                .lightbox-next {
+                    right: 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="uxui-page">
+            <div class="container">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="index.html#portfolio">Portfolio</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span>UX/UI Mobile App</span>
+                </nav>
+                
+                <a href="index.html#portfolio" class="back-button">
+                    <i class="uil uil-arrow-left"></i>
+                    Back to Portfolio
+                </a>
+                
+                <div class="uxui-header">
+                    <h1 class="section__title">UX/UI Mobile App Design</h1>
+                    <p class="uxui-description">
+                        A comprehensive mobile application design project showcasing modern UI/UX principles, 
+                        user-centered design, and intuitive navigation patterns. This project includes complete 
+                        user flows for authentication, onboarding, and core application features.
+                    </p>
+                    <div class="uxui-tags">
+                        <span class="uxui-tag">UI Design</span>
+                        <span class="uxui-tag">UX Research</span>
+                        <span class="uxui-tag">Mobile App</span>
+                        <span class="uxui-tag">Figma</span>
+                        <span class="uxui-tag">User Flow</span>
+                    </div>
+                </div>
+                
+                <div class="uxui-section">
+                    <h2 class="uxui-section-title">Onboarding & Splash Screens</h2>
+                    <div class="uxui-grid">
+                        <div class="uxui-item" onclick="openLightbox(0)">
+                            <img src="assets/img/UI/Splash Screen.png" alt="Splash Screen">
+                            <div class="uxui-item-title">Splash Screen</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="uxui-section">
+                    <h2 class="uxui-section-title">Authentication Flow</h2>
+                    <div class="uxui-grid">
+                        <div class="uxui-item" onclick="openLightbox(1)">
+                            <img src="assets/img/UI/login.png" alt="Login Screen">
+                            <div class="uxui-item-title">Login Screen</div>
+                        </div>
+                        
+                        <div class="uxui-item" onclick="openLightbox(2)">
+                            <img src="assets/img/UI/girişyap.png" alt="Sign In">
+                            <div class="uxui-item-title">Sign In</div>
+                        </div>
+                        
+                        <div class="uxui-item" onclick="openLightbox(3)">
+                            <img src="assets/img/UI/kaydol.png" alt="Register">
+                            <div class="uxui-item-title">Register</div>
+                        </div>
+                        
+                        <div class="uxui-item" onclick="openLightbox(4)">
+                            <img src="assets/img/UI/epostagirişi.png" alt="Email Entry">
+                            <div class="uxui-item-title">Email Entry</div>
+                        </div>
+                        
+                        <div class="uxui-item" onclick="openLightbox(5)">
+                            <img src="assets/img/UI/doğru eposta.png" alt="Valid Email">
+                            <div class="uxui-item-title">Valid Email</div>
+                        </div>
+                        
+                        <div class="uxui-item" onclick="openLightbox(6)">
+                            <img src="assets/img/UI/epostahatalı.png" alt="Invalid Email">
+                            <div class="uxui-item-title">Invalid Email</div>
+                        </div>
+                        
+                        <div class="uxui-item" onclick="openLightbox(7)">
+                            <img src="assets/img/UI/girişbaşarılı.png" alt="Login Success">
+                            <div class="uxui-item-title">Login Success</div>
+                        </div>
+                        
+                        <div class="uxui-item" onclick="openLightbox(8)">
+                            <img src="assets/img/UI/kayıt başarılı.png" alt="Registration Success">
+                            <div class="uxui-item-title">Registration Success</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="uxui-section">
+                    <h2 class="uxui-section-title">Password Recovery</h2>
+                    <div class="uxui-grid">
+                        <div class="uxui-item" onclick="openLightbox(9)">
+                            <img src="assets/img/UI/şifreni mi unuttun.png" alt="Forgot Password">
+                            <div class="uxui-item-title">Forgot Password</div>
+                        </div>
+                        
+                        <div class="uxui-item" onclick="openLightbox(10)">
+                            <img src="assets/img/UI/yenişifreoluştur.png" alt="Create New Password">
+                            <div class="uxui-item-title">Create New Password</div>
+                        </div>
+                        
+                        <div class="uxui-item" onclick="openLightbox(11)">
+                            <img src="assets/img/UI/yenişifreoluştur-1.png" alt="New Password Step 1">
+                            <div class="uxui-item-title">New Password Step 1</div>
+                        </div>
+                        
+                        <div class="uxui-item" onclick="openLightbox(12)">
+                            <img src="assets/img/UI/yenişifreoluştur-2.png" alt="New Password Step 2">
+                            <div class="uxui-item-title">New Password Step 2</div>
+                        </div>
+                        
+                        <div class="uxui-item" onclick="openLightbox(13)">
+                            <img src="assets/img/UI/4kod.png" alt="Verification Code">
+                            <div class="uxui-item-title">Verification Code</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="uxui-section">
+                    <h2 class="uxui-section-title">Additional Screens</h2>
+                    <div class="uxui-grid">
+                        <div class="uxui-item" onclick="openLightbox(14)">
+                            <img src="assets/img/UI/5.png" alt="Screen 5">
+                            <div class="uxui-item-title">App Screen 5</div>
+                        </div>
+                        
+                        <div class="uxui-item" onclick="openLightbox(15)">
+                            <img src="assets/img/UI/6.png" alt="Screen 6">
+                            <div class="uxui-item-title">App Screen 6</div>
+                        </div>
+                        
+                        <div class="uxui-item" onclick="openLightbox(16)">
+                            <img src="assets/img/UI/7.png" alt="Screen 7">
+                            <div class="uxui-item-title">App Screen 7</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+            <div class="lightbox-content">
+                <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+                <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1, event)">&#8249;</button>
+                <img src="" alt="" class="lightbox-img" id="lightbox-img">
+                <div class="lightbox-title" id="lightbox-title"></div>
+                <button class="lightbox-nav lightbox-next" onclick="changeImage(1, event)">&#8250;</button>
+            </div>
+        </div>
+
+        <script>
+            const images = [
+                { src: 'assets/img/UI/Splash Screen.png', title: 'Splash Screen' },
+                { src: 'assets/img/UI/login.png', title: 'Login Screen' },
+                { src: 'assets/img/UI/girişyap.png', title: 'Sign In' },
+                { src: 'assets/img/UI/kaydol.png', title: 'Register' },
+                { src: 'assets/img/UI/epostagirişi.png', title: 'Email Entry' },
+                { src: 'assets/img/UI/doğru eposta.png', title: 'Valid Email' },
+                { src: 'assets/img/UI/epostahatalı.png', title: 'Invalid Email' },
+                { src: 'assets/img/UI/girişbaşarılı.png', title: 'Login Success' },
+                { src: 'assets/img/UI/kayıt başarılı.png', title: 'Registration Success' },
+                { src: 'assets/img/UI/şifreni mi unuttun.png', title: 'Forgot Password' },
+                { src: 'assets/img/UI/yenişifreoluştur.png', title: 'Create New Password' },
+                { src: 'assets/img/UI/yenişifreoluştur-1.png', title: 'New Password Step 1' },
+                { src: 'assets/img/UI/yenişifreoluştur-2.png', title: 'New Password Step 2' },
+                { src: 'assets/img/UI/4kod.png', title: 'Verification Code' },
+                { src: 'assets/img/UI/5.png', title: 'App Screen 5' },
+                { src: 'assets/img/UI/6.png', title: 'App Screen 6' },
+                { src: 'assets/img/UI/7.png', title: 'App Screen 7' }
+            ];
+            
+            let currentIndex = 0;
+            
+            function openLightbox(index) {
+                currentIndex = index;
+                document.getElementById('lightbox').classList.add('active');
+                document.getElementById('lightbox-img').src = images[currentIndex].src;
+                document.getElementById('lightbox-title').textContent = images[currentIndex].title;
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeLightbox(event) {
+                if (event.target.id === 'lightbox' || event.target.classList.contains('lightbox-close')) {
+                    document.getElementById('lightbox').classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            }
+            
+            function changeImage(direction, event) {
+                event.stopPropagation();
+                currentIndex += direction;
+                if (currentIndex < 0) currentIndex = images.length - 1;
+                if (currentIndex >= images.length) currentIndex = 0;
+                document.getElementById('lightbox-img').src = images[currentIndex].src;
+                document.getElementById('lightbox-title').textContent = images[currentIndex].title;
+            }
+            
+            document.addEventListener('keydown', function(e) {
+                const lightbox = document.getElementById('lightbox');
+                if (lightbox.classList.contains('active')) {
+                    if (e.key === 'ArrowLeft') changeImage(-1, e);
+                    if (e.key === 'ArrowRight') changeImage(1, e);
+                    if (e.key === 'Escape') closeLightbox({ target: lightbox });
+                }
+            });
+        </script>
+    </body>
+</html>
+

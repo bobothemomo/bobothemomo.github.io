@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+        <link rel="stylesheet" href="assets/css/styles.css">
+        <title>Documents & Reports - Barış Değirmenci</title>
+        
+        <style>
+            .documents-page {
+                padding: 6rem 0 2rem;
+                min-height: 100vh;
+            }
+            
+            .breadcrumb {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-bottom: 2rem;
+                font-size: 0.875rem;
+                color: #666;
+            }
+            
+            .breadcrumb a {
+                color: #6f42c1;
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+            
+            .breadcrumb a:hover {
+                color: #5a32a3;
+            }
+            
+            .breadcrumb-separator {
+                color: #999;
+            }
+            
+            .documents-header {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+            
+            .documents-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                margin-bottom: 3rem;
+            }
+            
+            .document-card {
+                background: white;
+                border-radius: 1rem;
+                padding: 2rem;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                transition: transform 0.3s, box-shadow 0.3s;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .document-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            }
+            
+            .document-icon {
+                width: 60px;
+                height: 60px;
+                background: var(--first-color-lighter);
+                border-radius: 0.75rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 1rem;
+            }
+            
+            .document-icon i {
+                font-size: 2rem;
+                color: var(--first-color);
+            }
+            
+            .document-title {
+                font-size: var(--h3-font-size);
+                color: var(--title-color);
+                font-weight: var(--font-semi-bold);
+                margin-bottom: 0.5rem;
+            }
+            
+            .document-description {
+                color: var(--text-color);
+                font-size: var(--small-font-size);
+                line-height: 1.6;
+                margin-bottom: 1rem;
+                flex-grow: 1;
+            }
+            
+            .document-actions {
+                display: flex;
+                gap: 0.75rem;
+                flex-wrap: wrap;
+            }
+            
+            .document-btn {
+                padding: 0.75rem 1.5rem;
+                border-radius: 0.5rem;
+                text-decoration: none;
+                font-size: var(--small-font-size);
+                font-weight: var(--font-medium);
+                transition: all 0.3s;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                cursor: pointer;
+            }
+            
+            .document-btn-primary {
+                background: var(--first-color);
+                color: white;
+            }
+            
+            .document-btn-primary:hover {
+                background: var(--first-color-alt);
+            }
+            
+            .document-btn-secondary {
+                background: var(--first-color-lighter);
+                color: var(--first-color);
+            }
+            
+            .document-btn-secondary:hover {
+                background: var(--first-color-light);
+            }
+            
+            .back-button {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-bottom: 2rem;
+                padding: 0.75rem 1.5rem;
+                background: var(--first-color);
+                color: white;
+                border-radius: 0.5rem;
+                text-decoration: none;
+                transition: background 0.3s;
+            }
+            
+            .back-button:hover {
+                background: var(--first-color-alt);
+            }
+            
+            .documents-section {
+                margin-bottom: 4rem;
+            }
+            
+            .documents-section-title {
+                font-size: var(--h2-font-size);
+                color: var(--title-color);
+                margin-bottom: 2rem;
+                padding-bottom: 1rem;
+                border-bottom: 2px solid var(--first-color-lighter);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="documents-page">
+            <div class="container">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="index.html#portfolio">Portfolio</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span>Documents & Reports</span>
+                </nav>
+                
+                <a href="index.html#portfolio" class="back-button">
+                    <i class="uil uil-arrow-left"></i>
+                    Back to Portfolio
+                </a>
+                
+                <div class="documents-header">
+                    <h1 class="section__title">Documents & Reports</h1>
+                    <p class="section__subtitle">View and download professional documents, reports, and presentations</p>
+                </div>
+                
+                <div class="documents-section">
+                    <h2 class="documents-section-title">Professional Documents</h2>
+                    <div class="documents-grid">
+                        <div class="document-card">
+                            <div class="document-icon">
+                                <i class="uil uil-file-alt"></i>
+                            </div>
+                            <h3 class="document-title">Curriculum Vitae</h3>
+                            <p class="document-description">
+                                Comprehensive CV showcasing my professional experience, education, and achievements in digital media and content creation.
+                            </p>
+                            <div class="document-actions">
+                                <a href="assets/pdf/Baris_Degirmenci_CV.pdf" target="_blank" class="document-btn document-btn-primary">
+                                    <i class="uil uil-eye"></i> View
+                                </a>
+                                <a href="assets/pdf/Baris_Degirmenci_CV.pdf" download class="document-btn document-btn-secondary">
+                                    <i class="uil uil-download-alt"></i> Download
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon">
+                                <i class="uil uil-file-edit-alt"></i>
+                            </div>
+                            <h3 class="document-title">Screenwriting Portfolio</h3>
+                            <p class="document-description">
+                                A collection of screenwriting projects demonstrating storytelling skills and creative writing abilities.
+                            </p>
+                            <div class="document-actions">
+                                <a href="assets/pdf/Barış_Değirmenci_ScreenWriting (1).pdf" target="_blank" class="document-btn document-btn-primary">
+                                    <i class="uil uil-eye"></i> View
+                                </a>
+                                <a href="assets/pdf/Barış_Değirmenci_ScreenWriting (1).pdf" download class="document-btn document-btn-secondary">
+                                    <i class="uil uil-download-alt"></i> Download
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon">
+                                <i class="uil uil-file-landscape-alt"></i>
+                            </div>
+                            <h3 class="document-title">Visa Screenwriting</h3>
+                            <p class="document-description">
+                                Specialized screenwriting work created for visa application purposes, showcasing narrative and creative skills.
+                            </p>
+                            <div class="document-actions">
+                                <a href="assets/pdf/Visa_ScreenWriting.pdf" target="_blank" class="document-btn document-btn-primary">
+                                    <i class="uil uil-eye"></i> View
+                                </a>
+                                <a href="assets/pdf/Visa_ScreenWriting.pdf" download class="document-btn document-btn-secondary">
+                                    <i class="uil uil-download-alt"></i> Download
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon">
+                                <i class="uil uil-file-bookmark-alt"></i>
+                            </div>
+                            <h3 class="document-title">Vitaself Print Catalog</h3>
+                            <p class="document-description">
+                                Professional print catalog design for Vitaself brand, demonstrating layout and visual communication skills.
+                            </p>
+                            <div class="document-actions">
+                                <a href="assets/pdf/Vitaself_BASKI.pdf" target="_blank" class="document-btn document-btn-primary">
+                                    <i class="uil uil-eye"></i> View
+                                </a>
+                                <a href="assets/pdf/Vitaself_BASKI.pdf" download class="document-btn document-btn-secondary">
+                                    <i class="uil uil-download-alt"></i> Download
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon">
+                                <i class="uil uil-book-open"></i>
+                            </div>
+                            <h3 class="document-title">AGP Catalog</h3>
+                            <p class="document-description">
+                                Product catalog design featuring comprehensive layout and information architecture.
+                            </p>
+                            <div class="document-actions">
+                                <a href="assets/pdf/AGP_Katalog_19_03_2024.pdf" target="_blank" class="document-btn document-btn-primary">
+                                    <i class="uil uil-eye"></i> View
+                                </a>
+                                <a href="assets/pdf/AGP_Katalog_19_03_2024.pdf" download class="document-btn document-btn-secondary">
+                                    <i class="uil uil-download-alt"></i> Download
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="documents-section">
+                    <h2 class="documents-section-title">Activity Reports</h2>
+                    <div class="documents-grid">
+                        <div class="document-card">
+                            <div class="document-icon">
+                                <i class="uil uil-chart-line"></i>
+                            </div>
+                            <h3 class="document-title">Fall 2022-2023 Report</h3>
+                            <p class="document-description">
+                                Comprehensive activity report for the Fall semester of 2022-2023 academic year.
+                            </p>
+                            <div class="document-actions">
+                                <a href="assets/pdf/STL_202223GuzRaporu_TUR.pdf" target="_blank" class="document-btn document-btn-primary">
+                                    <i class="uil uil-eye"></i> View
+                                </a>
+                                <a href="assets/pdf/STL_202223GuzRaporu_TUR.pdf" download class="document-btn document-btn-secondary">
+                                    <i class="uil uil-download-alt"></i> Download
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon">
+                                <i class="uil uil-chart-growth"></i>
+                            </div>
+                            <h3 class="document-title">Spring 2022-2023 Report</h3>
+                            <p class="document-description">
+                                Detailed activity report covering the Spring semester of 2022-2023 academic year.
+                            </p>
+                            <div class="document-actions">
+                                <a href="assets/pdf/2022-2023 Bahar Dönemi Faaliyet Raporu (4).pdf" target="_blank" class="document-btn document-btn-primary">
+                                    <i class="uil uil-eye"></i> View
+                                </a>
+                                <a href="assets/pdf/2022-2023 Bahar Dönemi Faaliyet Raporu (4).pdf" download class="document-btn document-btn-secondary">
+                                    <i class="uil uil-download-alt"></i> Download
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon">
+                                <i class="uil uil-chart-pie-alt"></i>
+                            </div>
+                            <h3 class="document-title">Fall 2023-2024 Report</h3>
+                            <p class="document-description">
+                                Activity report documenting achievements and activities during Fall 2023-2024 semester.
+                            </p>
+                            <div class="document-actions">
+                                <a href="assets/pdf/2023-2024-Guz-Donemi-Faaliyet-Raporu.pdf" target="_blank" class="document-btn document-btn-primary">
+                                    <i class="uil uil-eye"></i> View
+                                </a>
+                                <a href="assets/pdf/2023-2024-Guz-Donemi-Faaliyet-Raporu.pdf" download class="document-btn document-btn-secondary">
+                                    <i class="uil uil-download-alt"></i> Download
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon">
+                                <i class="uil uil-analytics"></i>
+                            </div>
+                            <h3 class="document-title">Spring 2023-2024 Report</h3>
+                            <p class="document-description">
+                                Most recent activity report showcasing work and achievements from Spring 2023-2024.
+                            </p>
+                            <div class="document-actions">
+                                <a href="assets/pdf/2023-2024-Bahar-Donemi-Faaliyet-Raporu.pdf" target="_blank" class="document-btn document-btn-primary">
+                                    <i class="uil uil-eye"></i> View
+                                </a>
+                                <a href="assets/pdf/2023-2024-Bahar-Donemi-Faaliyet-Raporu.pdf" download class="document-btn document-btn-secondary">
+                                    <i class="uil uil-download-alt"></i> Download
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
