@@ -795,6 +795,66 @@ img {
     object-fit: cover;
 }
 
+.portfolio__img--sketch,
+.portfolio__img--community,
+.portfolio__img--uxui,
+.portfolio__img--academic,
+.portfolio__img--game,
+.portfolio__img--docs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.portfolio__img--sketch svg,
+.portfolio__img--community svg,
+.portfolio__img--uxui svg,
+.portfolio__img--academic svg,
+.portfolio__img--game svg,
+.portfolio__img--docs svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.portfolio__content:hover .portfolio__img--sketch svg,
+.portfolio__content:hover .portfolio__img--community svg,
+.portfolio__content:hover .portfolio__img--uxui svg,
+.portfolio__content:hover .portfolio__img--academic svg,
+.portfolio__content:hover .portfolio__img--game svg,
+.portfolio__content:hover .portfolio__img--docs svg {
+    transform: scale(1.05);
+}
+
+.portfolio__img--sketch::after,
+.portfolio__img--community::after,
+.portfolio__img--uxui::after,
+.portfolio__img--academic::after,
+.portfolio__img--game::after,
+.portfolio__img--docs::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.portfolio__content:hover .portfolio__img--sketch::after,
+.portfolio__content:hover .portfolio__img--community::after,
+.portfolio__content:hover .portfolio__img--uxui::after,
+.portfolio__content:hover .portfolio__img--academic::after,
+.portfolio__content:hover .portfolio__img--game::after,
+.portfolio__content:hover .portfolio__img--docs::after {
+    opacity: 1;
+}
+
 .portfolio__data {
     display: flex;
     flex-direction: column;
