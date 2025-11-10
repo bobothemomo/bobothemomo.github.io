@@ -67,15 +67,63 @@
                 padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
                 height: 0;
                 overflow: hidden;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: transform 0.3s, opacity 0.3s;
             }
             
-            .game-video iframe {
+            .game-video:hover {
+                opacity: 0.9;
+            }
+            
+            .game-video-overlay {
                 position: absolute;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                border: none;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background: rgba(0, 0, 0, 0.3);
+                transition: background 0.3s;
+            }
+            
+            .game-video:hover .game-video-overlay {
+                background: rgba(0, 0, 0, 0.5);
+            }
+            
+            .play-icon {
+                width: 80px;
+                height: 80px;
+                background: rgba(255, 255, 255, 0.95);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 1rem;
+                transition: transform 0.3s;
+            }
+            
+            .game-video:hover .play-icon {
+                transform: scale(1.1);
+            }
+            
+            .play-icon i {
+                font-size: 2.5rem;
+                color: #667eea;
+                margin-left: 5px;
+            }
+            
+            .video-label {
+                color: white;
+                font-size: 1rem;
+                font-weight: 600;
+                text-shadow: 0 2px 4px rgba(0,0,0,0.3);
             }
             
             .game-info {
@@ -214,13 +262,14 @@
                 <div class="game-grid">
                     <!-- Sergio Game -->
                     <div class="game-card">
-                        <div class="game-video">
-                            <iframe src="https://www.youtube.com/embed/M8eoCbo5je8" 
-                                    title="Sergio Game Demo" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                            </iframe>
-                        </div>
+                        <a href="https://www.youtube.com/watch?v=M8eoCbo5je8" target="_blank" class="game-video" style="text-decoration: none; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                            <div class="game-video-overlay">
+                                <div class="play-icon">
+                                    <i class="uil uil-play"></i>
+                                </div>
+                                <span class="video-label">Click to Watch Gameplay</span>
+                            </div>
+                        </a>
                         <div class="game-info">
                             <h3 class="game-title">Sergio</h3>
                             <p class="game-description">
@@ -243,13 +292,14 @@
                     
                     <!-- The Pearl Game -->
                     <div class="game-card">
-                        <div class="game-video">
-                            <iframe src="https://www.youtube.com/embed/HBKviZ6l_bE" 
-                                    title="The Pearl Game Demo" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                            </iframe>
-                        </div>
+                        <a href="https://www.youtube.com/watch?v=HBKviZ6l_bE" target="_blank" class="game-video" style="text-decoration: none; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            <div class="game-video-overlay">
+                                <div class="play-icon">
+                                    <i class="uil uil-play"></i>
+                                </div>
+                                <span class="video-label">Click to Watch Gameplay</span>
+                            </div>
+                        </a>
                         <div class="game-info">
                             <h3 class="game-title">The Pearl</h3>
                             <p class="game-description">
@@ -273,13 +323,14 @@
                     
                     <!-- Academia of Googlewoods -->
                     <div class="game-card">
-                        <div class="game-video">
-                            <iframe src="https://www.youtube.com/embed/3NCzQ8MkVKU" 
-                                    title="Academia of Googlewoods Demo" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen>
-                            </iframe>
-                        </div>
+                        <a href="https://www.youtube.com/watch?v=3NCzQ8MkVKU" target="_blank" class="game-video" style="text-decoration: none; background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                            <div class="game-video-overlay">
+                                <div class="play-icon">
+                                    <i class="uil uil-play"></i>
+                                </div>
+                                <span class="video-label">Click to Watch Gameplay</span>
+                            </div>
+                        </a>
                         <div class="game-info">
                             <h3 class="game-title">Academia of Googlewoods</h3>
                             <p class="game-description">
