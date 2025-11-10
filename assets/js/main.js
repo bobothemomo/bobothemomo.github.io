@@ -79,22 +79,52 @@ const modalViews = document.querySelectorAll('.services__modal'),
       modalBtns = document.querySelectorAll('.services__button'),
       modalCloses = document.querySelectorAll('.services__modal-close')
 
+// Function to open modal
 let modal = function(modalClick){
     modalViews[modalClick].classList.add('active-modal')
+    document.body.style.overflow = 'hidden' // Prevent body scroll
 }
 
-modalBtns.forEach((modalBtn, i) =>{
-    modalBtn.addEventListener('click', () =>{
+// Function to close all modals
+const closeAllModals = () => {
+    modalViews.forEach((modalView) => {
+        modalView.classList.remove('active-modal')
+    })
+    document.body.style.overflow = 'auto' // Restore body scroll
+}
+
+// Open modal on button click
+modalBtns.forEach((modalBtn, i) => {
+    modalBtn.addEventListener('click', (e) => {
+        e.preventDefault()
+        e.stopPropagation()
         modal(i)
     })
 })
 
-modalCloses.forEach((modalClose) =>{
-    modalClose.addEventListener('click', () =>{
-        modalViews.forEach((modalView) =>{
-            modalView.classList.remove('active-modal')
-        })
+// Close modal on X button click
+modalCloses.forEach((modalClose) => {
+    modalClose.addEventListener('click', (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+        closeAllModals()
     })
+})
+
+// Close modal when clicking outside (on backdrop)
+modalViews.forEach((modalView) => {
+    modalView.addEventListener('click', (e) => {
+        if (e.target === modalView) {
+            closeAllModals()
+        }
+    })
+})
+
+// Close modal on ESC key press
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeAllModals()
+    }
 })
 
 /*==================== PORTFOLIO SWIPER  ====================*/
