@@ -132,6 +132,7 @@ document.addEventListener('keydown', (e) => {
 let swiperPortfolio = new Swiper('.portfolio__container', {
     cssMode: true,
     loop: true,
+    spaceBetween: 24,
     navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
@@ -139,26 +140,36 @@ let swiperPortfolio = new Swiper('.portfolio__container', {
     pagination: {
         el: '.swiper-pagination',
         clickable: true,
-    },
-})
-
-/*==================== TESTIMONIAL ====================*/
-let swiperTestimonial = new Swiper('.testimonial__container', {
-    loop: true,
-    grabCursor: true,
-    spaceBetween: 48,
-
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
         dynamicBullets: true,
     },
-    breakpoints:{
-        568:{
-            slidesPerView: 2,
+    breakpoints: {
+        568: {
+            spaceBetween: 48,
         }
     }
 })
+
+/*==================== TESTIMONIAL ====================*/
+// Only initialize if testimonial section exists and is visible
+const testimonialContainer = document.querySelector('.testimonial__container');
+if (testimonialContainer && window.getComputedStyle(document.querySelector('.testimonial')).display !== 'none') {
+    let swiperTestimonial = new Swiper('.testimonial__container', {
+        loop: true,
+        grabCursor: true,
+        spaceBetween: 48,
+
+        pagination: {
+            el: '.swiper-pagination-testimonial',
+            clickable: true,
+            dynamicBullets: true,
+        },
+        breakpoints:{
+            568:{
+                slidesPerView: 2,
+            }
+        }
+    })
+}
 
 /*==================== SCROLL SECTIONS ACTIVE LINK ====================*/
 const sections = document.querySelectorAll('section[id]')

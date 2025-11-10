@@ -286,6 +286,50 @@ img {
     gap: 2rem;
 }
 
+/* Mobile-first: Stack vertically on small screens */
+@media screen and (max-width: 767px) {
+    .home__content {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        text-align: center;
+        padding-top: 2rem;
+        gap: 1.5rem;
+    }
+    
+    .home__img {
+        order: 1;
+        justify-self: center;
+        animation: none; /* Disable floating animation on mobile for better performance */
+    }
+    
+    .home__data {
+        order: 2;
+    }
+    
+    .home__social {
+        order: 3;
+        grid-template-columns: repeat(3, max-content);
+        column-gap: 1.5rem;
+        justify-self: center;
+    }
+    
+    .home__blob {
+        width: 180px;
+    }
+    
+    .home__blob-img {
+        width: 170px;
+    }
+    
+    .home__title {
+        font-size: var(--h1-font-size);
+    }
+    
+    .home__description {
+        margin-bottom: 1.5rem;
+    }
+}
+
 .home__social {
     display: grid;
     grid-template-columns: max-content;
@@ -1033,11 +1077,12 @@ img {
         column-gap: 0;
     }
 
-    .home__content {
-        grid-template-columns: .25fr 3fr;
-    }
     .home__blob {
-        width: 180px;
+        width: 150px;
+    }
+    
+    .home__blob-img {
+        width: 140px;
     }
 
     .skills__title {

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+        <link rel="stylesheet" href="assets/css/styles.css">
+        <title>Game Development Showcase - Barış Değirmenci</title>
+        
+        <style>
+            .game-page {
+                padding: 6rem 0 2rem;
+                min-height: 100vh;
+            }
+            
+            .breadcrumb {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-bottom: 2rem;
+                font-size: 0.875rem;
+                color: #666;
+            }
+            
+            .breadcrumb a {
+                color: #6f42c1;
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+            
+            .breadcrumb a:hover {
+                color: #5a32a3;
+            }
+            
+            .breadcrumb-separator {
+                color: #999;
+            }
+            
+            .game-header {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+            
+            .game-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 2rem;
+                margin-bottom: 3rem;
+            }
+            
+            .game-card {
+                background: white;
+                border-radius: 1rem;
+                overflow: hidden;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                transition: transform 0.3s, box-shadow 0.3s;
+            }
+            
+            .game-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            }
+            
+            .game-video {
+                position: relative;
+                width: 100%;
+                padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+                height: 0;
+                overflow: hidden;
+            }
+            
+            .game-video iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
+            
+            .game-info {
+                padding: 1.5rem;
+            }
+            
+            .game-title {
+                font-size: 1.5rem;
+                color: var(--title-color);
+                font-weight: var(--font-semi-bold);
+                margin-bottom: 0.75rem;
+            }
+            
+            .game-description {
+                color: var(--text-color);
+                font-size: 0.938rem;
+                line-height: 1.6;
+                margin-bottom: 1rem;
+            }
+            
+            .game-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .game-tag {
+                padding: 0.25rem 0.75rem;
+                background: var(--first-color-lighter);
+                color: var(--first-color);
+                border-radius: 1rem;
+                font-size: 0.75rem;
+                font-weight: var(--font-medium);
+            }
+            
+            .game-links {
+                display: flex;
+                gap: 0.75rem;
+                flex-wrap: wrap;
+            }
+            
+            .game-btn {
+                padding: 0.75rem 1.5rem;
+                border-radius: 0.5rem;
+                text-decoration: none;
+                font-size: 0.875rem;
+                font-weight: var(--font-medium);
+                transition: all 0.3s;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            
+            .game-btn-primary {
+                background: var(--first-color);
+                color: white;
+            }
+            
+            .game-btn-primary:hover {
+                background: var(--first-color-alt);
+            }
+            
+            .game-btn-secondary {
+                background: var(--first-color-lighter);
+                color: var(--first-color);
+            }
+            
+            .game-btn-secondary:hover {
+                background: var(--first-color-light);
+            }
+            
+            .back-button {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-bottom: 2rem;
+                padding: 0.75rem 1.5rem;
+                background: var(--first-color);
+                color: white;
+                border-radius: 0.5rem;
+                text-decoration: none;
+                transition: background 0.3s;
+            }
+            
+            .back-button:hover {
+                background: var(--first-color-alt);
+            }
+            
+            .youtube-channel {
+                text-align: center;
+                margin-top: 3rem;
+                padding: 2rem;
+                background: var(--first-color-lighter);
+                border-radius: 1rem;
+            }
+            
+            .youtube-channel h3 {
+                color: var(--title-color);
+                margin-bottom: 1rem;
+            }
+            
+            .youtube-channel p {
+                color: var(--text-color);
+                margin-bottom: 1.5rem;
+            }
+            
+            @media screen and (max-width: 768px) {
+                .game-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="game-page">
+            <div class="container">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="index.html#portfolio">Portfolio</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span>Game Development</span>
+                </nav>
+                
+                <a href="index.html#portfolio" class="back-button">
+                    <i class="uil uil-arrow-left"></i>
+                    Back to Portfolio
+                </a>
+                
+                <div class="game-header">
+                    <h1 class="section__title">Game Development Showcase</h1>
+                    <p class="section__subtitle">Unity game projects showcasing gameplay, mechanics, and design</p>
+                </div>
+                
+                <div class="game-grid">
+                    <!-- Sergio Game -->
+                    <div class="game-card">
+                        <div class="game-video">
+                            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                    title="Sergio Game Demo" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="game-info">
+                            <h3 class="game-title">Sergio</h3>
+                            <p class="game-description">
+                                An action-packed Unity 2D game featuring platformer mechanics, enemy AI, and engaging level design. 
+                                Players navigate through challenging levels while collecting items and defeating enemies.
+                            </p>
+                            <div class="game-tags">
+                                <span class="game-tag">Unity</span>
+                                <span class="game-tag">C#</span>
+                                <span class="game-tag">2D Platformer</span>
+                                <span class="game-tag">Action</span>
+                            </div>
+                            <div class="game-links">
+                                <a href="https://www.youtube.com/@barisd2695" target="_blank" class="game-btn game-btn-primary">
+                                    <i class="uil uil-youtube"></i> Watch on YouTube
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- The Pearl Game -->
+                    <div class="game-card">
+                        <div class="game-video">
+                            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                    title="The Pearl Game Demo" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="game-info">
+                            <h3 class="game-title">The Pearl</h3>
+                            <p class="game-description">
+                                An immersive adventure game with puzzle-solving elements and atmospheric storytelling. 
+                                Explore mysterious environments and uncover the secrets of the pearl.
+                            </p>
+                            <div class="game-tags">
+                                <span class="game-tag">Unity</span>
+                                <span class="game-tag">C#</span>
+                                <span class="game-tag">3D</span>
+                                <span class="game-tag">Adventure</span>
+                                <span class="game-tag">Puzzle</span>
+                            </div>
+                            <div class="game-links">
+                                <a href="https://www.youtube.com/@barisd2695" target="_blank" class="game-btn game-btn-primary">
+                                    <i class="uil uil-youtube"></i> Watch on YouTube
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Academia of Googlewoods -->
+                    <div class="game-card">
+                        <div class="game-video">
+                            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                    title="Academia of Googlewoods Demo" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="game-info">
+                            <h3 class="game-title">Academia of Googlewoods</h3>
+                            <p class="game-description">
+                                A creative educational game set in a magical academy. Features interactive learning mechanics, 
+                                character progression, and engaging gameplay that combines fun with educational content.
+                            </p>
+                            <div class="game-tags">
+                                <span class="game-tag">Unity</span>
+                                <span class="game-tag">C#</span>
+                                <span class="game-tag">Educational</span>
+                                <span class="game-tag">RPG</span>
+                            </div>
+                            <div class="game-links">
+                                <a href="https://www.youtube.com/@barisd2695" target="_blank" class="game-btn game-btn-primary">
+                                    <i class="uil uil-youtube"></i> Watch on YouTube
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="youtube-channel">
+                    <h3>Want to see more?</h3>
+                    <p>Visit my YouTube channel for more game development videos, tutorials, and behind-the-scenes content!</p>
+                    <a href="https://www.youtube.com/@barisd2695" target="_blank" class="game-btn game-btn-primary">
+                        <i class="uil uil-youtube"></i> Visit YouTube Channel
+                    </a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
