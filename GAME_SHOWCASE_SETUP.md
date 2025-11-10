@@ -1,14 +1,16 @@
 # Game Showcase Page Setup Guide
 
-## 🎮 What's New
+## 🎮 What's New - UPDATED!
 
 I've created a dedicated **Game Development Showcase** page (`game-showcase.html`) that displays your Unity games with embedded video players, descriptions, tags, and links.
 
+**✅ FIXED:** YouTube links now work! The page embeds your channel's video feed and buttons link to search results for each game.
+
 ---
 
-## 📝 How to Add Your Real Game Videos
+## 📝 How to Add Specific Game Videos (Optional)
 
-The page currently has placeholder YouTube embeds. Here's how to add your actual game videos:
+The page currently shows your YouTube channel's video feed. If you want to show specific videos for each game:
 
 ### Step 1: Get YouTube Video IDs
 

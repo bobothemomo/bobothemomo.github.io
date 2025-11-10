@@ -572,7 +572,8 @@ img {
 /*==================== QUALIFICATION ====================*/
 .qualification__tabs {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 2rem;
     margin-bottom: var(--mb-2);
 }
 
@@ -595,6 +596,8 @@ img {
     display: grid;
     grid-template-columns: 1fr max-content 1fr;
     column-gap: 1.5rem;
+    max-width: 768px;
+    margin: 0 auto;
 }
 
 .qualification__title {
@@ -639,6 +642,12 @@ img {
 
 .qualification__button.qualification__active {
     color: var(--first-color);
+}
+
+.qualification__container {
+    max-width: 968px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /*==================== SERVICES ====================*/
@@ -772,12 +781,25 @@ img {
 
 .portfolio__content {
     padding: 0 1.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.portfolio__data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
 }
 
 .portfolio__img {
     width: 265px;
     border-radius: .5rem;
     justify-self: center;
+    margin-bottom: 1rem;
 }
 
 .portfolio__title {
@@ -787,6 +809,11 @@ img {
 
 .portfolio__description {
     margin-bottom: var(--mb-0-75);
+}
+
+.portfolio__button {
+    align-self: center;
+    margin-top: 0.5rem;
 }
 
 .portfolio__button:hover .button__icon {
