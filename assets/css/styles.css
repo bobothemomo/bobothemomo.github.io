@@ -100,8 +100,20 @@ body {
   color: var(--text-primary);
   line-height: 1.7;
   overflow-x: hidden;
-  cursor: none; /* Custom cursor */
 }
+
+/* Hide default cursor only when custom cursor is active */
+body.has-custom-cursor,
+body.has-custom-cursor a,
+body.has-custom-cursor button,
+body.has-custom-cursor .filter-btn,
+body.has-custom-cursor .portfolio-card,
+body.has-custom-cursor .service-card,
+body.has-custom-cursor .skill-card,
+body.has-custom-cursor .working-card {
+  cursor: none;
+}
+
 
 h1, h2, h3, h4, h5 {
   font-family: var(--font-display);
@@ -141,7 +153,7 @@ input, textarea {
   background: var(--accent);
   border-radius: 50%;
   pointer-events: none;
-  z-index: var(--z-cursor);
+  z-index: 999999; /* Higher than lightboxes and modals */
   transform: translate(-50%, -50%);
   transition: width var(--transition-fast), height var(--transition-fast), background var(--transition-fast);
   mix-blend-mode: normal;
@@ -154,7 +166,7 @@ input, textarea {
   border: 1.5px solid var(--accent);
   border-radius: 50%;
   pointer-events: none;
-  z-index: calc(var(--z-cursor) - 1);
+  z-index: 999998; /* Higher than lightboxes and modals */
   transform: translate(-50%, -50%);
   transition: transform 0.12s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease, border-color 0.3s ease;
   opacity: 0.7;

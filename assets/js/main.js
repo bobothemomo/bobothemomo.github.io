@@ -11,6 +11,9 @@ const cursor         = document.getElementById('cursor');
 const cursorFollower = document.getElementById('cursor-follower');
 
 if (cursor && cursorFollower) {
+  // Add class to body indicating custom cursor is active
+  document.body.classList.add('has-custom-cursor');
+
   let mx = -100, my = -100;
   let fx = -100, fy = -100;
   let raf;
@@ -48,6 +51,20 @@ if (cursor && cursorFollower) {
   document.addEventListener('mouseenter', () => {
     cursor.style.opacity = '1';
     cursorFollower.style.opacity = '0.7';
+  });
+
+  // Show default cursor and hide custom cursor when hovering over iframes (e.g. Figma embeds)
+  document.querySelectorAll('iframe').forEach(iframe => {
+    iframe.addEventListener('mouseenter', () => {
+      document.body.classList.remove('has-custom-cursor');
+      cursor.style.opacity = '0';
+      cursorFollower.style.opacity = '0';
+    });
+    iframe.addEventListener('mouseleave', () => {
+      document.body.classList.add('has-custom-cursor');
+      cursor.style.opacity = '1';
+      cursorFollower.style.opacity = '0.7';
+    });
   });
 }
 
