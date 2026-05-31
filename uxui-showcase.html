@@ -232,6 +232,75 @@
                     right: 0;
                 }
             }
+
+            /* Prototype Window Mockup */
+            .prototype-window {
+                background: var(--bg-secondary);
+                border-radius: var(--radius-lg);
+                box-shadow: var(--shadow-lg);
+                overflow: hidden;
+                margin: 2rem auto 4rem;
+                max-width: 1000px;
+                border: 1px solid var(--border-subtle);
+            }
+            
+            .prototype-window-header {
+                background: rgba(15, 23, 42, 0.6);
+                padding: 0.75rem 1.5rem;
+                display: flex;
+                align-items: center;
+                gap: 1.5rem;
+                border-bottom: 1px solid var(--border-subtle);
+            }
+            
+            .prototype-dots {
+                display: flex;
+                gap: 0.5rem;
+            }
+            
+            .prototype-dots .dot {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                display: inline-block;
+            }
+            
+            .prototype-dots .dot.red { background: #ff5f56; }
+            .prototype-dots .dot.yellow { background: #ffbd2e; }
+            .prototype-dots .dot.green { background: #27c93f; }
+            
+            .prototype-address {
+                flex-grow: 1;
+                background: var(--bg-primary);
+                color: var(--text-secondary);
+                padding: 0.35rem 1rem;
+                border-radius: var(--radius-sm);
+                font-size: var(--fs-xs);
+                font-family: monospace;
+                text-align: center;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 500px;
+                margin: 0 auto;
+                border: 1px solid var(--border-subtle);
+            }
+            
+            .prototype-window-body {
+                position: relative;
+                width: 100%;
+                padding-top: 56.25%; /* 16:9 Aspect Ratio */
+                background: var(--bg-tertiary);
+            }
+            
+            .figma-iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
         </style>
     </head>
     <body>
@@ -263,6 +332,23 @@
                         <span class="uxui-tag">Mobile App</span>
                         <span class="uxui-tag">Figma</span>
                         <span class="uxui-tag">User Flow</span>
+                    </div>
+                </div>
+                
+                <div class="uxui-section">
+                    <h2 class="uxui-section-title">Interactive Design Canvas</h2>
+                    <div class="prototype-window">
+                        <div class="prototype-window-header">
+                            <div class="prototype-dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <div class="prototype-address">https://www.figma.com/design/UniPazar</div>
+                        </div>
+                        <div class="prototype-window-body">
+                            <iframe class="figma-iframe" src="https://embed.figma.com/design/dLirjlg1JqV3MyQyYZFsLa/UniPazar?node-id=2693-16299&embed-host=share" allowfullscreen></iframe>
+                        </div>
                     </div>
                 </div>
                 
