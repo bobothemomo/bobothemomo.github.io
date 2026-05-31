@@ -121,6 +121,69 @@
                 transition: background 0.3s;
             }
             .back-button:hover { background: var(--first-color-alt); }
+
+            /* Academic Catalogs & Publications */
+            .catalogs-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 2rem;
+                margin-bottom: 3rem;
+            }
+            
+            .catalog-card {
+                display: flex;
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                border-radius: var(--radius-xl);
+                background: var(--bg-card);
+                border: 1px solid var(--border-subtle);
+                transition: all var(--transition-base);
+            }
+            
+            .catalog-card__icon {
+                width: 54px;
+                height: 54px;
+                border-radius: var(--radius-md);
+                background: rgba(56, 189, 248, 0.1);
+                color: var(--accent);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.75rem;
+            }
+            
+            .catalog-card__content {
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+                flex-grow: 1;
+            }
+            
+            .catalog-card__title {
+                font-size: var(--fs-lg);
+                font-weight: 700;
+                color: var(--text-primary);
+            }
+            
+            .catalog-card__desc {
+                font-size: var(--fs-sm);
+                color: var(--text-secondary);
+                line-height: 1.6;
+                flex-grow: 1;
+            }
+            
+            .catalog-card__actions {
+                display: flex;
+                gap: 0.75rem;
+                margin-top: 1rem;
+            }
+            
+            .catalog-card__actions .btn {
+                padding: 0.6rem 1.2rem;
+                font-size: var(--fs-xs);
+                border-radius: var(--radius-sm);
+            }
         </style>
     </head>
     <body>
@@ -171,6 +234,51 @@
                         <div class="gallery-overlay">
                             <span class="gallery-overlay-text">Click to view full size</span>
                         </div>
+                    </div>
+                </div>
+
+                <div class="gallery-section" style="margin-top: 5rem;">
+                    <h2 class="section__title" style="text-align: center; margin-bottom: 3rem;">Worked <span>Catalogs & Publications</span></h2>
+                    <div class="catalogs-grid">
+                        
+                        <!-- Catalog 1 -->
+                        <div class="catalog-card glass-card">
+                            <div class="catalog-card__icon">
+                                <i class="uil uil-book-open"></i>
+                            </div>
+                            <div class="catalog-card__content">
+                                <h3 class="catalog-card__title">Academic Development Catalog</h3>
+                                <p class="catalog-card__desc">Comprehensive academic catalog design featuring educational development structures and information architecture at Hacettepe University.</p>
+                                <div class="catalog-card__actions">
+                                    <a href="assets/pdf/AGP_Katalog_19_03_2024.pdf" target="_blank" class="btn btn-primary">
+                                        <i class="uil uil-eye"></i> View PDF
+                                    </a>
+                                    <a href="assets/pdf/AGP_Katalog_19_03_2024.pdf" download class="btn btn-outline">
+                                        <i class="uil uil-download-alt"></i> Download
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Catalog 2 -->
+                        <div class="catalog-card glass-card">
+                            <div class="catalog-card__icon" style="background: rgba(244, 114, 182, 0.1); color: var(--accent-pink);">
+                                <i class="uil uil-file-bookmark-alt"></i>
+                            </div>
+                            <div class="catalog-card__content">
+                                <h3 class="catalog-card__title">Vitaself Russian Catalog</h3>
+                                <p class="catalog-card__desc">Professional brand catalog design and translation layout for Vitaself publication, demonstrating advanced typography and print layout skills.</p>
+                                <div class="catalog-card__actions">
+                                    <a href="assets/pdf/Vitaself_BASKI.pdf" target="_blank" class="btn btn-primary">
+                                        <i class="uil uil-eye"></i> View PDF
+                                    </a>
+                                    <a href="assets/pdf/Vitaself_BASKI.pdf" download class="btn btn-outline">
+                                        <i class="uil uil-download-alt"></i> Download
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
