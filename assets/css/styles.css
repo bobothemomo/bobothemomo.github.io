@@ -690,13 +690,18 @@ body::before {
   line-height: 1.05;
 }
 
-.hero__typewriter {
+.hero__typewriter-wrap {
   display: block;
+  min-height: 1.2em;
+  font-size: clamp(2rem, 5.5vw, 3.5rem);
+}
+
+.hero__typewriter {
+  display: inline;
   background: linear-gradient(135deg, var(--accent) 0%, var(--accent-alt) 60%, var(--accent-pink) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  min-height: 1.2em;
 }
 
 .hero__cursor {
@@ -2143,6 +2148,9 @@ html { scroll-padding-top: calc(var(--header-height) + 1rem); }
   :root { --section-pad: 4rem 0; }
 
   .section__title { font-size: clamp(1.5rem, 5vw, 2.25rem); }
+
+  .hero__title { font-size: clamp(2rem, 6vw, 3rem); }
+  .hero__typewriter-wrap { font-size: clamp(1.5rem, 5vw, 2.25rem); }
 
   .about__highlights { grid-template-columns: 1fr; }
 
