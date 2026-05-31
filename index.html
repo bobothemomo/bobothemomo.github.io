@@ -1,1139 +1,1117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Barış Değirmenci — Creative Technologist & Instructional Designer. Hacettepe University graduate specializing in UX/UI design, game development, AI workflows, and educational technology.">
+  <meta name="author" content="Barış Değirmenci">
+  <meta property="og:title" content="Barış Değirmenci — Creative Technologist">
+  <meta property="og:description" content="Portfolio of Barış Değirmenci — where technology, design, and education converge.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bobothemomo.github.io/">
 
-        <!--==================== UNICONS ====================-->
-        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-        
-        <!--==================== SWIPER CSS ====================-->
-        <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
-        
-        <!--==================== CSS ====================-->
-        <link rel="stylesheet" href="assets/css/styles.css?v=2.0">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-        <!-- 🔄 Bu site, eski bobothemomo.github.io projesinden içerikler kullanılarak yeni Bedimcode template yapısıyla oluşturulmuştur -->
-        <!-- 📅 Tarih: 2025-11-09 -->
-        <!-- 👤 Kişi: Barış Değirmenci -->
+  <!-- Unicons -->
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
-        <title>Barış Değirmenci - Portfolio</title>
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <title>Barış Değirmenci — Creative Technologist & Instructional Designer</title>
 </head>
 <body>
-        <!--==================== HEADER ====================-->
-        <header class="header" id="header">
-            <nav class="nav container">
-                <!-- 📌 ESKİ İÇERİK: Logo ve isim -->
-                <a href="#" class="nav__logo">Barış Değirmenci</a>
-                <div class="nav__menu" id="nav-menu">
-                    <ul class="nav__list grid">
-                        <!-- 📌 ESKİ İÇERİK: Navigation menüsü eski projeden uyarlandı -->
-                        <li class="nav__item">
-                            <a href="#home" class="nav__link active-link">
-                                <i class="uil uil-estate nav__icon"></i> Home
-                            </a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="#about" class="nav__link">
-                                <i class="uil uil-user nav__icon"></i> About
-                            </a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="#skills" class="nav__link">
-                                <i class="uil uil-file-alt nav__icon"></i> Skills
-                            </a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="#services" class="nav__link">
-                                <i class="uil uil-briefcase-alt nav__icon"></i> Services
-                            </a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="#portfolio" class="nav__link">
-                                <i class="uil uil-scenery nav__icon"></i> Portfolio
-                            </a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="#currently-working" class="nav__link">
-                                <i class="uil uil-rocket nav__icon"></i> Learning
-                            </a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="#contact" class="nav__link">
-                                <i class="uil uil-message nav__icon"></i> Contact
-                            </a>
-                        </li>
-                    </ul>
-                    <i class="uil uil-times nav__close" id="nav-close"></i>
-                </div>
 
-                <div class="nav__btns">
-                    <!-- Theme change button -->
-                    <!-- 📌 ESKİ İÇERİK: Dark mode özelliği eski projeden aktarıldı -->
-                    <i class="uil uil-moon change-theme" id="theme-button"></i>
+  <!-- ══════════════════════════════════════════
+       CUSTOM CURSOR
+  ══════════════════════════════════════════ -->
+  <div id="cursor"></div>
+  <div id="cursor-follower"></div>
 
-                    <div class="nav__toggle" id="nav-toggle">
-                        <i class="uil uil-apps"></i>
-            </div>
-        </div>
+  <!-- ══════════════════════════════════════════
+       HEADER
+  ══════════════════════════════════════════ -->
+  <header class="header" id="header">
+    <nav class="nav container">
+
+      <!-- Logo -->
+      <a href="#home" class="nav__logo">
+        <span class="nav__logo-mark">BD</span>
+        Barış Değirmenci
+      </a>
+
+      <!-- Nav overlay (mobile) -->
+      <div class="nav__overlay" id="nav-overlay"></div>
+
+      <!-- Nav Menu -->
+      <div class="nav__menu" id="nav-menu">
+        <a href="#home"             class="nav__link active-link">Home</a>
+        <a href="#about"            class="nav__link">About</a>
+        <a href="#skills"           class="nav__link">Skills</a>
+        <a href="#services"         class="nav__link">Services</a>
+        <a href="#portfolio"        class="nav__link">Portfolio</a>
+        <a href="#currently-working"class="nav__link">Learning</a>
+        <a href="#contact"          class="nav__link">Contact</a>
+      </div>
+
+      <!-- Nav Buttons -->
+      <div class="nav__btns">
+        <button class="nav__toggle" id="nav-toggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
     </nav>
-        </header>
+  </header>
+
+  <!-- ══════════════════════════════════════════
+       MAIN
+  ══════════════════════════════════════════ -->
+  <main>
+
+    <!-- ══ HERO ══════════════════════════════ -->
+    <section class="hero" id="home">
+
+      <!-- Animated Background -->
+      <div class="hero__bg">
+        <div class="hero__gradient-1"></div>
+        <div class="hero__gradient-2"></div>
+        <div class="hero__gradient-3"></div>
+        <div class="hero__particles" id="hero-particles"></div>
+      </div>
+
+      <div class="hero__container">
+
+        <!-- Left: Data -->
+        <div class="hero__data">
+
+          <div class="hero__badge reveal">
+            <span class="hero__badge-dot"></span>
+            Available for opportunities
+          </div>
+
+          <h1 class="hero__title reveal reveal-delay-1">
+            Hi, I'm Barış
+            <span class="hero__typewriter"></span><span class="hero__cursor"></span>
+          </h1>
+
+          <p class="hero__description reveal reveal-delay-2">
+            I craft digital experiences at the intersection of technology, design, and education. 
+            Hacettepe University CEIT graduate with a passion for AI workflows, game development, and human-centered design.
+          </p>
+
+          <div class="hero__tags reveal reveal-delay-3">
+            <span class="hero__tag">🎮 Unity / C#</span>
+            <span class="hero__tag">🎨 UX/UI Design</span>
+            <span class="hero__tag">🤖 AI Workflows</span>
+            <span class="hero__tag">📚 E-Learning</span>
+            <span class="hero__tag">🖌️ Graphic Design</span>
+          </div>
+
+          <div class="hero__actions reveal reveal-delay-4">
+            <a href="#portfolio" class="btn btn-primary">
+              <i class="uil uil-scenery"></i> View Portfolio
+            </a>
+            <a href="#contact" class="btn btn-outline">
+              <i class="uil uil-message"></i> Contact Me
+            </a>
+          </div>
+
+          <div class="hero__social reveal reveal-delay-5">
+            <a href="https://www.linkedin.com/in/barış-değirmenci-98559a21b/" target="_blank" class="hero__social-link" aria-label="LinkedIn">
+              <i class="uil uil-linkedin-alt"></i>
+            </a>
+            <a href="https://github.com/bobothemomo" target="_blank" class="hero__social-link" aria-label="GitHub">
+              <i class="uil uil-github-alt"></i>
+            </a>
+            <a href="mailto:barisdegirmenci35@gmail.com" class="hero__social-link" aria-label="Email">
+              <i class="uil uil-envelope"></i>
+            </a>
+          </div>
 
-        <!--==================== MAIN ====================-->
-        <main class="main">
-            <!--==================== HOME ====================-->
-            <!-- 📌 ESKİ İÇERİK: Kişisel bilgiler ve sosyal medya linkleri eski projeden -->
-            <section class="home section" id="home">
-                <div class="home__container container grid">
-                    <div class="home__content grid">
-                        <div class="home__social">
-                            <!-- 📌 ESKİ İÇERİK: LinkedIn ve GitHub linkleri -->
-                            <a href="https://www.linkedin.com/in/barış-değirmenci-98559a21b/" target="_blank" class="home__social-icon">
-                                <i class="uil uil-linkedin-alt"></i>
-                            </a>
-                            <a href="https://github.com/bobothemomo" target="_blank" class="home__social-icon">
-                                <i class="uil uil-github-alt"></i>
-                            </a>
-                    </div>
-
-                        <div class="home__img">
-                            <!-- 📌 ESKİ İÇERİK: Profil fotoğrafı -->
-                            <svg class="home__blob" viewBox="0 0 200 187" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                <mask id="mask0" mask-type="alpha">
-                                    <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 
-                                    130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 
-                                    97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 
-                                    0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"/>
-                                </mask>
-                                <g mask="url(#mask0)">
-                                    <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 
-                                    165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 
-                                    129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 
-                                    -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"/>
-                                    <image class="home__blob-img" x='0' y='0' width='190' height='190' preserveAspectRatio="xMidYMid slice" xlink:href="assets/img/mountain-camera.jpg"/>
-                                </g>
-                            </svg>
-                        </div>
-
-                        <div class="home__data">
-                            <!-- 📌 ESKİ İÇERİK: Başlık ve açıklama metni -->
-                            <h1 class="home__title">Hi, I'm Barış Değirmenci</h1>
-                            <h3 class="home__subtitle">Creative Content Producer</h3>
-                            <p class="home__description">Graphic Designer | Game Developer | UX/UI Designer | Scrum Master </p>
-                            <a href="#contact" class="button button--flex">
-                                Contact Me <i class="uil uil-message button__icon"></i>
-                            </a>
-                    </div>
-                    </div>
-
-                    <div class="home__scroll">
-                        <a href="#about" class="home__scroll-button button--flex">
-                            <i class="uil uil-mouse-alt home__scroll-mouse"></i>
-                            <span class="home__scroll-name">Scroll down</span>
-                            <i class="uil uil-arrow-down home__scroll-arrow"></i>
-                        </a>
-                </div>
-            </div>
-        </section>
-
-            <!--==================== ABOUT ====================-->
-            <!-- 📌 ESKİ İÇERİK: Hakkımda bölümü eski projeden -->
-            <section class="about section" id="about">
-                <h2 class="section__title">About Me</h2>
-                <span class="section__subtitle">My introduction</span>
-
-                <div class="about__container container grid">
-                    <!-- 📌 ESKİ İÇERİK: Paris fotoğrafı -->
-                    <img src="assets/img/paris-image.jpg" alt="About" class="about__img">
-
-                    <div class="about__data">
-                        <!-- 📌 ESKİ İÇERİK: Hakkında metni -->
-                        <p class="about__description">
-                            I graduated from Hacettepe University's Department of Computer Education and Instructional Technologies in 2025 with a GPA of 3.13. 
-                            My passion lies at the intersection of technology, design, and education. I specialize in 
-                            graphic design, game development, UX/UI design, and 3D modeling with expertise in Unity, 
-                            C#, Adobe Creative Suite, and Blender.
-                        </p>
-
-                        <div class="about__info">
-                            <div>
-                                <span class="about__info-title">03+</span>
-                                <span class="about__info-name">Years <br> experience</span>
-                    </div>
-
-                            <div>
-                                <span class="about__info-title">10+</span>
-                                <span class="about__info-name">Completed <br> projects</span>
-                </div>
-
-                            <div>
-                                <span class="about__info-title">03+</span>
-                                <span class="about__info-name">Companies <br> worked</span>
-                        </div>
-                    </div>
-
-                        <div class="about__buttons">
-                            <!-- 📌 ESKİ İÇERİK: CV download linki -->
-                            <a download="" href="Baris_Degirmenci_CV.pdf" class="button button--flex">
-                                Download CV <i class="uil uil-download-alt button__icon"></i>
-                            </a>
-                                    </div>
-                                </div>
-                            </div>
-            </section>
-
-            <!--==================== SKILLS ====================-->
-            <!-- 📌 ESKİ İÇERİK: Tüm beceri listesi ve yüzdeleri eski projeden -->
-            <section class="skills section" id="skills">
-                <h2 class="section__title">Skills</h2>
-                <span class="section__subtitle">My technical level</span>
-
-                <div class="skills__container container grid">
-                                    <div>
-                        <!--==================== SKILLS 1 ====================-->
-                        <div class="skills__content skills__open">
-                            <div class="skills__header">
-                                <i class="uil uil-brackets-curly skills__icon"></i>
-
-                                <div>
-                                    <h1 class="skills__title">Design & Development</h1>
-                                    <span class="skills__subtitle">More than 3 years</span>
-                                    </div>
-
-                                <i class="uil uil-angle-down skills__arrow"></i>
-                                </div>
-
-                            <div class="skills__list grid">
-                                <!-- 📌 ESKİ İÇERİK: Adobe Illustrator 90% -->
-                                <div class="skills__data">
-                                    <div class="skills__titles">
-                                        <h3 class="skills__name">Adobe Illustrator</h3>
-                                        <span class="skills__number">90%</span>
-                            </div>
-                                    <div class="skills__bar">
-                                        <span class="skills__percentage skills__illustrator"></span>
-                                    </div>
-                                </div>
-
-                                <!-- 📌 ESKİ İÇERİK: Adobe Creative Suite 70% -->
-                                <div class="skills__data">
-                                    <div class="skills__titles">
-                                        <h3 class="skills__name">Adobe Creative Suite</h3>
-                                        <span class="skills__number">70%</span>
-                            </div>
-                                    <div class="skills__bar">
-                                        <span class="skills__percentage skills__adobe"></span>
-                                    </div>
-                                </div>
-
-                                <!-- 📌 ESKİ İÇERİK: Unity 75% -->
-                                <div class="skills__data">
-                                    <div class="skills__titles">
-                                        <h3 class="skills__name">Unity</h3>
-                                        <span class="skills__number">75%</span>
-                            </div>
-                                    <div class="skills__bar">
-                                        <span class="skills__percentage skills__unity"></span>
-                                    </div>
-                                </div>
-
-                                <!-- 📌 ESKİ İÇERİK: C# 70% -->
-                                <div class="skills__data">
-                                    <div class="skills__titles">
-                                        <h3 class="skills__name">C#</h3>
-                                        <span class="skills__number">70%</span>
-                            </div>
-                                    <div class="skills__bar">
-                                        <span class="skills__percentage skills__csharp"></span>
-                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        <!--==================== SKILLS 2 ====================-->
-                        <div class="skills__content skills__close">
-                            <div class="skills__header">
-                                <i class="uil uil-swatchbook skills__icon"></i>
-
-                                <div>
-                                    <h1 class="skills__title">Other Skills</h1>
-                                    <span class="skills__subtitle">More than 3 years</span>
-                                    </div>
-
-                                <i class="uil uil-angle-down skills__arrow"></i>
-                                </div>
-
-                            <div class="skills__list grid">
-                                <div class="skills__data">
-                                    <div class="skills__titles">
-                                        <h3 class="skills__name">Blender (3D Modeling)</h3>
-                                        <span class="skills__number">75%</span>
-                            </div>
-                                    <div class="skills__bar">
-                                        <span class="skills__percentage skills__blender"></span>
-                                    </div>
-                                </div>
-
-                                <div class="skills__data">
-                                    <div class="skills__titles">
-                                        <h3 class="skills__name">UX/UI Design</h3>
-                                        <span class="skills__number">80%</span>
-                            </div>
-                                    <div class="skills__bar">
-                                        <span class="skills__percentage skills__ux"></span>
-                                    </div>
-                                </div>
-
-                                <div class="skills__data">
-                                    <div class="skills__titles">
-                                        <h3 class="skills__name">Scrum Master</h3>
-                                        <span class="skills__number">85%</span>
-                            </div>
-                                    <div class="skills__bar">
-                                        <span class="skills__percentage skills__scrum"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-                    </div>
-                </div>
-
-                <!-- Skill percentage styles -->
-                <style>
-                    .skills__illustrator { width: 90%; }
-                    .skills__adobe { width: 70%; }
-                    .skills__unity { width: 75%; }
-                    .skills__csharp { width: 70%; }
-                    .skills__blender { width: 75%; }
-                    .skills__ux { width: 80%; }
-                    .skills__scrum { width: 85%; }
-                </style>
-        </section>
-
-            <!--==================== QUALIFICATION ====================-->
-            <section class="qualification section">
-                <h2 class="section__title">Qualification</h2>
-                <span class="section__subtitle">My personal journey</span>
-
-                <div class="qualification__container container">
-                    <div class="qualification__tabs">
-                        <div class="qualification__button button--flex qualification__active" data-target='#education'>
-                            <i class="uil uil-graduation-cap qualification__icon"></i>
-                            Education
-                        </div>
-
-                        <div class="qualification__button button--flex" data-target="#work">
-                            <i class="uil uil-briefcase-alt qualification__icon"></i>
-                            Work
-                    </div>
-                </div>
-                
-                    <div class="qualification__sections">
-                        <!--==================== QUALIFICATION CONTENT 1 ====================-->
-                        <div class="qualification__content qualification__active" data-content id="education">
-                            <!--==================== QUALIFICATION 1 ====================-->
-                            <div class="qualification__data">
-                                <div>
-                                    <h3 class="qualification__title">Computer Education & Instructional Technologies</h3>
-                                    <span class="qualification__subtitle">Hacettepe University</span>
-                                    <div class="qualification__calendar">
-                                        <i class="uil uil-calendar-alt"></i>
-                                        2021 - 2025
-                            </div>
-                                    </div>
-
-                                <div>
-                                    <span class="qualification__rounder"></span>
-                                    <span class="qualification__line"></span>
-                                    </div>
-                                    </div>
-
-                            <!--==================== QUALIFICATION 2 ====================-->
-                            <div class="qualification__data">
-                                <div></div>
-                                <div>
-                                    <span class="qualification__rounder"></span>
-                                    <span class="qualification__line"></span>
-                                    </div>
-
-                                <div>
-                                    <h3 class="qualification__title">Game Development</h3>
-                                    <span class="qualification__subtitle">Google Game And Application Academy </span>
-                                    <div class="qualification__calendar">
-                                        <i class="uil uil-calendar-alt"></i>
-                                        2022 - 2023
-                                    </div>
-                                    </div>
-                                    </div>
-
-                            <!--==================== QUALIFICATION 3 ====================-->
-                            <div class="qualification__data">
-                                <div>
-                                    <h3 class="qualification__title">Graphic Design</h3>
-                                    <span class="qualification__subtitle">Self-Taught</span>
-                                    <div class="qualification__calendar">
-                                        <i class="uil uil-calendar-alt"></i>
-                                        2021 - Present
-                                </div>
-                            </div>
-
-                                <div>
-                                    <span class="qualification__rounder"></span>
-                                    <span class="qualification__line"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                        <!--==================== QUALIFICATION CONTENT 2 ====================-->
-                        <div class="qualification__content" data-content id="work">
-                            <!--==================== QUALIFICATION 1 ====================-->
-                            <div class="qualification__data">
-                                <div>
-                                    <h3 class="qualification__title">Graphic Designer</h3>
-                                    <span class="qualification__subtitle">Center For Sustainable Teaching and Learning</span>
-                                    <div class="qualification__calendar">
-                                        <i class="uil uil-calendar-alt"></i>
-                                        2022 - 2024
-                            </div>
-                                    </div>
-
-                                <div>
-                                    <span class="qualification__rounder"></span>
-                                    <span class="qualification__line"></span>
-                                    </div>
-                                    </div>
-
-                            <!--==================== QUALIFICATION 2 ====================-->
-                            <div class="qualification__data">
-                                <div></div>
-                                <div>
-                                    <span class="qualification__rounder"></span>
-                                    <span class="qualification__line"></span>
-                                    </div>
-
-                                <div>
-                                    <h3 class="qualification__title">Trainee - Instructional Designer</h3>
-                                    <span class="qualification__subtitle">BİLTEN Defence</span>
-                                    <div class="qualification__calendar">
-                                        <i class="uil uil-calendar-alt"></i>
-                                        2024 Summer
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--==================== QUALIFICATION 3 ====================-->
-                            <div class="qualification__data">
-                                <div>
-                                    <h3 class="qualification__title">Part Time Content Producer</h3>
-                                    <span class="qualification__subtitle">BİLTEN Defence</span>
-                                    <div class="qualification__calendar">
-                                        <i class="uil uil-calendar-alt"></i>
-                                        2024 - Present
-                        </div>
-                    </div>
-
-                                <div>
-                                    <span class="qualification__rounder"></span>
-                                    <span class="qualification__line"></span>
-                            </div>
-                                    </div>
-                                    </div>
-                                    </div>
-                                    </div>
-            </section>
-
-            <!--==================== SERVICES ====================-->
-            <!-- 📌 ESKİ İÇERİK: Hizmetler bölümü eski projeden -->
-            <section class="services section" id="services">
-                <h2 class="section__title">Services</h2>
-                <span class="section__subtitle">What I offer</span>
-
-                <div class="services__container container grid">
-                    <!--==================== SERVICES 1 ====================-->
-                    <div class="services__content">
-                        <div>
-                            <i class="uil uil-web-grid services__icon"></i>
-                            <h3 class="services__title">Graphic <br> Designer</h3>
-                                </div>
-
-                        <span class="services__button">
-                            View More <i class="uil uil-arrow-right button__icon"></i>
-                        </span>
-
-                        <div class="services__modal">
-                            <div class="services__modal-content">
-                                <h4 class="services__modal-title">Graphic <br> Designer</h4>
-                                <i class="uil uil-times services__modal-close"></i>
-
-                                <ul class="services__modal-services grid">
-                                    <li class="services__modal-service">
-                                        <i class="uil uil-check-circle services__modal-icon"></i>
-                                        <p>Professional logo and brand identity design</p>
-                                    </li>
-                                    <li class="services__modal-service">
-                                        <i class="uil uil-check-circle services__modal-icon"></i>
-                                        <p>Catalog and publication design</p>
-                                    </li>
-                                    <li class="services__modal-service">
-                                        <i class="uil uil-check-circle services__modal-icon"></i>
-                                        <p>Adobe Illustrator & Photoshop expertise</p>
-                                    </li>
-                                    <li class="services__modal-service">
-                                        <i class="uil uil-check-circle services__modal-icon"></i>
-                                        <p>Print and digital media design</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--==================== SERVICES 2 ====================-->
-                    <div class="services__content">
-                        <div>
-                            <i class="uil uil-arrow services__icon"></i>
-                            <h3 class="services__title">UX/UI <br> Designer</h3>
-                </div>
-
-                        <span class="services__button">
-                            View More <i class="uil uil-arrow-right button__icon"></i>
-                        </span>
-
-                        <div class="services__modal">
-                            <div class="services__modal-content">
-                                <h4 class="services__modal-title">UX/UI <br> Designer</h4>
-                                <i class="uil uil-times services__modal-close"></i>
-
-                                <ul class="services__modal-services grid">
-                                    <li class="services__modal-service">
-                                        <i class="uil uil-check-circle services__modal-icon"></i>
-                                        <p>Mobile app interface design</p>
-                                    </li>
-                                    <li class="services__modal-service">
-                                        <i class="uil uil-check-circle services__modal-icon"></i>
-                                        <p>User experience research and testing</p>
-                                    </li>
-                                    <li class="services__modal-service">
-                                        <i class="uil uil-check-circle services__modal-icon"></i>
-                                        <p>Interactive prototypes and mockups</p>
-                                    </li>
-                                    <li class="services__modal-service">
-                                        <i class="uil uil-check-circle services__modal-icon"></i>
-                                        <p>Responsive web design</p>
-                                    </li>
-                                </ul>
-                            </div>
-                                    </div>
-                                </div>
-
-                    <!--==================== SERVICES 3 ====================-->
-                    <div class="services__content">
-                        <div>
-                            <i class="uil uil-game-structure services__icon"></i>
-                            <h3 class="services__title">Game <br> Developer</h3>
-                            </div>
-
-                        <span class="services__button">
-                            View More <i class="uil uil-arrow-right button__icon"></i>
-                        </span>
-
-                        <div class="services__modal">
-                            <div class="services__modal-content">
-                                <h4 class="services__modal-title">Game <br> Developer</h4>
-                                <i class="uil uil-times services__modal-close"></i>
-
-                                <ul class="services__modal-services grid">
-                                    <li class="services__modal-service">
-                                        <i class="uil uil-check-circle services__modal-icon"></i>
-                                        <p>Unity 2D/3D game development</p>
-                                    </li>
-                                    <li class="services__modal-service">
-                                        <i class="uil uil-check-circle services__modal-icon"></i>
-                                        <p>C# programming and scripting</p>
-                                    </li>
-                                    <li class="services__modal-service">
-                                        <i class="uil uil-check-circle services__modal-icon"></i>
-                                        <p>Game mechanics and level design</p>
-                                    </li>
-                                    <li class="services__modal-service">
-                                        <i class="uil uil-check-circle services__modal-icon"></i>
-                                        <p>3D modeling with Blender</p>
-                                    </li>
-                                </ul>
-                        </div>
-                    </div>
-                            </div>
-                        </div>
-            </section>
-
-            <!--==================== PORTFOLIO ====================-->
-            <!-- 📌 ESKİ İÇERİK: Tüm proje görselleri ve açıklamaları eski projeden -->
-            <section class="portfolio section" id="portfolio">
-                <h2 class="section__title">Portfolio</h2>
-                <span class="section__subtitle">Explore my creative work</span>
-
-                <div class="portfolio__container container swiper-container">
-                    <div class="swiper-wrapper">
-                        <!--==================== PORTFOLIO 1 ====================-->
-                        <!-- 📌 ESKİ İÇERİK: Sketch & Mockup projesi -->
-                        <div class="portfolio__content grid swiper-slide">
-                            <div class="portfolio__img portfolio__img--sketch">
-                                <svg viewBox="0 0 265 265" xmlns="http://www.w3.org/2000/svg">
-                                    <defs>
-                                        <linearGradient id="sketchGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" style="stop-color:#fa709a;stop-opacity:1" />
-                                            <stop offset="100%" style="stop-color:#fee140;stop-opacity:1" />
-                                        </linearGradient>
-                                    </defs>
-                                    <rect width="265" height="265" fill="url(#sketchGradient)" rx="8"/>
-                                    <g transform="translate(60, 60)">
-                                        <!-- Pencil icon -->
-                                        <path d="M130,25 L145,10 L155,20 L140,35 Z" fill="rgba(255,255,255,0.9)"/>
-                                        <path d="M125,30 L20,135 L10,145 L20,145 L30,135 L135,30 Z" fill="rgba(255,255,255,0.9)"/>
-                                        <circle cx="25" cy="140" r="8" fill="rgba(255,255,255,0.7)"/>
-                                        <!-- Brush strokes -->
-                                        <path d="M50,70 Q60,60 70,70 T90,70" stroke="rgba(255,255,255,0.5)" stroke-width="3" fill="none" stroke-linecap="round"/>
-                                        <path d="M60,90 Q70,80 80,90 T100,90" stroke="rgba(255,255,255,0.4)" stroke-width="3" fill="none" stroke-linecap="round"/>
-                                    </g>
-                                </svg>
-                            </div>
-
-                            <div class="portfolio__data">
-                                <h3 class="portfolio__title">Sketch & Mockup</h3>
-                                <p class="portfolio__description">Hand-drawn sketches and digital mockups showcasing creative ideation and conceptual design work.</p>
-                                <a href="gallery-sketch.html" class="button button--flex button--small portfolio__button">
-                                    View Gallery
-                                    <i class="uil uil-arrow-right button__icon"></i>
-                                    </a>
-                                </div>
-                            </div>
-
-                        <!--==================== PORTFOLIO 2 ====================-->
-                        <!-- 📌 ESKİ İÇERİK: Community Products -->
-                        <div class="portfolio__content grid swiper-slide">
-                            <div class="portfolio__img portfolio__img--community">
-                                <svg viewBox="0 0 265 265" xmlns="http://www.w3.org/2000/svg">
-                                    <defs>
-                                        <linearGradient id="communityGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" style="stop-color:#30cfd0;stop-opacity:1" />
-                                            <stop offset="100%" style="stop-color:#330867;stop-opacity:1" />
-                                        </linearGradient>
-                                    </defs>
-                                    <rect width="265" height="265" fill="url(#communityGradient)" rx="8"/>
-                                    <g transform="translate(75, 75)">
-                                        <!-- Group of people circles -->
-                                        <circle cx="57.5" cy="40" r="18" fill="rgba(255,255,255,0.9)"/>
-                                        <ellipse cx="57.5" cy="85" rx="28" ry="20" fill="rgba(255,255,255,0.9)"/>
-                                        <circle cx="20" cy="50" r="15" fill="rgba(255,255,255,0.7)"/>
-                                        <ellipse cx="20" cy="88" rx="22" ry="16" fill="rgba(255,255,255,0.7)"/>
-                                        <circle cx="95" cy="50" r="15" fill="rgba(255,255,255,0.7)"/>
-                                        <ellipse cx="95" cy="88" rx="22" ry="16" fill="rgba(255,255,255,0.7)"/>
-                                    </g>
-                                </svg>
-                            </div>
-
-                            <div class="portfolio__data">
-                                <h3 class="portfolio__title">Community Products</h3>
-                                <p class="portfolio__description">Design work for community projects and social initiatives, focusing on impact and engagement.</p>
-                                <a href="gallery-community.html" class="button button--flex button--small portfolio__button">
-                                    View Gallery
-                                    <i class="uil uil-arrow-right button__icon"></i>
-                                </a>
-                    </div>
-                </div>
-
-                        <!--==================== PORTFOLIO 3 ====================-->
-                        <!-- 📌 ESKİ İÇERİK: UX/UI Mobile App -->
-                        <div class="portfolio__content grid swiper-slide">
-                            <div class="portfolio__img portfolio__img--uxui">
-                                <svg viewBox="0 0 265 265" xmlns="http://www.w3.org/2000/svg">
-                                    <defs>
-                                        <linearGradient id="uxuiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
-                                            <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
-                                        </linearGradient>
-                                    </defs>
-                                    <rect width="265" height="265" fill="url(#uxuiGradient)" rx="8"/>
-                                    <g transform="translate(80, 50)">
-                                        <!-- Mobile phone frame -->
-                                        <rect x="10" y="10" width="85" height="145" rx="8" fill="rgba(255,255,255,0.95)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
-                                        <!-- Screen content -->
-                                        <rect x="18" y="25" width="69" height="8" rx="2" fill="rgba(79,172,254,0.3)"/>
-                                        <rect x="18" y="40" width="50" height="6" rx="2" fill="rgba(79,172,254,0.2)"/>
-                                        <rect x="18" y="52" width="50" height="6" rx="2" fill="rgba(79,172,254,0.2)"/>
-                                        <circle cx="52.5" cy="90" r="25" fill="rgba(79,172,254,0.15)"/>
-                                        <path d="M45,90 L50,95 L62,80" stroke="rgba(79,172,254,0.5)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <rect x="18" y="125" width="69" height="20" rx="4" fill="rgba(79,172,254,0.4)"/>
-                                    </g>
-                                </svg>
-                            </div>
-
-                            <div class="portfolio__data">
-                                <h3 class="portfolio__title">UX/UI Mobile App</h3>
-                                <p class="portfolio__description">Complete mobile app design featuring authentication flows, user onboarding, and modern UI patterns.</p>
-                                <a href="uxui-showcase.html" class="button button--flex button--small portfolio__button">
-                                    View Demo
-                                    <i class="uil uil-arrow-right button__icon"></i>
-                                        </a>
-                            </div>
-                                </div>
-
-                        <!--==================== PORTFOLIO 4 ====================-->
-                        <!-- 📌 ESKİ İÇERİK: School Works -->
-                        <div class="portfolio__content grid swiper-slide">
-                            <div class="portfolio__img portfolio__img--academic">
-                                <svg viewBox="0 0 265 265" xmlns="http://www.w3.org/2000/svg">
-                                    <defs>
-                                        <linearGradient id="academicGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" style="stop-color:#a8edea;stop-opacity:1" />
-                                            <stop offset="100%" style="stop-color:#fed6e3;stop-opacity:1" />
-                                        </linearGradient>
-                                    </defs>
-                                    <rect width="265" height="265" fill="url(#academicGradient)" rx="8"/>
-                                    <g transform="translate(70, 70)">
-                                        <!-- Graduation cap -->
-                                        <polygon points="62.5,30 15,50 62.5,70 110,50" fill="rgba(79,172,254,0.9)"/>
-                                        <polygon points="62.5,30 15,50 62.5,70 110,50" fill="rgba(255,255,255,0.3)"/>
-                                        <rect x="57.5" y="70" width="10" height="35" fill="rgba(79,172,254,0.8)"/>
-                                        <polygon points="62.5,105 52.5,110 72.5,110" fill="rgba(79,172,254,0.8)"/>
-                                        <!-- Book -->
-                                        <rect x="30" y="85" width="65" height="40" rx="2" fill="rgba(255,255,255,0.9)"/>
-                                        <line x1="62.5" y1="85" x2="62.5" y2="125" stroke="rgba(79,172,254,0.3)" stroke-width="2"/>
-                                        <line x1="40" y1="95" x2="55" y2="95" stroke="rgba(79,172,254,0.2)" stroke-width="1.5"/>
-                                        <line x1="40" y1="105" x2="55" y2="105" stroke="rgba(79,172,254,0.2)" stroke-width="1.5"/>
-                                        <line x1="40" y1="115" x2="55" y2="115" stroke="rgba(79,172,254,0.2)" stroke-width="1.5"/>
-                                    </g>
-                                </svg>
-                            </div>
-
-                            <div class="portfolio__data">
-                                <h3 class="portfolio__title">Academic Projects</h3>
-                                <p class="portfolio__description">University assignments and projects from Hacettepe demonstrating technical and creative skills.</p>
-                                <a href="gallery-school.html" class="button button--flex button--small portfolio__button">
-                                    View Gallery
-                                    <i class="uil uil-arrow-right button__icon"></i>
-                                        </a>
-                                    </div>
-                                </div>
-
-                        <!--==================== PORTFOLIO 5 ====================-->
-                        <!-- 📌 ESKİ İÇERİK: Game Projects -->
-                        <div class="portfolio__content grid swiper-slide">
-                            <div class="portfolio__img portfolio__img--game">
-                                <svg viewBox="0 0 265 265" xmlns="http://www.w3.org/2000/svg">
-                                    <defs>
-                                        <linearGradient id="gameGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
-                                            <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
-                                        </linearGradient>
-                                    </defs>
-                                    <rect width="265" height="265" fill="url(#gameGradient)" rx="8"/>
-                                    <g transform="translate(50, 50)">
-                                        <!-- Game controller -->
-                                        <path d="M82.5,50 C82.5,27.5 105,10 132.5,10 C160,10 182.5,27.5 182.5,50 L182.5,95 C182.5,117.5 165,135 142.5,135 L122.5,135 C100,135 82.5,117.5 82.5,95 Z" fill="rgba(255,255,255,0.15)" transform="translate(-50, 10)"/>
-                                        <ellipse cx="82.5" cy="82.5" rx="80" ry="50" fill="rgba(255,255,255,0.9)"/>
-                                        <!-- D-pad -->
-                                        <circle cx="50" cy="75" r="5" fill="rgba(102,126,234,0.8)"/>
-                                        <circle cx="40" cy="82.5" r="5" fill="rgba(102,126,234,0.8)"/>
-                                        <circle cx="50" cy="90" r="5" fill="rgba(102,126,234,0.8)"/>
-                                        <circle cx="60" cy="82.5" r="5" fill="rgba(102,126,234,0.8)"/>
-                                        <!-- Buttons -->
-                                        <circle cx="115" cy="75" r="6" fill="rgba(118,75,162,0.8)"/>
-                                        <circle cx="105" cy="82.5" r="6" fill="rgba(118,75,162,0.8)"/>
-                                        <circle cx="115" cy="90" r="6" fill="rgba(118,75,162,0.8)"/>
-                                        <circle cx="125" cy="82.5" r="6" fill="rgba(118,75,162,0.8)"/>
-                                    </g>
-                                </svg>
-                            </div>
-
-                            <div class="portfolio__data">
-                                <h3 class="portfolio__title">Game Development</h3>
-                                <p class="portfolio__description">Unity game projects: Sergio, The Pearl, and Academia of Googlewoods - showcasing gameplay and design.</p>
-                                <a href="game-showcase.html" class="button button--flex button--small portfolio__button">
-                                    View Games
-                                    <i class="uil uil-arrow-right button__icon"></i>
-                                </a>
-                        </div>
-                    </div>
-
-                        <!--==================== PORTFOLIO 6 ====================-->
-                        <!-- 📌 ESKİ İÇERİK: Documents & Reports -->
-                        <div class="portfolio__content grid swiper-slide">
-                            <div class="portfolio__img portfolio__img--docs">
-                                <svg viewBox="0 0 265 265" xmlns="http://www.w3.org/2000/svg">
-                                    <defs>
-                                        <linearGradient id="docsGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
-                                            <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
-                                        </linearGradient>
-                                    </defs>
-                                    <rect width="265" height="265" fill="url(#docsGradient)" rx="8"/>
-                                    <g transform="translate(70, 70)">
-                                        <!-- Document stack -->
-                                        <rect x="15" y="20" width="95" height="125" fill="rgba(255,255,255,0.2)" rx="4"/>
-                                        <rect x="10" y="10" width="95" height="125" fill="rgba(255,255,255,0.3)" rx="4"/>
-                                        <rect x="5" y="0" width="95" height="125" fill="rgba(255,255,255,0.9)" rx="4"/>
-                                        <!-- Lines on front document -->
-                                        <line x1="20" y1="20" x2="85" y2="20" stroke="rgba(240,147,251,0.5)" stroke-width="2" stroke-linecap="round"/>
-                                        <line x1="20" y1="35" x2="85" y2="35" stroke="rgba(240,147,251,0.5)" stroke-width="2" stroke-linecap="round"/>
-                                        <line x1="20" y1="50" x2="70" y2="50" stroke="rgba(240,147,251,0.5)" stroke-width="2" stroke-linecap="round"/>
-                                        <line x1="20" y1="65" x2="85" y2="65" stroke="rgba(240,147,251,0.5)" stroke-width="2" stroke-linecap="round"/>
-                                        <line x1="20" y1="80" x2="75" y2="80" stroke="rgba(240,147,251,0.5)" stroke-width="2" stroke-linecap="round"/>
-                                        <line x1="20" y1="95" x2="85" y2="95" stroke="rgba(240,147,251,0.5)" stroke-width="2" stroke-linecap="round"/>
-                                        <!-- PDF corner fold -->
-                                        <path d="M90,0 L90,15 L100,0 Z" fill="rgba(245,87,108,0.4)"/>
-                                    </g>
-                                </svg>
-                            </div>
-
-                            <div class="portfolio__data">
-                                <h3 class="portfolio__title">Documents & Reports</h3>
-                                <p class="portfolio__description">Professional catalogs, CV, screenwriting portfolio, and comprehensive activity reports.</p>
-                                <a href="documents.html" class="button button--flex button--small portfolio__button">
-                                    View Documents
-                                    <i class="uil uil-arrow-right button__icon"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                    <!-- Add Arrows -->
-                    <div class="swiper-button-next">
-                        <i class="uil uil-angle-right-b swiper-portfolio-icon"></i>
-                        </div>
-                    <div class="swiper-button-prev">
-                        <i class="uil uil-angle-left-b swiper-portfolio-icon"></i>
-                    </div>
-
-                    <!-- Add Pagination -->
-                    <div class="swiper-pagination"></div>
-                </div>
-            </section>
-
-            <!--==================== CURRENTLY WORKING ON ====================-->
-            <section class="currently-working section" id="currently-working">
-                <h2 class="section__title">What I'm Up To</h2>
-                <span class="section__subtitle">Currently learning & building</span>
-
-                <div class="currently-working__container container grid">
-                    <!-- AI Automations & Workflows -->
-                    <div class="working-card">
-                        <div class="working-card__icon">
-                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <linearGradient id="aiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
-                                        <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
-                                    </linearGradient>
-                                </defs>
-                                <circle cx="50" cy="50" r="48" fill="url(#aiGradient)" opacity="0.1"/>
-                                <!-- Brain/AI icon -->
-                                <path d="M50,25 C40,25 32,33 32,43 L32,57 C32,67 40,75 50,75 C60,75 68,67 68,57 L68,43 C68,33 60,25 50,25 Z" 
-                                      fill="url(#aiGradient)" opacity="0.8"/>
-                                <!-- Circuit lines -->
-                                <line x1="35" y1="40" x2="45" y2="40" stroke="url(#aiGradient)" stroke-width="2"/>
-                                <line x1="35" y1="50" x2="45" y2="50" stroke="url(#aiGradient)" stroke-width="2"/>
-                                <line x1="35" y1="60" x2="45" y2="60" stroke="url(#aiGradient)" stroke-width="2"/>
-                                <circle cx="32" cy="40" r="2" fill="url(#aiGradient)"/>
-                                <circle cx="32" cy="50" r="2" fill="url(#aiGradient)"/>
-                                <circle cx="32" cy="60" r="2" fill="url(#aiGradient)"/>
-                                <line x1="55" y1="40" x2="65" y2="40" stroke="url(#aiGradient)" stroke-width="2"/>
-                                <line x1="55" y1="50" x2="65" y2="50" stroke="url(#aiGradient)" stroke-width="2"/>
-                                <line x1="55" y1="60" x2="65" y2="60" stroke="url(#aiGradient)" stroke-width="2"/>
-                                <circle cx="68" cy="40" r="2" fill="url(#aiGradient)"/>
-                                <circle cx="68" cy="50" r="2" fill="url(#aiGradient)"/>
-                                <circle cx="68" cy="60" r="2" fill="url(#aiGradient)"/>
-                            </svg>
-                        </div>
-                        <div class="working-card__content">
-                            <div class="working-card__header">
-                                <h3 class="working-card__title">AI Automations & Workflows</h3>
-                                <span class="working-card__status">
-                                    <i class="uil uil-circuit"></i> Active
-                                </span>
-                            </div>
-                            <p class="working-card__description">
-                                Exploring cutting-edge AI automation tools and building intelligent workflows to streamline processes. 
-                                Learning about LLM integrations, API orchestration, and creating smart automation pipelines.
-                            </p>
-                            <div class="working-card__tags">
-                                <span class="working-tag">AI/ML</span>
-                                <span class="working-tag">Automation</span>
-                                <span class="working-tag">Workflows</span>
-                                <span class="working-tag">API Integration</span>
-                            </div>
-                            <div class="working-card__progress">
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: 65%"></div>
-                                </div>
-                                <span class="progress-label">Learning Progress</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- AI Video Creation -->
-                    <div class="working-card">
-                        <div class="working-card__icon">
-                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <linearGradient id="videoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
-                                        <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
-                                    </linearGradient>
-                                </defs>
-                                <circle cx="50" cy="50" r="48" fill="url(#videoGradient)" opacity="0.1"/>
-                                <!-- Video camera icon -->
-                                <rect x="25" y="35" width="45" height="30" rx="3" fill="url(#videoGradient)" opacity="0.8"/>
-                                <polygon points="70,42 82,38 82,62 70,58" fill="url(#videoGradient)" opacity="0.8"/>
-                                <!-- Sparkle effect -->
-                                <circle cx="35" cy="25" r="2" fill="url(#videoGradient)"/>
-                                <circle cx="65" cy="28" r="2" fill="url(#videoGradient)"/>
-                                <circle cx="45" cy="22" r="1.5" fill="url(#videoGradient)"/>
-                                <line x1="35" y1="25" x2="35" y2="20" stroke="url(#videoGradient)" stroke-width="1"/>
-                                <line x1="33" y1="23" x2="37" y2="27" stroke="url(#videoGradient)" stroke-width="1"/>
-                            </svg>
-                        </div>
-                        <div class="working-card__content">
-                            <div class="working-card__header">
-                                <h3 class="working-card__title">AI Video Creation</h3>
-                                <span class="working-card__status">
-                                    <i class="uil uil-video"></i> Active
-                                </span>
-                            </div>
-                            <p class="working-card__description">
-                                Diving into AI-powered video generation, learning text-to-video tools, and exploring creative applications. 
-                                Experimenting with various AI models for content creation and video editing automation.
-                            </p>
-                            <div class="working-card__tags">
-                                <span class="working-tag">AI Video</span>
-                                <span class="working-tag">Content Creation</span>
-                                <span class="working-tag">Generative AI</span>
-                                <span class="working-tag">Video Editing</span>
-                            </div>
-                            <div class="working-card__progress">
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: 45%"></div>
-                                </div>
-                                <span class="progress-label">Learning Progress</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="currently-working__footer">
-                    <p class="footer-text">
-                        <i class="uil uil-rocket"></i> 
-                        Always exploring new technologies and pushing creative boundaries
-                    </p>
-                </div>
-            </section>
-
-            <!--==================== PROJECT IN MIND ====================-->
-            <section class="project section">
-                <div class="project__bg">
-                    <div class="project__container container grid">
-                        <div class="project__data">
-                            <h2 class="project__title">You have a new project?</h2>
-                            <p class="project__description">Contact me now and let's bring your ideas to life!</p>
-                            <a href="#contact" class="button button--flex button--white">
-                                Contact Me
-                                <i class="uil uil-message project__icon button__icon"></i>
-                            </a>
-                                </div>
-
-                        <img src="assets/img/mountain-light.jpg" alt="Project" class="project__img">
-                            </div>
-                        </div>
-            </section>
-
-            <!--==================== TESTIMONIAL ====================-->
-            <section class="testimonial section">
-                <h2 class="section__title">Testimonial</h2>
-                <span class="section__subtitle">Client reviews</span>
-
-                <div class="testimonial__container container swiper-container">
-                    <div class="swiper-wrapper">
-                        <!--==================== TESTIMONIAL 1 ====================-->
-                        <div class="testimonial__content swiper-slide">
-                            <div class="testimonial__data">
-                                <div class="testimonial__header">
-                                    <img src="assets/img/blog-1.jpg" alt="" class="testimonial__img">
-
-                                    <div>
-                                        <h3 class="testimonial__name">Sara Smith</h3>
-                                        <span class="testimonial__client">Client</span>
-                                </div>
-                            </div>
-
-                                <div>
-                                    <i class="uil uil-star testimonial__icon-star"></i>
-                                    <i class="uil uil-star testimonial__icon-star"></i>
-                                    <i class="uil uil-star testimonial__icon-star"></i>
-                                    <i class="uil uil-star testimonial__icon-star"></i>
-                                    <i class="uil uil-star testimonial__icon-star"></i>
-                        </div>
-                                </div>
-
-                            <p class="testimonial__description">Outstanding work! Barış delivered high-quality design work with excellent attention to detail and creative vision.</p>
-                            </div>
-
-                        <!--==================== TESTIMONIAL 2 ====================-->
-                        <div class="testimonial__content swiper-slide">
-                            <div class="testimonial__data">
-                                <div class="testimonial__header">
-                                    <img src="assets/img/blog-2.jpg" alt="" class="testimonial__img">
-
-                                    <div>
-                                        <h3 class="testimonial__name">Matt Robinson</h3>
-                                        <span class="testimonial__client">Client</span>
-                        </div>
-                    </div>
-
-                                <div>
-                                    <i class="uil uil-star testimonial__icon-star"></i>
-                                    <i class="uil uil-star testimonial__icon-star"></i>
-                                    <i class="uil uil-star testimonial__icon-star"></i>
-                                    <i class="uil uil-star testimonial__icon-star"></i>
-                                    <i class="uil uil-star testimonial__icon-star"></i>
-                </div>
-            </div>
-
-                            <p class="testimonial__description">Professional and timely delivery. Barış's game development skills are impressive, and communication was excellent throughout.</p>
-                    </div>
-
-                        <!--==================== TESTIMONIAL 3 ====================-->
-                        <div class="testimonial__content swiper-slide">
-                            <div class="testimonial__data">
-                                <div class="testimonial__header">
-                                    <img src="assets/img/blog-3.jpg" alt="" class="testimonial__img">
-
-                                    <div>
-                                        <h3 class="testimonial__name">Raul Harris</h3>
-                                        <span class="testimonial__client">Client</span>
-                </div>
-                </div>
-                
-                                <div>
-                                    <i class="uil uil-star testimonial__icon-star"></i>
-                                    <i class="uil uil-star testimonial__icon-star"></i>
-                                    <i class="uil uil-star testimonial__icon-star"></i>
-                                    <i class="uil uil-star testimonial__icon-star"></i>
-                                    <i class="uil uil-star testimonial__icon-star"></i>
-                            </div>
-                            </div>
-
-                            <p class="testimonial__description">Highly recommended! The UX/UI design work exceeded our expectations, and the final product was exactly what we needed.</p>
-                            </div>
-                    </div>
-                    <div class="swiper-pagination swiper-pagination-testimonial"></div>
-            </div>
-        </section>
-
-            <!--==================== CONTACT ME ====================-->
-            <!-- 📌 ESKİ İÇERİK: Formspree form entegrasyonu eski projeden -->
-            <section class="contact section" id="contact">
-                <h2 class="section__title">Contact Me</h2>
-                <span class="section__subtitle">Get in touch</span>
-
-                <div class="contact__container container grid">
-                    <div>
-                        <!-- 📌 ESKİ İÇERİK: E-posta adresi -->
-                        <div class="contact__information">
-                            <i class="uil uil-envelope contact__icon"></i>
-
-                            <div>
-                                <h3 class="contact__title">Email</h3>
-                                <span class="contact__subtitle">barisdegirmenci35@gmail.com</span>
-                    </div>
-                    </div>
-
-                        <div class="contact__information">
-                            <i class="uil uil-map-marker contact__icon"></i>
-
-                            <div>
-                                <h3 class="contact__title">Location</h3>
-                                <span class="contact__subtitle">Ankara, Turkey</span>
-                    </div>
-                </div>
-            </div>
-
-                    <!-- 📌 ESKİ İÇERİK: Formspree form action -->
-                    <form action="https://formspree.io/f/mpwdojad" method="POST" class="contact__form grid">
-                        <div class="contact__inputs grid">
-                            <div class="contact__content">
-                                <label for="name" class="contact__label">Name</label>
-                                <input type="text" id="name" name="name" class="contact__input" required>
-                    </div>
-                            <div class="contact__content">
-                                <label for="email" class="contact__label">Email</label>
-                                <input type="email" id="email" name="email" class="contact__input" required>
-                    </div>
-                </div>
-                        <div class="contact__content">
-                            <label for="subject" class="contact__label">Subject</label>
-                            <input type="text" id="subject" name="subject" class="contact__input" required>
-            </div>
-                        <div class="contact__content">
-                            <label for="message" class="contact__label">Message</label>
-                            <textarea name="message" id="message" cols="0" rows="7" class="contact__input" required></textarea>
         </div>
 
-                        <div>
-                            <button type="submit" class="button button--flex">
-                                Send Message
-                                <i class="uil uil-message button__icon"></i>
-                            </button>
-                    </div>
-                    </form>
-                </div>
-            </section>
-        </main>
-
-        <!--==================== FOOTER ====================-->
-        <!-- 📌 ESKİ İÇERİK: Footer bilgileri ve sosyal medya linkleri -->
-        <footer class="footer">
-            <div class="footer__bg">
-                <div class="footer__container container grid">
-                    <div>
-                        <h1 class="footer__title">Barış Değirmenci</h1>
-                        <span class="footer__subtitle">Graphic Designer | Game Developer | UX/UI Designer</span>
+        <!-- Right: Image -->
+        <div class="hero__img-wrap reveal reveal-delay-2">
+          <div class="hero__blob-wrap">
+            <div class="hero__blob-ring"></div>
+            <div class="hero__blob-ring"></div>
+            <svg class="hero__blob" viewBox="0 0 200 187" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <mask id="mask0" mask-type="alpha">
+                <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"/>
+              </mask>
+              <g mask="url(#mask0)">
+                <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"/>
+                <image class="home__blob-img" x="0" y="0" width="190" height="190"
+                       preserveAspectRatio="xMidYMid slice"
+                       href="assets/img/mountain-camera.jpg"/>
+              </g>
+            </svg>
+          </div>
         </div>
 
-                    <ul class="footer__links">
-                        <li>
-                            <a href="#services" class="footer__link">Services</a>
-                        </li>
-                        <li>
-                            <a href="#portfolio" class="footer__link">Portfolio</a>
-                        </li>
-                        <li>
-                            <a href="#contact" class="footer__link">Contact</a>
-                        </li>
-                    </ul>
+      </div>
 
-                    <!-- 📌 ESKİ İÇERİK: LinkedIn ve GitHub linkleri -->
-                    <div class="footer__socials">
-                        <a href="https://www.linkedin.com/in/barış-değirmenci-98559a21b/" target="_blank" class="footer__social">
-                            <i class="uil uil-linkedin-alt"></i>
-                        </a>
-                        <a href="https://github.com/bobothemomo" target="_blank" class="footer__social">
-                            <i class="uil uil-github-alt"></i>
-                        </a>
-                    </div>
-                </div>
+      <!-- Scroll Indicator -->
+      <a href="#about" class="hero__scroll" aria-label="Scroll down">
+        <span>Scroll</span>
+        <i class="uil uil-arrow-down"></i>
+      </a>
 
-                <p class="footer__copy">&#169; Barış Değirmenci. All right reserved - 2024</p>
+    </section>
+
+    <!-- ══ ABOUT ══════════════════════════════ -->
+    <section class="about section" id="about">
+      <div class="container">
+
+        <div class="section__header">
+          <p class="section__label">
+            <i class="uil uil-user-circle"></i>
+            About Me
+          </p>
+          <h2 class="section__title">Passionate about <span>people-first</span> tech</h2>
+          <p class="section__subtitle">Where creativity meets technology — building meaningful digital experiences.</p>
+        </div>
+
+        <div class="about__container">
+
+          <!-- Image -->
+          <div class="about__img-wrap reveal">
+            <img src="assets/img/paris-image.jpg" alt="Barış Değirmenci" class="about__img">
+            <div class="about__img-badge">
+              <div class="about__stat">
+                <span class="about__stat-number">3+</span>
+                <span class="about__stat-label">Years<br>Experience</span>
+              </div>
+              <div class="about__stat">
+                <span class="about__stat-number">10+</span>
+                <span class="about__stat-label">Completed<br>Projects</span>
+              </div>
+              <div class="about__stat">
+                <span class="about__stat-number">3+</span>
+                <span class="about__stat-label">Companies<br>Worked</span>
+              </div>
             </div>
-        </footer>
-        
-        <!--==================== SCROLL TOP ====================-->
-        <a href="#" class="scrollup" id="scroll-up">
-            <i class="uil uil-arrow-up scrollup__icon"></i>
-        </a>
+          </div>
 
-        <!--==================== SWIPER JS ====================-->
-        <script src="assets/js/swiper-bundle.min.js"></script>
+          <!-- Data -->
+          <div class="about__data">
 
-        <!--==================== MAIN JS ====================-->
-        <script src="assets/js/main.js"></script>
+            <p class="about__description reveal">
+              I graduated from Hacettepe University's Department of Computer Education and Instructional Technologies in 2025 with a GPA of 3.13. 
+              My passion lies at the intersection of technology, design, and education — where I turn complex concepts into immersive, 
+              learner-centered digital experiences.
+            </p>
+
+            <p class="about__description reveal reveal-delay-1">
+              Currently exploring the frontier of AI automation workflows, generative content creation, and interactive e-learning systems. 
+              I thrive when storytelling meets engineering.
+            </p>
+
+            <div class="about__highlights reveal reveal-delay-2">
+              <div class="about__highlight">
+                <div class="about__highlight-icon blue"><i class="uil uil-game-structure"></i></div>
+                <div class="about__highlight-text">
+                  <h4>Game Development</h4>
+                  <p>Unity, C#, 3D Modeling</p>
+                </div>
+              </div>
+              <div class="about__highlight">
+                <div class="about__highlight-icon purple"><i class="uil uil-mobile-android"></i></div>
+                <div class="about__highlight-text">
+                  <h4>UX/UI Design</h4>
+                  <p>Mobile apps, Prototyping</p>
+                </div>
+              </div>
+              <div class="about__highlight">
+                <div class="about__highlight-icon green"><i class="uil uil-robot"></i></div>
+                <div class="about__highlight-text">
+                  <h4>AI Workflows</h4>
+                  <p>LLM, Automation Pipelines</p>
+                </div>
+              </div>
+              <div class="about__highlight">
+                <div class="about__highlight-icon pink"><i class="uil uil-graduation-cap"></i></div>
+                <div class="about__highlight-text">
+                  <h4>Instructional Design</h4>
+                  <p>E-Learning, SCORM, LMS</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="about__actions reveal reveal-delay-3">
+              <a href="Baris_Degirmenci_CV.pdf" download class="btn btn-primary">
+                <i class="uil uil-download-alt"></i> Download CV
+              </a>
+              <a href="#contact" class="btn btn-outline">
+                <i class="uil uil-message"></i> Let's Talk
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ══ SKILLS ══════════════════════════════ -->
+    <section class="section" id="skills">
+      <div class="container">
+
+        <div class="section__header">
+          <p class="section__label">
+            <i class="uil uil-chart-bar"></i>
+            Technical Skills
+          </p>
+          <h2 class="section__title">What I <span>excel at</span></h2>
+          <p class="section__subtitle">Tools and technologies I use to bring ideas to life.</p>
+        </div>
+
+        <div class="skills__grid">
+
+          <div class="skill-card reveal">
+            <div class="skill-card__header">
+              <div class="skill-card__name">
+                <i class="uil uil-pen skill-card__icon" style="color:var(--accent)"></i>
+                Adobe Illustrator
+              </div>
+              <span class="skill-card__percent">90%</span>
+            </div>
+            <div class="skill-card__bar">
+              <div class="skill-card__fill" data-width="90%"></div>
+            </div>
+          </div>
+
+          <div class="skill-card reveal reveal-delay-1">
+            <div class="skill-card__header">
+              <div class="skill-card__name">
+                <i class="uil uil-layers skill-card__icon" style="color:var(--accent-pink)"></i>
+                Adobe Creative Suite
+              </div>
+              <span class="skill-card__percent">70%</span>
+            </div>
+            <div class="skill-card__bar">
+              <div class="skill-card__fill" data-width="70%" style="background: linear-gradient(90deg, var(--accent-pink), var(--accent-alt))"></div>
+            </div>
+          </div>
+
+          <div class="skill-card reveal reveal-delay-2">
+            <div class="skill-card__header">
+              <div class="skill-card__name">
+                <i class="uil uil-game-structure skill-card__icon" style="color:var(--accent-alt)"></i>
+                Unity
+              </div>
+              <span class="skill-card__percent">75%</span>
+            </div>
+            <div class="skill-card__bar">
+              <div class="skill-card__fill" data-width="75%" style="background: linear-gradient(90deg, var(--accent-alt), var(--accent))"></div>
+            </div>
+          </div>
+
+          <div class="skill-card reveal reveal-delay-3">
+            <div class="skill-card__header">
+              <div class="skill-card__name">
+                <i class="uil uil-brackets-curly skill-card__icon" style="color:var(--accent-green)"></i>
+                C# Programming
+              </div>
+              <span class="skill-card__percent">70%</span>
+            </div>
+            <div class="skill-card__bar">
+              <div class="skill-card__fill" data-width="70%" style="background: linear-gradient(90deg, var(--accent-green), var(--accent))"></div>
+            </div>
+          </div>
+
+          <div class="skill-card reveal reveal-delay-1">
+            <div class="skill-card__header">
+              <div class="skill-card__name">
+                <i class="uil uil-cube skill-card__icon" style="color:var(--accent)"></i>
+                Blender (3D)
+              </div>
+              <span class="skill-card__percent">75%</span>
+            </div>
+            <div class="skill-card__bar">
+              <div class="skill-card__fill" data-width="75%"></div>
+            </div>
+          </div>
+
+          <div class="skill-card reveal reveal-delay-2">
+            <div class="skill-card__header">
+              <div class="skill-card__name">
+                <i class="uil uil-mobile-android skill-card__icon" style="color:var(--accent-alt)"></i>
+                UX/UI Design
+              </div>
+              <span class="skill-card__percent">80%</span>
+            </div>
+            <div class="skill-card__bar">
+              <div class="skill-card__fill" data-width="80%" style="background: linear-gradient(90deg, var(--accent-alt), var(--accent-pink))"></div>
+            </div>
+          </div>
+
+          <div class="skill-card reveal reveal-delay-3">
+            <div class="skill-card__header">
+              <div class="skill-card__name">
+                <i class="uil uil-users-alt skill-card__icon" style="color:var(--accent-green)"></i>
+                Scrum Master
+              </div>
+              <span class="skill-card__percent">85%</span>
+            </div>
+            <div class="skill-card__bar">
+              <div class="skill-card__fill" data-width="85%" style="background: linear-gradient(90deg, var(--accent-green), var(--accent))"></div>
+            </div>
+          </div>
+
+          <div class="skill-card reveal reveal-delay-4">
+            <div class="skill-card__header">
+              <div class="skill-card__name">
+                <i class="uil uil-graduation-cap skill-card__icon" style="color:var(--accent-pink)"></i>
+                Instructional Design
+              </div>
+              <span class="skill-card__percent">80%</span>
+            </div>
+            <div class="skill-card__bar">
+              <div class="skill-card__fill" data-width="80%" style="background: linear-gradient(90deg, var(--accent-pink), var(--accent-alt))"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ══ QUALIFICATION ══════════════════════ -->
+    <section class="section" id="qualification">
+      <div class="container">
+
+        <div class="section__header">
+          <p class="section__label">
+            <i class="uil uil-award"></i>
+            Qualification
+          </p>
+          <h2 class="section__title">My <span>journey</span></h2>
+          <p class="section__subtitle">Education and work experience that shaped who I am today.</p>
+        </div>
+
+        <!-- Tabs -->
+        <div class="qualification__tabs">
+          <button class="qualification__tab-btn active" data-target="education">
+            <i class="uil uil-graduation-cap"></i> Education
+          </button>
+          <button class="qualification__tab-btn" data-target="work">
+            <i class="uil uil-briefcase-alt"></i> Work
+          </button>
+        </div>
+
+        <!-- Education -->
+        <div class="qualification__content active" id="education">
+          <div class="qualification__timeline">
+
+            <div class="qualification__item reveal">
+              <div class="qualification__item-year">2021 – 2025</div>
+              <div class="qualification__item-title">Computer Education & Instructional Technologies</div>
+              <div class="qualification__item-sub">Hacettepe University · GPA 3.13</div>
+            </div>
+
+            <div class="qualification__item reveal reveal-delay-1">
+              <div class="qualification__item-year">2022 – 2023</div>
+              <div class="qualification__item-title">Game Development Program</div>
+              <div class="qualification__item-sub">Google Game and Application Academy</div>
+            </div>
+
+            <div class="qualification__item reveal reveal-delay-2">
+              <div class="qualification__item-year">2021 – Present</div>
+              <div class="qualification__item-title">Graphic Design</div>
+              <div class="qualification__item-sub">Self-Taught · Adobe Illustrator, Photoshop, InDesign</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Work -->
+        <div class="qualification__content" id="work">
+          <div class="qualification__timeline">
+
+            <div class="qualification__item reveal">
+              <div class="qualification__item-year">2022 – 2024</div>
+              <div class="qualification__item-title">Graphic Designer</div>
+              <div class="qualification__item-sub">Center for Sustainable Teaching and Learning</div>
+            </div>
+
+            <div class="qualification__item reveal reveal-delay-1">
+              <div class="qualification__item-year">2024 Summer</div>
+              <div class="qualification__item-title">Trainee — Instructional Designer</div>
+              <div class="qualification__item-sub">BİLTEN Defence</div>
+            </div>
+
+            <div class="qualification__item reveal reveal-delay-2">
+              <div class="qualification__item-year">2024 – Present</div>
+              <div class="qualification__item-title">Part-Time Content Producer</div>
+              <div class="qualification__item-sub">BİLTEN Defence</div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ══ SERVICES ══════════════════════════ -->
+    <section class="section" id="services">
+      <div class="container">
+
+        <div class="section__header">
+          <p class="section__label">
+            <i class="uil uil-briefcase-alt"></i>
+            Services
+          </p>
+          <h2 class="section__title">What I <span>offer</span></h2>
+          <p class="section__subtitle">From pixels to gameplay to pedagogy — I do it all.</p>
+        </div>
+
+        <div class="services__grid">
+
+          <!-- Graphic Design -->
+          <div class="service-card reveal">
+            <div class="service-card__icon" style="background:rgba(244,114,182,0.12);color:var(--accent-pink)">
+              <i class="uil uil-web-grid"></i>
+            </div>
+            <h3 class="service-card__title">Graphic Design</h3>
+            <ul class="service-card__list">
+              <li class="service-card__item"><i class="uil uil-check-circle"></i> Professional logo & brand identity</li>
+              <li class="service-card__item"><i class="uil uil-check-circle"></i> Catalog & publication design</li>
+              <li class="service-card__item"><i class="uil uil-check-circle"></i> Adobe Illustrator & Photoshop</li>
+              <li class="service-card__item"><i class="uil uil-check-circle"></i> Print & digital media</li>
+            </ul>
+          </div>
+
+          <!-- UX/UI Design -->
+          <div class="service-card reveal reveal-delay-1" style="--glow-color: rgba(129,140,248,0.15)">
+            <div class="service-card__icon" style="background:rgba(129,140,248,0.12);color:var(--accent-alt)">
+              <i class="uil uil-mobile-android-alt"></i>
+            </div>
+            <h3 class="service-card__title">UX/UI Designer</h3>
+            <ul class="service-card__list">
+              <li class="service-card__item"><i class="uil uil-check-circle"></i> Mobile app interface design</li>
+              <li class="service-card__item"><i class="uil uil-check-circle"></i> User research & testing</li>
+              <li class="service-card__item"><i class="uil uil-check-circle"></i> Interactive prototypes</li>
+              <li class="service-card__item"><i class="uil uil-check-circle"></i> Responsive web design</li>
+            </ul>
+          </div>
+
+          <!-- Game Development -->
+          <div class="service-card reveal reveal-delay-2">
+            <div class="service-card__icon" style="background:rgba(129,140,248,0.12);color:var(--accent-alt)">
+              <i class="uil uil-game-structure"></i>
+            </div>
+            <h3 class="service-card__title">Game Developer</h3>
+            <ul class="service-card__list">
+              <li class="service-card__item"><i class="uil uil-check-circle"></i> Unity 2D/3D game development</li>
+              <li class="service-card__item"><i class="uil uil-check-circle"></i> C# programming & scripting</li>
+              <li class="service-card__item"><i class="uil uil-check-circle"></i> Game mechanics & level design</li>
+              <li class="service-card__item"><i class="uil uil-check-circle"></i> 3D modeling with Blender</li>
+            </ul>
+          </div>
+
+          <!-- Instructional Design -->
+          <div class="service-card reveal reveal-delay-3">
+            <div class="service-card__icon" style="background:rgba(52,211,153,0.12);color:var(--accent-green)">
+              <i class="uil uil-graduation-cap"></i>
+            </div>
+            <h3 class="service-card__title">Instructional Designer</h3>
+            <ul class="service-card__list">
+              <li class="service-card__item"><i class="uil uil-check-circle"></i> E-Learning module creation</li>
+              <li class="service-card__item"><i class="uil uil-check-circle"></i> SCORM-compliant content</li>
+              <li class="service-card__item"><i class="uil uil-check-circle"></i> Learning path architecture</li>
+              <li class="service-card__item"><i class="uil uil-check-circle"></i> Multimedia storyboarding</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ══ PORTFOLIO ══════════════════════════ -->
+    <section class="section" id="portfolio">
+      <div class="container">
+
+        <div class="section__header">
+          <p class="section__label">
+            <i class="uil uil-scenery"></i>
+            Portfolio
+          </p>
+          <h2 class="section__title">Explore my <span>creative work</span></h2>
+          <p class="section__subtitle">Projects that blend technology, aesthetics, and purpose.</p>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="portfolio__filter">
+          <button class="filter-btn active" data-filter="all">All Work</button>
+          <button class="filter-btn" data-filter="game">🎮 Game Dev</button>
+          <button class="filter-btn" data-filter="uxui">🎨 UX/UI</button>
+          <button class="filter-btn" data-filter="graphic">🖌️ Graphic</button>
+          <button class="filter-btn" data-filter="academic">📚 Academic</button>
+        </div>
+
+        <!-- Bento Grid -->
+        <div class="portfolio__bento">
+
+          <!-- UX/UI Mobile App — Feature (wide) -->
+          <div class="bento-card bento-card--wide portfolio-card reveal" data-category="uxui">
+            <div class="portfolio-card__bg">
+              <svg class="portfolio-card__gradient" viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <linearGradient id="g-uxui" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#4facfe"/>
+                    <stop offset="100%" style="stop-color:#00f2fe"/>
+                  </linearGradient>
+                </defs>
+                <rect width="800" height="280" fill="url(#g-uxui)"/>
+                <!-- Phone mockup -->
+                <rect x="290" y="40" width="90" height="160" rx="10" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                <rect x="298" y="55" width="74" height="10" rx="3" fill="rgba(255,255,255,0.25)"/>
+                <rect x="298" y="70" width="55" height="8" rx="3" fill="rgba(255,255,255,0.15)"/>
+                <rect x="298" y="82" width="55" height="8" rx="3" fill="rgba(255,255,255,0.15)"/>
+                <circle cx="335" cy="130" r="28" fill="rgba(255,255,255,0.12)"/>
+                <path d="M326 130 L332 136 L345 120" stroke="rgba(255,255,255,0.6)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="298" y="168" width="74" height="20" rx="5" fill="rgba(79,172,254,0.5)"/>
+                <!-- Second phone -->
+                <rect x="420" y="60" width="80" height="140" rx="8" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+                <rect x="428" y="72" width="64" height="8" rx="3" fill="rgba(255,255,255,0.20)"/>
+                <rect x="428" y="84" width="45" height="6" rx="3" fill="rgba(255,255,255,0.12)"/>
+                <rect x="428" y="114" width="64" height="55" rx="4" fill="rgba(255,255,255,0.10)"/>
+                <!-- Dots decorative -->
+                <circle cx="150" cy="60" r="40" fill="rgba(255,255,255,0.05)"/>
+                <circle cx="150" cy="60" r="25" fill="rgba(255,255,255,0.05)"/>
+                <circle cx="660" cy="200" r="50" fill="rgba(255,255,255,0.04)"/>
+              </svg>
+            </div>
+            <div class="portfolio-card__overlay"></div>
+            <div class="portfolio-card__content">
+              <div class="portfolio-card__meta">
+                <span class="portfolio-card__tag">UX/UI</span>
+                <span class="portfolio-card__tag">Mobile</span>
+                <span class="portfolio-card__tag">2024</span>
+              </div>
+              <h3 class="portfolio-card__title">UX/UI Mobile App</h3>
+              <p class="portfolio-card__desc">Complete mobile app design featuring authentication flows, user onboarding, and modern UI patterns.</p>
+            </div>
+            <a href="uxui-showcase.html" class="portfolio-card__arrow" aria-label="View project">
+              <i class="uil uil-arrow-up-right"></i>
+            </a>
+          </div>
+
+          <!-- Game Projects — Tall -->
+          <div class="bento-card bento-card--tall portfolio-card reveal reveal-delay-1" data-category="game">
+            <div class="portfolio-card__bg">
+              <svg class="portfolio-card__gradient" viewBox="0 0 280 560" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <linearGradient id="g-game" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#667eea"/>
+                    <stop offset="100%" style="stop-color:#764ba2"/>
+                  </linearGradient>
+                </defs>
+                <rect width="280" height="560" fill="url(#g-game)"/>
+                <!-- Controller shape -->
+                <ellipse cx="140" cy="200" rx="110" ry="80" fill="rgba(255,255,255,0.10)"/>
+                <!-- D-pad -->
+                <rect x="80" y="185" width="40" height="12" rx="6" fill="rgba(255,255,255,0.4)"/>
+                <rect x="98" y="167" width="12" height="40" rx="6" fill="rgba(255,255,255,0.4)"/>
+                <!-- Buttons -->
+                <circle cx="185" cy="183" r="8" fill="rgba(255,165,0,0.6)"/>
+                <circle cx="200" cy="196" r="8" fill="rgba(0,200,100,0.6)"/>
+                <circle cx="185" cy="209" r="8" fill="rgba(255,80,80,0.6)"/>
+                <circle cx="170" cy="196" r="8" fill="rgba(100,150,255,0.6)"/>
+                <!-- Stars -->
+                <circle cx="50" cy="80" r="3" fill="rgba(255,255,255,0.6)"/>
+                <circle cx="230" cy="60" r="2" fill="rgba(255,255,255,0.5)"/>
+                <circle cx="240" cy="440" r="3" fill="rgba(255,255,255,0.4)"/>
+                <circle cx="40" cy="450" r="2" fill="rgba(255,255,255,0.5)"/>
+                <circle cx="140" cy="380" r="50" fill="rgba(255,255,255,0.04)"/>
+              </svg>
+            </div>
+            <div class="portfolio-card__overlay"></div>
+            <div class="portfolio-card__content">
+              <div class="portfolio-card__meta">
+                <span class="portfolio-card__tag">Unity</span>
+                <span class="portfolio-card__tag">C#</span>
+                <span class="portfolio-card__tag">2022–23</span>
+              </div>
+              <h3 class="portfolio-card__title">Game Development Projects</h3>
+              <p class="portfolio-card__desc">2D/3D games built with Unity during the Google Game Academy program.</p>
+            </div>
+            <a href="game-showcase.html" class="portfolio-card__arrow" aria-label="View project">
+              <i class="uil uil-arrow-up-right"></i>
+            </a>
+          </div>
+
+          <!-- Sketch & Mockup -->
+          <div class="bento-card portfolio-card reveal reveal-delay-2" data-category="graphic">
+            <div class="portfolio-card__bg">
+              <svg class="portfolio-card__gradient" viewBox="0 0 265 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <linearGradient id="g-sketch" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#fa709a"/>
+                    <stop offset="100%" style="stop-color:#fee140"/>
+                  </linearGradient>
+                </defs>
+                <rect width="265" height="280" fill="url(#g-sketch)"/>
+                <g transform="translate(60, 70)">
+                  <path d="M115,10 L130,0 L145,10 L130,20 Z" fill="rgba(255,255,255,0.85)"/>
+                  <path d="M110,15 L10,115 L0,130 L15,130 L25,115 L125,15 Z" fill="rgba(255,255,255,0.85)"/>
+                  <circle cx="12" cy="127" r="8" fill="rgba(255,255,255,0.6)"/>
+                  <path d="M30,55 Q45,40 60,55 T90,55" stroke="rgba(255,255,255,0.5)" stroke-width="3" fill="none" stroke-linecap="round"/>
+                  <path d="M40,75 Q55,60 70,75 T100,75" stroke="rgba(255,255,255,0.4)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                  <path d="M50,95 Q65,80 80,95 T110,95" stroke="rgba(255,255,255,0.3)" stroke-width="2" fill="none" stroke-linecap="round"/>
+                </g>
+              </svg>
+            </div>
+            <div class="portfolio-card__overlay"></div>
+            <div class="portfolio-card__content">
+              <div class="portfolio-card__meta">
+                <span class="portfolio-card__tag">Graphic</span>
+                <span class="portfolio-card__tag">Sketch</span>
+              </div>
+              <h3 class="portfolio-card__title">Sketch & Mockup</h3>
+              <p class="portfolio-card__desc">Hand-drawn sketches and digital mockups showcasing creative ideation.</p>
+            </div>
+            <a href="gallery-sketch.html" class="portfolio-card__arrow" aria-label="View project">
+              <i class="uil uil-arrow-up-right"></i>
+            </a>
+          </div>
+
+          <!-- Community Products -->
+          <div class="bento-card portfolio-card reveal reveal-delay-3" data-category="graphic">
+            <div class="portfolio-card__bg">
+              <svg class="portfolio-card__gradient" viewBox="0 0 265 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <linearGradient id="g-community" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#30cfd0"/>
+                    <stop offset="100%" style="stop-color:#330867"/>
+                  </linearGradient>
+                </defs>
+                <rect width="265" height="280" fill="url(#g-community)"/>
+                <g transform="translate(75, 80)">
+                  <circle cx="57.5" cy="40" r="22" fill="rgba(255,255,255,0.85)"/>
+                  <ellipse cx="57.5" cy="90" rx="32" ry="22" fill="rgba(255,255,255,0.85)"/>
+                  <circle cx="15" cy="50" r="16" fill="rgba(255,255,255,0.65)"/>
+                  <ellipse cx="15" cy="90" rx="22" ry="16" fill="rgba(255,255,255,0.65)"/>
+                  <circle cx="100" cy="50" r="16" fill="rgba(255,255,255,0.65)"/>
+                  <ellipse cx="100" cy="90" rx="22" ry="16" fill="rgba(255,255,255,0.65)"/>
+                </g>
+              </svg>
+            </div>
+            <div class="portfolio-card__overlay"></div>
+            <div class="portfolio-card__content">
+              <div class="portfolio-card__meta">
+                <span class="portfolio-card__tag">Community</span>
+                <span class="portfolio-card__tag">Graphic</span>
+              </div>
+              <h3 class="portfolio-card__title">Community Products</h3>
+              <p class="portfolio-card__desc">Design work for community projects and social initiatives.</p>
+            </div>
+            <a href="gallery-community.html" class="portfolio-card__arrow" aria-label="View project">
+              <i class="uil uil-arrow-up-right"></i>
+            </a>
+          </div>
+
+          <!-- Academic Projects — Wide -->
+          <div class="bento-card bento-card--wide portfolio-card reveal reveal-delay-2" data-category="academic">
+            <div class="portfolio-card__bg">
+              <svg class="portfolio-card__gradient" viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <linearGradient id="g-academic" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#a8edea"/>
+                    <stop offset="100%" style="stop-color:#fed6e3"/>
+                  </linearGradient>
+                </defs>
+                <rect width="800" height="280" fill="url(#g-academic)"/>
+                <!-- Books / docs -->
+                <rect x="250" y="80" width="80" height="110" rx="5" fill="rgba(79,172,254,0.7)"/>
+                <rect x="260" y="90" width="60" height="8" rx="3" fill="rgba(255,255,255,0.5)"/>
+                <rect x="260" y="102" width="50" height="6" rx="3" fill="rgba(255,255,255,0.4)"/>
+                <rect x="260" y="112" width="50" height="6" rx="3" fill="rgba(255,255,255,0.4)"/>
+                <rect x="340" y="95" width="70" height="95" rx="5" fill="rgba(79,172,254,0.5)"/>
+                <rect x="350" y="105" width="50" height="6" rx="3" fill="rgba(255,255,255,0.4)"/>
+                <rect x="350" y="115" width="45" height="5" rx="3" fill="rgba(255,255,255,0.3)"/>
+                <!-- Graduation cap -->
+                <polygon points="480,90 440,110 480,130 520,110" fill="rgba(79,172,254,0.8)"/>
+                <rect x="477" y="130" width="6" height="28" fill="rgba(79,172,254,0.7)"/>
+                <polygon points="480,158 470,163 490,163" fill="rgba(79,172,254,0.8)"/>
+                <!-- Stars -->
+                <circle cx="150" cy="60" r="4" fill="rgba(79,172,254,0.4)"/>
+                <circle cx="640" cy="80" r="3" fill="rgba(79,172,254,0.4)"/>
+                <circle cx="680" cy="200" r="5" fill="rgba(79,172,254,0.3)"/>
+              </svg>
+            </div>
+            <div class="portfolio-card__overlay"></div>
+            <div class="portfolio-card__content">
+              <div class="portfolio-card__meta">
+                <span class="portfolio-card__tag">Academic</span>
+                <span class="portfolio-card__tag">Hacettepe</span>
+                <span class="portfolio-card__tag">2021–25</span>
+              </div>
+              <h3 class="portfolio-card__title">Academic Projects</h3>
+              <p class="portfolio-card__desc">University assignments and projects from Hacettepe demonstrating technical and creative skills in educational technology.</p>
+            </div>
+            <a href="gallery-school.html" class="portfolio-card__arrow" aria-label="View project">
+              <i class="uil uil-arrow-up-right"></i>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ══ WHAT I'M UP TO ════════════════════ -->
+    <section class="currently-working section" id="currently-working">
+      <div class="container">
+
+        <div class="section__header">
+          <p class="section__label">
+            <i class="uil uil-rocket"></i>
+            What I'm Up To
+          </p>
+          <h2 class="section__title">Currently <span>learning & building</span></h2>
+          <p class="section__subtitle">Always at the frontier — exploring what's next in AI, design, and digital creation.</p>
+        </div>
+
+        <div class="working__grid">
+
+          <!-- AI Automations -->
+          <div class="working-card reveal">
+            <div class="working-card__header">
+              <div class="working-card__icon-wrap" style="background:rgba(129,140,248,0.15)">
+                <svg viewBox="0 0 52 52" width="52" height="52" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="26" cy="26" r="24" fill="rgba(129,140,248,0.08)"/>
+                  <path d="M26,13 C20,13 15,18 15,24 L15,32 C15,38 20,43 26,43 C32,43 37,38 37,32 L37,24 C37,18 32,13 26,13 Z" fill="#818CF8" opacity="0.8"/>
+                  <line x1="18" y1="22" x2="23" y2="22" stroke="#818CF8" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="18" y1="28" x2="23" y2="28" stroke="#818CF8" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="18" y1="34" x2="23" y2="34" stroke="#818CF8" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="15" cy="22" r="2" fill="#818CF8"/>
+                  <circle cx="15" cy="28" r="2" fill="#818CF8"/>
+                  <circle cx="15" cy="34" r="2" fill="#818CF8"/>
+                  <line x1="29" y1="22" x2="37" y2="22" stroke="#818CF8" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="29" y1="28" x2="37" y2="28" stroke="#818CF8" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="29" y1="34" x2="37" y2="34" stroke="#818CF8" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="37" cy="22" r="2" fill="#818CF8"/>
+                  <circle cx="37" cy="28" r="2" fill="#818CF8"/>
+                  <circle cx="37" cy="34" r="2" fill="#818CF8"/>
+                </svg>
+              </div>
+              <span class="working-card__status status--active">Active</span>
+            </div>
+
+            <h3 class="working-card__title">AI Automations & Workflows</h3>
+            <p class="working-card__description">
+              Exploring cutting-edge AI automation tools and building intelligent workflows to streamline processes.
+              Learning about LLM integrations, API orchestration, and creating smart automation pipelines.
+            </p>
+
+            <!-- Workflow Node Visualization -->
+            <div class="workflow-visual">
+              <svg class="workflow-svg" viewBox="0 0 300 70" xmlns="http://www.w3.org/2000/svg">
+                <!-- Node 1: Input -->
+                <rect x="4" y="20" width="64" height="30" rx="8" fill="rgba(56,189,248,0.15)" stroke="rgba(56,189,248,0.4)" stroke-width="1.5"/>
+                <text x="36" y="38" text-anchor="middle" fill="#38BDF8" font-size="10" font-family="Inter,sans-serif" font-weight="600">Input</text>
+                <!-- Arrow 1 -->
+                <line x1="68" y1="35" x2="90" y2="35" stroke="rgba(129,140,248,0.5)" stroke-width="1.5" stroke-dasharray="4 2"/>
+                <polygon points="90,31 98,35 90,39" fill="rgba(129,140,248,0.6)"/>
+                <!-- Node 2: LLM -->
+                <rect x="98" y="15" width="72" height="40" rx="8" fill="rgba(129,140,248,0.15)" stroke="rgba(129,140,248,0.5)" stroke-width="1.5"/>
+                <text x="134" y="33" text-anchor="middle" fill="#818CF8" font-size="9" font-family="Inter,sans-serif" font-weight="600">LLM</text>
+                <text x="134" y="47" text-anchor="middle" fill="#818CF8" font-size="8" font-family="Inter,sans-serif" opacity="0.7">Process</text>
+                <!-- Arrow 2 -->
+                <line x1="170" y1="35" x2="192" y2="35" stroke="rgba(52,211,153,0.5)" stroke-width="1.5" stroke-dasharray="4 2"/>
+                <polygon points="192,31 200,35 192,39" fill="rgba(52,211,153,0.6)"/>
+                <!-- Node 3: Output -->
+                <rect x="200" y="20" width="64" height="30" rx="8" fill="rgba(52,211,153,0.15)" stroke="rgba(52,211,153,0.4)" stroke-width="1.5"/>
+                <text x="232" y="38" text-anchor="middle" fill="#34D399" font-size="10" font-family="Inter,sans-serif" font-weight="600">Output</text>
+                <!-- Animated dot -->
+                <circle r="3" fill="#38BDF8" opacity="0.9">
+                  <animateMotion dur="2s" repeatCount="indefinite" path="M 36,35 L 134,35 L 232,35"/>
+                  <animate attributeName="opacity" values="0;1;1;0" dur="2s" repeatCount="indefinite"/>
+                </circle>
+              </svg>
+            </div>
+
+            <div class="working-card__tags">
+              <span class="working-tag">AI/ML</span>
+              <span class="working-tag">Automation</span>
+              <span class="working-tag">Workflows</span>
+              <span class="working-tag">API Integration</span>
+            </div>
+
+            <div class="working-card__progress">
+              <div class="progress-track">
+                <div class="progress-fill-bar" data-width="65%" style="width:0%"></div>
+              </div>
+              <div class="progress-label">
+                <span>Learning Progress</span>
+                <span style="color:var(--accent)">65%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI Video Creation -->
+          <div class="working-card reveal reveal-delay-1">
+            <div class="working-card__header">
+              <div class="working-card__icon-wrap" style="background:rgba(244,114,182,0.15)">
+                <svg viewBox="0 0 52 52" width="52" height="52" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="26" cy="26" r="24" fill="rgba(244,114,182,0.08)"/>
+                  <rect x="12" y="19" width="24" height="16" rx="3" fill="#F472B6" opacity="0.8"/>
+                  <polygon points="36,22 44,19 44,33 36,30" fill="#F472B6" opacity="0.8"/>
+                  <circle cx="18" cy="12" r="2.5" fill="#F472B6"/>
+                  <circle cx="34" cy="14" r="1.8" fill="#F472B6"/>
+                  <circle cx="24" cy="10" r="1.5" fill="#F472B6" opacity="0.7"/>
+                  <line x1="18" y1="12" x2="18" y2="7" stroke="#F472B6" stroke-width="1" stroke-linecap="round"/>
+                  <line x1="16" y1="10" x2="20" y2="14" stroke="#F472B6" stroke-width="1" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <span class="working-card__status status--active">Active</span>
+            </div>
+
+            <h3 class="working-card__title">AI Video Creation</h3>
+            <p class="working-card__description">
+              Diving into AI-powered video generation, learning text-to-video tools, and exploring creative applications.
+              Experimenting with various AI models for content creation and video editing automation.
+            </p>
+
+            <!-- Workflow Visualization - Video pipeline -->
+            <div class="workflow-visual">
+              <svg class="workflow-svg" viewBox="0 0 300 70" xmlns="http://www.w3.org/2000/svg">
+                <rect x="4" y="20" width="60" height="30" rx="8" fill="rgba(244,114,182,0.15)" stroke="rgba(244,114,182,0.4)" stroke-width="1.5"/>
+                <text x="34" y="38" text-anchor="middle" fill="#F472B6" font-size="9.5" font-family="Inter,sans-serif" font-weight="600">Prompt</text>
+                <line x1="64" y1="35" x2="86" y2="35" stroke="rgba(244,114,182,0.4)" stroke-width="1.5" stroke-dasharray="4 2"/>
+                <polygon points="86,31 94,35 86,39" fill="rgba(244,114,182,0.6)"/>
+                <rect x="94" y="15" width="72" height="40" rx="8" fill="rgba(244,114,182,0.10)" stroke="rgba(244,114,182,0.35)" stroke-width="1.5"/>
+                <text x="130" y="33" text-anchor="middle" fill="#F472B6" font-size="9" font-family="Inter,sans-serif" font-weight="600">AI Model</text>
+                <text x="130" y="47" text-anchor="middle" fill="#F472B6" font-size="8" font-family="Inter,sans-serif" opacity="0.7">Generate</text>
+                <line x1="166" y1="35" x2="188" y2="35" stroke="rgba(244,114,182,0.4)" stroke-width="1.5" stroke-dasharray="4 2"/>
+                <polygon points="188,31 196,35 188,39" fill="rgba(244,114,182,0.6)"/>
+                <rect x="196" y="20" width="64" height="30" rx="8" fill="rgba(244,114,182,0.15)" stroke="rgba(244,114,182,0.4)" stroke-width="1.5"/>
+                <text x="228" y="38" text-anchor="middle" fill="#F472B6" font-size="10" font-family="Inter,sans-serif" font-weight="600">Video</text>
+                <circle r="3" fill="#F472B6" opacity="0.9">
+                  <animateMotion dur="2.5s" repeatCount="indefinite" path="M 34,35 L 130,35 L 228,35"/>
+                  <animate attributeName="opacity" values="0;1;1;0" dur="2.5s" repeatCount="indefinite"/>
+                </circle>
+              </svg>
+            </div>
+
+            <div class="working-card__tags">
+              <span class="working-tag">AI Video</span>
+              <span class="working-tag">Content Creation</span>
+              <span class="working-tag">Generative AI</span>
+              <span class="working-tag">Video Editing</span>
+            </div>
+
+            <div class="working-card__progress">
+              <div class="progress-track">
+                <div class="progress-fill-bar" data-width="45%" style="width:0%"></div>
+              </div>
+              <div class="progress-label">
+                <span>Learning Progress</span>
+                <span style="color:var(--accent)">45%</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="text-align:center; margin-top: 2.5rem;" class="reveal">
+          <p style="color:var(--text-muted); font-size: var(--fs-sm);">
+            <i class="uil uil-rocket" style="color:var(--accent)"></i>
+            &nbsp;Always exploring new technologies and pushing creative boundaries
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ══ PROJECT CTA ════════════════════════ -->
+    <section class="project-cta section">
+      <div class="container">
+        <div class="project-cta__inner">
+          <div class="project-cta__text reveal">
+            <h2>You have a new project? <span class="gradient-text">Let's talk.</span></h2>
+            <p>Contact me now and let's bring your ideas to life!</p>
+          </div>
+          <a href="#contact" class="btn btn-primary reveal reveal-delay-1">
+            <i class="uil uil-message"></i> Start a Conversation
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ CONTACT ════════════════════════════ -->
+    <section class="section" id="contact">
+      <div class="container">
+
+        <div class="section__header">
+          <p class="section__label">
+            <i class="uil uil-message"></i>
+            Contact
+          </p>
+          <h2 class="section__title">Get in <span>touch</span></h2>
+          <p class="section__subtitle">Have a project in mind or just want to say hi? I'm always open to new opportunities.</p>
+        </div>
+
+        <div class="contact__container">
+
+          <!-- Info -->
+          <div class="contact__info">
+
+            <div class="contact__card reveal">
+              <div class="contact__card-icon"><i class="uil uil-envelope"></i></div>
+              <div class="contact__card-text">
+                <h4>Email</h4>
+                <span>barisdegirmenci35@gmail.com</span>
+              </div>
+            </div>
+
+            <div class="contact__card reveal reveal-delay-1">
+              <div class="contact__card-icon" style="background:rgba(129,140,248,0.12);color:var(--accent-alt)">
+                <i class="uil uil-map-marker"></i>
+              </div>
+              <div class="contact__card-text">
+                <h4>Location</h4>
+                <span>Ankara, Turkey</span>
+              </div>
+            </div>
+
+            <div class="contact__card reveal reveal-delay-2">
+              <div class="contact__card-icon" style="background:rgba(52,211,153,0.12);color:var(--accent-green)">
+                <i class="uil uil-linkedin-alt"></i>
+              </div>
+              <div class="contact__card-text">
+                <h4>LinkedIn</h4>
+                <span>barış-değirmenci</span>
+              </div>
+            </div>
+
+            <div class="contact__card reveal reveal-delay-3">
+              <div class="contact__card-icon" style="background:rgba(244,114,182,0.12);color:var(--accent-pink)">
+                <i class="uil uil-github-alt"></i>
+              </div>
+              <div class="contact__card-text">
+                <h4>GitHub</h4>
+                <span>@bobothemomo</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Form -->
+          <div class="contact__form-wrap reveal reveal-delay-1">
+            <form action="https://formspree.io/f/mpwdojad" method="POST" class="contact__form">
+              <div class="contact__row">
+                <div class="contact__field">
+                  <label class="contact__label" for="name">Full Name</label>
+                  <input type="text" id="name" name="name" class="contact__input" placeholder="John Doe" required>
+                </div>
+                <div class="contact__field">
+                  <label class="contact__label" for="email">Email Address</label>
+                  <input type="email" id="email" name="email" class="contact__input" placeholder="john@example.com" required>
+                </div>
+              </div>
+              <div class="contact__field">
+                <label class="contact__label" for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" class="contact__input" placeholder="Project Inquiry" required>
+              </div>
+              <div class="contact__field">
+                <label class="contact__label" for="message">Message</label>
+                <textarea id="message" name="message" class="contact__textarea" placeholder="Tell me about your project..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary contact__submit">
+                <i class="uil uil-message"></i> Send Message
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__container">
+
+        <div class="footer__brand">
+          <h2 class="footer__brand-name gradient-text">Barış Değirmenci</h2>
+          <p class="footer__brand-desc">Creative Technologist & Instructional Designer based in Ankara, Turkey. Building digital experiences that matter.</p>
+          <div class="footer__social">
+            <a href="https://www.linkedin.com/in/barış-değirmenci-98559a21b/" target="_blank" class="footer__social-link" aria-label="LinkedIn">
+              <i class="uil uil-linkedin-alt"></i>
+            </a>
+            <a href="https://github.com/bobothemomo" target="_blank" class="footer__social-link" aria-label="GitHub">
+              <i class="uil uil-github-alt"></i>
+            </a>
+            <a href="mailto:barisdegirmenci35@gmail.com" class="footer__social-link" aria-label="Email">
+              <i class="uil uil-envelope"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer__col-title">Navigation</h4>
+          <ul class="footer__links">
+            <li><a href="#about"    class="footer__link">About</a></li>
+            <li><a href="#skills"   class="footer__link">Skills</a></li>
+            <li><a href="#services" class="footer__link">Services</a></li>
+            <li><a href="#portfolio"class="footer__link">Portfolio</a></li>
+            <li><a href="#contact"  class="footer__link">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer__col-title">Documents</h4>
+          <ul class="footer__links">
+            <li><a href="Baris_Degirmenci_CV.pdf" download class="footer__link">Download CV</a></li>
+            <li><a href="documents.html" class="footer__link">Documents</a></li>
+            <li><a href="uxui-showcase.html" class="footer__link">UX/UI Showcase</a></li>
+            <li><a href="game-showcase.html" class="footer__link">Game Showcase</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">&#169; <span>2025</span> Barış Değirmenci. Crafted with passion & coffee ☕</p>
+        <p class="footer__copy">Creative Technologist · Ankara, Turkey</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ══ SCROLL TO TOP ══════════════════════ -->
+  <a href="#" class="scrollup" id="scroll-up" aria-label="Scroll to top">
+    <i class="uil uil-arrow-up"></i>
+  </a>
+
+  <!-- ══ SCRIPTS ════════════════════════════ -->
+  <script src="assets/js/main.js"></script>
+
 </body>
 </html>

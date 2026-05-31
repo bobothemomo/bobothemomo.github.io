@@ -1,240 +1,348 @@
-/*============================= BARIŞDEĞIRMENCI PORTFOLIO JS =============================*/
-/* 🔄 Bu dosya, eski projeden (bobothemomo.github.io) içerikler kullanılarak yeni Bedimcode template yapısıyla oluşturulmuştur */
-/* 📅 Tarih: 2025-11-09 */
+/* ==============================================
+   BARIŞDEĞIRMENCI PORTFOLIO — MAIN JAVASCRIPT
+   Custom Cursor · Typewriter · Scroll Reveal
+   Portfolio Filter · Nav · Skill Bars
+   ============================================== */
 
-/*==================== MENU SHOW Y HIDDEN ====================*/
-const navMenu = document.getElementById('nav-menu'),
-      navToggle = document.getElementById('nav-toggle'),
-      navClose = document.getElementById('nav-close')
+'use strict';
 
-/*===== MENU SHOW =====*/
-/* Validate if constant exists */
-if(navToggle){
-    navToggle.addEventListener('click', () =>{
-        navMenu.classList.add('show-menu')
-    })
+/* ─── Custom Cursor ─────────────────────────── */
+const cursor         = document.getElementById('cursor');
+const cursorFollower = document.getElementById('cursor-follower');
+
+if (cursor && cursorFollower) {
+  let mx = -100, my = -100;
+  let fx = -100, fy = -100;
+  let raf;
+
+  const onMouseMove = (e) => {
+    mx = e.clientX;
+    my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top  = my + 'px';
+  };
+
+  const animateFollower = () => {
+    fx += (mx - fx) * 0.13;
+    fy += (my - fy) * 0.13;
+    cursorFollower.style.left = fx + 'px';
+    cursorFollower.style.top  = fy + 'px';
+    raf = requestAnimationFrame(animateFollower);
+  };
+
+  document.addEventListener('mousemove', onMouseMove);
+  animateFollower();
+
+  // Hover expand on interactive elements
+  const hoverTargets = 'a, button, .filter-btn, .portfolio-card, .service-card, .skill-card, .working-card, input, textarea, .nav__toggle';
+  document.querySelectorAll(hoverTargets).forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+
+  // Hide when leaving window
+  document.addEventListener('mouseleave', () => {
+    cursor.style.opacity = '0';
+    cursorFollower.style.opacity = '0';
+  });
+  document.addEventListener('mouseenter', () => {
+    cursor.style.opacity = '1';
+    cursorFollower.style.opacity = '0.7';
+  });
 }
 
-/*===== MENU HIDDEN =====*/
-/* Validate if constant exists */
-if(navClose){
-    navClose.addEventListener('click', () =>{
-        navMenu.classList.remove('show-menu')
-    })
-}
+/* ─── Typewriter Effect ─────────────────────── */
+const typewriterEl = document.querySelector('.hero__typewriter');
+const cursorEl     = document.querySelector('.hero__cursor');
 
-/*==================== REMOVE MENU MOBILE ====================*/
-const navLink = document.querySelectorAll('.nav__link')
+if (typewriterEl) {
+  const words = [
+    'Creative Technologist',
+    'Instructional Designer',
+    'UX/UI Designer',
+    'Game Developer',
+    'Graphic Designer'
+  ];
 
-function linkAction(){
-    const navMenu = document.getElementById('nav-menu')
-    // When we click on each nav__link, we remove the show-menu class
-    navMenu.classList.remove('show-menu')
-}
-navLink.forEach(n => n.addEventListener('click', linkAction))
+  let wordIndex   = 0;
+  let charIndex   = 0;
+  let isDeleting  = false;
+  let typeTimeout;
 
-/*==================== ACCORDION SKILLS ====================*/
-/* 📌 Eski projeden aktarılan beceri listesi: Adobe Illustrator, Unity, C#, etc. */
-const skillsContent = document.getElementsByClassName('skills__content'),
-      skillsHeader = document.querySelectorAll('.skills__header')
+  const type = () => {
+    const currentWord = words[wordIndex];
+    const speed = isDeleting ? 60 : 100;
 
-function toggleSkills(){
-    let itemClass = this.parentNode.className
-
-    for(i = 0; i < skillsContent.length; i++){
-        skillsContent[i].className = 'skills__content skills__close'
+    if (!isDeleting) {
+      charIndex++;
+    } else {
+      charIndex--;
     }
-    if(itemClass === 'skills__content skills__close'){
-        this.parentNode.className = 'skills__content skills__open'
+
+    typewriterEl.textContent = currentWord.substring(0, charIndex);
+
+    if (!isDeleting && charIndex === currentWord.length) {
+      // Pause at end
+      typeTimeout = setTimeout(() => { isDeleting = true; type(); }, 2200);
+      return;
     }
-}
 
-skillsHeader.forEach((el) =>{
-    el.addEventListener('click', toggleSkills)
-})
-
-/*==================== QUALIFICATION TABS ====================*/
-const tabs = document.querySelectorAll('[data-target]'),
-      tabContents = document.querySelectorAll('[data-content]')
-
-tabs.forEach(tab =>{
-    tab.addEventListener('click', () =>{
-        const target = document.querySelector(tab.dataset.target)
-
-        tabContents.forEach(tabContent =>{
-            tabContent.classList.remove('qualification__active')
-        })
-        target.classList.add('qualification__active')
-
-        tabs.forEach(tab =>{
-            tab.classList.remove('qualification__active')
-        })
-        tab.classList.add('qualification__active')
-    })
-})
-
-/*==================== SERVICES MODAL ====================*/
-/* 📌 Eski projeden aktarılan hizmetler: Graphic Design, Game Development, UX/UI, Scrum Master */
-const modalViews = document.querySelectorAll('.services__modal'),
-      modalBtns = document.querySelectorAll('.services__button'),
-      modalCloses = document.querySelectorAll('.services__modal-close')
-
-// Function to open modal
-let modal = function(modalClick){
-    modalViews[modalClick].classList.add('active-modal')
-    document.body.style.overflow = 'hidden' // Prevent body scroll
-}
-
-// Function to close all modals
-const closeAllModals = () => {
-    modalViews.forEach((modalView) => {
-        modalView.classList.remove('active-modal')
-    })
-    document.body.style.overflow = 'auto' // Restore body scroll
-}
-
-// Open modal on button click
-modalBtns.forEach((modalBtn, i) => {
-    modalBtn.addEventListener('click', (e) => {
-        e.preventDefault()
-        e.stopPropagation()
-        modal(i)
-    })
-})
-
-// Close modal on X button click
-modalCloses.forEach((modalClose) => {
-    modalClose.addEventListener('click', (e) => {
-        e.preventDefault()
-        e.stopPropagation()
-        closeAllModals()
-    })
-})
-
-// Close modal when clicking outside (on backdrop)
-modalViews.forEach((modalView) => {
-    modalView.addEventListener('click', (e) => {
-        if (e.target === modalView) {
-            closeAllModals()
-        }
-    })
-})
-
-// Close modal on ESC key press
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        closeAllModals()
+    if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      wordIndex  = (wordIndex + 1) % words.length;
+      typeTimeout = setTimeout(type, 400);
+      return;
     }
-})
 
-/*==================== PORTFOLIO SWIPER  ====================*/
-/* 📌 Eski projeden aktarılan projeler: Sketch & Mockup, Community Products, School Works, Game Projects */
-let swiperPortfolio = new Swiper('.portfolio__container', {
-    cssMode: true,
-    loop: true,
-    spaceBetween: 24,
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-        dynamicBullets: true,
-    },
-    breakpoints: {
-        568: {
-            spaceBetween: 48,
-        }
+    typeTimeout = setTimeout(type, speed);
+  };
+
+  setTimeout(type, 1200);
+}
+
+/* ─── Hero Particles ────────────────────────── */
+const particlesContainer = document.querySelector('.hero__particles');
+if (particlesContainer) {
+  const count = 24;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'hero__particle';
+
+    const left     = Math.random() * 100;
+    const duration = 7 + Math.random() * 8;
+    const delay    = Math.random() * 10;
+    const drift    = (Math.random() - 0.5) * 120;
+    const size     = 2 + Math.random() * 3;
+
+    p.style.cssText = `
+      left: ${left}%;
+      width: ${size}px;
+      height: ${size}px;
+      --duration: ${duration}s;
+      --delay: ${delay}s;
+      --drift: ${drift}px;
+      opacity: 0;
+    `;
+
+    p.style.animationDuration  = duration + 's';
+    p.style.animationDelay     = delay + 's';
+    p.style.setProperty('--drift', drift + 'px');
+
+    particlesContainer.appendChild(p);
+  }
+}
+
+/* ─── Navigation ────────────────────────────── */
+const header     = document.getElementById('header');
+const navMenu    = document.getElementById('nav-menu');
+const navToggle  = document.getElementById('nav-toggle');
+const navOverlay = document.getElementById('nav-overlay');
+const navClose   = document.getElementById('nav-close');
+
+// Sticky header on scroll
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    header?.classList.add('scrolled');
+  } else {
+    header?.classList.remove('scrolled');
+  }
+  updateActiveNavLink();
+  handleScrollTop();
+}, { passive: true });
+
+// Mobile menu toggle
+const openMenu = () => {
+  navMenu?.classList.add('show-menu');
+  navOverlay?.classList.add('show');
+  navToggle?.classList.add('open');
+  document.body.style.overflow = 'hidden';
+};
+
+const closeMenu = () => {
+  navMenu?.classList.remove('show-menu');
+  navOverlay?.classList.remove('show');
+  navToggle?.classList.remove('open');
+  document.body.style.overflow = '';
+};
+
+navToggle?.addEventListener('click', () => {
+  navMenu?.classList.contains('show-menu') ? closeMenu() : openMenu();
+});
+
+navClose?.addEventListener('click', closeMenu);
+navOverlay?.addEventListener('click', closeMenu);
+
+// Close on nav link click
+document.querySelectorAll('.nav__link').forEach(link => {
+  link.addEventListener('click', closeMenu);
+});
+
+/* ─── Active Nav Link on Scroll ─────────────── */
+const updateActiveNavLink = () => {
+  const sections  = document.querySelectorAll('section[id]');
+  const navLinks  = document.querySelectorAll('.nav__link');
+  const scrollY   = window.scrollY + 120;
+
+  let current = '';
+  sections.forEach(section => {
+    if (scrollY >= section.offsetTop) {
+      current = section.id;
     }
-})
+  });
 
-/*==================== TESTIMONIAL ====================*/
-// Only initialize if testimonial section exists and is visible
-const testimonialContainer = document.querySelector('.testimonial__container');
-if (testimonialContainer && window.getComputedStyle(document.querySelector('.testimonial')).display !== 'none') {
-    let swiperTestimonial = new Swiper('.testimonial__container', {
-        loop: true,
-        grabCursor: true,
-        spaceBetween: 48,
+  navLinks.forEach(link => {
+    link.classList.remove('active-link');
+    if (link.getAttribute('href') === '#' + current) {
+      link.classList.add('active-link');
+    }
+  });
+};
 
-        pagination: {
-            el: '.swiper-pagination-testimonial',
-            clickable: true,
-            dynamicBullets: true,
-        },
-        breakpoints:{
-            568:{
-                slidesPerView: 2,
-            }
-        }
-    })
-}
+/* ─── Scroll-Reveal (IntersectionObserver) ──── */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-/*==================== SCROLL SECTIONS ACTIVE LINK ====================*/
-const sections = document.querySelectorAll('section[id]')
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-function scrollActive(){
-    const scrollY = window.pageYOffset
+/* ─── Skill Bar Animations ──────────────────── */
+const skillObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const fills = entry.target.querySelectorAll('.skill-card__fill');
+      fills.forEach(fill => {
+        const target = fill.dataset.width;
+        setTimeout(() => { fill.style.width = target; }, 200);
+      });
+      skillObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
 
-    sections.forEach(current =>{
-        const sectionHeight = current.offsetHeight
-        const sectionTop = current.offsetTop - 50;
-        sectionId = current.getAttribute('id')
+const skillsSection = document.getElementById('skills');
+if (skillsSection) skillObserver.observe(skillsSection);
 
-        if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight){
-            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.add('active-link')
-        }else{
-            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.remove('active-link')
-        }
-    })
-}
-window.addEventListener('scroll', scrollActive)
+/* ─── Progress Bar Animations ───────────────── */
+const progressObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.progress-fill-bar').forEach(bar => {
+        const w = bar.dataset.width;
+        setTimeout(() => { bar.style.width = w; }, 300);
+      });
+      progressObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
 
-/*==================== CHANGE BACKGROUND HEADER ====================*/ 
-function scrollHeader(){
-    const nav = document.getElementById('header')
-    // When the scroll is greater than 200 viewport height, add the scroll-header class to the header tag
-    if(this.scrollY >= 80) nav.classList.add('scroll-header'); else nav.classList.remove('scroll-header')
-}
-window.addEventListener('scroll', scrollHeader)
+document.querySelectorAll('.working-card').forEach(c => progressObserver.observe(c));
 
-/*==================== SHOW SCROLL UP ====================*/ 
-function scrollUp(){
-    const scrollUp = document.getElementById('scroll-up');
-    // When the scroll is higher than 560 viewport height, add the show-scroll class to the a tag with the scroll-top class
-    if(this.scrollY >= 560) scrollUp.classList.add('show-scroll'); else scrollUp.classList.remove('show-scroll')
-}
-window.addEventListener('scroll', scrollUp)
+/* ─── Portfolio Filter ──────────────────────── */
+const filterBtns  = document.querySelectorAll('.filter-btn');
+const portfolioCards = document.querySelectorAll('.portfolio-card');
 
-/*==================== DARK LIGHT THEME ====================*/ 
-/* 📌 Eski projeden aktarılan dark mode özelliği */
-const themeButton = document.getElementById('theme-button')
-const darkTheme = 'dark-theme'
-const iconTheme = 'uil-sun'
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Update active state
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
 
-// Previously selected topic (if user selected)
-const selectedTheme = localStorage.getItem('selected-theme')
-const selectedIcon = localStorage.getItem('selected-icon')
+    const filter = btn.dataset.filter;
 
-// We obtain the current theme that the interface has by validating the dark-theme class
-const getCurrentTheme = () => document.body.classList.contains(darkTheme) ? 'dark' : 'light'
-const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'uil-moon' : 'uil-sun'
+    portfolioCards.forEach(card => {
+      const category = card.dataset.category || '';
+      const show = filter === 'all' || category.includes(filter);
+      card.classList.toggle('hidden', !show);
+    });
+  });
+});
 
-// We validate if the user previously chose a topic
-if (selectedTheme) {
-  // If the validation is fulfilled, we ask what the issue was to know if we activated or deactivated the dark
-  document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme)
-  themeButton.classList[selectedIcon === 'uil-moon' ? 'add' : 'remove'](iconTheme)
-}
+/* ─── Qualification Tabs ────────────────────── */
+const qualTabs    = document.querySelectorAll('.qualification__tab-btn');
+const qualContents= document.querySelectorAll('.qualification__content');
 
-// Activate / deactivate the theme manually with the button
-themeButton.addEventListener('click', () => {
-    // Add or remove the dark / icon theme
-    document.body.classList.toggle(darkTheme)
-    themeButton.classList.toggle(iconTheme)
-    // We save the theme and the current icon that the user chose
-    localStorage.setItem('selected-theme', getCurrentTheme())
-    localStorage.setItem('selected-icon', getCurrentIcon())
-})
+qualTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    qualTabs.forEach(t => t.classList.remove('active'));
+    qualContents.forEach(c => c.classList.remove('active'));
+    tab.classList.add('active');
+    const target = document.getElementById(tab.dataset.target);
+    target?.classList.add('active');
+  });
+});
 
+/* ─── Services Modal ────────────────────────── */
+const serviceButtons = document.querySelectorAll('.service-card__btn');
+const serviceModals  = document.querySelectorAll('.services__modal');
+
+serviceButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const modalId = btn.dataset.modal;
+    const modal = document.getElementById(modalId);
+    modal?.classList.add('active-modal');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+document.querySelectorAll('.services__modal-close').forEach(close => {
+  close.addEventListener('click', () => {
+    serviceModals.forEach(m => m.classList.remove('active-modal'));
+    document.body.style.overflow = '';
+  });
+});
+
+serviceModals.forEach(modal => {
+  modal.addEventListener('click', e => {
+    if (e.target === modal) {
+      modal.classList.remove('active-modal');
+      document.body.style.overflow = '';
+    }
+  });
+});
+
+/* ─── Scroll Top Button ─────────────────────── */
+const scrollTopBtn = document.querySelector('.scrollup');
+
+const handleScrollTop = () => {
+  if (window.scrollY > 400) {
+    scrollTopBtn?.classList.add('show');
+  } else {
+    scrollTopBtn?.classList.remove('show');
+  }
+};
+
+scrollTopBtn?.addEventListener('click', (e) => {
+  e.preventDefault();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+/* ─── Hero Parallax ─────────────────────────── */
+window.addEventListener('scroll', () => {
+  const heroData = document.querySelector('.hero__data');
+  const heroImg  = document.querySelector('.hero__img-wrap');
+  if (!heroData || !heroImg) return;
+
+  const scrolled = window.scrollY;
+  if (scrolled < window.innerHeight) {
+    heroData.style.transform = `translateY(${scrolled * 0.12}px)`;
+    heroImg.style.transform  = `translateY(${scrolled * 0.08}px)`;
+  }
+}, { passive: true });
+
+/* ─── Init ──────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  updateActiveNavLink();
+  handleScrollTop();
+
+  // Trigger reveal for elements already in view
+  document.querySelectorAll('.reveal').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight) {
+      el.classList.add('visible');
+    }
+  });
+});
