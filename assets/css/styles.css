@@ -694,6 +694,7 @@ body::before {
   display: block;
   min-height: 1.2em;
   font-size: clamp(2rem, 5.5vw, 3.5rem);
+  white-space: nowrap;
 }
 
 .hero__typewriter {
@@ -1984,8 +1985,6 @@ body::before {
 /*==================== HERO BLOB IMAGE ====================*/
 .hero__blob { fill: var(--accent); }
 .home__blob-img {
-  width: 190px;
-  height: 190px;
   object-fit: cover;
 }
 
@@ -2150,7 +2149,10 @@ html { scroll-padding-top: calc(var(--header-height) + 1rem); }
   .section__title { font-size: clamp(1.5rem, 5vw, 2.25rem); }
 
   .hero__title { font-size: clamp(2rem, 6vw, 3rem); }
-  .hero__typewriter-wrap { font-size: clamp(1.5rem, 5vw, 2.25rem); }
+  .hero__typewriter-wrap {
+    font-size: clamp(1.25rem, 4.5vw, 1.8rem);
+    white-space: nowrap;
+  }
 
   .about__highlights { grid-template-columns: 1fr; }
 
