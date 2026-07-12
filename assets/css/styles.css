@@ -1438,7 +1438,7 @@ body::before {
   position: absolute;
   top: 1.25rem;
   right: 1.25rem;
-  z-index: 2;
+  z-index: 4;
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -2184,7 +2184,35 @@ html { scroll-padding-top: calc(var(--header-height) + 1rem); }
   .contact__row { grid-template-columns: 1fr; }
 }
 
-/*==================== PRINT ====================*/
+/* ── Stretched link: tüm kart tıklanabilir ──────── */
+/*
+   Z-index hiyerarşisi:
+   bg          → 0 (default)
+   overlay     → 1
+   content     → 2
+   arrow       → 2  (görsel)
+   ::after     → 3  (tıklanabilir alan, tüm kartı kaplar)
+   arrow i     → 4  (ikonun üstte kalması)
+*/
+.portfolio-card__arrow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  cursor: pointer;
+}
+
+/* Arrow ikonu tıklanabilir alanın üstünde görünür kalsın */
+.portfolio-card__arrow i {
+  position: relative;
+  z-index: 4;
+}
+
+/* Kartın tamamı cursor:pointer göstersin */
+.portfolio-card {
+  cursor: pointer;
+}
 @media print {
   .header, .scrollup, #cursor, #cursor-follower { display: none; }
   body { background: #fff; color: #000; }
