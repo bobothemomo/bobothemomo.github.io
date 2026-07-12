@@ -278,6 +278,20 @@ filterBtns.forEach(btn => {
   });
 });
 
+// Navigate to project page when clicking anywhere on the portfolio card
+portfolioCards.forEach(card => {
+  card.addEventListener('click', (e) => {
+    // If the click is already on the arrow link, let it proceed naturally
+    if (e.target.closest('.portfolio-card__arrow')) {
+      return;
+    }
+    const link = card.querySelector('.portfolio-card__arrow');
+    if (link) {
+      link.click();
+    }
+  });
+});
+
 /* ─── Qualification Tabs ────────────────────── */
 const qualTabs    = document.querySelectorAll('.qualification__tab-btn');
 const qualContents= document.querySelectorAll('.qualification__content');
