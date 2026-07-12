@@ -1,366 +1,644 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-        <link rel="stylesheet" href="assets/css/styles.css">
-        <title>Game Development Showcase - Barış Değirmenci</title>
-        
-        <style>
-            .game-page {
-                padding: 6rem 0 2rem;
-                min-height: 100vh;
-            }
-            
-            .breadcrumb {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                margin-bottom: 2rem;
-                font-size: 0.875rem;
-                color: #666;
-            }
-            
-            .breadcrumb a {
-                color: #6f42c1;
-                text-decoration: none;
-                transition: color 0.3s;
-            }
-            
-            .breadcrumb a:hover {
-                color: #5a32a3;
-            }
-            
-            .breadcrumb-separator {
-                color: #999;
-            }
-            
-            .game-header {
-                text-align: center;
-                margin-bottom: 3rem;
-            }
-            
-            .game-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-                gap: 2rem;
-                margin-bottom: 3rem;
-            }
-            
-            .game-card {
-                background: white;
-                border-radius: 1rem;
-                overflow: hidden;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-                transition: transform 0.3s, box-shadow 0.3s;
-            }
-            
-            .game-card:hover {
-                transform: translateY(-10px);
-                box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-            }
-            
-            .game-video {
-                position: relative;
-                width: 100%;
-                padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-                height: 0;
-                overflow: hidden;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                cursor: pointer;
-                transition: transform 0.3s, opacity 0.3s;
-            }
-            
-            .game-video:hover {
-                opacity: 0.9;
-            }
-            
-            .game-video-overlay {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                background: rgba(0, 0, 0, 0.3);
-                transition: background 0.3s;
-            }
-            
-            .game-video:hover .game-video-overlay {
-                background: rgba(0, 0, 0, 0.5);
-            }
-            
-            .play-icon {
-                width: 80px;
-                height: 80px;
-                background: rgba(255, 255, 255, 0.95);
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin-bottom: 1rem;
-                transition: transform 0.3s;
-            }
-            
-            .game-video:hover .play-icon {
-                transform: scale(1.1);
-            }
-            
-            .play-icon i {
-                font-size: 2.5rem;
-                color: #667eea;
-                margin-left: 5px;
-            }
-            
-            .video-label {
-                color: white;
-                font-size: 1rem;
-                font-weight: 600;
-                text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-            }
-            
-            .game-info {
-                padding: 1.5rem;
-            }
-            
-            .game-title {
-                font-size: 1.5rem;
-                color: var(--title-color);
-                font-weight: var(--font-semi-bold);
-                margin-bottom: 0.75rem;
-            }
-            
-            .game-description {
-                color: var(--text-color);
-                font-size: 0.938rem;
-                line-height: 1.6;
-                margin-bottom: 1rem;
-            }
-            
-            .game-tags {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 0.5rem;
-                margin-bottom: 1rem;
-            }
-            
-            .game-tag {
-                padding: 0.25rem 0.75rem;
-                background: var(--first-color-lighter);
-                color: var(--first-color);
-                border-radius: 1rem;
-                font-size: 0.75rem;
-                font-weight: var(--font-medium);
-            }
-            
-            .game-links {
-                display: flex;
-                gap: 0.75rem;
-                flex-wrap: wrap;
-            }
-            
-            .game-btn {
-                padding: 0.75rem 1.5rem;
-                border-radius: 0.5rem;
-                text-decoration: none;
-                font-size: 0.875rem;
-                font-weight: var(--font-medium);
-                transition: all 0.3s;
-                display: inline-flex;
-                align-items: center;
-                gap: 0.5rem;
-            }
-            
-            .game-btn-primary {
-                background: var(--first-color);
-                color: white;
-            }
-            
-            .game-btn-primary:hover {
-                background: var(--first-color-alt);
-            }
-            
-            .game-btn-secondary {
-                background: var(--first-color-lighter);
-                color: var(--first-color);
-            }
-            
-            .game-btn-secondary:hover {
-                background: var(--first-color-light);
-            }
-            
-            .back-button {
-                display: inline-flex;
-                align-items: center;
-                gap: 0.5rem;
-                margin-bottom: 2rem;
-                padding: 0.75rem 1.5rem;
-                background: var(--first-color);
-                color: white;
-                border-radius: 0.5rem;
-                text-decoration: none;
-                transition: background 0.3s;
-            }
-            
-            .back-button:hover {
-                background: var(--first-color-alt);
-            }
-            
-            .youtube-channel {
-                text-align: center;
-                margin-top: 3rem;
-                padding: 2rem;
-                background: var(--first-color-lighter);
-                border-radius: 1rem;
-            }
-            
-            .youtube-channel h3 {
-                color: var(--title-color);
-                margin-bottom: 1rem;
-            }
-            
-            .youtube-channel p {
-                color: var(--text-color);
-                margin-bottom: 1.5rem;
-            }
-            
-            @media screen and (max-width: 768px) {
-                .game-grid {
-                    grid-template-columns: 1fr;
-                }
-            }
-        </style>
-    </head>
-    <body>
-        <div class="game-page">
-            <div class="container">
-                <nav class="breadcrumb">
-                    <a href="index.html">Home</a>
-                    <span class="breadcrumb-separator">/</span>
-                    <a href="index.html#portfolio">Portfolio</a>
-                    <span class="breadcrumb-separator">/</span>
-                    <span>Game Development</span>
-                </nav>
-                
-                <a href="index.html#portfolio" class="back-button">
-                    <i class="uil uil-arrow-left"></i>
-                    Back to Portfolio
-                </a>
-                
-                <div class="game-header">
-                    <h1 class="section__title">Game Development Showcase</h1>
-                    <p class="section__subtitle">Unity game projects showcasing gameplay, mechanics, and design</p>
-                </div>
-                
-                <div class="game-grid">
-                    <!-- Sergio Game -->
-                    <div class="game-card">
-                        <a href="https://www.youtube.com/watch?v=M8eoCbo5je8" target="_blank" class="game-video" style="text-decoration: none; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
-                            <div class="game-video-overlay">
-                                <div class="play-icon">
-                                    <i class="uil uil-play"></i>
-                                </div>
-                                <span class="video-label">Click to Watch Gameplay</span>
-                            </div>
-                        </a>
-                        <div class="game-info">
-                            <h3 class="game-title">Sergio</h3>
-                            <p class="game-description">
-                                An action-packed Unity 2D game featuring platformer mechanics, enemy AI, and engaging level design. 
-                                Players navigate through challenging levels while collecting items and defeating enemies.
-                            </p>
-                            <div class="game-tags">
-                                <span class="game-tag">Unity</span>
-                                <span class="game-tag">C#</span>
-                                <span class="game-tag">2D Platformer</span>
-                                <span class="game-tag">Action</span>
-                            </div>
-                            <div class="game-links">
-                                <a href="https://www.youtube.com/watch?v=M8eoCbo5je8" target="_blank" class="game-btn game-btn-primary">
-                                    <i class="uil uil-youtube"></i> Watch on YouTube
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- The Pearl Game -->
-                    <div class="game-card">
-                        <a href="https://www.youtube.com/watch?v=HBKviZ6l_bE" target="_blank" class="game-video" style="text-decoration: none; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-                            <div class="game-video-overlay">
-                                <div class="play-icon">
-                                    <i class="uil uil-play"></i>
-                                </div>
-                                <span class="video-label">Click to Watch Gameplay</span>
-                            </div>
-                        </a>
-                        <div class="game-info">
-                            <h3 class="game-title">The Pearl</h3>
-                            <p class="game-description">
-                                An immersive adventure game with puzzle-solving elements and atmospheric storytelling. 
-                                Explore mysterious environments and uncover the secrets of the pearl.
-                            </p>
-                            <div class="game-tags">
-                                <span class="game-tag">Unity</span>
-                                <span class="game-tag">C#</span>
-                                <span class="game-tag">3D</span>
-                                <span class="game-tag">Adventure</span>
-                                <span class="game-tag">Puzzle</span>
-                            </div>
-                            <div class="game-links">
-                                <a href="https://www.youtube.com/watch?v=HBKviZ6l_bE" target="_blank" class="game-btn game-btn-primary">
-                                    <i class="uil uil-youtube"></i> Watch on YouTube
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Academia of Googlewoods -->
-                    <div class="game-card">
-                        <a href="https://www.youtube.com/watch?v=3NCzQ8MkVKU" target="_blank" class="game-video" style="text-decoration: none; background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
-                            <div class="game-video-overlay">
-                                <div class="play-icon">
-                                    <i class="uil uil-play"></i>
-                                </div>
-                                <span class="video-label">Click to Watch Gameplay</span>
-                            </div>
-                        </a>
-                        <div class="game-info">
-                            <h3 class="game-title">Academia of Googlewoods</h3>
-                            <p class="game-description">
-                                A creative educational game set in a magical academy. Features interactive learning mechanics, 
-                                character progression, and engaging gameplay that combines fun with educational content.
-                            </p>
-                            <div class="game-tags">
-                                <span class="game-tag">Unity</span>
-                                <span class="game-tag">C#</span>
-                                <span class="game-tag">Educational</span>
-                                <span class="game-tag">RPG</span>
-                            </div>
-                            <div class="game-links">
-                                <a href="https://www.youtube.com/watch?v=3NCzQ8MkVKU" target="_blank" class="game-btn game-btn-primary">
-                                    <i class="uil uil-youtube"></i> Watch on YouTube
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="youtube-channel">
-                    <h3>Want to see more?</h3>
-                    <p>Visit my YouTube channel for more game development videos, tutorials, and behind-the-scenes content!</p>
-                    <a href="https://www.youtube.com/@barisd2695" target="_blank" class="game-btn game-btn-primary">
-                        <i class="uil uil-youtube"></i> Visit YouTube Channel
-                    </a>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Game Development Showcase — Barış Değirmenci. Unity 2D/3D games including Sergio, The Pearl, and Academia of Googlewoods.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <title>Game Development Showcase — Barış Değirmenci</title>
 
+  <style>
+    /* ── Page Layout ───────────────────────────── */
+    .subpage {
+      min-height: 100vh;
+      background: var(--bg-primary);
+      padding-top: calc(var(--header-height) + 2rem);
+      padding-bottom: 6rem;
+    }
+
+    /* ── Breadcrumb ────────────────────────────── */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: var(--fs-sm);
+      color: var(--text-muted);
+      margin-bottom: 3rem;
+    }
+
+    .breadcrumb a {
+      color: var(--text-secondary);
+      transition: color var(--transition-fast);
+    }
+
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb-sep { opacity: 0.4; }
+    .breadcrumb span:last-child { color: var(--accent); font-weight: 600; }
+
+    /* ── Page Header ───────────────────────────── */
+    .page-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .page-header .section__label { margin-bottom: 1rem; }
+
+    .page-title {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    .page-title span {
+      background: linear-gradient(135deg, #818CF8, #38BDF8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-subtitle {
+      font-size: var(--fs-lg);
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin-inline: auto;
+    }
+
+    /* ── Game Grid ─────────────────────────────── */
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.75rem;
+      margin-bottom: 4rem;
+    }
+
+    /* ── Game Card ─────────────────────────────── */
+    .game-card {
+      background: rgba(30, 41, 59, 0.65);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border: 1px solid rgba(148, 163, 184, 0.10);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1),
+                  box-shadow 0.35s cubic-bezier(0.4,0,0.2,1),
+                  border-color 0.35s ease;
+      position: relative;
+    }
+
+    .game-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(129,140,248,0.15);
+      border-color: rgba(129,140,248,0.35);
+    }
+
+    /* ── Video Thumbnail ───────────────────────── */
+    .game-thumbnail {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .game-thumbnail__bg {
+      position: absolute;
+      inset: 0;
+      transition: transform 0.5s ease;
+    }
+
+    .game-card:hover .game-thumbnail__bg {
+      transform: scale(1.04);
+    }
+
+    /* YouTube thumbnail image */
+    .game-thumbnail__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Overlay */
+    .game-thumbnail__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.10) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      transition: background 0.3s ease;
+    }
+
+    .game-card:hover .game-thumbnail__overlay {
+      background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.15) 100%);
+    }
+
+    /* Play button */
+    .play-btn {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.95);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.3s ease,
+                  background 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      flex-shrink: 0;
+    }
+
+    .play-btn i {
+      font-size: 2rem;
+      color: #818CF8;
+      margin-left: 4px;
+      transition: color 0.2s;
+    }
+
+    .game-card:hover .play-btn {
+      transform: scale(1.12);
+      box-shadow: 0 8px 32px rgba(129,140,248,0.5);
+      background: #fff;
+    }
+
+    .game-card:hover .play-btn i { color: #6366F1; }
+
+    .play-label {
+      color: #fff;
+      font-size: var(--fs-sm);
+      font-weight: 700;
+      font-family: var(--font-display);
+      letter-spacing: 0.04em;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .game-card:hover .play-label {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* YouTube badge top-right */
+    .yt-badge {
+      position: absolute;
+      top: 0.875rem;
+      right: 0.875rem;
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.3rem 0.75rem;
+      background: rgba(255, 0, 0, 0.85);
+      backdrop-filter: blur(6px);
+      border-radius: 99px;
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.04em;
+      font-family: var(--font-display);
+    }
+
+    .yt-badge i { font-size: 0.9rem; }
+
+    /* ── Game Info ─────────────────────────────── */
+    .game-info {
+      padding: 1.75rem;
+    }
+
+    .game-title {
+      font-size: var(--fs-2xl);
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 0.625rem;
+      letter-spacing: -0.01em;
+    }
+
+    .game-description {
+      font-size: var(--fs-sm);
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Tags */
+    .game-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .game-tag {
+      padding: 0.25rem 0.75rem;
+      background: rgba(129,140,248,0.12);
+      color: #818CF8;
+      border: 1px solid rgba(129,140,248,0.25);
+      border-radius: 99px;
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      font-family: var(--font-display);
+    }
+
+    /* Watch button */
+    .game-watch-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, rgba(255,0,0,0.8), rgba(200,0,0,0.9));
+      color: #fff;
+      border-radius: var(--radius-md);
+      font-size: var(--fs-sm);
+      font-weight: 700;
+      font-family: var(--font-display);
+      border: none;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 4px 16px rgba(255,0,0,0.25);
+      text-decoration: none;
+    }
+
+    .game-watch-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(255,0,0,0.4);
+    }
+
+    .game-watch-btn i { font-size: 1.25rem; }
+
+    /* ── YouTube CTA ───────────────────────────── */
+    .yt-cta {
+      background: rgba(30, 41, 59, 0.65);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 0, 0, 0.15);
+      border-radius: var(--radius-xl);
+      padding: 3rem 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .yt-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(255,0,0,0.06) 0%, transparent 70%);
+    }
+
+    .yt-cta__icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(255,0,0,0.12);
+      border: 1px solid rgba(255,0,0,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-inline: auto;
+      margin-bottom: 1.25rem;
+      font-size: 2rem;
+      color: #FF4444;
+      position: relative;
+    }
+
+    .yt-cta h3 {
+      font-size: var(--fs-2xl);
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+      position: relative;
+    }
+
+    .yt-cta p {
+      font-size: var(--fs-base);
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      max-width: 480px;
+      margin-inline: auto;
+      position: relative;
+    }
+
+    .yt-cta p { margin-bottom: 2rem; }
+
+    /* ── Back Button ───────────────────────────── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.625rem 1.25rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(148,163,184,0.12);
+      border-radius: var(--radius-md);
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 3rem;
+      transition: all 0.25s ease;
+      font-family: var(--font-display);
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(56,189,248,0.06);
+    }
+
+    /* ── Reveal animations ─────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ── Orb BG ────────────────────────────────── */
+    .page-bg-orb {
+      position: fixed;
+      pointer-events: none;
+      z-index: 0;
+      border-radius: 50%;
+      opacity: 0.45;
+    }
+
+    .page-bg-orb-1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(129,140,248,0.10) 0%, transparent 70%);
+      top: -120px; right: -120px;
+    }
+
+    .page-bg-orb-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(56,189,248,0.07) 0%, transparent 70%);
+      bottom: 0; left: -100px;
+    }
+
+    @media (max-width: 640px) {
+      .game-grid { grid-template-columns: 1fr; }
+      .yt-cta { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BG Orbs -->
+  <div class="page-bg-orb page-bg-orb-1"></div>
+  <div class="page-bg-orb page-bg-orb-2"></div>
+
+  <!-- ── NAV ─────────────────────────────────── -->
+  <header class="header scrolled" id="header">
+    <nav class="nav container">
+      <a href="index.html" class="nav__logo">
+        <span class="nav__logo-mark">BD</span>
+        Barış Değirmenci
+      </a>
+      <div class="nav__menu" id="nav-menu">
+        <a href="index.html#about"     class="nav__link">About</a>
+        <a href="index.html#skills"    class="nav__link">Skills</a>
+        <a href="index.html#portfolio" class="nav__link active-link">Portfolio</a>
+        <a href="index.html#contact"   class="nav__link">Contact</a>
+      </div>
+      <div class="nav__btns">
+        <button class="nav__toggle" id="nav-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <div class="nav__overlay" id="nav-overlay"></div>
+
+  <!-- ── MAIN ────────────────────────────────── -->
+  <main class="subpage">
+    <div class="container" style="position:relative;z-index:1;">
+
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb">
+        <a href="index.html"><i class="uil uil-estate"></i> Home</a>
+        <span class="breadcrumb-sep">/</span>
+        <a href="index.html#portfolio">Portfolio</a>
+        <span class="breadcrumb-sep">/</span>
+        <span>Game Development</span>
+      </nav>
+
+      <!-- Back button -->
+      <a href="index.html#portfolio" class="back-link">
+        <i class="uil uil-arrow-left"></i> Back to Portfolio
+      </a>
+
+      <!-- Page Header -->
+      <div class="page-header">
+        <p class="section__label reveal">
+          <i class="uil uil-game-structure"></i>
+          Game Development
+        </p>
+        <h1 class="page-title reveal reveal-delay-1">
+          Unity <span>Game Projects</span>
+        </h1>
+        <p class="page-subtitle reveal reveal-delay-2">
+          Unity 2D/3D games showcasing gameplay mechanics, AI systems, and creative level design — built during the Google Game Academy.
+        </p>
+      </div>
+
+      <!-- Game Cards Grid -->
+      <div class="game-grid">
+
+        <!-- ─── Sergio ─────────────────────────── -->
+        <div class="game-card reveal">
+          <!-- Thumbnail / Video Preview -->
+          <a href="https://www.youtube.com/watch?v=M8eoCbo5je8" target="_blank" rel="noopener" class="game-thumbnail" style="display:block;text-decoration:none;">
+            <div class="game-thumbnail__bg" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+              <!-- YouTube thumbnail image (loads from YouTube CDN) -->
+              <img
+                class="game-thumbnail__img"
+                src="https://img.youtube.com/vi/M8eoCbo5je8/maxresdefault.jpg"
+                onerror="this.style.display='none'"
+                alt="Sergio gameplay preview"
+                loading="lazy"
+              >
+            </div>
+            <div class="game-thumbnail__overlay">
+              <div class="play-btn">
+                <i class="uil uil-play"></i>
+              </div>
+              <span class="play-label">Watch Gameplay</span>
+            </div>
+            <div class="yt-badge">
+              <i class="uil uil-youtube"></i> YouTube
+            </div>
+          </a>
+
+          <div class="game-info">
+            <h3 class="game-title">Sergio</h3>
+            <p class="game-description">
+              An action-packed Unity 2D game featuring platformer mechanics, enemy AI, and engaging level design.
+              Players navigate through challenging levels while collecting items and defeating enemies.
+            </p>
+            <div class="game-tags">
+              <span class="game-tag">Unity</span>
+              <span class="game-tag">C#</span>
+              <span class="game-tag">2D Platformer</span>
+              <span class="game-tag">Action</span>
+            </div>
+            <a href="https://www.youtube.com/watch?v=M8eoCbo5je8" target="_blank" rel="noopener" class="game-watch-btn">
+              <i class="uil uil-youtube"></i> Watch on YouTube
+            </a>
+          </div>
+        </div>
+
+        <!-- ─── The Pearl ──────────────────────── -->
+        <div class="game-card reveal reveal-delay-1">
+          <a href="https://www.youtube.com/watch?v=HBKviZ6l_bE" target="_blank" rel="noopener" class="game-thumbnail" style="display:block;text-decoration:none;">
+            <div class="game-thumbnail__bg" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+              <img
+                class="game-thumbnail__img"
+                src="https://img.youtube.com/vi/HBKviZ6l_bE/maxresdefault.jpg"
+                onerror="this.style.display='none'"
+                alt="The Pearl gameplay preview"
+                loading="lazy"
+              >
+            </div>
+            <div class="game-thumbnail__overlay">
+              <div class="play-btn">
+                <i class="uil uil-play"></i>
+              </div>
+              <span class="play-label">Watch Gameplay</span>
+            </div>
+            <div class="yt-badge">
+              <i class="uil uil-youtube"></i> YouTube
+            </div>
+          </a>
+
+          <div class="game-info">
+            <h3 class="game-title">The Pearl</h3>
+            <p class="game-description">
+              An immersive adventure game with puzzle-solving elements and atmospheric storytelling.
+              Explore mysterious environments and uncover the secrets of the pearl.
+            </p>
+            <div class="game-tags">
+              <span class="game-tag">Unity</span>
+              <span class="game-tag">C#</span>
+              <span class="game-tag">3D</span>
+              <span class="game-tag">Adventure</span>
+              <span class="game-tag">Puzzle</span>
+            </div>
+            <a href="https://www.youtube.com/watch?v=HBKviZ6l_bE" target="_blank" rel="noopener" class="game-watch-btn">
+              <i class="uil uil-youtube"></i> Watch on YouTube
+            </a>
+          </div>
+        </div>
+
+        <!-- ─── Academia of Googlewoods ────────── -->
+        <div class="game-card reveal reveal-delay-2">
+          <a href="https://www.youtube.com/watch?v=3NCzQ8MkVKU" target="_blank" rel="noopener" class="game-thumbnail" style="display:block;text-decoration:none;">
+            <div class="game-thumbnail__bg" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+              <img
+                class="game-thumbnail__img"
+                src="https://img.youtube.com/vi/3NCzQ8MkVKU/maxresdefault.jpg"
+                onerror="this.style.display='none'"
+                alt="Academia of Googlewoods gameplay preview"
+                loading="lazy"
+              >
+            </div>
+            <div class="game-thumbnail__overlay">
+              <div class="play-btn">
+                <i class="uil uil-play"></i>
+              </div>
+              <span class="play-label">Watch Gameplay</span>
+            </div>
+            <div class="yt-badge">
+              <i class="uil uil-youtube"></i> YouTube
+            </div>
+          </a>
+
+          <div class="game-info">
+            <h3 class="game-title">Academia of Googlewoods</h3>
+            <p class="game-description">
+              A creative educational game set in a magical academy. Features interactive learning mechanics,
+              character progression, and engaging gameplay that combines fun with educational content.
+            </p>
+            <div class="game-tags">
+              <span class="game-tag">Unity</span>
+              <span class="game-tag">C#</span>
+              <span class="game-tag">Educational</span>
+              <span class="game-tag">RPG</span>
+            </div>
+            <a href="https://www.youtube.com/watch?v=3NCzQ8MkVKU" target="_blank" rel="noopener" class="game-watch-btn">
+              <i class="uil uil-youtube"></i> Watch on YouTube
+            </a>
+          </div>
+        </div>
+
+      </div><!-- /game-grid -->
+
+      <!-- YouTube CTA -->
+      <div class="yt-cta reveal">
+        <div class="yt-cta__icon">
+          <i class="uil uil-youtube"></i>
+        </div>
+        <h3>Want to see more?</h3>
+        <p>Visit my YouTube channel for more gameplay videos, dev logs, and behind-the-scenes content!</p>
+        <a href="https://www.youtube.com/@barisd2695" target="_blank" rel="noopener" class="game-watch-btn" style="display:inline-flex;">
+          <i class="uil uil-external-link-alt"></i> Visit YouTube Channel
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ── Footer ───────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom" style="border-top:1px solid rgba(148,163,184,0.08); padding-top:2rem;">
+        <p class="footer__copy">
+          <a href="index.html" style="color:var(--accent); font-weight:600;">← Back to Portfolio</a>
+        </p>
+        <p class="footer__copy">&#169; <span>2025</span> Barış Değirmenci</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="scrollup" id="scroll-up" aria-label="Scroll to top">
+    <i class="uil uil-arrow-up"></i>
+  </a>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Scroll top button
+    const scrollUpBtn = document.getElementById('scroll-up');
+    window.addEventListener('scroll', () => {
+      scrollUpBtn?.classList.toggle('show', window.scrollY > 400);
+    }, { passive: true });
+    scrollUpBtn?.addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+    // Mobile nav
+    const navToggle  = document.getElementById('nav-toggle');
+    const navMenu    = document.getElementById('nav-menu');
+    const navOverlay = document.getElementById('nav-overlay');
+    const toggle = () => {
+      navMenu?.classList.toggle('show-menu');
+      navOverlay?.classList.toggle('show');
+      navToggle?.classList.toggle('open');
+    };
+    navToggle?.addEventListener('click', toggle);
+    navOverlay?.addEventListener('click', toggle);
+  </script>
+</body>
+</html>
