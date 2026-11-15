@@ -1,415 +1,399 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-        <link rel="stylesheet" href="assets/css/styles.css">
-        <title>School Works - Barış Değirmenci</title>
-        
-        <style>
-            .gallery-page { padding: 6rem 0 2rem; min-height: 100vh; }
-            .breadcrumb {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                margin-bottom: 2rem;
-                font-size: 0.875rem;
-                color: #666;
-            }
-            .breadcrumb a {
-                color: #6f42c1;
-                text-decoration: none;
-                transition: color 0.3s;
-            }
-            .breadcrumb a:hover {
-                color: #5a32a3;
-            }
-            .breadcrumb-separator {
-                color: #999;
-            }
-            .gallery-header { text-align: center; margin-bottom: 3rem; }
-            .gallery-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: 2rem;
-                margin-bottom: 3rem;
-            }
-            .gallery-item {
-                position: relative;
-                border-radius: 1rem;
-                overflow: hidden;
-                cursor: pointer;
-                transition: transform 0.3s;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            }
-            .gallery-item:hover { transform: translateY(-10px); }
-            .gallery-item img {
-                width: 100%;
-                height: 300px;
-                object-fit: cover;
-                display: block;
-            }
-            .gallery-overlay {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-                opacity: 0;
-                transition: opacity 0.3s;
-                display: flex;
-                align-items: flex-end;
-                padding: 1.5rem;
-            }
-            .gallery-item:hover .gallery-overlay { opacity: 1; }
-            .gallery-overlay-text { color: white; font-weight: 500; }
-            .lightbox {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: rgba(0,0,0,0.95);
-                z-index: 10000;
-                align-items: center;
-                justify-content: center;
-                padding: 2rem;
-            }
-            .lightbox.active { display: flex; }
-            .lightbox-content { max-width: 90%; max-height: 90vh; position: relative; }
-            .lightbox-img { max-width: 100%; max-height: 85vh; object-fit: contain; }
-            .lightbox-close {
-                position: absolute;
-                top: -50px;
-                right: 0;
-                color: white;
-                font-size: 2rem;
-                cursor: pointer;
-                background: none;
-                border: none;
-                padding: 0.5rem 1rem;
-            }
-            .lightbox-nav {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                background: rgba(255,255,255,0.2);
-                color: white;
-                border: none;
-                padding: 1rem;
-                font-size: 2rem;
-                cursor: pointer;
-                border-radius: 50%;
-                transition: background 0.3s;
-            }
-            .lightbox-nav:hover { background: rgba(255,255,255,0.3); }
-            .lightbox-prev { left: -60px; }
-            .lightbox-next { right: -60px; }
-            .back-button {
-                display: inline-flex;
-                align-items: center;
-                gap: 0.5rem;
-                margin-bottom: 2rem;
-                padding: 0.75rem 1.5rem;
-                background: var(--first-color);
-                color: white;
-                border-radius: 0.5rem;
-                text-decoration: none;
-                transition: background 0.3s;
-            }
-            .back-button:hover { background: var(--first-color-alt); }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="3D Modeling, Academic Projects & Institutional Publications — Barış Değirmenci. Blender 3D character modeling, cybersecurity awareness design, and Hacettepe STL publications.">
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('bd-theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') {
+        t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="icon" type="image/png" href="assets/img/bd-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <title>3D Modeling &amp; Academic Works — Barış Değirmenci</title>
+</head>
+<body>
 
-            /* Academic Catalogs & Publications */
-            .catalogs-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-                gap: 2rem;
-                margin-bottom: 3rem;
-            }
-            
-            .catalog-card {
-                display: flex;
-                flex-direction: column;
-                padding: 2rem;
-                gap: 1.5rem;
-                border-radius: var(--radius-xl);
-                background: var(--bg-card);
-                border: 1px solid var(--border-subtle);
-                transition: all var(--transition-base);
-            }
-            
-            .catalog-card__icon {
-                width: 54px;
-                height: 54px;
-                border-radius: var(--radius-md);
-                background: rgba(56, 189, 248, 0.1);
-                color: var(--accent);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 1.75rem;
-            }
-            
-            .catalog-card__content {
-                display: flex;
-                flex-direction: column;
-                gap: 0.75rem;
-                flex-grow: 1;
-            }
-            
-            .catalog-card__title {
-                font-size: var(--fs-lg);
-                font-weight: 700;
-                color: var(--text-primary);
-            }
-            
-            .catalog-card__desc {
-                font-size: var(--fs-sm);
-                color: var(--text-secondary);
-                line-height: 1.6;
-                flex-grow: 1;
-            }
-            
-            .catalog-card__actions {
-                display: flex;
-                gap: 0.75rem;
-                margin-top: 1rem;
-            }
-            
-            .catalog-card__actions .btn {
-                padding: 0.6rem 1.2rem;
-                font-size: var(--fs-xs);
-                border-radius: var(--radius-sm);
-            }
-        </style>
-    </head>
-    <body>
-        <div class="gallery-page">
-            <div class="container">
-                <nav class="breadcrumb">
-                    <a href="index.html">Home</a>
-                    <span class="breadcrumb-separator">/</span>
-                    <a href="index.html#portfolio">Portfolio</a>
-                    <span class="breadcrumb-separator">/</span>
-                    <span>School Works</span>
-                </nav>
-                
-                <a href="index.html#portfolio" class="back-button">
-                    <i class="uil uil-arrow-left"></i>
-                    Back to Portfolio
-                </a>
-                
-                <div class="gallery-header">
-                    <h1 class="section__title">School Works</h1>
-                    <p class="section__subtitle">Academic projects and assignments from Hacettepe University</p>
-                </div>
-                
-                <div class="gallery-grid">
-                    <div class="gallery-item" onclick="openLightbox(0)">
-                        <img src="assets/img/schoolwork-3.png" alt="School Work 1">
-                        <div class="gallery-overlay">
-                            <span class="gallery-overlay-text">Click to view full size</span>
-                        </div>
-                    </div>
-                    
-                    <div class="gallery-item" onclick="openLightbox(1)">
-                        <img src="assets/img/schoolwork-2.png" alt="School Work 2">
-                        <div class="gallery-overlay">
-                            <span class="gallery-overlay-text">Click to view full size</span>
-                        </div>
-                    </div>
-                    
-                    <div class="gallery-item" onclick="openLightbox(2)">
-                        <img src="assets/img/schoolwork-1.jpg" alt="School Work 3">
-                        <div class="gallery-overlay">
-                            <span class="gallery-overlay-text">Click to view full size</span>
-                        </div>
-                    </div>
-                    
-                    <div class="gallery-item" onclick="openLightbox(3)">
-                        <img src="assets/img/schoolwork-4.png" alt="School Work 4">
-                        <div class="gallery-overlay">
-                            <span class="gallery-overlay-text">Click to view full size</span>
-                        </div>
-                    </div>
-                </div>
+  <!-- Top Navigation Bar -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <div class="nav__brand-group">
+        <a href="index.html" class="nav__logo">
+          <span class="nav__logo-mark">BD</span>
+          Barış Değirmenci
+        </a>
+      </div>
 
-                <div class="gallery-section" style="margin-top: 5rem;">
-                    <h2 class="section__title" style="text-align: center; margin-bottom: 3rem;">Worked <span>Catalogs, Publications & Reports</span></h2>
-                    <div class="catalogs-grid">
-                        
-                        <!-- Catalog 1 -->
-                        <div class="catalog-card glass-card">
-                            <div class="catalog-card__icon">
-                                <i class="uil uil-book-open"></i>
-                            </div>
-                            <div class="catalog-card__content">
-                                <h3 class="catalog-card__title">Academic Development Catalog</h3>
-                                <p class="catalog-card__desc">Comprehensive academic catalog design featuring educational development structures and information architecture at Hacettepe University.</p>
-                                <div class="catalog-card__actions">
-                                    <a href="assets/pdf/AGP_Katalog_19_03_2024.pdf" target="_blank" class="btn btn-primary">
-                                        <i class="uil uil-eye"></i> View PDF
-                                    </a>
-                                    <a href="assets/pdf/AGP_Katalog_19_03_2024.pdf" download class="btn btn-outline">
-                                        <i class="uil uil-download-alt"></i> Download
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+      <div class="nav__actions">
+        <button type="button" class="cmdk-trigger" data-open-cmdk aria-label="Open Quick Search">
+          <i class="uil uil-search"></i>
+          <span>Search</span>
+          <kbd>Ctrl K</kbd>
+        </button>
 
-                        <!-- Catalog 2 -->
-                        <div class="catalog-card glass-card">
-                            <div class="catalog-card__icon" style="background: rgba(244, 114, 182, 0.1); color: var(--accent-pink);">
-                                <i class="uil uil-file-bookmark-alt"></i>
-                            </div>
-                            <div class="catalog-card__content">
-                                <h3 class="catalog-card__title">Vitaself Russian Catalog</h3>
-                                <p class="catalog-card__desc">Professional brand catalog design and translation layout for Vitaself publication, demonstrating advanced typography and print layout skills.</p>
-                                <div class="catalog-card__actions">
-                                    <a href="assets/pdf/Vitaself_BASKI.pdf" target="_blank" class="btn btn-primary">
-                                        <i class="uil uil-eye"></i> View PDF
-                                    </a>
-                                    <a href="assets/pdf/Vitaself_BASKI.pdf" download class="btn btn-outline">
-                                        <i class="uil uil-download-alt"></i> Download
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Report 1 -->
-                        <div class="catalog-card glass-card">
-                            <div class="catalog-card__icon" style="background: rgba(56, 189, 248, 0.1); color: var(--accent);">
-                                <i class="uil uil-chart-line"></i>
-                            </div>
-                            <div class="catalog-card__content">
-                                <h3 class="catalog-card__title">Fall 2022-2023 Report</h3>
-                                <p class="catalog-card__desc">Comprehensive activity report for the Fall semester of the 2022-2023 academic year, designed for the Center for Sustainable Teaching and Learning.</p>
-                                <div class="catalog-card__actions">
-                                    <a href="assets/pdf/Reports/STL_202223GuzRaporu_TUR.pdf" target="_blank" class="btn btn-primary">
-                                        <i class="uil uil-eye"></i> View PDF
-                                    </a>
-                                    <a href="assets/pdf/Reports/STL_202223GuzRaporu_TUR.pdf" download class="btn btn-outline">
-                                        <i class="uil uil-download-alt"></i> Download
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Report 2 -->
-                        <div class="catalog-card glass-card">
-                            <div class="catalog-card__icon" style="background: rgba(52, 211, 153, 0.1); color: var(--accent-green);">
-                                <i class="uil uil-chart-growth"></i>
-                            </div>
-                            <div class="catalog-card__content">
-                                <h3 class="catalog-card__title">Spring 2022-2023 Report</h3>
-                                <p class="catalog-card__desc">Detailed activity report covering the Spring semester of the 2022-2023 academic year, showcasing key achievements and administrative operations.</p>
-                                <div class="catalog-card__actions">
-                                    <a href="assets/pdf/Reports/2022-2023 Bahar Dönemi Faaliyet Raporu (4).pdf" target="_blank" class="btn btn-primary">
-                                        <i class="uil uil-eye"></i> View PDF
-                                    </a>
-                                    <a href="assets/pdf/Reports/2022-2023 Bahar Dönemi Faaliyet Raporu (4).pdf" download class="btn btn-outline">
-                                        <i class="uil uil-download-alt"></i> Download
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Report 3 -->
-                        <div class="catalog-card glass-card">
-                            <div class="catalog-card__icon" style="background: rgba(129, 140, 248, 0.1); color: var(--accent-alt);">
-                                <i class="uil uil-chart-pie-alt"></i>
-                            </div>
-                            <div class="catalog-card__content">
-                                <h3 class="catalog-card__title">Fall 2023-2024 Report</h3>
-                                <p class="catalog-card__desc">Activity report documenting milestones, institutional progress, and academic development activities during the Fall 2023-2024 semester.</p>
-                                <div class="catalog-card__actions">
-                                    <a href="assets/pdf/Reports/2023-2024-Guz-Donemi-Faaliyet-Raporu.pdf" target="_blank" class="btn btn-primary">
-                                        <i class="uil uil-eye"></i> View PDF
-                                    </a>
-                                    <a href="assets/pdf/Reports/2023-2024-Guz-Donemi-Faaliyet-Raporu.pdf" download class="btn btn-outline">
-                                        <i class="uil uil-download-alt"></i> Download
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Report 4 -->
-                        <div class="catalog-card glass-card">
-                            <div class="catalog-card__icon" style="background: rgba(244, 114, 182, 0.1); color: var(--accent-pink);">
-                                <i class="uil uil-analytics"></i>
-                            </div>
-                            <div class="catalog-card__content">
-                                <h3 class="catalog-card__title">Spring 2023-2024 Report</h3>
-                                <p class="catalog-card__desc">Comprehensive activity report highlighting institutional work, key statistical data, and achievements from the Spring 2023-2024 semester.</p>
-                                <div class="catalog-card__actions">
-                                    <a href="assets/pdf/Reports/2023-2024-Bahar-Donemi-Faaliyet-Raporu.pdf" target="_blank" class="btn btn-primary">
-                                        <i class="uil uil-eye"></i> View PDF
-                                    </a>
-                                    <a href="assets/pdf/Reports/2023-2024-Bahar-Donemi-Faaliyet-Raporu.pdf" download class="btn btn-outline">
-                                        <i class="uil uil-download-alt"></i> Download
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-            <div class="lightbox-content">
-                <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
-                <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1, event)">&#8249;</button>
-                <img src="" alt="" class="lightbox-img" id="lightbox-img">
-                <button class="lightbox-nav lightbox-next" onclick="changeImage(1, event)">&#8250;</button>
-            </div>
+        <div class="theme-switch" role="group" aria-label="Theme switcher">
+          <button type="button" class="theme-switch__btn" data-set-theme="light" aria-label="Switch to light mode">
+            <i class="uil uil-sun"></i><span>Light</span>
+          </button>
+          <button type="button" class="theme-switch__btn" data-set-theme="dark" aria-label="Switch to dark mode">
+            <i class="uil uil-moon"></i><span>Dark</span>
+          </button>
         </div>
 
-        <script>
-            const images = [
-                'assets/img/schoolwork-3.png',
-                'assets/img/schoolwork-2.png',
-                'assets/img/schoolwork-1.jpg',
-                'assets/img/schoolwork-4.png'
-            ];
-            
-            let currentIndex = 0;
-            
-            function openLightbox(index) {
-                currentIndex = index;
-                document.getElementById('lightbox').classList.add('active');
-                document.getElementById('lightbox-img').src = images[currentIndex];
-                document.body.style.overflow = 'hidden';
-            }
-            
-            function closeLightbox(event) {
-                if (event.target.id === 'lightbox' || event.target.classList.contains('lightbox-close')) {
-                    document.getElementById('lightbox').classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            }
-            
-            function changeImage(direction, event) {
-                event.stopPropagation();
-                currentIndex += direction;
-                if (currentIndex < 0) currentIndex = images.length - 1;
-                if (currentIndex >= images.length) currentIndex = 0;
-                document.getElementById('lightbox-img').src = images[currentIndex];
-            }
-            
-            document.addEventListener('keydown', function(e) {
-                const lightbox = document.getElementById('lightbox');
-                if (lightbox.classList.contains('active')) {
-                    if (e.key === 'ArrowLeft') changeImage(-1, e);
-                    if (e.key === 'ArrowRight') changeImage(1, e);
-                    if (e.key === 'Escape') closeLightbox({ target: lightbox });
-                }
-            });
-        </script>
-    </body>
+        <a href="Baris_Degirmenci_CV.pdf" target="_blank" rel="noopener" class="nav__cv-link">
+          Resume <i class="uil uil-arrow-up-right"></i>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Floating Bottom App Dock -->
+  <nav class="app-dock" aria-label="Studio Module Dock">
+    <a href="index.html" class="dock-item">
+      <i class="uil uil-estate"></i><span>Studio</span>
+    </a>
+    <a href="uxui-showcase.html" class="dock-item">
+      <i class="uil uil-mobile-android"></i><span>UX/UI</span>
+    </a>
+    <a href="game-showcase.html" class="dock-item">
+      <i class="uil uil-game-structure"></i><span>Games</span>
+    </a>
+    <a href="gallery-sketch.html" class="dock-item">
+      <i class="uil uil-brush-alt"></i><span>Art</span>
+    </a>
+    <a href="gallery-community.html" class="dock-item">
+      <i class="uil uil-users-alt"></i><span>Brand</span>
+    </a>
+    <a href="gallery-school.html" class="dock-item active-link">
+      <i class="uil uil-cube"></i><span>3D</span>
+    </a>
+    <a href="documents.html" class="dock-item">
+      <i class="uil uil-file-alt"></i><span>Docs</span>
+    </a>
+    <div class="dock-sep"></div>
+    <button type="button" class="dock-item dock-item--cmdk" data-open-cmdk aria-label="Search modules">
+      <i class="uil uil-command"></i><span>⌘K</span>
+    </button>
+  </nav>
+
+  <main class="subpage">
+    <div class="container">
+
+      <!-- Top Bar -->
+      <div class="subpage__topbar">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Index</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="index.html#portfolio">Work</a>
+          <span class="breadcrumb-sep">/</span>
+          <span>05 · 3D &amp; Academic</span>
+        </nav>
+        <a href="index.html#portfolio" class="back-link">
+          <i class="uil uil-arrow-left"></i> All Work
+        </a>
+      </div>
+
+      <!-- Masthead -->
+      <div class="subpage__hero reveal">
+        <p class="subpage__kicker">05 / Hacettepe University · CEIT &amp; STL</p>
+        <h1 class="subpage__title">
+          3D Modeling &amp; <em>Academic Publications</em>
+        </h1>
+        <p class="subpage__desc">
+          Orthographic reference-to-3D Blender character modeling, educational communication posters, and multi-page institutional catalogs and semester reports designed at Hacettepe University.
+        </p>
+        <div class="subpage__tags">
+          <span class="badge badge-accent">Blender 3D</span>
+          <span class="badge">Instructional Visuals</span>
+          <span class="badge">Editorial Print</span>
+          <span class="badge">Hacettepe STL</span>
+        </div>
+      </div>
+
+      <!-- Section 1: 3D Character Pipeline & Educational Poster -->
+      <section class="showcase-section">
+        <div class="showcase-section__header">
+          <div>
+            <h2 class="showcase-section__title">01 · 3D Modeling &amp; <em>Educational Visuals</em></h2>
+            <p class="showcase-section__sub">Hand-drawn front/side orthographic turnarounds, 3D clay renders, and outreach campaign design.</p>
+          </div>
+          <span class="badge">04 Visual Works</span>
+        </div>
+
+        <div class="media-gallery-grid">
+
+          <article class="media-card spotlight-card reveal" data-lightbox-item
+                   data-src="assets/img/schoolwork-3.png"
+                   data-title="Mega Man — Blender 3D Character Render (3/4 View)"
+                   data-desc="Full-body 3D character mesh modeled in Blender with clean hard-surface proportions and studio clay lighting.">
+            <div class="media-card__thumb">
+              <img src="assets/img/schoolwork-3.png" alt="Mega Man Blender 3D Render" loading="lazy">
+              <span class="media-card__zoom">Inspect</span>
+            </div>
+            <div class="media-card__body">
+              <span class="media-card__tag">01 · Blender 3D</span>
+              <h3 class="media-card__title">Character Mesh — 3/4 Clay Render</h3>
+              <p class="media-card__desc">Subdivision hard-surface character modeling and studio lighting pass built in Blender.</p>
+            </div>
+          </article>
+
+          <article class="media-card spotlight-card reveal reveal-delay-1" data-lightbox-item
+                   data-src="assets/img/schoolwork-2.png"
+                   data-title="Mega Man — Alternate Angle Clay Render"
+                   data-desc="Secondary camera angle highlighting arm cannon silhouette, helmet bevels, and leg armor volumes.">
+            <div class="media-card__thumb">
+              <img src="assets/img/schoolwork-2.png" alt="Mega Man Alternate 3D Render" loading="lazy">
+              <span class="media-card__zoom">Inspect</span>
+            </div>
+            <div class="media-card__body">
+              <span class="media-card__tag">02 · Blender 3D</span>
+              <h3 class="media-card__title">Character Mesh — Alternate Perspective</h3>
+              <p class="media-card__desc">Inspecting silhouette balance and armor volumes from a secondary camera angle.</p>
+            </div>
+          </article>
+
+          <article class="media-card spotlight-card reveal reveal-delay-2" data-lightbox-item
+                   data-src="assets/img/schoolwork-1.jpg"
+                   data-title="Orthographic Character Turnaround Sheet"
+                   data-desc="Hand-drawn front and side orthographic reference sketches created prior to 3D box/subdivision modeling in Blender.">
+            <div class="media-card__thumb">
+              <img src="assets/img/schoolwork-1.jpg" alt="Orthographic Character Turnaround Sketch" loading="lazy">
+              <span class="media-card__zoom">Inspect</span>
+            </div>
+            <div class="media-card__body">
+              <span class="media-card__tag">03 · Pre-Production</span>
+              <h3 class="media-card__title">2D Orthographic Turnaround Sheet</h3>
+              <p class="media-card__desc">Front and profile proportion guide drawn on paper to align 3D viewport axes.</p>
+            </div>
+          </article>
+
+          <article class="media-card spotlight-card reveal" data-lightbox-item
+                   data-src="assets/img/schoolwork-4.png"
+                   data-title="“Oltaya Gelmeyin!” — Cybersecurity Phishing Poster"
+                   data-desc="Educational infographic event poster using a keyboard pirate ship metaphor to teach phishing awareness.">
+            <div class="media-card__thumb media-card__thumb--contain">
+              <img src="assets/img/schoolwork-4.png" alt="Oltaya Gelmeyin Phishing Awareness Poster" loading="lazy">
+              <span class="media-card__zoom">Inspect</span>
+            </div>
+            <div class="media-card__body">
+              <span class="media-card__tag">04 · Instructional Poster</span>
+              <h3 class="media-card__title">“Oltaya Gelmeyin!” Phishing Campaign</h3>
+              <p class="media-card__desc">Visual metaphor combining a binary-sail keyboard ship and netted data icons for seminar outreach.</p>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Section 2: Catalogs, Publications & STL Reports -->
+      <section class="showcase-section">
+        <div class="showcase-section__header">
+          <div>
+            <h2 class="showcase-section__title">02 · Catalogs &amp; <em>STL Semester Reports</em></h2>
+            <p class="showcase-section__sub">Multi-page editorial layouts designed for Hacettepe University’s Center for Sustainable Teaching &amp; Learning and commercial print.</p>
+          </div>
+          <span class="badge">06 PDF Publications</span>
+        </div>
+
+        <div class="doc-grid">
+
+          <article class="doc-card spotlight-card reveal">
+            <div class="doc-card__top">
+              <div class="doc-card__icon"><i class="uil uil-book-open"></i></div>
+              <span class="badge">Hacettepe University · 2024</span>
+            </div>
+            <h3 class="doc-card__title">Academic Development Catalog (AGP)</h3>
+            <p class="doc-card__desc">Multi-page academic development catalog featuring structured course hierarchies, clear typographic grid, and institutional identity.</p>
+            <div class="doc-card__actions">
+              <button type="button" class="btn btn-primary"
+                      data-embed-url="assets/pdf/AGP_Katalog_19_03_2024.pdf"
+                      data-embed-title="Academic Development Catalog (AGP)"
+                      data-embed-type="pdf"
+                      data-external-url="assets/pdf/AGP_Katalog_19_03_2024.pdf">
+                Preview PDF
+              </button>
+              <a href="assets/pdf/AGP_Katalog_19_03_2024.pdf" download class="btn btn-outline">
+                Download
+              </a>
+            </div>
+          </article>
+
+          <article class="doc-card spotlight-card reveal reveal-delay-1">
+            <div class="doc-card__top">
+              <div class="doc-card__icon"><i class="uil uil-file-bookmark-alt"></i></div>
+              <span class="badge">Commercial Print · RU</span>
+            </div>
+            <h3 class="doc-card__title">Vitaself Print Catalog</h3>
+            <p class="doc-card__desc">Multilingual product catalog and offset-ready editorial layout crafted for Vitaself with Cyrillic typography.</p>
+            <div class="doc-card__actions">
+              <button type="button" class="btn btn-primary"
+                      data-embed-url="assets/pdf/Vitaself_BASKI.pdf"
+                      data-embed-title="Vitaself Print Catalog"
+                      data-embed-type="pdf"
+                      data-external-url="assets/pdf/Vitaself_BASKI.pdf">
+                Preview PDF
+              </button>
+              <a href="assets/pdf/Vitaself_BASKI.pdf" download class="btn btn-outline">
+                Download
+              </a>
+            </div>
+          </article>
+
+          <article class="doc-card spotlight-card reveal reveal-delay-2">
+            <div class="doc-card__top">
+              <div class="doc-card__icon"><i class="uil uil-analytics"></i></div>
+              <span class="badge">STL · Spring 2023–2024</span>
+            </div>
+            <h3 class="doc-card__title">Spring 2023–2024 Activity Report</h3>
+            <p class="doc-card__desc">Institutional semester report presenting training metrics, custom charts, and academic milestones for Hacettepe STL.</p>
+            <div class="doc-card__actions">
+              <button type="button" class="btn btn-primary"
+                      data-embed-url="assets/pdf/Reports/2023-2024-Bahar-Donemi-Faaliyet-Raporu.pdf"
+                      data-embed-title="Spring 2023–2024 Activity Report"
+                      data-embed-type="pdf"
+                      data-external-url="assets/pdf/Reports/2023-2024-Bahar-Donemi-Faaliyet-Raporu.pdf">
+                Preview PDF
+              </button>
+              <a href="assets/pdf/Reports/2023-2024-Bahar-Donemi-Faaliyet-Raporu.pdf" download class="btn btn-outline">
+                Download
+              </a>
+            </div>
+          </article>
+
+          <article class="doc-card spotlight-card reveal">
+            <div class="doc-card__top">
+              <div class="doc-card__icon"><i class="uil uil-chart-pie-alt"></i></div>
+              <span class="badge">STL · Fall 2023–2024</span>
+            </div>
+            <h3 class="doc-card__title">Fall 2023–2024 Activity Report</h3>
+            <p class="doc-card__desc">Editorial publication documenting faculty workshops, digital education initiatives, and semester statistics.</p>
+            <div class="doc-card__actions">
+              <button type="button" class="btn btn-primary"
+                      data-embed-url="assets/pdf/Reports/2023-2024-Guz-Donemi-Faaliyet-Raporu.pdf"
+                      data-embed-title="Fall 2023–2024 Activity Report"
+                      data-embed-type="pdf"
+                      data-external-url="assets/pdf/Reports/2023-2024-Guz-Donemi-Faaliyet-Raporu.pdf">
+                Preview PDF
+              </button>
+              <a href="assets/pdf/Reports/2023-2024-Guz-Donemi-Faaliyet-Raporu.pdf" download class="btn btn-outline">
+                Download
+              </a>
+            </div>
+          </article>
+
+          <article class="doc-card spotlight-card reveal reveal-delay-1">
+            <div class="doc-card__top">
+              <div class="doc-card__icon"><i class="uil uil-chart-growth"></i></div>
+              <span class="badge">STL · Spring 2022–2023</span>
+            </div>
+            <h3 class="doc-card__title">Spring 2022–2023 Activity Report</h3>
+            <p class="doc-card__desc">Semester publication highlighting institutional operations and sustainable teaching programs.</p>
+            <div class="doc-card__actions">
+              <button type="button" class="btn btn-primary"
+                      data-embed-url="assets/pdf/Reports/2022-2023 Bahar Dönemi Faaliyet Raporu (4).pdf"
+                      data-embed-title="Spring 2022–2023 Activity Report"
+                      data-embed-type="pdf"
+                      data-external-url="assets/pdf/Reports/2022-2023 Bahar Dönemi Faaliyet Raporu (4).pdf">
+                Preview PDF
+              </button>
+              <a href="assets/pdf/Reports/2022-2023 Bahar Dönemi Faaliyet Raporu (4).pdf" download class="btn btn-outline">
+                Download
+              </a>
+            </div>
+          </article>
+
+          <article class="doc-card spotlight-card reveal reveal-delay-2">
+            <div class="doc-card__top">
+              <div class="doc-card__icon"><i class="uil uil-chart-line"></i></div>
+              <span class="badge">STL · Fall 2022–2023</span>
+            </div>
+            <h3 class="doc-card__title">Fall 2022–2023 Activity Report</h3>
+            <p class="doc-card__desc">Inaugural semester activity report designed for the Center for Sustainable Teaching and Learning.</p>
+            <div class="doc-card__actions">
+              <button type="button" class="btn btn-primary"
+                      data-embed-url="assets/pdf/Reports/STL_202223GuzRaporu_TUR.pdf"
+                      data-embed-title="Fall 2022–2023 Activity Report"
+                      data-embed-type="pdf"
+                      data-external-url="assets/pdf/Reports/STL_202223GuzRaporu_TUR.pdf">
+                Preview PDF
+              </button>
+              <a href="assets/pdf/Reports/STL_202223GuzRaporu_TUR.pdf" download class="btn btn-outline">
+                Download
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Cross-Portfolio Index Switcher -->
+      <div class="portfolio-nav-strip reveal">
+        <span class="portfolio-nav-strip__title">Archive Index</span>
+        <div class="portfolio-nav-strip__links">
+          <a href="uxui-showcase.html" class="portfolio-nav-pill">01 · UniPazar UX/UI</a>
+          <a href="game-showcase.html" class="portfolio-nav-pill">02 · Unity Games</a>
+          <a href="gallery-sketch.html" class="portfolio-nav-pill">03 · Art &amp; Sketches</a>
+          <a href="gallery-community.html" class="portfolio-nav-pill">04 · Community Branding</a>
+          <a href="gallery-school.html" class="portfolio-nav-pill current">05 · 3D &amp; Academic</a>
+          <a href="documents.html" class="portfolio-nav-pill">06 · Publications</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom">
+        <p class="footer__copy"><a href="index.html#portfolio" style="color:var(--accent-ink);font-weight:600;">← Back to Selected Work</a></p>
+        <p class="footer__copy">&#169; 2026 Barış Değirmenci · Press Ctrl+K anywhere</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Unified Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+    <button class="lightbox-close" aria-label="Close preview">&times;</button>
+    <button class="lightbox-nav lightbox-prev" aria-label="Previous image">&#8249;</button>
+    <div class="lightbox-content">
+      <img src="" alt="" class="lightbox-img" id="lightbox-img">
+      <div class="lightbox-caption-bar">
+        <span class="lightbox-counter" id="lightbox-counter"></span>
+        <div class="lightbox-title" id="lightbox-title"></div>
+        <div class="lightbox-desc" id="lightbox-desc"></div>
+      </div>
+    </div>
+    <button class="lightbox-nav lightbox-next" aria-label="Next image">&#8250;</button>
+  </div>
+
+  <!-- PDF Preview Modal -->
+  <div class="embed-modal" id="embed-modal" role="dialog" aria-modal="true" aria-label="Document preview">
+    <div class="embed-modal__dialog">
+      <div class="embed-modal__header">
+        <span class="embed-modal__title" id="embed-modal-title">Document Preview</span>
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <a href="#" target="_blank" rel="noopener" id="embed-modal-external" class="prototype-open-link">
+            Open in New Tab ↗
+          </a>
+          <button type="button" class="modal-close-btn" id="embed-modal-close" aria-label="Close modal">&times;</button>
+        </div>
+      </div>
+      <div class="embed-modal__body embed-modal__body--pdf" id="embed-modal-body">
+        <iframe id="embed-modal-iframe" src="" title="PDF document viewer"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
 </html>
-

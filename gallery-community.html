@@ -1,239 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-        <link rel="stylesheet" href="assets/css/styles.css">
-        <title>Community Products - Barış Değirmenci</title>
-        
-        <style>
-            .gallery-page { padding: 6rem 0 2rem; min-height: 100vh; }
-            .breadcrumb {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                margin-bottom: 2rem;
-                font-size: 0.875rem;
-                color: #666;
-            }
-            .breadcrumb a {
-                color: #6f42c1;
-                text-decoration: none;
-                transition: color 0.3s;
-            }
-            .breadcrumb a:hover {
-                color: #5a32a3;
-            }
-            .breadcrumb-separator {
-                color: #999;
-            }
-            .gallery-header { text-align: center; margin-bottom: 3rem; }
-            .gallery-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: 2rem;
-                margin-bottom: 3rem;
-            }
-            .gallery-item {
-                position: relative;
-                border-radius: 1rem;
-                overflow: hidden;
-                cursor: pointer;
-                transition: transform 0.3s;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            }
-            .gallery-item:hover { transform: translateY(-10px); }
-            .gallery-item img {
-                width: 100%;
-                height: 300px;
-                object-fit: cover;
-                display: block;
-            }
-            .gallery-overlay {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-                opacity: 0;
-                transition: opacity 0.3s;
-                display: flex;
-                align-items: flex-end;
-                padding: 1.5rem;
-            }
-            .gallery-item:hover .gallery-overlay { opacity: 1; }
-            .gallery-overlay-text { color: white; font-weight: 500; }
-            .lightbox {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: rgba(0,0,0,0.95);
-                z-index: 10000;
-                align-items: center;
-                justify-content: center;
-                padding: 2rem;
-            }
-            .lightbox.active { display: flex; }
-            .lightbox-content { max-width: 90%; max-height: 90vh; position: relative; }
-            .lightbox-img { max-width: 100%; max-height: 85vh; object-fit: contain; }
-            .lightbox-close {
-                position: absolute;
-                top: -50px;
-                right: 0;
-                color: white;
-                font-size: 2rem;
-                cursor: pointer;
-                background: none;
-                border: none;
-                padding: 0.5rem 1rem;
-            }
-            .lightbox-nav {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                background: rgba(255,255,255,0.2);
-                color: white;
-                border: none;
-                padding: 1rem;
-                font-size: 2rem;
-                cursor: pointer;
-                border-radius: 50%;
-                transition: background 0.3s;
-            }
-            .lightbox-nav:hover { background: rgba(255,255,255,0.3); }
-            .lightbox-prev { left: -60px; }
-            .lightbox-next { right: -60px; }
-            .back-button {
-                display: inline-flex;
-                align-items: center;
-                gap: 0.5rem;
-                margin-bottom: 2rem;
-                padding: 0.75rem 1.5rem;
-                background: var(--first-color);
-                color: white;
-                border-radius: 0.5rem;
-                text-decoration: none;
-                transition: background 0.3s;
-            }
-            .back-button:hover { background: var(--first-color-alt); }
-        </style>
-    </head>
-    <body>
-        <div class="gallery-page">
-            <div class="container">
-                <nav class="breadcrumb">
-                    <a href="index.html">Home</a>
-                    <span class="breadcrumb-separator">/</span>
-                    <a href="index.html#portfolio">Portfolio</a>
-                    <span class="breadcrumb-separator">/</span>
-                    <span>Community Products</span>
-                </nav>
-                
-                <a href="index.html#portfolio" class="back-button">
-                    <i class="uil uil-arrow-left"></i>
-                    Back to Portfolio
-                </a>
-                
-                <div class="gallery-header">
-                    <h1 class="section__title">Community Products</h1>
-                    <p class="section__subtitle">Design work for community projects and social initiatives</p>
-                </div>
-                
-                <div class="gallery-grid">
-                    <div class="gallery-item" onclick="openLightbox(0)">
-                        <img src="assets/img/community-1.png" alt="Community Project 1">
-                        <div class="gallery-overlay">
-                            <span class="gallery-overlay-text">Click to view full size</span>
-                        </div>
-                    </div>
-                    
-                    <div class="gallery-item" onclick="openLightbox(1)">
-                        <img src="assets/img/community-2.jpg" alt="Community Project 2">
-                        <div class="gallery-overlay">
-                            <span class="gallery-overlay-text">Click to view full size</span>
-                        </div>
-                    </div>
-                    
-                    <div class="gallery-item" onclick="openLightbox(2)">
-                        <img src="assets/img/community-3.jpg" alt="Community Project 3">
-                        <div class="gallery-overlay">
-                            <span class="gallery-overlay-text">Click to view full size</span>
-                        </div>
-                    </div>
-                    
-                    <div class="gallery-item" onclick="openLightbox(3)">
-                        <img src="assets/img/community-4.png" alt="Community Project 4">
-                        <div class="gallery-overlay">
-                            <span class="gallery-overlay-text">Click to view full size</span>
-                        </div>
-                    </div>
-                    
-                    <div class="gallery-item" onclick="openLightbox(4)">
-                        <img src="assets/img/community-5.png" alt="Community Project 5">
-                        <div class="gallery-overlay">
-                            <span class="gallery-overlay-text">Click to view full size</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-            <div class="lightbox-content">
-                <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
-                <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1, event)">&#8249;</button>
-                <img src="" alt="" class="lightbox-img" id="lightbox-img">
-                <button class="lightbox-nav lightbox-next" onclick="changeImage(1, event)">&#8250;</button>
-            </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Community & Event Branding — Barış Değirmenci. Visual identity, banners, membership cards, and tournament posters for Knights Boardgame & BAM Board Game Cafe.">
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('bd-theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') {
+        t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="icon" type="image/png" href="assets/img/bd-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <title>Community &amp; Event Branding — Barış Değirmenci</title>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <div class="nav__brand-group">
+        <a href="index.html" class="nav__logo">
+          <span class="nav__logo-mark">BD</span>
+          Barış Değirmenci
+        </a>
+      </div>
+
+      <div class="nav__actions">
+        <button type="button" class="cmdk-trigger" data-open-cmdk aria-label="Open Quick Search">
+          <i class="uil uil-search"></i>
+          <span>Search</span>
+          <kbd>Ctrl K</kbd>
+        </button>
+
+        <div class="theme-switch" role="group" aria-label="Theme switcher">
+          <button type="button" class="theme-switch__btn" data-set-theme="light" aria-label="Switch to light mode">
+            <i class="uil uil-sun"></i><span>Light</span>
+          </button>
+          <button type="button" class="theme-switch__btn" data-set-theme="dark" aria-label="Switch to dark mode">
+            <i class="uil uil-moon"></i><span>Dark</span>
+          </button>
         </div>
 
-        <script>
-            const images = [
-                'assets/img/community-1.png',
-                'assets/img/community-2.jpg',
-                'assets/img/community-3.jpg',
-                'assets/img/community-4.png',
-                'assets/img/community-5.png'
-            ];
-            
-            let currentIndex = 0;
-            
-            function openLightbox(index) {
-                currentIndex = index;
-                document.getElementById('lightbox').classList.add('active');
-                document.getElementById('lightbox-img').src = images[currentIndex];
-                document.body.style.overflow = 'hidden';
-            }
-            
-            function closeLightbox(event) {
-                if (event.target.id === 'lightbox' || event.target.classList.contains('lightbox-close')) {
-                    document.getElementById('lightbox').classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            }
-            
-            function changeImage(direction, event) {
-                event.stopPropagation();
-                currentIndex += direction;
-                if (currentIndex < 0) currentIndex = images.length - 1;
-                if (currentIndex >= images.length) currentIndex = 0;
-                document.getElementById('lightbox-img').src = images[currentIndex];
-            }
-            
-            document.addEventListener('keydown', function(e) {
-                const lightbox = document.getElementById('lightbox');
-                if (lightbox.classList.contains('active')) {
-                    if (e.key === 'ArrowLeft') changeImage(-1, e);
-                    if (e.key === 'ArrowRight') changeImage(1, e);
-                    if (e.key === 'Escape') closeLightbox({ target: lightbox });
-                }
-            });
-        </script>
-    </body>
+        <a href="Baris_Degirmenci_CV.pdf" target="_blank" rel="noopener" class="nav__cv-link">
+          Resume <i class="uil uil-arrow-up-right"></i>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Floating Bottom App Dock -->
+  <nav class="app-dock" aria-label="Studio Module Dock">
+    <a href="index.html" class="dock-item">
+      <i class="uil uil-estate"></i><span>Studio</span>
+    </a>
+    <a href="uxui-showcase.html" class="dock-item">
+      <i class="uil uil-mobile-android"></i><span>UX/UI</span>
+    </a>
+    <a href="game-showcase.html" class="dock-item">
+      <i class="uil uil-game-structure"></i><span>Games</span>
+    </a>
+    <a href="gallery-sketch.html" class="dock-item">
+      <i class="uil uil-brush-alt"></i><span>Art</span>
+    </a>
+    <a href="gallery-community.html" class="dock-item active-link">
+      <i class="uil uil-users-alt"></i><span>Brand</span>
+    </a>
+    <a href="gallery-school.html" class="dock-item">
+      <i class="uil uil-cube"></i><span>3D</span>
+    </a>
+    <a href="documents.html" class="dock-item">
+      <i class="uil uil-file-alt"></i><span>Docs</span>
+    </a>
+    <div class="dock-sep"></div>
+    <button type="button" class="dock-item dock-item--cmdk" data-open-cmdk aria-label="Search modules">
+      <i class="uil uil-command"></i><span>⌘K</span>
+    </button>
+  </nav>
+
+  <main class="subpage">
+    <div class="container">
+
+      <!-- Top Bar -->
+      <div class="subpage__topbar">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Index</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="index.html#portfolio">Work</a>
+          <span class="breadcrumb-sep">/</span>
+          <span>04 · Community Branding</span>
+        </nav>
+        <a href="index.html#portfolio" class="back-link">
+          <i class="uil uil-arrow-left"></i> All Work
+        </a>
+      </div>
+
+      <!-- Masthead -->
+      <div class="subpage__hero reveal">
+        <p class="subpage__kicker">04 / Identity &amp; Event Print</p>
+        <h1 class="subpage__title">
+          Community &amp; <em>Event Branding</em>
+        </h1>
+        <p class="subpage__desc">
+          Print banners, tarot-inspired key illustrations, QR membership passes, and regional tournament graphics produced while leading the Hacettepe University Boardgame Community (Knights Boardgame) and collaborating with BAM Board Game Cafe.
+        </p>
+        <div class="subpage__tags">
+          <span class="badge badge-accent">Knights Boardgame</span>
+          <span class="badge">Adobe Illustrator</span>
+          <span class="badge">Print &amp; Dielines</span>
+          <span class="badge">Event Campaigns</span>
+        </div>
+      </div>
+
+      <!-- Gallery Grid -->
+      <section class="showcase-section">
+        <div class="showcase-section__header">
+          <div>
+            <h2 class="showcase-section__title">Identity &amp; <em>Campaign Deliverables</em></h2>
+            <p class="showcase-section__sub">Select any piece to inspect full print resolution in the lightbox.</p>
+          </div>
+          <span class="badge">05 Deliverables</span>
+        </div>
+
+        <div class="media-gallery-grid">
+
+          <article class="media-card spotlight-card reveal" data-lightbox-item
+                   data-src="assets/img/community-2.jpg"
+                   data-title="Knights Boardgame — Mythic Tarot Poster"
+                   data-desc="Gold-and-ink tarot-style artwork blending the horned helmet emblem of Knights Boardgame with tabletop fantasy symbolism.">
+            <div class="media-card__thumb media-card__thumb--tall">
+              <img src="assets/img/community-2.jpg" alt="Knights Boardgame Tarot Poster" loading="lazy">
+              <span class="media-card__zoom">Inspect</span>
+            </div>
+            <div class="media-card__body">
+              <span class="media-card__tag">01 · Key Illustration</span>
+              <h3 class="media-card__title">Knights Mythic Poster Art</h3>
+              <p class="media-card__desc">Tarot-inspired gold foil texture and ink illustration built around the club’s antlered helm crest.</p>
+            </div>
+          </article>
+
+          <article class="media-card spotlight-card reveal reveal-delay-1" data-lightbox-item
+                   data-src="assets/img/community-1.png"
+                   data-title="Knights Boardgame — Pennant Flag &amp; Banner"
+                   data-desc="Print-ready die-cut heraldic pennant banner featuring bleed/cut guides, meeple patterns, and tabletop dice iconography.">
+            <div class="media-card__thumb media-card__thumb--tall media-card__thumb--contain">
+              <img src="assets/img/community-1.png" alt="Knights Boardgame Pennant Banner" loading="lazy">
+              <span class="media-card__zoom">Inspect</span>
+            </div>
+            <div class="media-card__body">
+              <span class="media-card__tag">02 · Print Production</span>
+              <h3 class="media-card__title">Knights Stand Pennant Banner</h3>
+              <p class="media-card__desc">Heraldic booth pennant prepared with vector meeple borders and print dielines for campus fairs.</p>
+            </div>
+          </article>
+
+          <article class="media-card spotlight-card reveal reveal-delay-2" data-lightbox-item
+                   data-src="assets/img/community-3.jpg"
+                   data-title="Knights Boardgame — Active Membership Card"
+                   data-desc="Branded QR membership pass designed for the 2022–2023 academic year with custom crest-embedded QR code.">
+            <div class="media-card__thumb media-card__thumb--tall">
+              <img src="assets/img/community-3.jpg" alt="Knights Boardgame Active Membership Card" loading="lazy">
+              <span class="media-card__zoom">Inspect</span>
+            </div>
+            <div class="media-card__body">
+              <span class="media-card__tag">03 · Member Pass</span>
+              <h3 class="media-card__title">Active Membership QR Pass</h3>
+              <p class="media-card__desc">Parchment-textured member verification card with custom crest-centered QR code.</p>
+            </div>
+          </article>
+
+          <article class="media-card spotlight-card reveal" data-lightbox-item
+                   data-src="assets/img/community-5.png"
+                   data-title="BAM Board Game Cafe — Catan Hex Poster"
+                   data-desc="Full-format event poster using Catan's resource hex grid to present tournament prizes and QR registration.">
+            <div class="media-card__thumb media-card__thumb--tall">
+              <img src="assets/img/community-5.png" alt="Catan Hex Grid Tournament Poster" loading="lazy">
+              <span class="media-card__zoom">Inspect</span>
+            </div>
+            <div class="media-card__body">
+              <span class="media-card__tag">04 · Print Poster</span>
+              <h3 class="media-card__title">Catan Tournament Hex Poster</h3>
+              <p class="media-card__desc">Modular hex-tile layout spotlighting 1st–3rd place tabletop prizes and QR registration.</p>
+            </div>
+          </article>
+
+          <article class="media-card spotlight-card reveal reveal-delay-1" data-lightbox-item
+                   data-src="assets/img/community-4.png"
+                   data-title="BAM Board Game Cafe — Catan Social Media Visual"
+                   data-desc="Square-format social media announcement adapted from the Catan tournament visual identity.">
+            <div class="media-card__thumb media-card__thumb--tall">
+              <img src="assets/img/community-4.png" alt="Catan Tournament Social Post" loading="lazy">
+              <span class="media-card__zoom">Inspect</span>
+            </div>
+            <div class="media-card__body">
+              <span class="media-card__tag">05 · Campaign Card</span>
+              <h3 class="media-card__title">Catan Tournament Announcement</h3>
+              <p class="media-card__desc">Square key visual formatted for Instagram announcements and community channels.</p>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Cross-Portfolio Index Switcher -->
+      <div class="portfolio-nav-strip reveal">
+        <span class="portfolio-nav-strip__title">Archive Index</span>
+        <div class="portfolio-nav-strip__links">
+          <a href="uxui-showcase.html" class="portfolio-nav-pill">01 · UniPazar UX/UI</a>
+          <a href="game-showcase.html" class="portfolio-nav-pill">02 · Unity Games</a>
+          <a href="gallery-sketch.html" class="portfolio-nav-pill">03 · Art &amp; Sketches</a>
+          <a href="gallery-community.html" class="portfolio-nav-pill current">04 · Community Branding</a>
+          <a href="gallery-school.html" class="portfolio-nav-pill">05 · 3D &amp; Academic</a>
+          <a href="documents.html" class="portfolio-nav-pill">06 · Publications</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom">
+        <p class="footer__copy"><a href="index.html#portfolio" style="color:var(--accent-ink);font-weight:600;">← Back to Selected Work</a></p>
+        <p class="footer__copy">&#169; 2026 Barış Değirmenci · Press Ctrl+K anywhere</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Unified Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Design preview">
+    <button class="lightbox-close" aria-label="Close preview">&times;</button>
+    <button class="lightbox-nav lightbox-prev" aria-label="Previous design">&#8249;</button>
+    <div class="lightbox-content">
+      <img src="" alt="" class="lightbox-img" id="lightbox-img">
+      <div class="lightbox-caption-bar">
+        <span class="lightbox-counter" id="lightbox-counter"></span>
+        <div class="lightbox-title" id="lightbox-title"></div>
+        <div class="lightbox-desc" id="lightbox-desc"></div>
+      </div>
+    </div>
+    <button class="lightbox-nav lightbox-next" aria-label="Next design">&#8250;</button>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
 </html>
-

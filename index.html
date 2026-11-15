@@ -1,1031 +1,781 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Barış Değirmenci — Creative Technologist & Instructional Designer. Hacettepe University graduate specializing in UX/UI design, game development, AI workflows, and educational technology.">
+  <meta name="description"
+    content="Barış Değirmenci — Multidisciplinary Designer & Developer. UX/UI product design, Unity 2D/3D game development, illustration, print editorial, and instructional design.">
   <meta name="author" content="Barış Değirmenci">
-  <meta property="og:title" content="Barış Değirmenci — Creative Technologist">
-  <meta property="og:description" content="Portfolio of Barış Değirmenci — where technology, design, and education converge.">
+  <meta property="og:title" content="Barış Değirmenci — Interactive Portfolio">
+  <meta property="og:description"
+    content="Explore UX/UI case studies, playable Unity prototypes, 3D models, illustrations, and publications by Barış Değirmenci.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://bobothemomo.github.io/">
+  <meta property="og:image" content="https://bobothemomo.github.io/assets/img/paris-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Google Fonts -->
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('bd-theme'); } catch (e) { }
+      if (t !== 'light' && t !== 'dark') {
+        t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+
+  <link rel="icon" type="image/png" href="assets/img/bd-logo.png">
+  <link rel="apple-touch-icon" href="assets/img/bd-logo.png">
+
+  <!-- Fonts: Plus Jakarta Sans · Inter · JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+    rel="stylesheet">
 
   <!-- Unicons -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
-  <!-- Main CSS -->
+  <!-- Stylesheet -->
   <link rel="stylesheet" href="assets/css/styles.css">
 
-  <title>Barış Değirmenci — Creative Technologist & Instructional Designer</title>
+  <title>Barış Değirmenci — Designer &amp; Developer</title>
 </head>
+
 <body>
 
   <!-- ══════════════════════════════════════════
-       CUSTOM CURSOR
-  ══════════════════════════════════════════ -->
-  <div id="cursor"></div>
-  <div id="cursor-follower"></div>
-
-  <!-- ══════════════════════════════════════════
-       HEADER
+       TOP NAVIGATION BAR
   ══════════════════════════════════════════ -->
   <header class="header" id="header">
     <nav class="nav container">
 
-      <!-- Logo -->
-      <a href="#home" class="nav__logo">
-        <span class="nav__logo-mark">BD</span>
-        Barış Değirmenci
-      </a>
-
-      <!-- Nav overlay (mobile) -->
-      <div class="nav__overlay" id="nav-overlay"></div>
-
-      <!-- Nav Menu -->
-      <div class="nav__menu" id="nav-menu">
-        <a href="#home"             class="nav__link active-link">Home</a>
-        <a href="#about"            class="nav__link">About</a>
-        <a href="#skills"           class="nav__link">Skills</a>
-        <a href="#services"         class="nav__link">Services</a>
-        <a href="#portfolio"        class="nav__link">Portfolio</a>
-        <a href="#currently-working"class="nav__link">Learning</a>
-        <a href="#contact"          class="nav__link">Contact</a>
+      <div class="nav__brand-group">
+        <a href="#home" class="nav__logo">
+          <span class="nav__logo-mark">BD</span>
+          Barış Değirmenci
+        </a>
       </div>
 
-      <!-- Nav Buttons -->
-      <div class="nav__btns">
-        <button class="nav__toggle" id="nav-toggle" aria-label="Toggle menu">
-          <span></span>
-          <span></span>
-          <span></span>
+      <div class="nav__actions">
+        <button type="button" class="cmdk-trigger" data-open-cmdk aria-label="Open Quick Search">
+          <i class="uil uil-search"></i>
+          <span>Search</span>
+          <kbd>Ctrl K</kbd>
         </button>
+
+        <div class="theme-switch" role="group" aria-label="Theme switcher">
+          <button type="button" class="theme-switch__btn" data-set-theme="light" aria-label="Switch to light mode">
+            <i class="uil uil-sun"></i><span>Light</span>
+          </button>
+          <button type="button" class="theme-switch__btn" data-set-theme="dark" aria-label="Switch to dark mode">
+            <i class="uil uil-moon"></i><span>Dark</span>
+          </button>
+        </div>
+
+        <a href="Baris_Degirmenci_CV.pdf" target="_blank" rel="noopener" class="nav__cv-link">
+          Resume <i class="uil uil-arrow-up-right"></i>
+        </a>
       </div>
 
     </nav>
   </header>
 
   <!-- ══════════════════════════════════════════
-       MAIN
+       FLOATING BOTTOM APP DOCK
+  ══════════════════════════════════════════ -->
+  <nav class="app-dock" aria-label="Studio Dock">
+    <a href="#home" class="dock-item active-link">
+      <i class="uil uil-estate"></i><span>Overview</span>
+    </a>
+    <a href="#portfolio" class="dock-item">
+      <i class="uil uil-apps"></i><span>Work</span>
+    </a>
+    <a href="#about" class="dock-item">
+      <i class="uil uil-layer-group"></i><span>Toolkit</span>
+    </a>
+    <a href="#qualification" class="dock-item">
+      <i class="uil uil-compass"></i><span>Experience</span>
+    </a>
+    <a href="#contact" class="dock-item">
+      <i class="uil uil-envelope"></i><span>Contact</span>
+    </a>
+    <div class="dock-sep"></div>
+    <button type="button" class="dock-item dock-item--cmdk" data-open-cmdk aria-label="Search modules">
+      <i class="uil uil-command"></i><span>⌘K</span>
+    </button>
+  </nav>
+
+  <!-- ══════════════════════════════════════════
+       MAIN WORKSPACE
   ══════════════════════════════════════════ -->
   <main>
 
-    <!-- ══ HERO ══════════════════════════════ -->
-    <section class="hero" id="home">
-
-      <!-- Animated Background -->
-      <div class="hero__bg">
-        <div class="hero__gradient-1"></div>
-        <div class="hero__gradient-2"></div>
-        <div class="hero__gradient-3"></div>
-        <div class="hero__particles" id="hero-particles"></div>
-      </div>
-
-      <div class="hero__container">
-
-        <!-- Left: Data -->
-        <div class="hero__data">
-
-          <div class="hero__badge reveal">
-            <span class="hero__badge-dot"></span>
-            Available for opportunities
-          </div>
-
-          <h1 class="hero__title reveal reveal-delay-1">
-            Hi, I'm Barış
-            <span class="hero__typewriter-wrap">
-              <span class="hero__typewriter"></span><span class="hero__cursor"></span>
-            </span>
-          </h1>
-
-          <p class="hero__description reveal reveal-delay-2">
-            I craft digital experiences at the intersection of technology, design, and education. 
-            Hacettepe University CEIT graduate with a passion for AI workflows, game development, and human-centered design.
-          </p>
-
-          <div class="hero__tags reveal reveal-delay-3">
-            <span class="hero__tag">🎮 Unity / C#</span>
-            <span class="hero__tag">🎨 UX/UI Design</span>
-            <span class="hero__tag">🤖 AI Workflows</span>
-            <span class="hero__tag">📚 E-Learning</span>
-            <span class="hero__tag">🖌️ Graphic Design</span>
-          </div>
-
-          <div class="hero__actions reveal reveal-delay-4">
-            <a href="#portfolio" class="btn btn-primary">
-              <i class="uil uil-scenery"></i> View Portfolio
-            </a>
-            <a href="#contact" class="btn btn-outline">
-              <i class="uil uil-message"></i> Contact Me
-            </a>
-          </div>
-
-          <div class="hero__social reveal reveal-delay-5">
-            <a href="https://www.linkedin.com/in/barış-değirmenci-98559a21b/" target="_blank" class="hero__social-link" aria-label="LinkedIn">
-              <i class="uil uil-linkedin-alt"></i>
-            </a>
-            <a href="https://github.com/bobothemomo" target="_blank" class="hero__social-link" aria-label="GitHub">
-              <i class="uil uil-github-alt"></i>
-            </a>
-            <a href="mailto:barisdegirmenci35@gmail.com" class="hero__social-link" aria-label="Email">
-              <i class="uil uil-envelope"></i>
-            </a>
-          </div>
-
-        </div>
-
-        <!-- Right: Image -->
-        <div class="hero__img-wrap reveal reveal-delay-2">
-          <div class="hero__blob-wrap">
-            <div class="hero__blob-ring"></div>
-            <div class="hero__blob-ring"></div>
-            <svg class="hero__blob" viewBox="0 0 200 187" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <mask id="mask0" mask-type="alpha">
-                <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"/>
-              </mask>
-              <g mask="url(#mask0)">
-                <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"/>
-                <image class="home__blob-img" x="-10" y="0" width="220" height="190"
-                       preserveAspectRatio="xMidYMid slice"
-                       href="assets/img/mountain-camera.jpg"/>
-              </g>
-            </svg>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Scroll Indicator -->
-      <a href="#about" class="hero__scroll" aria-label="Scroll down">
-        <span>Scroll</span>
-        <i class="uil uil-arrow-down"></i>
-      </a>
-
-    </section>
-
-    <!-- ══ ABOUT ══════════════════════════════ -->
-    <section class="about section" id="about">
+    <!-- ══ HERO: CLEAN STUDIO INTRO, PORTRAIT & QUICK DIRECTORY ═ -->
+    <section class="hero-os" id="home">
       <div class="container">
+        <div class="hero-os__grid">
 
-        <div class="section__header">
-          <p class="section__label">
-            <i class="uil uil-user-circle"></i>
-            About Me
-          </p>
-          <h2 class="section__title">Passionate about <span>people-first</span> tech</h2>
-          <p class="section__subtitle">Where creativity meets technology — building meaningful digital experiences.</p>
-        </div>
-
-        <div class="about__container">
-
-          <!-- Image -->
-          <div class="about__img-wrap reveal">
-            <img src="assets/img/paris-image.jpg" alt="Barış Değirmenci" class="about__img">
-            <div class="about__img-badge">
-              <div class="about__stat">
-                <span class="about__stat-number">3+</span>
-                <span class="about__stat-label">Years<br>Experience</span>
+          <!-- Left Console (5 cols): Identity & Positioning -->
+          <div class="hero-console spotlight-card reveal">
+            <div>
+              <div class="hero-console__eyebrow">
+                <span>Ankara, Türkiye</span>
+                <strong>Hacettepe CEIT ’25 · @ E12</strong>
               </div>
-              <div class="about__stat">
-                <span class="about__stat-number">10+</span>
-                <span class="about__stat-label">Completed<br>Projects</span>
+
+              <h1 class="hero-console__title" style="margin-top:1.1rem;">
+                Interfaces, <em>Playable Worlds</em> &amp; Visual Systems.
+              </h1>
+
+              <p class="hero-console__lead">
+                I’m <strong>Barış Değirmenci</strong> — a multidisciplinary designer &amp; developer building mobile
+                UX/UI products, Unity 2D/3D games, brand identities, and AI-assisted media pipelines.
+              </p>
+            </div>
+
+            <div class="hero-console__footer">
+              <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+                <a href="#portfolio" class="btn btn-primary">
+                  Explore Work <i class="uil uil-arrow-down"></i>
+                </a>
+                <a href="Baris_Degirmenci_CV.pdf" download class="btn btn-outline">
+                  Download CV
+                </a>
               </div>
-              <div class="about__stat">
-                <span class="about__stat-number">3+</span>
-                <span class="about__stat-label">Companies<br>Worked</span>
+
+              <div class="hero-console__socials">
+                <a href="https://www.linkedin.com/in/barış-değirmenci-98559a21b/" target="_blank" rel="noopener"
+                  class="icon-chip" aria-label="LinkedIn">
+                  <i class="uil uil-linkedin-alt"></i>
+                </a>
+                <a href="https://github.com/bobothemomo" target="_blank" rel="noopener" class="icon-chip"
+                  aria-label="GitHub">
+                  <i class="uil uil-github-alt"></i>
+                </a>
+                <a href="https://www.youtube.com/@barisd2695" target="_blank" rel="noopener" class="icon-chip"
+                  aria-label="YouTube">
+                  <i class="uil uil-youtube"></i>
+                </a>
+                <a href="mailto:barisdegirmenci35@gmail.com" class="icon-chip" aria-label="Email">
+                  <i class="uil uil-envelope"></i>
+                </a>
               </div>
             </div>
           </div>
 
-          <!-- Data -->
-          <div class="about__data">
+          <!-- Center Card (3 cols): Native 3:4 Portrait Photo -->
+          <figure class="hero-portrait spotlight-card reveal reveal-delay-1">
+            <img src="assets/img/mountain-camera.jpg" alt="Barış Değirmenci" loading="eager">
+          </figure>
 
-            <p class="about__description reveal">
-              I graduated from Hacettepe University's Department of Computer Education and Instructional Technologies in 2025 with a GPA of 3.13. 
-              My passion lies at the intersection of technology, design, and education — where I turn complex concepts into immersive, 
-              learner-centered digital experiences.
-            </p>
-
-            <p class="about__description reveal reveal-delay-1">
-              Currently exploring the frontier of AI automation workflows, generative content creation, and interactive e-learning systems. 
-              I thrive when storytelling meets engineering.
-            </p>
-
-            <div class="about__highlights reveal reveal-delay-2">
-              <div class="about__highlight">
-                <div class="about__highlight-icon blue"><i class="uil uil-game-structure"></i></div>
-                <div class="about__highlight-text">
-                  <h4>Game Development</h4>
-                  <p>Unity, C#, 3D Modeling</p>
-                </div>
-              </div>
-              <div class="about__highlight">
-                <div class="about__highlight-icon purple"><i class="uil uil-mobile-android"></i></div>
-                <div class="about__highlight-text">
-                  <h4>UX/UI Design</h4>
-                  <p>Mobile apps, Prototyping</p>
-                </div>
-              </div>
-              <div class="about__highlight">
-                <div class="about__highlight-icon green"><i class="uil uil-robot"></i></div>
-                <div class="about__highlight-text">
-                  <h4>AI Workflows</h4>
-                  <p>LLM, Automation Pipelines</p>
-                </div>
-              </div>
-              <div class="about__highlight">
-                <div class="about__highlight-icon pink"><i class="uil uil-graduation-cap"></i></div>
-                <div class="about__highlight-text">
-                  <h4>Instructional Design</h4>
-                  <p>E-Learning, SCORM, LMS</p>
-                </div>
-              </div>
+          <!-- Right Card (4 cols): Clean Interactive Archive Index -->
+          <aside class="hero-directory spotlight-card reveal reveal-delay-2" aria-label="Featured Case Directory">
+            <div class="hero-directory__head">
+              <span>Selected Index</span>
+              <span>06 Archives</span>
             </div>
 
-            <div class="about__actions reveal reveal-delay-3">
-              <a href="Baris_Degirmenci_CV.pdf" download class="btn btn-primary">
-                <i class="uil uil-download-alt"></i> Download CV
+            <div class="hero-directory__list">
+              <a href="uxui-showcase.html" class="hero-dir-item">
+                <span class="hero-dir-item__icon"><i class="uil uil-mobile-android"></i></span>
+                <div class="hero-dir-item__body">
+                  <strong>UniPazar Campus Marketplace</strong>
+                  <span>Product UX/UI · Figma Live Prototype</span>
+                </div>
+                <i class="uil uil-arrow-up-right hero-dir-item__arrow"></i>
               </a>
-              <a href="#contact" class="btn btn-outline">
-                <i class="uil uil-message"></i> Let's Talk
+
+              <a href="game-showcase.html" class="hero-dir-item">
+                <span class="hero-dir-item__icon"><i class="uil uil-game-structure"></i></span>
+                <div class="hero-dir-item__body">
+                  <strong>Sergio, The Pearl &amp; Googlewoods</strong>
+                  <span>Unity 2D/3D · C# Gameplay &amp; AI</span>
+                </div>
+                <i class="uil uil-arrow-up-right hero-dir-item__arrow"></i>
+              </a>
+
+              <a href="gallery-sketch.html" class="hero-dir-item">
+                <span class="hero-dir-item__icon"><i class="uil uil-brush-alt"></i></span>
+                <div class="hero-dir-item__body">
+                  <strong>Character Art &amp; Event Branding</strong>
+                  <span>Digital Illustration · Knights &amp; BAM</span>
+                </div>
+                <i class="uil uil-arrow-up-right hero-dir-item__arrow"></i>
+              </a>
+
+              <a href="documents.html" class="hero-dir-item">
+                <span class="hero-dir-item__icon"><i class="uil uil-file-alt"></i></span>
+                <div class="hero-dir-item__body">
+                  <strong>3D Modeling, Scripts &amp; Catalogs</strong>
+                  <span>Blender 3D · 9 PDF Publications</span>
+                </div>
+                <i class="uil uil-arrow-up-right hero-dir-item__arrow"></i>
               </a>
             </div>
 
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- ══ SKILLS ══════════════════════════════ -->
-    <section class="section" id="skills">
-      <div class="container">
-
-        <div class="section__header">
-          <p class="section__label">
-            <i class="uil uil-chart-bar"></i>
-            Technical Skills
-          </p>
-          <h2 class="section__title">What I <span>excel at</span></h2>
-          <p class="section__subtitle">Tools and technologies I use to bring ideas to life.</p>
-        </div>
-
-        <div class="skills__grid">
-
-          <div class="skill-card reveal">
-            <div class="skill-card__header">
-              <div class="skill-card__name">
-                <i class="uil uil-pen skill-card__icon" style="color:var(--accent)"></i>
-                Adobe Illustrator
-              </div>
-              <span class="skill-card__percent">90%</span>
-            </div>
-            <div class="skill-card__bar">
-              <div class="skill-card__fill" data-width="90%"></div>
-            </div>
-          </div>
-
-          <div class="skill-card reveal reveal-delay-1">
-            <div class="skill-card__header">
-              <div class="skill-card__name">
-                <i class="uil uil-layers skill-card__icon" style="color:var(--accent-pink)"></i>
-                Adobe Creative Suite
-              </div>
-              <span class="skill-card__percent">70%</span>
-            </div>
-            <div class="skill-card__bar">
-              <div class="skill-card__fill" data-width="70%" style="background: linear-gradient(90deg, var(--accent-pink), var(--accent-alt))"></div>
-            </div>
-          </div>
-
-          <div class="skill-card reveal reveal-delay-2">
-            <div class="skill-card__header">
-              <div class="skill-card__name">
-                <i class="uil uil-game-structure skill-card__icon" style="color:var(--accent-alt)"></i>
-                Unity
-              </div>
-              <span class="skill-card__percent">75%</span>
-            </div>
-            <div class="skill-card__bar">
-              <div class="skill-card__fill" data-width="75%" style="background: linear-gradient(90deg, var(--accent-alt), var(--accent))"></div>
-            </div>
-          </div>
-
-          <div class="skill-card reveal reveal-delay-3">
-            <div class="skill-card__header">
-              <div class="skill-card__name">
-                <i class="uil uil-brackets-curly skill-card__icon" style="color:var(--accent-green)"></i>
-                C# Programming
-              </div>
-              <span class="skill-card__percent">70%</span>
-            </div>
-            <div class="skill-card__bar">
-              <div class="skill-card__fill" data-width="70%" style="background: linear-gradient(90deg, var(--accent-green), var(--accent))"></div>
-            </div>
-          </div>
-
-          <div class="skill-card reveal reveal-delay-1">
-            <div class="skill-card__header">
-              <div class="skill-card__name">
-                <i class="uil uil-cube skill-card__icon" style="color:var(--accent)"></i>
-                Blender (3D)
-              </div>
-              <span class="skill-card__percent">75%</span>
-            </div>
-            <div class="skill-card__bar">
-              <div class="skill-card__fill" data-width="75%"></div>
-            </div>
-          </div>
-
-          <div class="skill-card reveal reveal-delay-2">
-            <div class="skill-card__header">
-              <div class="skill-card__name">
-                <i class="uil uil-mobile-android skill-card__icon" style="color:var(--accent-alt)"></i>
-                UX/UI Design
-              </div>
-              <span class="skill-card__percent">80%</span>
-            </div>
-            <div class="skill-card__bar">
-              <div class="skill-card__fill" data-width="80%" style="background: linear-gradient(90deg, var(--accent-alt), var(--accent-pink))"></div>
-            </div>
-          </div>
-
-          <div class="skill-card reveal reveal-delay-3">
-            <div class="skill-card__header">
-              <div class="skill-card__name">
-                <i class="uil uil-users-alt skill-card__icon" style="color:var(--accent-green)"></i>
-                Scrum Master
-              </div>
-              <span class="skill-card__percent">85%</span>
-            </div>
-            <div class="skill-card__bar">
-              <div class="skill-card__fill" data-width="85%" style="background: linear-gradient(90deg, var(--accent-green), var(--accent))"></div>
-            </div>
-          </div>
-
-          <div class="skill-card reveal reveal-delay-4">
-            <div class="skill-card__header">
-              <div class="skill-card__name">
-                <i class="uil uil-graduation-cap skill-card__icon" style="color:var(--accent-pink)"></i>
-                Instructional Design
-              </div>
-              <span class="skill-card__percent">80%</span>
-            </div>
-            <div class="skill-card__bar">
-              <div class="skill-card__fill" data-width="80%" style="background: linear-gradient(90deg, var(--accent-pink), var(--accent-alt))"></div>
-            </div>
-          </div>
+            <button type="button" class="hero-directory__cmdk" data-open-cmdk>
+              <span><i class="uil uil-search"></i> Search projects, PDFs, theme…</span>
+              <kbd>Ctrl K</kbd>
+            </button>
+          </aside>
 
         </div>
       </div>
     </section>
 
-    <div class="section-divider"></div>
-
-    <!-- ══ QUALIFICATION ══════════════════════ -->
-    <section class="section" id="qualification">
-      <div class="container">
-
-        <div class="section__header">
-          <p class="section__label">
-            <i class="uil uil-award"></i>
-            Qualification
-          </p>
-          <h2 class="section__title">My <span>journey</span></h2>
-          <p class="section__subtitle">Education and work experience that shaped who I am today.</p>
-        </div>
-
-        <!-- Tabs -->
-        <div class="qualification__tabs">
-          <button class="qualification__tab-btn active" data-target="education">
-            <i class="uil uil-graduation-cap"></i> Education
-          </button>
-          <button class="qualification__tab-btn" data-target="work">
-            <i class="uil uil-briefcase-alt"></i> Work
-          </button>
-        </div>
-
-        <!-- Education -->
-        <div class="qualification__content active" id="education">
-          <div class="qualification__timeline">
-
-            <div class="qualification__item reveal">
-              <div class="qualification__item-year">2021 – 2025</div>
-              <div class="qualification__item-title">Computer Education & Instructional Technologies</div>
-              <div class="qualification__item-sub">Hacettepe University · GPA 3.13</div>
-            </div>
-
-            <div class="qualification__item reveal reveal-delay-1">
-              <div class="qualification__item-year">2022 – 2023</div>
-              <div class="qualification__item-title">Game Development Program</div>
-              <div class="qualification__item-sub">Google Game and Application Academy</div>
-            </div>
-
-            <div class="qualification__item reveal reveal-delay-2">
-              <div class="qualification__item-year">2021 – Present</div>
-              <div class="qualification__item-title">Graphic Design</div>
-              <div class="qualification__item-sub">Self-Taught · Adobe Illustrator, Photoshop, InDesign</div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- Work -->
-        <div class="qualification__content" id="work">
-          <div class="qualification__timeline">
-
-            <div class="qualification__item reveal">
-              <div class="qualification__item-year">2022 – 2024</div>
-              <div class="qualification__item-title">Graphic Designer</div>
-              <div class="qualification__item-sub">Center for Sustainable Teaching and Learning</div>
-            </div>
-
-            <div class="qualification__item reveal reveal-delay-1">
-              <div class="qualification__item-year">2024 Summer</div>
-              <div class="qualification__item-title">Trainee — Instructional Designer</div>
-              <div class="qualification__item-sub">BİLTEN Defence</div>
-            </div>
-
-            <div class="qualification__item reveal reveal-delay-2">
-              <div class="qualification__item-year">2024 – 2025</div>
-              <div class="qualification__item-title">Part-Time Content Producer</div>
-              <div class="qualification__item-sub">BİLTEN Defence</div>
-            </div>
-
-            <div class="qualification__item reveal reveal-delay-3">
-              <div class="qualification__item-year">2025 – Present</div>
-              <div class="qualification__item-title">Creative Content Creator</div>
-              <div class="qualification__item-sub">E12</div>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- ══ SERVICES ══════════════════════════ -->
-    <section class="section" id="services">
-      <div class="container">
-
-        <div class="section__header">
-          <p class="section__label">
-            <i class="uil uil-briefcase-alt"></i>
-            Services
-          </p>
-          <h2 class="section__title">What I <span>offer</span></h2>
-          <p class="section__subtitle">From pixels to gameplay to pedagogy — I do it all.</p>
-        </div>
-
-        <div class="services__grid">
-
-          <!-- Graphic Design -->
-          <div class="service-card reveal">
-            <div class="service-card__icon" style="background:rgba(244,114,182,0.12);color:var(--accent-pink)">
-              <i class="uil uil-web-grid"></i>
-            </div>
-            <h3 class="service-card__title">Graphic Design</h3>
-            <ul class="service-card__list">
-              <li class="service-card__item"><i class="uil uil-check-circle"></i> Professional logo & brand identity</li>
-              <li class="service-card__item"><i class="uil uil-check-circle"></i> Catalog & publication design</li>
-              <li class="service-card__item"><i class="uil uil-check-circle"></i> Adobe Illustrator & Photoshop</li>
-              <li class="service-card__item"><i class="uil uil-check-circle"></i> Print & digital media</li>
-            </ul>
-          </div>
-
-          <!-- UX/UI Design -->
-          <div class="service-card reveal reveal-delay-1" style="--glow-color: rgba(129,140,248,0.15)">
-            <div class="service-card__icon" style="background:rgba(129,140,248,0.12);color:var(--accent-alt)">
-              <i class="uil uil-mobile-android-alt"></i>
-            </div>
-            <h3 class="service-card__title">UX/UI Designer</h3>
-            <ul class="service-card__list">
-              <li class="service-card__item"><i class="uil uil-check-circle"></i> Mobile app interface design</li>
-              <li class="service-card__item"><i class="uil uil-check-circle"></i> User research & testing</li>
-              <li class="service-card__item"><i class="uil uil-check-circle"></i> Interactive prototypes</li>
-              <li class="service-card__item"><i class="uil uil-check-circle"></i> Responsive web design</li>
-            </ul>
-          </div>
-
-          <!-- Game Development -->
-          <div class="service-card reveal reveal-delay-2">
-            <div class="service-card__icon" style="background:rgba(129,140,248,0.12);color:var(--accent-alt)">
-              <i class="uil uil-game-structure"></i>
-            </div>
-            <h3 class="service-card__title">Game Developer</h3>
-            <ul class="service-card__list">
-              <li class="service-card__item"><i class="uil uil-check-circle"></i> Unity 2D/3D game development</li>
-              <li class="service-card__item"><i class="uil uil-check-circle"></i> C# programming & scripting</li>
-              <li class="service-card__item"><i class="uil uil-check-circle"></i> Game mechanics & level design</li>
-              <li class="service-card__item"><i class="uil uil-check-circle"></i> 3D modeling with Blender</li>
-            </ul>
-          </div>
-
-          <!-- Instructional Design -->
-          <div class="service-card reveal reveal-delay-3">
-            <div class="service-card__icon" style="background:rgba(52,211,153,0.12);color:var(--accent-green)">
-              <i class="uil uil-graduation-cap"></i>
-            </div>
-            <h3 class="service-card__title">Instructional Designer</h3>
-            <ul class="service-card__list">
-              <li class="service-card__item"><i class="uil uil-check-circle"></i> E-Learning module creation</li>
-              <li class="service-card__item"><i class="uil uil-check-circle"></i> SCORM-compliant content</li>
-              <li class="service-card__item"><i class="uil uil-check-circle"></i> Learning path architecture</li>
-              <li class="service-card__item"><i class="uil uil-check-circle"></i> Multimedia storyboarding</li>
-            </ul>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- ══ PORTFOLIO ══════════════════════════ -->
+    <!-- ══ 01 · INTERACTIVE BENTO WORK DECK ═ -->
     <section class="section" id="portfolio">
       <div class="container">
 
-        <div class="section__header">
-          <p class="section__label">
-            <i class="uil uil-scenery"></i>
-            Portfolio
-          </p>
-          <h2 class="section__title">Explore my <span>creative work</span></h2>
-          <p class="section__subtitle">Projects that blend technology, aesthetics, and purpose.</p>
+        <div class="hud-header reveal">
+          <div>
+            <span class="hud-kicker">01 · Selected Work</span>
+            <h2 class="section__title">Projects &amp; <em>Case Studies</em></h2>
+          </div>
+          <p class="section__subtitle">Hover any card to inspect, or filter by discipline below.</p>
         </div>
 
         <!-- Filter Bar -->
-        <div class="portfolio__filter">
-          <button class="filter-btn active" data-filter="all">All Work</button>
-          <button class="filter-btn" data-filter="game">🎮 Game Dev</button>
-          <button class="filter-btn" data-filter="uxui">🎨 UX/UI</button>
-          <button class="filter-btn" data-filter="graphic">🖌️ Graphic</button>
-          <button class="filter-btn" data-filter="academic">📚 Academic</button>
+        <div class="portfolio__toolbar reveal">
+          <div class="portfolio__filter">
+            <button class="filter-btn active" data-filter="all">
+              All <span class="filter-btn__count">06</span>
+            </button>
+            <button class="filter-btn" data-filter="uxui">
+              UX/UI <span class="filter-btn__count">01</span>
+            </button>
+            <button class="filter-btn" data-filter="game">
+              Games <span class="filter-btn__count">01</span>
+            </button>
+            <button class="filter-btn" data-filter="design">
+              Art &amp; Brand <span class="filter-btn__count">02</span>
+            </button>
+            <button class="filter-btn" data-filter="academic">
+              3D &amp; Academic <span class="filter-btn__count">01</span>
+            </button>
+            <button class="filter-btn" data-filter="docs">
+              Publications <span class="filter-btn__count">01</span>
+            </button>
+          </div>
         </div>
 
-        <!-- Bento Grid -->
+        <!-- 6-Card Preserved Bento Grid (Theme-Aware Light & Dark) -->
         <div class="portfolio__bento">
 
-          <!-- UX/UI Mobile App — Feature (wide) -->
-          <div class="bento-card bento-card--wide portfolio-card reveal" data-category="uxui">
-            <div class="portfolio-card__bg">
-              <svg class="portfolio-card__gradient" viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-                <defs>
-                  <linearGradient id="g-uxui" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#4facfe"/>
-                    <stop offset="100%" style="stop-color:#00f2fe"/>
-                  </linearGradient>
-                </defs>
-                <rect width="800" height="280" fill="url(#g-uxui)"/>
-                <!-- Phone mockup -->
-                <rect x="290" y="40" width="90" height="160" rx="10" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
-                <rect x="298" y="55" width="74" height="10" rx="3" fill="rgba(255,255,255,0.25)"/>
-                <rect x="298" y="70" width="55" height="8" rx="3" fill="rgba(255,255,255,0.15)"/>
-                <rect x="298" y="82" width="55" height="8" rx="3" fill="rgba(255,255,255,0.15)"/>
-                <circle cx="335" cy="130" r="28" fill="rgba(255,255,255,0.12)"/>
-                <path d="M326 130 L332 136 L345 120" stroke="rgba(255,255,255,0.6)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                <rect x="298" y="168" width="74" height="20" rx="5" fill="rgba(79,172,254,0.5)"/>
-                <!-- Second phone -->
-                <rect x="420" y="60" width="80" height="140" rx="8" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
-                <rect x="428" y="72" width="64" height="8" rx="3" fill="rgba(255,255,255,0.20)"/>
-                <rect x="428" y="84" width="45" height="6" rx="3" fill="rgba(255,255,255,0.12)"/>
-                <rect x="428" y="114" width="64" height="55" rx="4" fill="rgba(255,255,255,0.10)"/>
-                <!-- Dots decorative -->
-                <circle cx="150" cy="60" r="40" fill="rgba(255,255,255,0.05)"/>
-                <circle cx="150" cy="60" r="25" fill="rgba(255,255,255,0.05)"/>
-                <circle cx="660" cy="200" r="50" fill="rgba(255,255,255,0.04)"/>
-              </svg>
+          <!-- 01 · UniPazar Mobile UX/UI (Wide 8 cols) -->
+          <a href="uxui-showcase.html" class="portfolio-card spotlight-card bento-card--wide reveal"
+            data-category="uxui">
+            <div class="portfolio-card__media">
+              <span class="portfolio-card__index">01 · UX/UI</span>
+              <div class="portfolio-card__arrow"><i class="uil uil-arrow-up-right"></i></div>
+              <div class="bento-visual bento-visual--uxui">
+                <div class="uxui-stage-note">
+                  <img src="assets/img/UniPazar 2.png" alt="UniPazar mark" loading="lazy">
+                  <div>
+                    <strong>Figma Live Prototype</strong>
+                    <span>17 iOS Screens · .edu.tr Auth</span>
+                  </div>
+                </div>
+                <div class="uxui-phones">
+                  <div class="uxui-phone uxui-phone--left">
+                    <img src="assets/img/UI/5.png" alt="UniPazar Onboarding Screen" loading="lazy">
+                  </div>
+                  <div class="uxui-phone uxui-phone--mid">
+                    <img src="assets/img/UI/login.png" alt="UniPazar Welcome Screen" loading="lazy">
+                  </div>
+                  <div class="uxui-phone uxui-phone--right">
+                    <img src="assets/img/UI/7.png" alt="UniPazar University Community Screen" loading="lazy">
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="portfolio-card__overlay"></div>
             <div class="portfolio-card__content">
               <div class="portfolio-card__meta">
-                <span class="portfolio-card__tag">UX/UI</span>
-                <span class="portfolio-card__tag">Mobile</span>
-                <span class="portfolio-card__tag">2024</span>
+                <span class="portfolio-card__tag">Product UX/UI</span>
+                <span class="portfolio-card__tag">Figma &amp; Adobe XD</span>
+                <span class="portfolio-card__tag">Mobile System</span>
               </div>
-              <h3 class="portfolio-card__title">UX/UI Mobile App</h3>
-              <p class="portfolio-card__desc">Complete mobile app design featuring authentication flows, user onboarding, and modern UI patterns.</p>
+              <h3 class="portfolio-card__title">UniPazar — Campus Marketplace</h3>
+              <p class="portfolio-card__desc">End-to-end onboarding, verified .edu.tr authentication, validation states,
+                and OTP recovery designed for Hacettepe University students.</p>
             </div>
-            <a href="uxui-showcase.html" class="portfolio-card__arrow" aria-label="View project">
-              <i class="uil uil-arrow-up-right"></i>
-            </a>
-          </div>
-
-          <!-- Game Projects — Tall -->
-          <div class="bento-card bento-card--tall portfolio-card reveal reveal-delay-1" data-category="game">
-            <div class="portfolio-card__bg">
-              <svg class="portfolio-card__gradient" viewBox="0 0 280 560" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-                <defs>
-                  <linearGradient id="g-game" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#667eea"/>
-                    <stop offset="100%" style="stop-color:#764ba2"/>
-                  </linearGradient>
-                </defs>
-                <rect width="280" height="560" fill="url(#g-game)"/>
-                <!-- Controller shape -->
-                <ellipse cx="140" cy="200" rx="110" ry="80" fill="rgba(255,255,255,0.10)"/>
-                <!-- D-pad -->
-                <rect x="80" y="185" width="40" height="12" rx="6" fill="rgba(255,255,255,0.4)"/>
-                <rect x="98" y="167" width="12" height="40" rx="6" fill="rgba(255,255,255,0.4)"/>
-                <!-- Buttons -->
-                <circle cx="185" cy="183" r="8" fill="rgba(255,165,0,0.6)"/>
-                <circle cx="200" cy="196" r="8" fill="rgba(0,200,100,0.6)"/>
-                <circle cx="185" cy="209" r="8" fill="rgba(255,80,80,0.6)"/>
-                <circle cx="170" cy="196" r="8" fill="rgba(100,150,255,0.6)"/>
-                <!-- Stars -->
-                <circle cx="50" cy="80" r="3" fill="rgba(255,255,255,0.6)"/>
-                <circle cx="230" cy="60" r="2" fill="rgba(255,255,255,0.5)"/>
-                <circle cx="240" cy="440" r="3" fill="rgba(255,255,255,0.4)"/>
-                <circle cx="40" cy="450" r="2" fill="rgba(255,255,255,0.5)"/>
-                <circle cx="140" cy="380" r="50" fill="rgba(255,255,255,0.04)"/>
-              </svg>
-            </div>
-            <div class="portfolio-card__overlay"></div>
-            <div class="portfolio-card__content">
-              <div class="portfolio-card__meta">
-                <span class="portfolio-card__tag">Unity</span>
-                <span class="portfolio-card__tag">C#</span>
-                <span class="portfolio-card__tag">2022–23</span>
-              </div>
-              <h3 class="portfolio-card__title">Game Development Projects</h3>
-              <p class="portfolio-card__desc">2D/3D games built with Unity during the Google Game Academy program.</p>
-            </div>
-            <a href="game-showcase.html" class="portfolio-card__arrow" aria-label="View project">
-              <i class="uil uil-arrow-up-right"></i>
-            </a>
-          </div>
-
-          <!-- Sketch & Mockup -->
-          <div class="bento-card portfolio-card reveal reveal-delay-2" data-category="graphic">
-            <div class="portfolio-card__bg">
-              <svg class="portfolio-card__gradient" viewBox="0 0 265 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-                <defs>
-                  <linearGradient id="g-sketch" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#fa709a"/>
-                    <stop offset="100%" style="stop-color:#fee140"/>
-                  </linearGradient>
-                </defs>
-                <rect width="265" height="280" fill="url(#g-sketch)"/>
-                <g transform="translate(60, 70)">
-                  <path d="M115,10 L130,0 L145,10 L130,20 Z" fill="rgba(255,255,255,0.85)"/>
-                  <path d="M110,15 L10,115 L0,130 L15,130 L25,115 L125,15 Z" fill="rgba(255,255,255,0.85)"/>
-                  <circle cx="12" cy="127" r="8" fill="rgba(255,255,255,0.6)"/>
-                  <path d="M30,55 Q45,40 60,55 T90,55" stroke="rgba(255,255,255,0.5)" stroke-width="3" fill="none" stroke-linecap="round"/>
-                  <path d="M40,75 Q55,60 70,75 T100,75" stroke="rgba(255,255,255,0.4)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-                  <path d="M50,95 Q65,80 80,95 T110,95" stroke="rgba(255,255,255,0.3)" stroke-width="2" fill="none" stroke-linecap="round"/>
-                </g>
-              </svg>
-            </div>
-            <div class="portfolio-card__overlay"></div>
-            <div class="portfolio-card__content">
-              <div class="portfolio-card__meta">
-                <span class="portfolio-card__tag">Graphic</span>
-                <span class="portfolio-card__tag">Sketch</span>
-              </div>
-              <h3 class="portfolio-card__title">Sketch & Mockup</h3>
-              <p class="portfolio-card__desc">Hand-drawn sketches and digital mockups showcasing creative ideation.</p>
-            </div>
-            <a href="gallery-sketch.html" class="portfolio-card__arrow" aria-label="View project">
-              <i class="uil uil-arrow-up-right"></i>
-            </a>
-          </div>
-
-          <!-- Community Products -->
-          <div class="bento-card portfolio-card reveal reveal-delay-3" data-category="graphic">
-            <div class="portfolio-card__bg">
-              <svg class="portfolio-card__gradient" viewBox="0 0 265 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-                <defs>
-                  <linearGradient id="g-community" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#30cfd0"/>
-                    <stop offset="100%" style="stop-color:#330867"/>
-                  </linearGradient>
-                </defs>
-                <rect width="265" height="280" fill="url(#g-community)"/>
-                <g transform="translate(75, 80)">
-                  <circle cx="57.5" cy="40" r="22" fill="rgba(255,255,255,0.85)"/>
-                  <ellipse cx="57.5" cy="90" rx="32" ry="22" fill="rgba(255,255,255,0.85)"/>
-                  <circle cx="15" cy="50" r="16" fill="rgba(255,255,255,0.65)"/>
-                  <ellipse cx="15" cy="90" rx="22" ry="16" fill="rgba(255,255,255,0.65)"/>
-                  <circle cx="100" cy="50" r="16" fill="rgba(255,255,255,0.65)"/>
-                  <ellipse cx="100" cy="90" rx="22" ry="16" fill="rgba(255,255,255,0.65)"/>
-                </g>
-              </svg>
-            </div>
-            <div class="portfolio-card__overlay"></div>
-            <div class="portfolio-card__content">
-              <div class="portfolio-card__meta">
-                <span class="portfolio-card__tag">Community</span>
-                <span class="portfolio-card__tag">Graphic</span>
-              </div>
-              <h3 class="portfolio-card__title">Community Products</h3>
-              <p class="portfolio-card__desc">Design work for community projects and social initiatives.</p>
-            </div>
-            <a href="gallery-community.html" class="portfolio-card__arrow" aria-label="View project">
-              <i class="uil uil-arrow-up-right"></i>
-            </a>
-          </div>
-
-          <!-- Academic Projects — Wide -->
-          <div class="bento-card bento-card--wide portfolio-card reveal reveal-delay-2" data-category="academic">
-            <div class="portfolio-card__bg">
-              <svg class="portfolio-card__gradient" viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-                <defs>
-                  <linearGradient id="g-academic" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#a8edea"/>
-                    <stop offset="100%" style="stop-color:#fed6e3"/>
-                  </linearGradient>
-                </defs>
-                <rect width="800" height="280" fill="url(#g-academic)"/>
-                <!-- Books / docs -->
-                <rect x="250" y="80" width="80" height="110" rx="5" fill="rgba(79,172,254,0.7)"/>
-                <rect x="260" y="90" width="60" height="8" rx="3" fill="rgba(255,255,255,0.5)"/>
-                <rect x="260" y="102" width="50" height="6" rx="3" fill="rgba(255,255,255,0.4)"/>
-                <rect x="260" y="112" width="50" height="6" rx="3" fill="rgba(255,255,255,0.4)"/>
-                <rect x="340" y="95" width="70" height="95" rx="5" fill="rgba(79,172,254,0.5)"/>
-                <rect x="350" y="105" width="50" height="6" rx="3" fill="rgba(255,255,255,0.4)"/>
-                <rect x="350" y="115" width="45" height="5" rx="3" fill="rgba(255,255,255,0.3)"/>
-                <!-- Graduation cap -->
-                <polygon points="480,90 440,110 480,130 520,110" fill="rgba(79,172,254,0.8)"/>
-                <rect x="477" y="130" width="6" height="28" fill="rgba(79,172,254,0.7)"/>
-                <polygon points="480,158 470,163 490,163" fill="rgba(79,172,254,0.8)"/>
-                <!-- Stars -->
-                <circle cx="150" cy="60" r="4" fill="rgba(79,172,254,0.4)"/>
-                <circle cx="640" cy="80" r="3" fill="rgba(79,172,254,0.4)"/>
-                <circle cx="680" cy="200" r="5" fill="rgba(79,172,254,0.3)"/>
-              </svg>
-            </div>
-            <div class="portfolio-card__overlay"></div>
-            <div class="portfolio-card__content">
-              <div class="portfolio-card__meta">
-                <span class="portfolio-card__tag">Academic</span>
-                <span class="portfolio-card__tag">Hacettepe</span>
-                <span class="portfolio-card__tag">2021–25</span>
-              </div>
-              <h3 class="portfolio-card__title">Academic Projects</h3>
-              <p class="portfolio-card__desc">University assignments, academic development catalogs, design publications, and activity reports from Hacettepe University.</p>
-            </div>
-            <a href="gallery-school.html" class="portfolio-card__arrow" aria-label="View project">
-              <i class="uil uil-arrow-up-right"></i>
-            </a>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- ══ WHAT I'M UP TO ════════════════════ -->
-    <section class="currently-working section" id="currently-working">
-      <div class="container">
-
-        <div class="section__header">
-          <p class="section__label">
-            <i class="uil uil-rocket"></i>
-            What I'm Up To
-          </p>
-          <h2 class="section__title">Currently <span>learning & building</span></h2>
-          <p class="section__subtitle">Always at the frontier — exploring what's next in AI, design, and digital creation.</p>
-        </div>
-
-        <div class="working__grid">
-
-          <!-- AI Automations -->
-          <div class="working-card reveal">
-            <div class="working-card__header">
-              <div class="working-card__icon-wrap" style="background:rgba(129,140,248,0.15)">
-                <svg viewBox="0 0 52 52" width="52" height="52" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="26" cy="26" r="24" fill="rgba(129,140,248,0.08)"/>
-                  <path d="M26,13 C20,13 15,18 15,24 L15,32 C15,38 20,43 26,43 C32,43 37,38 37,32 L37,24 C37,18 32,13 26,13 Z" fill="#818CF8" opacity="0.8"/>
-                  <line x1="18" y1="22" x2="23" y2="22" stroke="#818CF8" stroke-width="2" stroke-linecap="round"/>
-                  <line x1="18" y1="28" x2="23" y2="28" stroke="#818CF8" stroke-width="2" stroke-linecap="round"/>
-                  <line x1="18" y1="34" x2="23" y2="34" stroke="#818CF8" stroke-width="2" stroke-linecap="round"/>
-                  <circle cx="15" cy="22" r="2" fill="#818CF8"/>
-                  <circle cx="15" cy="28" r="2" fill="#818CF8"/>
-                  <circle cx="15" cy="34" r="2" fill="#818CF8"/>
-                  <line x1="29" y1="22" x2="37" y2="22" stroke="#818CF8" stroke-width="2" stroke-linecap="round"/>
-                  <line x1="29" y1="28" x2="37" y2="28" stroke="#818CF8" stroke-width="2" stroke-linecap="round"/>
-                  <line x1="29" y1="34" x2="37" y2="34" stroke="#818CF8" stroke-width="2" stroke-linecap="round"/>
-                  <circle cx="37" cy="22" r="2" fill="#818CF8"/>
-                  <circle cx="37" cy="28" r="2" fill="#818CF8"/>
-                  <circle cx="37" cy="34" r="2" fill="#818CF8"/>
-                </svg>
-              </div>
-              <span class="working-card__status status--active">Active</span>
-            </div>
-
-            <h3 class="working-card__title">AI Automations & Workflows</h3>
-            <p class="working-card__description">
-              Exploring cutting-edge AI automation tools and building intelligent workflows to streamline processes.
-              Learning about LLM integrations, API orchestration, and creating smart automation pipelines.
-            </p>
-
-            <!-- Workflow Node Visualization -->
-            <div class="workflow-visual">
-              <svg class="workflow-svg" viewBox="0 0 300 70" xmlns="http://www.w3.org/2000/svg">
-                <!-- Node 1: Input -->
-                <rect x="4" y="20" width="64" height="30" rx="8" fill="rgba(56,189,248,0.15)" stroke="rgba(56,189,248,0.4)" stroke-width="1.5"/>
-                <text x="36" y="38" text-anchor="middle" fill="#38BDF8" font-size="10" font-family="Inter,sans-serif" font-weight="600">Input</text>
-                <!-- Arrow 1 -->
-                <line x1="68" y1="35" x2="90" y2="35" stroke="rgba(129,140,248,0.5)" stroke-width="1.5" stroke-dasharray="4 2"/>
-                <polygon points="90,31 98,35 90,39" fill="rgba(129,140,248,0.6)"/>
-                <!-- Node 2: LLM -->
-                <rect x="98" y="15" width="72" height="40" rx="8" fill="rgba(129,140,248,0.15)" stroke="rgba(129,140,248,0.5)" stroke-width="1.5"/>
-                <text x="134" y="33" text-anchor="middle" fill="#818CF8" font-size="9" font-family="Inter,sans-serif" font-weight="600">LLM</text>
-                <text x="134" y="47" text-anchor="middle" fill="#818CF8" font-size="8" font-family="Inter,sans-serif" opacity="0.7">Process</text>
-                <!-- Arrow 2 -->
-                <line x1="170" y1="35" x2="192" y2="35" stroke="rgba(52,211,153,0.5)" stroke-width="1.5" stroke-dasharray="4 2"/>
-                <polygon points="192,31 200,35 192,39" fill="rgba(52,211,153,0.6)"/>
-                <!-- Node 3: Output -->
-                <rect x="200" y="20" width="64" height="30" rx="8" fill="rgba(52,211,153,0.15)" stroke="rgba(52,211,153,0.4)" stroke-width="1.5"/>
-                <text x="232" y="38" text-anchor="middle" fill="#34D399" font-size="10" font-family="Inter,sans-serif" font-weight="600">Output</text>
-                <!-- Animated dot -->
-                <circle r="3" fill="#38BDF8" opacity="0.9">
-                  <animateMotion dur="2s" repeatCount="indefinite" path="M 36,35 L 134,35 L 232,35"/>
-                  <animate attributeName="opacity" values="0;1;1;0" dur="2s" repeatCount="indefinite"/>
-                </circle>
-              </svg>
-            </div>
-
-            <div class="working-card__tags">
-              <span class="working-tag">AI/ML</span>
-              <span class="working-tag">Automation</span>
-              <span class="working-tag">Workflows</span>
-              <span class="working-tag">API Integration</span>
-            </div>
-
-            <div class="working-card__progress">
-              <div class="progress-track">
-                <div class="progress-fill-bar" data-width="65%" style="width:0%"></div>
-              </div>
-              <div class="progress-label">
-                <span>Learning Progress</span>
-                <span style="color:var(--accent)">65%</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- AI Video Creation -->
-          <div class="working-card reveal reveal-delay-1">
-            <div class="working-card__header">
-              <div class="working-card__icon-wrap" style="background:rgba(244,114,182,0.15)">
-                <svg viewBox="0 0 52 52" width="52" height="52" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="26" cy="26" r="24" fill="rgba(244,114,182,0.08)"/>
-                  <rect x="12" y="19" width="24" height="16" rx="3" fill="#F472B6" opacity="0.8"/>
-                  <polygon points="36,22 44,19 44,33 36,30" fill="#F472B6" opacity="0.8"/>
-                  <circle cx="18" cy="12" r="2.5" fill="#F472B6"/>
-                  <circle cx="34" cy="14" r="1.8" fill="#F472B6"/>
-                  <circle cx="24" cy="10" r="1.5" fill="#F472B6" opacity="0.7"/>
-                  <line x1="18" y1="12" x2="18" y2="7" stroke="#F472B6" stroke-width="1" stroke-linecap="round"/>
-                  <line x1="16" y1="10" x2="20" y2="14" stroke="#F472B6" stroke-width="1" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <span class="working-card__status status--active">Active</span>
-            </div>
-
-            <h3 class="working-card__title">AI Video Creation</h3>
-            <p class="working-card__description">
-              Diving into AI-powered video generation, learning text-to-video tools, and exploring creative applications.
-              Experimenting with various AI models for content creation and video editing automation.
-            </p>
-
-            <!-- Workflow Visualization - Video pipeline -->
-            <div class="workflow-visual">
-              <svg class="workflow-svg" viewBox="0 0 300 70" xmlns="http://www.w3.org/2000/svg">
-                <rect x="4" y="20" width="60" height="30" rx="8" fill="rgba(244,114,182,0.15)" stroke="rgba(244,114,182,0.4)" stroke-width="1.5"/>
-                <text x="34" y="38" text-anchor="middle" fill="#F472B6" font-size="9.5" font-family="Inter,sans-serif" font-weight="600">Prompt</text>
-                <line x1="64" y1="35" x2="86" y2="35" stroke="rgba(244,114,182,0.4)" stroke-width="1.5" stroke-dasharray="4 2"/>
-                <polygon points="86,31 94,35 86,39" fill="rgba(244,114,182,0.6)"/>
-                <rect x="94" y="15" width="72" height="40" rx="8" fill="rgba(244,114,182,0.10)" stroke="rgba(244,114,182,0.35)" stroke-width="1.5"/>
-                <text x="130" y="33" text-anchor="middle" fill="#F472B6" font-size="9" font-family="Inter,sans-serif" font-weight="600">AI Model</text>
-                <text x="130" y="47" text-anchor="middle" fill="#F472B6" font-size="8" font-family="Inter,sans-serif" opacity="0.7">Generate</text>
-                <line x1="166" y1="35" x2="188" y2="35" stroke="rgba(244,114,182,0.4)" stroke-width="1.5" stroke-dasharray="4 2"/>
-                <polygon points="188,31 196,35 188,39" fill="rgba(244,114,182,0.6)"/>
-                <rect x="196" y="20" width="64" height="30" rx="8" fill="rgba(244,114,182,0.15)" stroke="rgba(244,114,182,0.4)" stroke-width="1.5"/>
-                <text x="228" y="38" text-anchor="middle" fill="#F472B6" font-size="10" font-family="Inter,sans-serif" font-weight="600">Video</text>
-                <circle r="3" fill="#F472B6" opacity="0.9">
-                  <animateMotion dur="2.5s" repeatCount="indefinite" path="M 34,35 L 130,35 L 228,35"/>
-                  <animate attributeName="opacity" values="0;1;1;0" dur="2.5s" repeatCount="indefinite"/>
-                </circle>
-              </svg>
-            </div>
-
-            <div class="working-card__tags">
-              <span class="working-tag">AI Video</span>
-              <span class="working-tag">Content Creation</span>
-              <span class="working-tag">Generative AI</span>
-              <span class="working-tag">Video Editing</span>
-            </div>
-
-            <div class="working-card__progress">
-              <div class="progress-track">
-                <div class="progress-fill-bar" data-width="45%" style="width:0%"></div>
-              </div>
-              <div class="progress-label">
-                <span>Learning Progress</span>
-                <span style="color:var(--accent)">45%</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div style="text-align:center; margin-top: 2.5rem;" class="reveal">
-          <p style="color:var(--text-muted); font-size: var(--fs-sm);">
-            <i class="uil uil-rocket" style="color:var(--accent)"></i>
-            &nbsp;Always exploring new technologies and pushing creative boundaries
-          </p>
-        </div>
-
-      </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- ══ PROJECT CTA ════════════════════════ -->
-    <section class="project-cta section">
-      <div class="container">
-        <div class="project-cta__inner">
-          <div class="project-cta__text reveal">
-            <h2>You have a new project? <span class="gradient-text">Let's talk.</span></h2>
-            <p>Contact me now and let's bring your ideas to life!</p>
-          </div>
-          <a href="#contact" class="btn btn-primary reveal reveal-delay-1">
-            <i class="uil uil-message"></i> Start a Conversation
           </a>
+
+          <!-- 02 · Unity Games (Tall 4 cols x 2 rows) -->
+          <a href="game-showcase.html" class="portfolio-card spotlight-card bento-card--tall reveal reveal-delay-1"
+            data-category="game">
+            <div class="portfolio-card__media">
+              <span class="portfolio-card__index">02 · Games</span>
+              <div class="portfolio-card__arrow"><i class="uil uil-arrow-up-right"></i></div>
+              <div class="bento-visual bento-visual--games">
+                <div class="games-stack">
+                  <div class="games-stack__item">
+                    <img src="https://img.youtube.com/vi/M8eoCbo5je8/hqdefault.jpg" alt="Sergio — 2D Action Platformer"
+                      loading="lazy">
+                    <span class="games-stack__badge">Sergio · 2D Action</span>
+                    <span class="games-stack__play"><i class="uil uil-play"></i></span>
+                  </div>
+                  <div class="games-stack__item">
+                    <img src="https://img.youtube.com/vi/HBKviZ6l_bE/hqdefault.jpg"
+                      alt="The Pearl — 3D Puzzle Adventure" loading="lazy">
+                    <span class="games-stack__badge">The Pearl · 3D Puzzle</span>
+                    <span class="games-stack__play"><i class="uil uil-play"></i></span>
+                  </div>
+                  <div class="games-stack__item">
+                    <img src="https://img.youtube.com/vi/3NCzQ8MkVKU/hqdefault.jpg"
+                      alt="Academia of Googlewoods — Educational RPG" loading="lazy">
+                    <span class="games-stack__badge">Googlewoods · Edu RPG</span>
+                    <span class="games-stack__play"><i class="uil uil-play"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="portfolio-card__content">
+              <div class="portfolio-card__meta">
+                <span class="portfolio-card__tag">Unity 2D/3D</span>
+                <span class="portfolio-card__tag">C# Gameplay</span>
+              </div>
+              <h3 class="portfolio-card__title">Playable Game Prototypes</h3>
+              <p class="portfolio-card__desc">Sergio, The Pearl, and Academia of Googlewoods — custom physics,
+                patrol/chase enemy AI, and gamified quest systems.</p>
+            </div>
+          </a>
+
+          <!-- 03 · Character Art & Sketches (4 cols) -->
+          <a href="gallery-sketch.html" class="portfolio-card spotlight-card bento-card reveal" data-category="design">
+            <div class="portfolio-card__media">
+              <span class="portfolio-card__index">03 · Art</span>
+              <div class="portfolio-card__arrow"><i class="uil uil-arrow-up-right"></i></div>
+              <div class="bento-visual bento-visual--sketch">
+                <div class="sketch-collage">
+                  <img src="assets/img/Ekran görüntüsü 2025-07-07 203908.png"
+                    alt="Pencil to Digital Character Illustration" loading="lazy">
+                  <img src="assets/img/sketch-1.jpg" alt="Ink Character Portrait" loading="lazy">
+                </div>
+              </div>
+            </div>
+            <div class="portfolio-card__content">
+              <div class="portfolio-card__meta">
+                <span class="portfolio-card__tag">Illustration</span>
+                <span class="portfolio-card__tag">7 Pieces</span>
+              </div>
+              <h3 class="portfolio-card__title">Character Art &amp; Sketches</h3>
+              <p class="portfolio-card__desc">Graphite-to-digital character studies, 4-stage concept breakdowns, ink
+                linework, and apparel mockups.</p>
+            </div>
+          </a>
+
+          <!-- 04 · Community & Event Branding (4 cols) -->
+          <a href="gallery-community.html" class="portfolio-card spotlight-card bento-card reveal reveal-delay-1"
+            data-category="design">
+            <div class="portfolio-card__media">
+              <span class="portfolio-card__index">04 · Brand</span>
+              <div class="portfolio-card__arrow"><i class="uil uil-arrow-up-right"></i></div>
+              <div class="bento-visual bento-visual--community">
+                <div class="community-collage">
+                  <img src="assets/img/community-2.jpg" alt="Knights Boardgame Mythic Tarot Poster" loading="lazy">
+                  <img src="assets/img/community-3.jpg" alt="Knights Boardgame Membership QR Pass" loading="lazy">
+                  <img src="assets/img/community-5.png" alt="Catan Regional Tournament Poster" loading="lazy">
+                </div>
+              </div>
+            </div>
+            <div class="portfolio-card__content">
+              <div class="portfolio-card__meta">
+                <span class="portfolio-card__tag">Visual Identity</span>
+                <span class="portfolio-card__tag">Print</span>
+              </div>
+              <h3 class="portfolio-card__title">Community &amp; Event Branding</h3>
+              <p class="portfolio-card__desc">Tarot posters, print pennants, QR passes, and Catan tournament visuals for
+                Knights Boardgame &amp; BAM.</p>
+            </div>
+          </a>
+
+          <!-- 05 · 3D Modeling & Academic Publications (Wide 8 cols) -->
+          <a href="gallery-school.html" class="portfolio-card spotlight-card bento-card--wide reveal"
+            data-category="academic">
+            <div class="portfolio-card__media">
+              <span class="portfolio-card__index">05 · 3D &amp; CEIT</span>
+              <div class="portfolio-card__arrow"><i class="uil uil-arrow-up-right"></i></div>
+              <div class="bento-visual bento-visual--academic">
+                    <div class="academic-layout">
+                      <div class="academic-specs">
+                        <div class="docs-mini-card">
+                          <i class="uil uil-cube"></i>
+                          <div class="docs-mini-card__text">
+                            <span class="docs-mini-card__title">Blender 3D Character Mesh</span>
+                            <span class="docs-mini-card__sub">2D Turnaround → Hard-Surface Sculpt</span>
+                          </div>
+                        </div>
+                        <div class="docs-mini-card">
+                          <i class="uil uil-university"></i>
+                          <div class="docs-mini-card__text">
+                            <span class="docs-mini-card__title">Hacettepe STL &amp; AGP Reports</span>
+                            <span class="docs-mini-card__sub">4 Semester Reports &amp; Print Catalogs</span>
+                          </div>
+                        </div>
+                      </div>
+                        <div class="academic-frames">
+                          <div class="academic-frame academic-frame--3d">
+                            <img src="assets/img/schoolwork-2.png" alt="Blender 3D Character Render" loading="lazy">
+                          </div>
+                          <div class="academic-frame academic-frame--poster">
+                            <img src="assets/img/schoolwork-4.png" alt="Oltaya Gelmeyin Cybersecurity Poster"
+                              loading="lazy">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="portfolio-card__content">
+                    <div class="portfolio-card__meta">
+                      <span class="portfolio-card__tag">Blender 3D</span>
+                      <span class="portfolio-card__tag">Instructional Design</span>
+                      <span class="portfolio-card__tag">Hacettepe STL</span>
+                    </div>
+                    <h3 class="portfolio-card__title">3D Modeling &amp; Institutional Works</h3>
+                    <p class="portfolio-card__desc">Orthographic character turnarounds, Blender 3D clay renders,
+                      cybersecurity outreach visuals, and university publications.</p>
+                  </div>
+          </a>
+
+          <!-- 06 · Screenplays, Print Catalogs & Reports (4 cols) -->
+          <a href="documents.html" class="portfolio-card spotlight-card bento-card reveal reveal-delay-1"
+            data-category="docs">
+            <div class="portfolio-card__media">
+              <span class="portfolio-card__index">06 · Docs</span>
+              <div class="portfolio-card__arrow"><i class="uil uil-arrow-up-right"></i></div>
+              <div class="bento-visual bento-visual--docs">
+                <div class="docs-stack">
+                  <div class="docs-mini-card">
+                    <i class="uil uil-film"></i>
+                    <div class="docs-mini-card__text">
+                      <span class="docs-mini-card__title">Original Screenplays</span>
+                      <span class="docs-mini-card__sub">Visa &amp; Narrative Scripts</span>
+                    </div>
+                  </div>
+                  <div class="docs-mini-card">
+                    <i class="uil uil-book-open"></i>
+                    <div class="docs-mini-card__text">
+                      <span class="docs-mini-card__title">Print &amp; Brand Catalogs</span>
+                      <span class="docs-mini-card__sub">Vitaself · Hacettepe AGP &amp; STL</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="portfolio-card__content">
+              <div class="portfolio-card__meta">
+                <span class="portfolio-card__tag">Screenwriting</span>
+                <span class="portfolio-card__tag">9 PDFs</span>
+              </div>
+              <h3 class="portfolio-card__title">Scripts, Catalogs &amp; CV</h3>
+              <p class="portfolio-card__desc">Original screenwriting samples, multilingual print catalogs, and four
+                semester reports with inline PDF reader.</p>
+            </div>
+          </a>
+
         </div>
+
       </div>
     </section>
 
-    <!-- ══ CONTACT ════════════════════════════ -->
+    <!-- ══ 02 · PROFILE & INTERACTIVE CAPABILITY INSPECTOR ═ -->
+    <section class="section" id="about">
+      <div class="container">
+
+        <div class="hud-header reveal">
+          <div>
+            <span class="hud-kicker">02 · Capabilities &amp; Toolkit</span>
+            <h2 class="section__title">Interactive <em>Capability Inspector</em></h2>
+          </div>
+          <p class="section__subtitle">Hover or click any discipline to highlight its active tools across the stack.</p>
+        </div>
+
+        <div class="inspector-bento">
+
+          <!-- Left: Profile Card -->
+          <aside class="operator-card spotlight-card reveal">
+            <div class="operator-card__top">
+              <span>Profile Overview</span>
+              <span class="operator-card__verified">Available</span>
+            </div>
+
+            <div class="operator-card__photo">
+              <img src="assets/img/paris-image.jpg" alt="Barış Değirmenci" loading="lazy">
+            </div>
+
+            <div class="operator-card__stats">
+              <div class="op-stat">
+                <span class="op-stat__val">CEIT ’25</span>
+                <span class="op-stat__lbl">Hacettepe · 3.13</span>
+              </div>
+              <div class="op-stat">
+                <span class="op-stat__val">E12</span>
+                <span class="op-stat__lbl">Current Studio</span>
+              </div>
+              <div class="op-stat">
+                <span class="op-stat__val">4+ Yrs</span>
+                <span class="op-stat__lbl">Design &amp; Build</span>
+              </div>
+              <div class="op-stat">
+                <span class="op-stat__val">TR / EN</span>
+                <span class="op-stat__lbl">Bilingual</span>
+              </div>
+            </div>
+
+            <a href="Baris_Degirmenci_CV.pdf" download class="btn btn-outline" style="width:100%;">
+              <i class="uil uil-download-alt"></i> Download Full CV (PDF)
+            </a>
+          </aside>
+
+          <!-- Right: Interactive Discipline -> Tool Matrix -->
+          <div class="capability-console spotlight-card reveal reveal-delay-1" id="skills">
+            <p class="capability-console__bio">
+              Graduated from <strong>Hacettepe University (CEIT)</strong> in 2025. My background connects visual design,
+              interactive code, and structured pedagogy — spanning defense e-learning &amp; S1000D documentation at
+              <strong>BİLTEN Defence</strong>, game development at the <strong>Google Game &amp; Application
+                Academy</strong>, publication design at <strong>Hacettepe STL</strong>, and creative production at
+              <strong>E12</strong>.
+            </p>
+
+            <!-- 4 Interactive Discipline Triggers -->
+            <div class="discipline-triggers" id="services">
+              <button type="button" class="disc-btn" data-disc="uxui">
+                <span class="disc-btn__num">01 · Click to filter tools</span>
+                <div class="disc-btn__title">Product &amp; UX/UI Design</div>
+                <div class="disc-btn__sub">Mobile flows, component systems &amp; interactive Figma prototypes</div>
+              </button>
+
+              <button type="button" class="disc-btn" data-disc="game">
+                <span class="disc-btn__num">02 · Click to filter tools</span>
+                <div class="disc-btn__title">Game Development &amp; 3D</div>
+                <div class="disc-btn__sub">Unity 2D/3D builds, C# mechanics, enemy AI &amp; Blender meshes</div>
+              </button>
+
+              <button type="button" class="disc-btn" data-disc="brand">
+                <span class="disc-btn__num">03 · Click to filter tools</span>
+                <div class="disc-btn__title">Brand, Print &amp; Illustration</div>
+                <div class="disc-btn__sub">Offset catalogs, event campaigns &amp; pencil-to-digital character art</div>
+              </button>
+
+              <button type="button" class="disc-btn" data-disc="edu">
+                <span class="disc-btn__num">04 · Click to filter tools</span>
+                <div class="disc-btn__title">Instructional &amp; AI Pipelines</div>
+                <div class="disc-btn__sub">SCORM modules, S1000D docs, screenwriting &amp; LLM workflows</div>
+              </button>
+            </div>
+
+            <!-- Interactive Stack Pills -->
+            <div>
+              <div class="stack-matrix__label">
+                <span>Production Toolkit</span>
+                <button type="button" id="stack-reset" class="stack-reset-btn">Reset ↺</button>
+              </div>
+
+              <div class="stack-pills">
+                <span class="stack-pill" data-stack="uxui">Figma</span>
+                <span class="stack-pill" data-stack="uxui">Adobe XD</span>
+                <span class="stack-pill" data-stack="uxui brand">Design Systems</span>
+                <span class="stack-pill" data-stack="brand uxui">Adobe Illustrator</span>
+                <span class="stack-pill" data-stack="brand">Adobe Photoshop</span>
+                <span class="stack-pill" data-stack="brand edu">InDesign &amp; Print</span>
+                <span class="stack-pill" data-stack="brand edu">Premiere Pro</span>
+                <span class="stack-pill" data-stack="game">Unity 2D / 3D</span>
+                <span class="stack-pill" data-stack="game">C# Scripting</span>
+                <span class="stack-pill" data-stack="game">Blender 3D</span>
+                <span class="stack-pill" data-stack="uxui">HTML5 / CSS3 / JS</span>
+                <span class="stack-pill" data-stack="edu">Python</span>
+                <span class="stack-pill" data-stack="game uxui">Git &amp; GitHub</span>
+                <span class="stack-pill" data-stack="edu">Articulate Storyline</span>
+                <span class="stack-pill" data-stack="edu">SCORM &amp; S1000D</span>
+                <span class="stack-pill" data-stack="edu">Screenwriting</span>
+                <span class="stack-pill" data-stack="edu brand">Generative AI Video</span>
+                <span class="stack-pill" data-stack="edu uxui">Prompt Engineering</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══ 03 · EXPERIENCE & ACTIVE R&D LAB ═════ -->
+    <section class="section" id="qualification">
+      <div class="container">
+
+        <div class="hud-header reveal">
+          <div>
+            <span class="hud-kicker">03 · Experience &amp; Lab</span>
+            <h2 class="section__title">Career Timeline &amp; <em>Active R&amp;D</em></h2>
+          </div>
+          <p class="section__subtitle">Roles, training, and ongoing creative-technology experiments.</p>
+        </div>
+
+        <div class="career-lab-grid">
+
+          <!-- Left: Career & Education Timeline -->
+          <div class="ledger-panel spotlight-card reveal">
+            <div class="ledger-panel__head">
+              <span>Experience &amp; Education</span>
+              <span>2021 — 2026</span>
+            </div>
+
+            <div class="log-item">
+              <div class="log-item__time is-now">2025 — Present</div>
+              <div>
+                <div class="log-item__role">Creative &amp; Digital Media Specialist</div>
+                <div class="log-item__org">E12</div>
+                <div class="log-item__desc">Interactive learning media, visual systems, and digital production
+                  workflows.</div>
+              </div>
+            </div>
+
+            <div class="log-item">
+              <div class="log-item__time">Jul — Aug 2024</div>
+              <div>
+                <div class="log-item__role">Instructional Design &amp; Technical Docs Intern</div>
+                <div class="log-item__org">BİLTEN (Bilgi Teknolojileri ve Elektronik)</div>
+                <div class="log-item__desc">SCORM e-learning modules in Articulate Storyline and defense-grade S1000D
+                  technical documentation.</div>
+              </div>
+            </div>
+
+            <div class="log-item">
+              <div class="log-item__time">2022 — 2024</div>
+              <div>
+                <div class="log-item__role">Part-Time Graphic &amp; Publication Designer</div>
+                <div class="log-item__org">Hacettepe University — STL</div>
+                <div class="log-item__desc">Designed 4 consecutive semester activity reports, academic catalogs (AGP),
+                  and visual communications.</div>
+              </div>
+            </div>
+
+            <div class="log-item">
+              <div class="log-item__time">2022 — 2023</div>
+              <div>
+                <div class="log-item__role">Game Dev Trainee &amp; Community President</div>
+                <div class="log-item__org">Google Game &amp; App Academy · HU Boardgame Club</div>
+                <div class="log-item__desc">Shipped Unity 2D/3D team prototypes with Agile/Scrum while leading
+                  campus-wide tabletop tournaments &amp; branding.</div>
+              </div>
+            </div>
+
+            <div class="log-item">
+              <div class="log-item__time">2021 — 2025</div>
+              <div>
+                <div class="log-item__role">B.Sc. in Computer Education &amp; Instructional Tech</div>
+                <div class="log-item__org">Hacettepe University · GPA 3.13 / 4.00</div>
+                <div class="log-item__desc">Human-computer interaction, software development, 3D modeling, multimedia
+                  &amp; instructional systems.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Active R&D Lab Modules -->
+          <div class="lab-stack" id="currently-working">
+
+            <article class="lab-card spotlight-card reveal reveal-delay-1">
+              <div class="lab-card__top">
+                <span>Focus 01 · Automation</span>
+                <span class="lab-card__live">Active R&amp;D</span>
+              </div>
+              <h3>AI-Assisted Creative Pipelines</h3>
+              <p>
+                Designing multi-step LLM and agentic workflows that compress research, instructional structuring, UX
+                copy, and rapid concept iteration into reliable studio pipelines.
+              </p>
+              <div class="lab-pipeline">
+                <span class="lab-node">Brief</span>
+                <span class="lab-arrow">→</span>
+                <span class="lab-node">LLM Structuring</span>
+                <span class="lab-arrow">→</span>
+                <span class="lab-node">UI / Asset Spec</span>
+              </div>
+            </article>
+
+            <article class="lab-card spotlight-card reveal reveal-delay-2">
+              <div class="lab-card__top">
+                <span>Focus 02 · Visual Media</span>
+                <span class="lab-card__live">Active R&amp;D</span>
+              </div>
+              <h3>Generative Video &amp; Storyboarding</h3>
+              <p>
+                Pairing classical screenplay pacing and storyboard framing with image-to-video and text-to-video models
+                — solving shot continuity, lighting consistency, and tight editorial rhythm.
+              </p>
+              <div class="lab-pipeline">
+                <span class="lab-node">Script</span>
+                <span class="lab-arrow">→</span>
+                <span class="lab-node">Keyframe</span>
+                <span class="lab-arrow">→</span>
+                <span class="lab-node">Motion Gen</span>
+                <span class="lab-arrow">→</span>
+                <span class="lab-node">Cut</span>
+              </div>
+            </article>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══ 04 · CLEAN 2x2 CONTACT GRID ═════════ -->
     <section class="section" id="contact">
       <div class="container">
 
-        <div class="section__header">
-          <p class="section__label">
-            <i class="uil uil-message"></i>
-            Contact
-          </p>
-          <h2 class="section__title">Get in <span>touch</span></h2>
-          <p class="section__subtitle">Have a project in mind or just want to say hi? I'm always open to new opportunities.</p>
+        <div class="hud-header reveal">
+          <div>
+            <span class="hud-kicker">04 · Contact</span>
+            <h2 class="section__title">Get in <em>Touch</em></h2>
+          </div>
+          <p class="section__subtitle">Open to product design, game/interactive, instructional, and creative technology
+            roles.</p>
         </div>
 
-        <div class="contact__container">
+        <div class="comms-grid reveal">
 
-          <!-- Info -->
-          <div class="contact__info">
-
-            <div class="contact__card reveal">
-              <div class="contact__card-icon"><i class="uil uil-envelope"></i></div>
-              <div class="contact__card-text">
-                <h4>Email</h4>
-                <span>barisdegirmenci35@gmail.com</span>
-              </div>
-            </div>
-
-            <div class="contact__card reveal reveal-delay-1">
-              <div class="contact__card-icon" style="background:rgba(129,140,248,0.12);color:var(--accent-alt)">
-                <i class="uil uil-map-marker"></i>
-              </div>
-              <div class="contact__card-text">
-                <h4>Location</h4>
-                <span>Ankara, Turkey</span>
-              </div>
-            </div>
-
-            <div class="contact__card reveal reveal-delay-2">
-              <div class="contact__card-icon" style="background:rgba(52,211,153,0.12);color:var(--accent-green)">
-                <i class="uil uil-linkedin-alt"></i>
-              </div>
-              <div class="contact__card-text">
-                <h4>LinkedIn</h4>
-                <span>barış-değirmenci</span>
-              </div>
-            </div>
-
-            <div class="contact__card reveal reveal-delay-3">
-              <div class="contact__card-icon" style="background:rgba(244,114,182,0.12);color:var(--accent-pink)">
-                <i class="uil uil-github-alt"></i>
-              </div>
-              <div class="contact__card-text">
-                <h4>GitHub</h4>
-                <span>@bobothemomo</span>
-              </div>
-            </div>
-
+          <div class="contact__card contact__card--interactive spotlight-card">
+            <a href="mailto:barisdegirmenci35@gmail.com" class="contact__card-main" style="flex:1;">
+              <span class="contact__card-label">Direct Email</span>
+              <span class="contact__card-value">barisdegirmenci35@gmail.com</span>
+            </a>
+            <button type="button" class="contact__card-action contact__copy-btn"
+              data-copy-email="barisdegirmenci35@gmail.com">
+              Copy
+            </button>
           </div>
 
+          <a href="https://www.linkedin.com/in/barış-değirmenci-98559a21b/" target="_blank" rel="noopener"
+            class="contact__card spotlight-card">
+            <div class="contact__card-main">
+              <span class="contact__card-label">LinkedIn</span>
+              <span class="contact__card-value">in/barış-değirmenci</span>
+            </div>
+            <span class="contact__card-action">Connect ↗</span>
+          </a>
 
+          <a href="https://github.com/bobothemomo" target="_blank" rel="noopener" class="contact__card spotlight-card">
+            <div class="contact__card-main">
+              <span class="contact__card-label">GitHub</span>
+              <span class="contact__card-value">@bobothemomo</span>
+            </div>
+            <span class="contact__card-action">Repositories ↗</span>
+          </a>
+
+          <a href="Baris_Degirmenci_CV.pdf" download class="contact__card spotlight-card">
+            <div class="contact__card-main">
+              <span class="contact__card-label">Ankara, Türkiye · On-site / Hybrid / Remote</span>
+              <span class="contact__card-value">Curriculum Vitae (PDF)</span>
+            </div>
+            <span class="contact__card-action">Download ↓</span>
+          </a>
 
         </div>
 
@@ -1039,62 +789,14 @@
   ══════════════════════════════════════════ -->
   <footer class="footer">
     <div class="container">
-      <div class="footer__container">
-
-        <div class="footer__brand">
-          <h2 class="footer__brand-name gradient-text">Barış Değirmenci</h2>
-          <p class="footer__brand-desc">Creative Technologist & Instructional Designer based in Ankara, Turkey. Building digital experiences that matter.</p>
-          <div class="footer__social">
-            <a href="https://www.linkedin.com/in/barış-değirmenci-98559a21b/" target="_blank" class="footer__social-link" aria-label="LinkedIn">
-              <i class="uil uil-linkedin-alt"></i>
-            </a>
-            <a href="https://github.com/bobothemomo" target="_blank" class="footer__social-link" aria-label="GitHub">
-              <i class="uil uil-github-alt"></i>
-            </a>
-            <a href="mailto:barisdegirmenci35@gmail.com" class="footer__social-link" aria-label="Email">
-              <i class="uil uil-envelope"></i>
-            </a>
-          </div>
-        </div>
-
-        <div>
-          <h4 class="footer__col-title">Navigation</h4>
-          <ul class="footer__links">
-            <li><a href="#about"    class="footer__link">About</a></li>
-            <li><a href="#skills"   class="footer__link">Skills</a></li>
-            <li><a href="#services" class="footer__link">Services</a></li>
-            <li><a href="#portfolio"class="footer__link">Portfolio</a></li>
-            <li><a href="#contact"  class="footer__link">Contact</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="footer__col-title">Documents</h4>
-          <ul class="footer__links">
-            <li><a href="Baris_Degirmenci_CV.pdf" download class="footer__link">Download CV</a></li>
-            <li><a href="documents.html" class="footer__link">Documents</a></li>
-            <li><a href="uxui-showcase.html" class="footer__link">UX/UI Showcase</a></li>
-            <li><a href="game-showcase.html" class="footer__link">Game Showcase</a></li>
-          </ul>
-        </div>
-
-      </div>
-
       <div class="footer__bottom">
-        <p class="footer__copy">&#169; <span>2025</span> Barış Değirmenci. Crafted with passion & coffee ☕</p>
-        <p class="footer__copy">Creative Technologist · Ankara, Turkey</p>
+        <p class="footer__copy">&#169; 2026 Barış Değirmenci · Ankara, Türkiye</p>
+        <p class="footer__copy">Press Ctrl+K anywhere to search</p>
       </div>
-
     </div>
   </footer>
 
-  <!-- ══ SCROLL TO TOP ══════════════════════ -->
-  <a href="#" class="scrollup" id="scroll-up" aria-label="Scroll to top">
-    <i class="uil uil-arrow-up"></i>
-  </a>
-
-  <!-- ══ SCRIPTS ════════════════════════════ -->
   <script src="assets/js/main.js"></script>
-
 </body>
+
 </html>

@@ -1,378 +1,498 @@
-/* ==============================================
-   BARIŞDEĞIRMENCI PORTFOLIO — MAIN JAVASCRIPT
-   Custom Cursor · Typewriter · Scroll Reveal
-   Portfolio Filter · Nav · Skill Bars
-   ============================================== */
+/* ==========================================================================
+   BARIŞ DEĞİRMENCİ — INTERACTIVE STUDIO ENGINE (main.js)
+   Dual Theme (Light/Dark) · 3D Tilt & Spotlight · Stack Matrix · ⌘K
+   ========================================================================== */
 
 'use strict';
 
-/* ─── Custom Cursor ─────────────────────────── */
-const cursor         = document.getElementById('cursor');
-const cursorFollower = document.getElementById('cursor-follower');
+/* ─── 1. Light & Dark Theme Engine ──────────────── */
+const getInitialTheme = () => {
+  const attr = document.documentElement.getAttribute('data-theme');
+  if (attr === 'light' || attr === 'dark') return attr;
+  try {
+    const saved = localStorage.getItem('bd-theme');
+    if (saved === 'light' || saved === 'dark') return saved;
+  } catch { }
+  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+};
 
-if (cursor && cursorFollower) {
-  // Add class to body indicating custom cursor is active
-  document.body.classList.add('has-custom-cursor');
+const applyTheme = (theme) => {
+  const next = theme === 'light' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try {
+    localStorage.setItem('bd-theme', next);
+  } catch { }
 
-  let mx = -100, my = -100;
-  let fx = -100, fy = -100;
-  let raf;
+  document.querySelectorAll('[data-set-theme]').forEach(btn => {
+    const isActive = btn.dataset.setTheme === next;
+    btn.classList.toggle('active', isActive);
+    btn.setAttribute('aria-pressed', String(isActive));
+  });
+};
 
-  const onMouseMove = (e) => {
-    mx = e.clientX;
-    my = e.clientY;
-    cursor.style.left = mx + 'px';
-    cursor.style.top  = my + 'px';
+const toggleTheme = () => {
+  const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+  applyTheme(current === 'light' ? 'dark' : 'light');
+};
+
+applyTheme(getInitialTheme());
+
+document.querySelectorAll('[data-set-theme]').forEach(btn => {
+  btn.addEventListener('click', () => applyTheme(btn.dataset.setTheme));
+});
+
+/* ─── 2. Cursor Radial Spotlight & 3D Card Tilt ─── */
+const hasFinePointer = window.matchMedia('(pointer: fine) and (min-width: 900px)').matches;
+
+document.querySelectorAll('.portfolio-card, .spotlight-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty('--mx', `${x}px`);
+    card.style.setProperty('--my', `${y}px`);
+
+    if (hasFinePointer && card.classList.contains('portfolio-card')) {
+      const rx = ((y / rect.height) - 0.5) * -5;
+      const ry = ((x / rect.width) - 0.5) * 5;
+      card.style.transform = `perspective(1000px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg) translateY(-4px)`;
+    }
+  });
+
+  card.addEventListener('mouseleave', () => {
+    if (card.classList.contains('portfolio-card')) {
+      card.style.transform = '';
+    }
+  });
+});
+
+/* ─── 4. Interactive Discipline -> Stack Matrix ─── */
+const discBtns = Array.from(document.querySelectorAll('[data-disc]'));
+const stackPills = Array.from(document.querySelectorAll('[data-stack]'));
+const stackReset = document.getElementById('stack-reset');
+
+if (discBtns.length && stackPills.length) {
+  let lockedDisc = null;
+
+  const highlightStack = (discKey) => {
+    discBtns.forEach(b => b.classList.toggle('active', b.dataset.disc === discKey));
+
+    if (!discKey) {
+      stackPills.forEach(p => p.classList.remove('is-highlighted', 'is-dimmed'));
+      if (stackReset) stackReset.style.opacity = '0.55';
+      return;
+    }
+
+    if (stackReset) stackReset.style.opacity = '1';
+    stackPills.forEach(pill => {
+      const groups = (pill.dataset.stack || '').split(/\s+/);
+      const match = groups.includes(discKey);
+      pill.classList.toggle('is-highlighted', match);
+      pill.classList.toggle('is-dimmed', !match);
+    });
   };
 
-  const animateFollower = () => {
-    fx += (mx - fx) * 0.13;
-    fy += (my - fy) * 0.13;
-    cursorFollower.style.left = fx + 'px';
-    cursorFollower.style.top  = fy + 'px';
-    raf = requestAnimationFrame(animateFollower);
-  };
-
-  document.addEventListener('mousemove', onMouseMove);
-  animateFollower();
-
-  // Hover expand on interactive elements
-  const hoverTargets = 'a, button, .filter-btn, .portfolio-card, .service-card, .skill-card, .working-card, input, textarea, .nav__toggle';
-  document.querySelectorAll(hoverTargets).forEach(el => {
-    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-  });
-
-  // Hide when leaving window
-  document.addEventListener('mouseleave', () => {
-    cursor.style.opacity = '0';
-    cursorFollower.style.opacity = '0';
-  });
-  document.addEventListener('mouseenter', () => {
-    cursor.style.opacity = '1';
-    cursorFollower.style.opacity = '0.7';
-  });
-
-  // Show default cursor and hide custom cursor when hovering over iframes (e.g. Figma embeds)
-  document.querySelectorAll('iframe').forEach(iframe => {
-    iframe.addEventListener('mouseenter', () => {
-      document.body.classList.remove('has-custom-cursor');
-      cursor.style.opacity = '0';
-      cursorFollower.style.opacity = '0';
+  discBtns.forEach(btn => {
+    btn.addEventListener('mouseenter', () => {
+      if (!lockedDisc) highlightStack(btn.dataset.disc);
     });
-    iframe.addEventListener('mouseleave', () => {
-      document.body.classList.add('has-custom-cursor');
-      cursor.style.opacity = '1';
-      cursorFollower.style.opacity = '0.7';
+    btn.addEventListener('mouseleave', () => {
+      if (!lockedDisc) highlightStack(null);
     });
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.disc;
+      lockedDisc = lockedDisc === key ? null : key;
+      highlightStack(lockedDisc);
+    });
+  });
+
+  stackReset?.addEventListener('click', () => {
+    lockedDisc = null;
+    highlightStack(null);
   });
 }
 
-/* ─── Typewriter Effect ─────────────────────── */
-const typewriterEl = document.querySelector('.hero__typewriter');
-const cursorEl     = document.querySelector('.hero__cursor');
+/* ─── 5. Smart Portfolio Bento Filter ───────────── */
+const filterBtns = document.querySelectorAll('.filter-btn');
+const portfolioBento = document.querySelector('.portfolio__bento');
+const portfolioCards = document.querySelectorAll('.portfolio-card');
 
-if (typewriterEl) {
-  const words = [
-    'Creative Technologist',
-    'Instructional Designer',
-    'UX/UI Designer',
-    'Game Developer',
-    'Graphic Designer'
-  ];
+if (filterBtns.length && portfolioCards.length) {
+  const pad = (n) => String(n).padStart(2, '0');
 
-  let wordIndex   = 0;
-  let charIndex   = 0;
-  let isDeleting  = false;
-  let typeTimeout;
+  filterBtns.forEach(btn => {
+    const filter = btn.dataset.filter;
+    const badge = btn.querySelector('.filter-btn__count');
+    if (!badge) return;
 
-  const type = () => {
-    const currentWord = words[wordIndex];
-    const speed = isDeleting ? 60 : 100;
-
-    if (!isDeleting) {
-      charIndex++;
+    if (filter === 'all') {
+      badge.textContent = pad(portfolioCards.length);
     } else {
-      charIndex--;
-    }
-
-    typewriterEl.textContent = currentWord.substring(0, charIndex);
-
-    if (!isDeleting && charIndex === currentWord.length) {
-      // Pause at end
-      typeTimeout = setTimeout(() => { isDeleting = true; type(); }, 2200);
-      return;
-    }
-
-    if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      wordIndex  = (wordIndex + 1) % words.length;
-      typeTimeout = setTimeout(type, 400);
-      return;
-    }
-
-    typeTimeout = setTimeout(type, speed);
-  };
-
-  setTimeout(type, 1200);
-}
-
-/* ─── Hero Particles ────────────────────────── */
-const particlesContainer = document.querySelector('.hero__particles');
-if (particlesContainer) {
-  const count = 24;
-  for (let i = 0; i < count; i++) {
-    const p = document.createElement('div');
-    p.className = 'hero__particle';
-
-    const left     = Math.random() * 100;
-    const duration = 7 + Math.random() * 8;
-    const delay    = Math.random() * 10;
-    const drift    = (Math.random() - 0.5) * 120;
-    const size     = 2 + Math.random() * 3;
-
-    p.style.cssText = `
-      left: ${left}%;
-      width: ${size}px;
-      height: ${size}px;
-      --duration: ${duration}s;
-      --delay: ${delay}s;
-      --drift: ${drift}px;
-      opacity: 0;
-    `;
-
-    p.style.animationDuration  = duration + 's';
-    p.style.animationDelay     = delay + 's';
-    p.style.setProperty('--drift', drift + 'px');
-
-    particlesContainer.appendChild(p);
-  }
-}
-
-/* ─── Navigation ────────────────────────────── */
-const header     = document.getElementById('header');
-const navMenu    = document.getElementById('nav-menu');
-const navToggle  = document.getElementById('nav-toggle');
-const navOverlay = document.getElementById('nav-overlay');
-const navClose   = document.getElementById('nav-close');
-
-// Sticky header on scroll
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) {
-    header?.classList.add('scrolled');
-  } else {
-    header?.classList.remove('scrolled');
-  }
-  updateActiveNavLink();
-  handleScrollTop();
-}, { passive: true });
-
-// Mobile menu toggle
-const openMenu = () => {
-  navMenu?.classList.add('show-menu');
-  navOverlay?.classList.add('show');
-  navToggle?.classList.add('open');
-  document.body.style.overflow = 'hidden';
-};
-
-const closeMenu = () => {
-  navMenu?.classList.remove('show-menu');
-  navOverlay?.classList.remove('show');
-  navToggle?.classList.remove('open');
-  document.body.style.overflow = '';
-};
-
-navToggle?.addEventListener('click', () => {
-  navMenu?.classList.contains('show-menu') ? closeMenu() : openMenu();
-});
-
-navClose?.addEventListener('click', closeMenu);
-navOverlay?.addEventListener('click', closeMenu);
-
-// Close on nav link click
-document.querySelectorAll('.nav__link').forEach(link => {
-  link.addEventListener('click', closeMenu);
-});
-
-/* ─── Active Nav Link on Scroll ─────────────── */
-const updateActiveNavLink = () => {
-  const sections  = document.querySelectorAll('section[id]');
-  const navLinks  = document.querySelectorAll('.nav__link');
-  const scrollY   = window.scrollY + 120;
-
-  let current = '';
-  sections.forEach(section => {
-    if (scrollY >= section.offsetTop) {
-      current = section.id;
+      let matches = 0;
+      portfolioCards.forEach(card => {
+        if ((card.dataset.category || '').split(/\s+/).includes(filter)) matches++;
+      });
+      badge.textContent = pad(matches);
     }
   });
 
-  navLinks.forEach(link => {
-    link.classList.remove('active-link');
-    if (link.getAttribute('href') === '#' + current) {
-      link.classList.add('active-link');
-    }
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+      let visibleCount = 0;
+
+      portfolioCards.forEach(card => {
+        const show = filter === 'all' || (card.dataset.category || '').split(/\s+/).includes(filter);
+        card.classList.toggle('hidden', !show);
+
+        if (show) {
+          visibleCount++;
+          card.classList.add('visible');
+          if (filter !== 'all') {
+            card.style.animation = 'none';
+            void card.offsetWidth;
+            card.style.animation = '';
+          }
+        }
+      });
+
+      if (portfolioBento) {
+        portfolioBento.classList.toggle('is-filtered', filter !== 'all');
+        portfolioBento.classList.toggle('single-result', filter !== 'all' && visibleCount === 1);
+      }
+    });
+  });
+}
+
+/* ─── 6. Floating App Dock Active State on Scroll ─ */
+const updateActiveDockItem = () => {
+  const sections = document.querySelectorAll('main section[id]');
+  const dockLinks = document.querySelectorAll('.dock-item[href^="#"]');
+  if (!sections.length || !dockLinks.length) return;
+
+  const scrollY = window.scrollY + 220;
+  let current = sections[0]?.id || '';
+
+  sections.forEach(sec => {
+    if (scrollY >= sec.offsetTop) current = sec.id;
+  });
+
+  dockLinks.forEach(link => {
+    link.classList.toggle('active-link', link.getAttribute('href') === '#' + current);
   });
 };
 
-/* ─── Scroll-Reveal (IntersectionObserver) ──── */
+window.addEventListener('scroll', updateActiveDockItem, { passive: true });
+
+/* ─── 7. Scroll Reveal ──────────────────────────── */
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-/* ─── Skill Bar Animations ──────────────────── */
-const skillObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const fills = entry.target.querySelectorAll('.skill-card__fill');
-      fills.forEach(fill => {
-        const target = fill.dataset.width;
-        setTimeout(() => { fill.style.width = target; }, 200);
-      });
-      skillObserver.unobserve(entry.target);
+/* ─── 8. One-Click Email Copy ───────────────────── */
+document.querySelectorAll('[data-copy-email]').forEach(btn => {
+  btn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const email = btn.dataset.copyEmail;
+    const orig = btn.textContent;
+
+    try {
+      await navigator.clipboard.writeText(email);
+      btn.classList.add('copied');
+      btn.textContent = 'Copied!';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.textContent = orig;
+      }, 2000);
+    } catch {
+      window.location.href = 'mailto:' + email;
     }
-  });
-}, { threshold: 0.2 });
-
-const skillsSection = document.getElementById('skills');
-if (skillsSection) skillObserver.observe(skillsSection);
-
-/* ─── Progress Bar Animations ───────────────── */
-const progressObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.querySelectorAll('.progress-fill-bar').forEach(bar => {
-        const w = bar.dataset.width;
-        setTimeout(() => { bar.style.width = w; }, 300);
-      });
-      progressObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.2 });
-
-document.querySelectorAll('.working-card').forEach(c => progressObserver.observe(c));
-
-/* ─── Portfolio Filter ──────────────────────── */
-const filterBtns  = document.querySelectorAll('.filter-btn');
-const portfolioCards = document.querySelectorAll('.portfolio-card');
-
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    // Update active state
-    filterBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    const filter = btn.dataset.filter;
-
-    portfolioCards.forEach(card => {
-      const category = card.dataset.category || '';
-      const show = filter === 'all' || category.includes(filter);
-      card.classList.toggle('hidden', !show);
-    });
   });
 });
 
-// Navigate to project page when clicking anywhere on the portfolio card
-portfolioCards.forEach(card => {
-  card.addEventListener('click', (e) => {
-    // If the click is already on the arrow link, let it proceed naturally
-    if (e.target.closest('.portfolio-card__arrow')) {
+/* ─── 9. Global Command Palette (⌘K / Ctrl+K) ───── */
+const cmdkCommands = [
+  { title: '01 · UniPazar Campus Marketplace', cat: 'UX/UI Case Study', icon: 'uil-mobile-android', href: 'uxui-showcase.html', kw: 'figma mobile app onboarding auth ui ux' },
+  { title: '02 · Unity Game Projects (Sergio, The Pearl, Googlewoods)', cat: 'Game Dev', icon: 'uil-game-structure', href: 'game-showcase.html', kw: 'unity c# platformer 3d puzzle rpg gameplay' },
+  { title: '03 · Character Art & Concept Sketches', cat: 'Illustration', icon: 'uil-brush-alt', href: 'gallery-sketch.html', kw: 'drawing digital painting mockup t-shirt sketch' },
+  { title: '04 · Community & Event Branding (Knights & BAM)', cat: 'Brand & Print', icon: 'uil-users-alt', href: 'gallery-community.html', kw: 'boardgame catan poster qr banner' },
+  { title: '05 · 3D Modeling & Academic Publications', cat: 'Blender & CEIT', icon: 'uil-cube', href: 'gallery-school.html', kw: 'blender mega man phishing poster hacettepe stl' },
+  { title: '06 · Screenplays, Catalogs & Activity Reports', cat: 'Publications', icon: 'uil-file-alt', href: 'documents.html', kw: 'pdf script visa vitaself agp report' },
+  { title: 'Switch Theme (Light / Dark Mode)', cat: 'Appearance', icon: 'uil-brightness-half', action: 'toggle-theme', kw: 'dark light theme mode aydınlık karanlık' },
+  { title: 'Home — Studio Overview', cat: 'Navigation', icon: 'uil-estate', href: 'index.html#home', kw: 'start hero stage overview' },
+  { title: 'Capabilities & Interactive Toolkit', cat: 'Navigation', icon: 'uil-layer-group', href: 'index.html#about', kw: 'skills tools bio profile' },
+  { title: 'Experience & Active R&D', cat: 'Navigation', icon: 'uil-briefcase-alt', href: 'index.html#qualification', kw: 'experience e12 bilten education' },
+  { title: 'Download Curriculum Vitae (PDF)', cat: 'Document', icon: 'uil-download-alt', href: 'Baris_Degirmenci_CV.pdf', download: true, kw: 'resume cv pdf' },
+  { title: 'Copy Email (barisdegirmenci35@gmail.com)', cat: 'Action', icon: 'uil-copy', action: 'copy-email', kw: 'contact mail message' },
+  { title: 'Open LinkedIn Profile', cat: 'External', icon: 'uil-linkedin-alt', href: 'https://www.linkedin.com/in/barış-değirmenci-98559a21b/', external: true, kw: 'social network' },
+  { title: 'Open GitHub (@bobothemomo)', cat: 'External', icon: 'uil-github-alt', href: 'https://github.com/bobothemomo', external: true, kw: 'code repos' }
+];
+
+const mountCommandPalette = () => {
+  const backdrop = document.createElement('div');
+  backdrop.className = 'cmdk-backdrop';
+  backdrop.id = 'cmdk-backdrop';
+  backdrop.innerHTML = `
+    <div class="cmdk-dialog" role="dialog" aria-modal="true" aria-label="Quick Search">
+      <div class="cmdk-search-wrap">
+        <i class="uil uil-search"></i>
+        <input type="text" class="cmdk-input" id="cmdk-input" placeholder="Search projects, PDFs, theme, or actions…" autocomplete="off">
+        <button type="button" class="cmdk-esc" id="cmdk-close">ESC</button>
+      </div>
+      <div class="cmdk-list" id="cmdk-list"></div>
+      <div class="cmdk-footer">
+        <span>↑↓ Navigate · ↵ Select</span>
+        <span>Barış Değirmenci · Quick Jump</span>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(backdrop);
+
+  const input = document.getElementById('cmdk-input');
+  const list = document.getElementById('cmdk-list');
+  const close = document.getElementById('cmdk-close');
+
+  let filtered = [...cmdkCommands];
+  let selIdx = 0;
+
+  const closeCmdk = () => {
+    backdrop.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  const execItem = async (item) => {
+    if (!item) return;
+    if (item.action === 'toggle-theme') {
+      toggleTheme();
+      closeCmdk();
       return;
     }
-    const link = card.querySelector('.portfolio-card__arrow');
-    if (link) {
-      link.click();
+    if (item.action === 'copy-email') {
+      try { await navigator.clipboard.writeText('barisdegirmenci35@gmail.com'); } catch { }
+      closeCmdk();
+      return;
     }
-  });
-});
+    closeCmdk();
+    if (item.external) {
+      window.open(item.href, '_blank', 'noopener');
+    } else if (item.download) {
+      const a = document.createElement('a');
+      a.href = item.href;
+      a.download = '';
+      a.click();
+    } else {
+      window.location.href = item.href;
+    }
+  };
 
-/* ─── Qualification Tabs ────────────────────── */
-const qualTabs    = document.querySelectorAll('.qualification__tab-btn');
-const qualContents= document.querySelectorAll('.qualification__content');
+  const renderList = () => {
+    list.innerHTML = '';
+    if (!filtered.length) {
+      list.innerHTML = `<div style="padding:1.25rem;text-align:center;color:var(--text-muted);font-size:0.86rem;">No matching item found.</div>`;
+      return;
+    }
+    filtered.forEach((item, idx) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'cmdk-item' + (idx === selIdx ? ' selected' : '');
+      btn.innerHTML = `
+        <span class="cmdk-item__left">
+          <i class="uil ${item.icon}"></i>
+          <span class="cmdk-item__title">${item.title}</span>
+        </span>
+        <span class="cmdk-item__cat">${item.cat}</span>
+      `;
+      btn.addEventListener('mouseenter', () => {
+        selIdx = idx;
+        Array.from(list.children).forEach((el, i) => el.classList.toggle('selected', i === selIdx));
+      });
+      btn.addEventListener('click', () => execItem(item));
+      list.appendChild(btn);
+    });
+  };
 
-qualTabs.forEach(tab => {
-  tab.addEventListener('click', () => {
-    qualTabs.forEach(t => t.classList.remove('active'));
-    qualContents.forEach(c => c.classList.remove('active'));
-    tab.classList.add('active');
-    const target = document.getElementById(tab.dataset.target);
-    target?.classList.add('active');
-  });
-});
-
-/* ─── Services Modal ────────────────────────── */
-const serviceButtons = document.querySelectorAll('.service-card__btn');
-const serviceModals  = document.querySelectorAll('.services__modal');
-
-serviceButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const modalId = btn.dataset.modal;
-    const modal = document.getElementById(modalId);
-    modal?.classList.add('active-modal');
+  const openCmdk = () => {
+    backdrop.classList.add('active');
     document.body.style.overflow = 'hidden';
-  });
-});
+    input.value = '';
+    filtered = [...cmdkCommands];
+    selIdx = 0;
+    renderList();
+    setTimeout(() => input.focus(), 20);
+  };
 
-document.querySelectorAll('.services__modal-close').forEach(close => {
-  close.addEventListener('click', () => {
-    serviceModals.forEach(m => m.classList.remove('active-modal'));
-    document.body.style.overflow = '';
+  input.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    filtered = cmdkCommands.filter(c =>
+      c.title.toLowerCase().includes(q) ||
+      c.cat.toLowerCase().includes(q) ||
+      c.kw.includes(q)
+    );
+    selIdx = 0;
+    renderList();
   });
-});
 
-serviceModals.forEach(modal => {
-  modal.addEventListener('click', e => {
-    if (e.target === modal) {
-      modal.classList.remove('active-modal');
-      document.body.style.overflow = '';
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (filtered.length) selIdx = (selIdx + 1) % filtered.length;
+      renderList();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (filtered.length) selIdx = (selIdx - 1 + filtered.length) % filtered.length;
+      renderList();
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      execItem(filtered[selIdx]);
     }
   });
-});
 
-/* ─── Scroll Top Button ─────────────────────── */
-const scrollTopBtn = document.querySelector('.scrollup');
+  close.addEventListener('click', closeCmdk);
+  backdrop.addEventListener('click', (e) => {
+    if (e.target === backdrop) closeCmdk();
+  });
 
-const handleScrollTop = () => {
-  if (window.scrollY > 400) {
-    scrollTopBtn?.classList.add('show');
-  } else {
-    scrollTopBtn?.classList.remove('show');
-  }
+  document.querySelectorAll('[data-open-cmdk]').forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      openCmdk();
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      backdrop.classList.contains('active') ? closeCmdk() : openCmdk();
+    } else if (e.key === 'Escape' && backdrop.classList.contains('active')) {
+      closeCmdk();
+    }
+  });
 };
 
-scrollTopBtn?.addEventListener('click', (e) => {
-  e.preventDefault();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+/* ─── 10. Unified Lightbox ──────────────────────── */
+const lightbox = document.getElementById('lightbox');
+const lightboxItems = Array.from(document.querySelectorAll('[data-lightbox-item]'));
 
-/* ─── Hero Parallax ─────────────────────────── */
-window.addEventListener('scroll', () => {
-  const heroData = document.querySelector('.hero__data');
-  const heroImg  = document.querySelector('.hero__img-wrap');
-  if (!heroData || !heroImg) return;
+if (lightbox && lightboxItems.length) {
+  const lbImg = document.getElementById('lightbox-img');
+  const lbTitle = document.getElementById('lightbox-title');
+  const lbDesc = document.getElementById('lightbox-desc');
+  const lbCounter = document.getElementById('lightbox-counter');
+  const lbPrev = lightbox.querySelector('.lightbox-prev');
+  const lbNext = lightbox.querySelector('.lightbox-next');
+  const lbClose = lightbox.querySelector('.lightbox-close');
 
-  const scrolled = window.scrollY;
-  if (scrolled < window.innerHeight) {
-    heroData.style.transform = `translateY(${scrolled * 0.12}px)`;
-    heroImg.style.transform  = `translateY(${scrolled * 0.08}px)`;
-  }
-}, { passive: true });
+  let currentIdx = 0;
+  let touchStartX = 0;
 
-/* ─── Init ──────────────────────────────────── */
+  const renderLightbox = (idx) => {
+    currentIdx = (idx + lightboxItems.length) % lightboxItems.length;
+    const item = lightboxItems[currentIdx];
+    const src = item.dataset.src || item.querySelector('img')?.getAttribute('src') || '';
+    const title = item.dataset.title || item.querySelector('img')?.getAttribute('alt') || '';
+    const desc = item.dataset.desc || '';
+
+    if (lbImg) { lbImg.src = src; lbImg.alt = title; }
+    if (lbTitle) lbTitle.textContent = title;
+    if (lbDesc) { lbDesc.textContent = desc; lbDesc.style.display = desc ? 'block' : 'none'; }
+    if (lbCounter) lbCounter.textContent = `${String(currentIdx + 1).padStart(2, '0')} / ${String(lightboxItems.length).padStart(2, '0')}`;
+  };
+
+  const openLightbox = (idx) => {
+    renderLightbox(idx);
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeLightbox = () => {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  lightboxItems.forEach((item, idx) => {
+    item.addEventListener('click', () => openLightbox(idx));
+    item.setAttribute('tabindex', '0');
+    item.setAttribute('role', 'button');
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLightbox(idx);
+      }
+    });
+  });
+
+  lbPrev?.addEventListener('click', (e) => { e.stopPropagation(); renderLightbox(currentIdx - 1); });
+  lbNext?.addEventListener('click', (e) => { e.stopPropagation(); renderLightbox(currentIdx + 1); });
+  lbClose?.addEventListener('click', (e) => { e.stopPropagation(); closeLightbox(); });
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'ArrowLeft') renderLightbox(currentIdx - 1);
+    if (e.key === 'ArrowRight') renderLightbox(currentIdx + 1);
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  lightbox.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+  lightbox.addEventListener('touchend', (e) => {
+    const delta = e.changedTouches[0].screenX - touchStartX;
+    if (Math.abs(delta) > 45) delta > 0 ? renderLightbox(currentIdx - 1) : renderLightbox(currentIdx + 1);
+  }, { passive: true });
+}
+
+/* ─── 11. Embed Modal (YouTube & PDF) ───────────── */
+const embedModal = document.getElementById('embed-modal');
+if (embedModal) {
+  const modalTitle = document.getElementById('embed-modal-title');
+  const modalBody = document.getElementById('embed-modal-body');
+  const modalFrame = document.getElementById('embed-modal-iframe');
+  const modalClose = document.getElementById('embed-modal-close');
+  const modalExtBtn = document.getElementById('embed-modal-external');
+
+  const closeEmbedModal = () => {
+    embedModal.classList.remove('active');
+    if (modalFrame) modalFrame.src = '';
+    document.body.style.overflow = '';
+  };
+
+  document.querySelectorAll('[data-embed-url]').forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (modalTitle) modalTitle.textContent = trigger.dataset.embedTitle || 'Preview';
+      if (modalBody) modalBody.classList.toggle('embed-modal__body--pdf', trigger.dataset.embedType === 'pdf');
+      if (modalFrame) modalFrame.src = trigger.dataset.embedUrl;
+      if (modalExtBtn) modalExtBtn.href = trigger.dataset.externalUrl || trigger.dataset.embedUrl;
+      embedModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  modalClose?.addEventListener('click', closeEmbedModal);
+  embedModal.addEventListener('click', (e) => { if (e.target === embedModal) closeEmbedModal(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && embedModal.classList.contains('active')) closeEmbedModal();
+  });
+}
+
+/* ─── Init ──────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
-  updateActiveNavLink();
-  handleScrollTop();
+  applyTheme(getInitialTheme());
+  mountCommandPalette();
+  updateActiveDockItem();
 
-  // Trigger reveal for elements already in view
   document.querySelectorAll('.reveal').forEach(el => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight) {
+    if (el.getBoundingClientRect().top < window.innerHeight) {
       el.classList.add('visible');
     }
   });

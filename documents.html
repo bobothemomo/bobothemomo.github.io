@@ -1,361 +1,402 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-        <link rel="stylesheet" href="assets/css/styles.css">
-        <title>Documents & Reports - Barış Değirmenci</title>
-        
-        <style>
-            .documents-page {
-                padding: 6rem 0 2rem;
-                min-height: 100vh;
-            }
-            
-            .breadcrumb {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                margin-bottom: 2rem;
-                font-size: 0.875rem;
-                color: #666;
-            }
-            
-            .breadcrumb a {
-                color: #6f42c1;
-                text-decoration: none;
-                transition: color 0.3s;
-            }
-            
-            .breadcrumb a:hover {
-                color: #5a32a3;
-            }
-            
-            .breadcrumb-separator {
-                color: #999;
-            }
-            
-            .documents-header {
-                text-align: center;
-                margin-bottom: 3rem;
-            }
-            
-            .documents-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 2rem;
-                margin-bottom: 3rem;
-            }
-            
-            .document-card {
-                background: white;
-                border-radius: 1rem;
-                padding: 2rem;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-                transition: transform 0.3s, box-shadow 0.3s;
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .document-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-            }
-            
-            .document-icon {
-                width: 60px;
-                height: 60px;
-                background: var(--first-color-lighter);
-                border-radius: 0.75rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin-bottom: 1rem;
-            }
-            
-            .document-icon i {
-                font-size: 2rem;
-                color: var(--first-color);
-            }
-            
-            .document-title {
-                font-size: var(--h3-font-size);
-                color: var(--title-color);
-                font-weight: var(--font-semi-bold);
-                margin-bottom: 0.5rem;
-            }
-            
-            .document-description {
-                color: var(--text-color);
-                font-size: var(--small-font-size);
-                line-height: 1.6;
-                margin-bottom: 1rem;
-                flex-grow: 1;
-            }
-            
-            .document-actions {
-                display: flex;
-                gap: 0.75rem;
-                flex-wrap: wrap;
-            }
-            
-            .document-btn {
-                padding: 0.75rem 1.5rem;
-                border-radius: 0.5rem;
-                text-decoration: none;
-                font-size: var(--small-font-size);
-                font-weight: var(--font-medium);
-                transition: all 0.3s;
-                display: inline-flex;
-                align-items: center;
-                gap: 0.5rem;
-                cursor: pointer;
-            }
-            
-            .document-btn-primary {
-                background: var(--first-color);
-                color: white;
-            }
-            
-            .document-btn-primary:hover {
-                background: var(--first-color-alt);
-            }
-            
-            .document-btn-secondary {
-                background: var(--first-color-lighter);
-                color: var(--first-color);
-            }
-            
-            .document-btn-secondary:hover {
-                background: var(--first-color-light);
-            }
-            
-            .back-button {
-                display: inline-flex;
-                align-items: center;
-                gap: 0.5rem;
-                margin-bottom: 2rem;
-                padding: 0.75rem 1.5rem;
-                background: var(--first-color);
-                color: white;
-                border-radius: 0.5rem;
-                text-decoration: none;
-                transition: background 0.3s;
-            }
-            
-            .back-button:hover {
-                background: var(--first-color-alt);
-            }
-            
-            .documents-section {
-                margin-bottom: 4rem;
-            }
-            
-            .documents-section-title {
-                font-size: var(--h2-font-size);
-                color: var(--title-color);
-                margin-bottom: 2rem;
-                padding-bottom: 1rem;
-                border-bottom: 2px solid var(--first-color-lighter);
-            }
-        </style>
-    </head>
-    <body>
-        <div class="documents-page">
-            <div class="container">
-                <nav class="breadcrumb">
-                    <a href="index.html">Home</a>
-                    <span class="breadcrumb-separator">/</span>
-                    <a href="index.html#portfolio">Portfolio</a>
-                    <span class="breadcrumb-separator">/</span>
-                    <span>Documents & Reports</span>
-                </nav>
-                
-                <a href="index.html#portfolio" class="back-button">
-                    <i class="uil uil-arrow-left"></i>
-                    Back to Portfolio
-                </a>
-                
-                <div class="documents-header">
-                    <h1 class="section__title">Documents & Reports</h1>
-                    <p class="section__subtitle">View and download professional documents, reports, and presentations</p>
-                </div>
-                
-                <div class="documents-section">
-                    <h2 class="documents-section-title">Professional Documents</h2>
-                    <div class="documents-grid">
-                        <div class="document-card">
-                            <div class="document-icon">
-                                <i class="uil uil-file-alt"></i>
-                            </div>
-                            <h3 class="document-title">Curriculum Vitae</h3>
-                            <p class="document-description">
-                                Comprehensive CV showcasing my professional experience, education, and achievements in digital media and content creation.
-                            </p>
-                            <div class="document-actions">
-                                <a href="assets/pdf/Baris_Degirmenci_CV.pdf" target="_blank" class="document-btn document-btn-primary">
-                                    <i class="uil uil-eye"></i> View
-                                </a>
-                                <a href="assets/pdf/Baris_Degirmenci_CV.pdf" download class="document-btn document-btn-secondary">
-                                    <i class="uil uil-download-alt"></i> Download
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="document-card">
-                            <div class="document-icon">
-                                <i class="uil uil-file-edit-alt"></i>
-                            </div>
-                            <h3 class="document-title">Screenwriting Portfolio</h3>
-                            <p class="document-description">
-                                A collection of screenwriting projects demonstrating storytelling skills and creative writing abilities.
-                            </p>
-                            <div class="document-actions">
-                                <a href="assets/pdf/Barış_Değirmenci_ScreenWriting (1).pdf" target="_blank" class="document-btn document-btn-primary">
-                                    <i class="uil uil-eye"></i> View
-                                </a>
-                                <a href="assets/pdf/Barış_Değirmenci_ScreenWriting (1).pdf" download class="document-btn document-btn-secondary">
-                                    <i class="uil uil-download-alt"></i> Download
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="document-card">
-                            <div class="document-icon">
-                                <i class="uil uil-file-landscape-alt"></i>
-                            </div>
-                            <h3 class="document-title">Visa Screenwriting</h3>
-                            <p class="document-description">
-                                Specialized screenwriting work created for visa application purposes, showcasing narrative and creative skills.
-                            </p>
-                            <div class="document-actions">
-                                <a href="assets/pdf/Visa_ScreenWriting.pdf" target="_blank" class="document-btn document-btn-primary">
-                                    <i class="uil uil-eye"></i> View
-                                </a>
-                                <a href="assets/pdf/Visa_ScreenWriting.pdf" download class="document-btn document-btn-secondary">
-                                    <i class="uil uil-download-alt"></i> Download
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="document-card">
-                            <div class="document-icon">
-                                <i class="uil uil-file-bookmark-alt"></i>
-                            </div>
-                            <h3 class="document-title">Vitaself Print Catalog</h3>
-                            <p class="document-description">
-                                Professional print catalog design for Vitaself brand, demonstrating layout and visual communication skills.
-                            </p>
-                            <div class="document-actions">
-                                <a href="assets/pdf/Vitaself_BASKI.pdf" target="_blank" class="document-btn document-btn-primary">
-                                    <i class="uil uil-eye"></i> View
-                                </a>
-                                <a href="assets/pdf/Vitaself_BASKI.pdf" download class="document-btn document-btn-secondary">
-                                    <i class="uil uil-download-alt"></i> Download
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="document-card">
-                            <div class="document-icon">
-                                <i class="uil uil-book-open"></i>
-                            </div>
-                            <h3 class="document-title">AGP Catalog</h3>
-                            <p class="document-description">
-                                Product catalog design featuring comprehensive layout and information architecture.
-                            </p>
-                            <div class="document-actions">
-                                <a href="assets/pdf/AGP_Katalog_19_03_2024.pdf" target="_blank" class="document-btn document-btn-primary">
-                                    <i class="uil uil-eye"></i> View
-                                </a>
-                                <a href="assets/pdf/AGP_Katalog_19_03_2024.pdf" download class="document-btn document-btn-secondary">
-                                    <i class="uil uil-download-alt"></i> Download
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="documents-section">
-                    <h2 class="documents-section-title">Activity Reports</h2>
-                    <div class="documents-grid">
-                        <div class="document-card">
-                            <div class="document-icon">
-                                <i class="uil uil-chart-line"></i>
-                            </div>
-                            <h3 class="document-title">Fall 2022-2023 Report</h3>
-                            <p class="document-description">
-                                Comprehensive activity report for the Fall semester of 2022-2023 academic year.
-                            </p>
-                            <div class="document-actions">
-                                <a href="assets/pdf/Reports/STL_202223GuzRaporu_TUR.pdf" target="_blank" class="document-btn document-btn-primary">
-                                    <i class="uil uil-eye"></i> View
-                                </a>
-                                <a href="assets/pdf/Reports/STL_202223GuzRaporu_TUR.pdf" download class="document-btn document-btn-secondary">
-                                    <i class="uil uil-download-alt"></i> Download
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="document-card">
-                            <div class="document-icon">
-                                <i class="uil uil-chart-growth"></i>
-                            </div>
-                            <h3 class="document-title">Spring 2022-2023 Report</h3>
-                            <p class="document-description">
-                                Detailed activity report covering the Spring semester of 2022-2023 academic year.
-                            </p>
-                            <div class="document-actions">
-                                <a href="assets/pdf/Reports/2022-2023 Bahar Dönemi Faaliyet Raporu (4).pdf" target="_blank" class="document-btn document-btn-primary">
-                                    <i class="uil uil-eye"></i> View
-                                </a>
-                                <a href="assets/pdf/Reports/2022-2023 Bahar Dönemi Faaliyet Raporu (4).pdf" download class="document-btn document-btn-secondary">
-                                    <i class="uil uil-download-alt"></i> Download
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="document-card">
-                            <div class="document-icon">
-                                <i class="uil uil-chart-pie-alt"></i>
-                            </div>
-                            <h3 class="document-title">Fall 2023-2024 Report</h3>
-                            <p class="document-description">
-                                Activity report documenting achievements and activities during Fall 2023-2024 semester.
-                            </p>
-                            <div class="document-actions">
-                                <a href="assets/pdf/Reports/2023-2024-Guz-Donemi-Faaliyet-Raporu.pdf" target="_blank" class="document-btn document-btn-primary">
-                                    <i class="uil uil-eye"></i> View
-                                </a>
-                                <a href="assets/pdf/Reports/2023-2024-Guz-Donemi-Faaliyet-Raporu.pdf" download class="document-btn document-btn-secondary">
-                                    <i class="uil uil-download-alt"></i> Download
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="document-card">
-                            <div class="document-icon">
-                                <i class="uil uil-analytics"></i>
-                            </div>
-                            <h3 class="document-title">Spring 2023-2024 Report</h3>
-                            <p class="document-description">
-                                Most recent activity report showcasing work and achievements from Spring 2023-2024.
-                            </p>
-                            <div class="document-actions">
-                                <a href="assets/pdf/Reports/2023-2024-Bahar-Donemi-Faaliyet-Raporu.pdf" target="_blank" class="document-btn document-btn-primary">
-                                    <i class="uil uil-eye"></i> View
-                                </a>
-                                <a href="assets/pdf/Reports/2023-2024-Bahar-Donemi-Faaliyet-Raporu.pdf" download class="document-btn document-btn-secondary">
-                                    <i class="uil uil-download-alt"></i> Download
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Screenwriting, Print Publications & CV — Barış Değirmenci. Original screenplays, editorial catalogs, institutional activity reports, and downloadable CV.">
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('bd-theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') {
+        t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="icon" type="image/png" href="assets/img/bd-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <title>Scripts, Publications &amp; CV — Barış Değirmenci</title>
+</head>
+<body>
 
+  <!-- Top Navigation Bar -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <div class="nav__brand-group">
+        <a href="index.html" class="nav__logo">
+          <span class="nav__logo-mark">BD</span>
+          Barış Değirmenci
+        </a>
+      </div>
+
+      <div class="nav__actions">
+        <button type="button" class="cmdk-trigger" data-open-cmdk aria-label="Open Quick Search">
+          <i class="uil uil-search"></i>
+          <span>Search</span>
+          <kbd>Ctrl K</kbd>
+        </button>
+
+        <div class="theme-switch" role="group" aria-label="Theme switcher">
+          <button type="button" class="theme-switch__btn" data-set-theme="light" aria-label="Switch to light mode">
+            <i class="uil uil-sun"></i><span>Light</span>
+          </button>
+          <button type="button" class="theme-switch__btn" data-set-theme="dark" aria-label="Switch to dark mode">
+            <i class="uil uil-moon"></i><span>Dark</span>
+          </button>
+        </div>
+
+        <a href="Baris_Degirmenci_CV.pdf" target="_blank" rel="noopener" class="nav__cv-link">
+          Resume <i class="uil uil-arrow-up-right"></i>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Floating Bottom App Dock -->
+  <nav class="app-dock" aria-label="Studio Module Dock">
+    <a href="index.html" class="dock-item">
+      <i class="uil uil-estate"></i><span>Studio</span>
+    </a>
+    <a href="uxui-showcase.html" class="dock-item">
+      <i class="uil uil-mobile-android"></i><span>UX/UI</span>
+    </a>
+    <a href="game-showcase.html" class="dock-item">
+      <i class="uil uil-game-structure"></i><span>Games</span>
+    </a>
+    <a href="gallery-sketch.html" class="dock-item">
+      <i class="uil uil-brush-alt"></i><span>Art</span>
+    </a>
+    <a href="gallery-community.html" class="dock-item">
+      <i class="uil uil-users-alt"></i><span>Brand</span>
+    </a>
+    <a href="gallery-school.html" class="dock-item">
+      <i class="uil uil-cube"></i><span>3D</span>
+    </a>
+    <a href="documents.html" class="dock-item active-link">
+      <i class="uil uil-file-alt"></i><span>Docs</span>
+    </a>
+    <div class="dock-sep"></div>
+    <button type="button" class="dock-item dock-item--cmdk" data-open-cmdk aria-label="Search modules">
+      <i class="uil uil-command"></i><span>⌘K</span>
+    </button>
+  </nav>
+
+  <main class="subpage">
+    <div class="container">
+
+      <!-- Top Bar -->
+      <div class="subpage__topbar">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Index</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="index.html#portfolio">Work</a>
+          <span class="breadcrumb-sep">/</span>
+          <span>06 · Publications</span>
+        </nav>
+        <a href="index.html#portfolio" class="back-link">
+          <i class="uil uil-arrow-left"></i> All Work
+        </a>
+      </div>
+
+      <!-- Masthead -->
+      <div class="subpage__hero reveal">
+        <p class="subpage__kicker">06 / Screenwriting &amp; Editorial Archive</p>
+        <h1 class="subpage__title">
+          Scripts, Catalogs &amp; <em>Publications</em>
+        </h1>
+        <p class="subpage__desc">
+          Original screenwriting samples, multilingual print catalogs, institutional semester reports, and my complete Curriculum Vitae — available for inline reading or direct PDF download.
+        </p>
+        <div class="subpage__tags">
+          <span class="badge badge-accent">Screenwriting</span>
+          <span class="badge">Print Editorial</span>
+          <span class="badge">Institutional Reports</span>
+          <span class="badge">09 PDF Documents</span>
+        </div>
+      </div>
+
+      <!-- Section 1: CV & Screenwriting -->
+      <section class="showcase-section">
+        <div class="showcase-section__header">
+          <div>
+            <h2 class="showcase-section__title">01 · CV &amp; <em>Screenwriting Portfolio</em></h2>
+            <p class="showcase-section__sub">Curriculum Vitae alongside original narrative screenplays.</p>
+          </div>
+          <span class="badge">03 Documents</span>
+        </div>
+
+        <div class="doc-grid">
+
+          <article class="doc-card spotlight-card reveal">
+            <div class="doc-card__top">
+              <div class="doc-card__icon"><i class="uil uil-user-check"></i></div>
+              <span class="badge badge-accent">Resume · PDF</span>
+            </div>
+            <h3 class="doc-card__title">Curriculum Vitae — Barış Değirmenci</h3>
+            <p class="doc-card__desc">Complete resume covering E12, BİLTEN Defence, Hacettepe STL, Google Game &amp; Application Academy, S1000D technical writing, and multidisciplinary design work.</p>
+            <div class="doc-card__actions">
+              <button type="button" class="btn btn-primary"
+                      data-embed-url="Baris_Degirmenci_CV.pdf"
+                      data-embed-title="Curriculum Vitae — Barış Değirmenci"
+                      data-embed-type="pdf"
+                      data-external-url="Baris_Degirmenci_CV.pdf">
+                Preview CV
+              </button>
+              <a href="Baris_Degirmenci_CV.pdf" download class="btn btn-outline">
+                Download
+              </a>
+            </div>
+          </article>
+
+          <article class="doc-card spotlight-card reveal reveal-delay-1">
+            <div class="doc-card__top">
+              <div class="doc-card__icon"><i class="uil uil-film"></i></div>
+              <span class="badge">Screenplay</span>
+            </div>
+            <h3 class="doc-card__title">Screenwriting Portfolio</h3>
+            <p class="doc-card__desc">Original screenplay samples demonstrating scene pacing, visual direction, dialogue rhythm, and dramatic structure.</p>
+            <div class="doc-card__actions">
+              <button type="button" class="btn btn-primary"
+                      data-embed-url="assets/pdf/Barış_Değirmenci_ScreenWriting (1).pdf"
+                      data-embed-title="Screenwriting Portfolio — Barış Değirmenci"
+                      data-embed-type="pdf"
+                      data-external-url="assets/pdf/Barış_Değirmenci_ScreenWriting (1).pdf">
+                Read Script
+              </button>
+              <a href="assets/pdf/Barış_Değirmenci_ScreenWriting (1).pdf" download class="btn btn-outline">
+                Download
+              </a>
+            </div>
+          </article>
+
+          <article class="doc-card spotlight-card reveal reveal-delay-2">
+            <div class="doc-card__top">
+              <div class="doc-card__icon"><i class="uil uil-file-edit-alt"></i></div>
+              <span class="badge">Short Script</span>
+            </div>
+            <h3 class="doc-card__title">Visa — Short Screenplay</h3>
+            <p class="doc-card__desc">Short-form screenplay centered on tension, bureaucratic friction, and concise visual storytelling.</p>
+            <div class="doc-card__actions">
+              <button type="button" class="btn btn-primary"
+                      data-embed-url="assets/pdf/Visa_ScreenWriting.pdf"
+                      data-embed-title="Visa — Short Screenplay"
+                      data-embed-type="pdf"
+                      data-external-url="assets/pdf/Visa_ScreenWriting.pdf">
+                Read Script
+              </button>
+              <a href="assets/pdf/Visa_ScreenWriting.pdf" download class="btn btn-outline">
+                Download
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Section 2: Print Catalogs -->
+      <section class="showcase-section">
+        <div class="showcase-section__header">
+          <div>
+            <h2 class="showcase-section__title">02 · Print &amp; <em>Brand Catalogs</em></h2>
+            <p class="showcase-section__sub">Commercial and institutional publications prepared for offset printing and digital distribution.</p>
+          </div>
+          <span class="badge">02 Catalogs</span>
+        </div>
+
+        <div class="doc-grid">
+
+          <article class="doc-card spotlight-card reveal">
+            <div class="doc-card__top">
+              <div class="doc-card__icon"><i class="uil uil-file-bookmark-alt"></i></div>
+              <span class="badge">Commercial Print</span>
+            </div>
+            <h3 class="doc-card__title">Vitaself Print Catalog</h3>
+            <p class="doc-card__desc">Brand and product catalog formatted for commercial offset printing with structured multilingual typography.</p>
+            <div class="doc-card__actions">
+              <button type="button" class="btn btn-primary"
+                      data-embed-url="assets/pdf/Vitaself_BASKI.pdf"
+                      data-embed-title="Vitaself Print Catalog"
+                      data-embed-type="pdf"
+                      data-external-url="assets/pdf/Vitaself_BASKI.pdf">
+                Preview PDF
+              </button>
+              <a href="assets/pdf/Vitaself_BASKI.pdf" download class="btn btn-outline">
+                Download
+              </a>
+            </div>
+          </article>
+
+          <article class="doc-card spotlight-card reveal reveal-delay-1">
+            <div class="doc-card__top">
+              <div class="doc-card__icon"><i class="uil uil-book-open"></i></div>
+              <span class="badge">Hacettepe University</span>
+            </div>
+            <h3 class="doc-card__title">AGP Academic Development Catalog</h3>
+            <p class="doc-card__desc">Information architecture and multi-page publication layout for Hacettepe University’s Academic Development Program.</p>
+            <div class="doc-card__actions">
+              <button type="button" class="btn btn-primary"
+                      data-embed-url="assets/pdf/AGP_Katalog_19_03_2024.pdf"
+                      data-embed-title="AGP Academic Development Catalog"
+                      data-embed-type="pdf"
+                      data-external-url="assets/pdf/AGP_Katalog_19_03_2024.pdf">
+                Preview PDF
+              </button>
+              <a href="assets/pdf/AGP_Katalog_19_03_2024.pdf" download class="btn btn-outline">
+                Download
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Section 3: Activity Reports -->
+      <section class="showcase-section">
+        <div class="showcase-section__header">
+          <div>
+            <h2 class="showcase-section__title">03 · Institutional <em>Activity Reports</em></h2>
+            <p class="showcase-section__sub">Four consecutive semester reports designed at Hacettepe University’s Center for Sustainable Teaching &amp; Learning (2022–2024).</p>
+          </div>
+          <span class="badge">04 Semester Reports</span>
+        </div>
+
+        <div class="doc-grid">
+
+          <article class="doc-card spotlight-card reveal">
+            <div class="doc-card__top">
+              <div class="doc-card__icon"><i class="uil uil-analytics"></i></div>
+              <span class="badge">Spring 2023–2024</span>
+            </div>
+            <h3 class="doc-card__title">Spring 2023–2024 STL Report</h3>
+            <p class="doc-card__desc">Semester report presenting institutional milestones, statistical summaries, and academic programs.</p>
+            <div class="doc-card__actions">
+              <button type="button" class="btn btn-primary"
+                      data-embed-url="assets/pdf/Reports/2023-2024-Bahar-Donemi-Faaliyet-Raporu.pdf"
+                      data-embed-title="Spring 2023–2024 Activity Report"
+                      data-embed-type="pdf"
+                      data-external-url="assets/pdf/Reports/2023-2024-Bahar-Donemi-Faaliyet-Raporu.pdf">
+                Preview PDF
+              </button>
+              <a href="assets/pdf/Reports/2023-2024-Bahar-Donemi-Faaliyet-Raporu.pdf" download class="btn btn-outline">
+                Download
+              </a>
+            </div>
+          </article>
+
+          <article class="doc-card spotlight-card reveal reveal-delay-1">
+            <div class="doc-card__top">
+              <div class="doc-card__icon"><i class="uil uil-chart-pie-alt"></i></div>
+              <span class="badge">Fall 2023–2024</span>
+            </div>
+            <h3 class="doc-card__title">Fall 2023–2024 STL Report</h3>
+            <p class="doc-card__desc">Editorial report documenting faculty development workshops and institutional metrics.</p>
+            <div class="doc-card__actions">
+              <button type="button" class="btn btn-primary"
+                      data-embed-url="assets/pdf/Reports/2023-2024-Guz-Donemi-Faaliyet-Raporu.pdf"
+                      data-embed-title="Fall 2023–2024 Activity Report"
+                      data-embed-type="pdf"
+                      data-external-url="assets/pdf/Reports/2023-2024-Guz-Donemi-Faaliyet-Raporu.pdf">
+                Preview PDF
+              </button>
+              <a href="assets/pdf/Reports/2023-2024-Guz-Donemi-Faaliyet-Raporu.pdf" download class="btn btn-outline">
+                Download
+              </a>
+            </div>
+          </article>
+
+          <article class="doc-card spotlight-card reveal reveal-delay-2">
+            <div class="doc-card__top">
+              <div class="doc-card__icon"><i class="uil uil-chart-growth"></i></div>
+              <span class="badge">Spring 2022–2023</span>
+            </div>
+            <h3 class="doc-card__title">Spring 2022–2023 STL Report</h3>
+            <p class="doc-card__desc">Activity report covering the Spring 2022–2023 semester with custom data graphics.</p>
+            <div class="doc-card__actions">
+              <button type="button" class="btn btn-primary"
+                      data-embed-url="assets/pdf/Reports/2022-2023 Bahar Dönemi Faaliyet Raporu (4).pdf"
+                      data-embed-title="Spring 2022–2023 Activity Report"
+                      data-embed-type="pdf"
+                      data-external-url="assets/pdf/Reports/2022-2023 Bahar Dönemi Faaliyet Raporu (4).pdf">
+                Preview PDF
+              </button>
+              <a href="assets/pdf/Reports/2022-2023 Bahar Dönemi Faaliyet Raporu (4).pdf" download class="btn btn-outline">
+                Download
+              </a>
+            </div>
+          </article>
+
+          <article class="doc-card spotlight-card reveal">
+            <div class="doc-card__top">
+              <div class="doc-card__icon"><i class="uil uil-chart-line"></i></div>
+              <span class="badge">Fall 2022–2023</span>
+            </div>
+            <h3 class="doc-card__title">Fall 2022–2023 STL Report</h3>
+            <p class="doc-card__desc">Inaugural semester report designed for the Center for Sustainable Teaching and Learning.</p>
+            <div class="doc-card__actions">
+              <button type="button" class="btn btn-primary"
+                      data-embed-url="assets/pdf/Reports/STL_202223GuzRaporu_TUR.pdf"
+                      data-embed-title="Fall 2022–2023 Activity Report"
+                      data-embed-type="pdf"
+                      data-external-url="assets/pdf/Reports/STL_202223GuzRaporu_TUR.pdf">
+                Preview PDF
+              </button>
+              <a href="assets/pdf/Reports/STL_202223GuzRaporu_TUR.pdf" download class="btn btn-outline">
+                Download
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Cross-Portfolio Index Switcher -->
+      <div class="portfolio-nav-strip reveal">
+        <span class="portfolio-nav-strip__title">Archive Index</span>
+        <div class="portfolio-nav-strip__links">
+          <a href="uxui-showcase.html" class="portfolio-nav-pill">01 · UniPazar UX/UI</a>
+          <a href="game-showcase.html" class="portfolio-nav-pill">02 · Unity Games</a>
+          <a href="gallery-sketch.html" class="portfolio-nav-pill">03 · Art &amp; Sketches</a>
+          <a href="gallery-community.html" class="portfolio-nav-pill">04 · Community Branding</a>
+          <a href="gallery-school.html" class="portfolio-nav-pill">05 · 3D &amp; Academic</a>
+          <a href="documents.html" class="portfolio-nav-pill current">06 · Publications</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom">
+        <p class="footer__copy"><a href="index.html#portfolio" style="color:var(--accent-ink);font-weight:600;">← Back to Selected Work</a></p>
+        <p class="footer__copy">&#169; 2026 Barış Değirmenci · Press Ctrl+K anywhere</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PDF Preview Modal -->
+  <div class="embed-modal" id="embed-modal" role="dialog" aria-modal="true" aria-label="Document preview">
+    <div class="embed-modal__dialog">
+      <div class="embed-modal__header">
+        <span class="embed-modal__title" id="embed-modal-title">Document Preview</span>
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <a href="#" target="_blank" rel="noopener" id="embed-modal-external" class="prototype-open-link">
+            Open in New Tab ↗
+          </a>
+          <button type="button" class="modal-close-btn" id="embed-modal-close" aria-label="Close modal">&times;</button>
+        </div>
+      </div>
+      <div class="embed-modal__body embed-modal__body--pdf" id="embed-modal-body">
+        <iframe id="embed-modal-iframe" src="" title="PDF document viewer"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

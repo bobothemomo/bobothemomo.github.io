@@ -1,530 +1,447 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-        <link rel="stylesheet" href="assets/css/styles.css">
-        <title>UX/UI Mobile App Design - Barış Değirmenci</title>
-        
-        <style>
-            .uxui-page {
-                padding: 6rem 0 2rem;
-                min-height: 100vh;
-            }
-            
-            .breadcrumb {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                margin-bottom: 2rem;
-                font-size: 0.875rem;
-                color: #666;
-            }
-            
-            .breadcrumb a {
-                color: #6f42c1;
-                text-decoration: none;
-                transition: color 0.3s;
-            }
-            
-            .breadcrumb a:hover {
-                color: #5a32a3;
-            }
-            
-            .breadcrumb-separator {
-                color: #999;
-            }
-            
-            .uxui-header {
-                text-align: center;
-                margin-bottom: 3rem;
-                max-width: 800px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            
-            .uxui-header h1 {
-                margin-bottom: 1rem;
-            }
-            
-            .uxui-description {
-                font-size: var(--normal-font-size);
-                color: var(--text-color);
-                line-height: 1.8;
-                margin-bottom: 2rem;
-            }
-            
-            .uxui-tags {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 0.75rem;
-                justify-content: center;
-                margin-bottom: 3rem;
-            }
-            
-            .uxui-tag {
-                padding: 0.5rem 1rem;
-                background: var(--first-color-lighter);
-                color: var(--first-color);
-                border-radius: 2rem;
-                font-size: var(--small-font-size);
-                font-weight: var(--font-medium);
-            }
-            
-            .uxui-section {
-                margin-bottom: 4rem;
-            }
-            
-            .uxui-section-title {
-                font-size: var(--h2-font-size);
-                margin-bottom: 2rem;
-                text-align: center;
-                color: var(--title-color);
-            }
-            
-            .uxui-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-                gap: 2rem;
-                margin-bottom: 3rem;
-            }
-            
-            .uxui-item {
-                position: relative;
-                border-radius: 1rem;
-                overflow: hidden;
-                cursor: pointer;
-                transition: transform 0.3s, box-shadow 0.3s;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-                background: white;
-                padding: 1rem;
-            }
-            
-            .uxui-item:hover {
-                transform: translateY(-10px);
-                box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-            }
-            
-            .uxui-item img {
-                width: 100%;
-                height: auto;
-                display: block;
-                border-radius: 0.5rem;
-            }
-            
-            .uxui-item-title {
-                text-align: center;
-                margin-top: 1rem;
-                font-size: var(--small-font-size);
-                color: var(--title-color);
-                font-weight: var(--font-medium);
-            }
-            
-            .lightbox {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: rgba(0,0,0,0.95);
-                z-index: 10000;
-                align-items: center;
-                justify-content: center;
-                padding: 2rem;
-            }
-            
-            .lightbox.active {
-                display: flex;
-            }
-            
-            .lightbox-content {
-                max-width: 90%;
-                max-height: 90vh;
-                position: relative;
-            }
-            
-            .lightbox-img {
-                max-width: 100%;
-                max-height: 85vh;
-                object-fit: contain;
-            }
-            
-            .lightbox-title {
-                color: white;
-                text-align: center;
-                margin-top: 1rem;
-                font-size: var(--normal-font-size);
-            }
-            
-            .lightbox-close {
-                position: absolute;
-                top: -50px;
-                right: 0;
-                color: white;
-                font-size: 2rem;
-                cursor: pointer;
-                background: none;
-                border: none;
-                padding: 0.5rem 1rem;
-            }
-            
-            .lightbox-nav {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                background: rgba(255,255,255,0.2);
-                color: white;
-                border: none;
-                padding: 1rem;
-                font-size: 2rem;
-                cursor: pointer;
-                border-radius: 50%;
-                transition: background 0.3s;
-            }
-            
-            .lightbox-nav:hover {
-                background: rgba(255,255,255,0.3);
-            }
-            
-            .lightbox-prev {
-                left: -60px;
-            }
-            
-            .lightbox-next {
-                right: -60px;
-            }
-            
-            .back-button {
-                display: inline-flex;
-                align-items: center;
-                gap: 0.5rem;
-                margin-bottom: 2rem;
-                padding: 0.75rem 1.5rem;
-                background: var(--first-color);
-                color: white;
-                border-radius: 0.5rem;
-                text-decoration: none;
-                transition: background 0.3s;
-            }
-            
-            .back-button:hover {
-                background: var(--first-color-alt);
-            }
-            
-            @media screen and (max-width: 768px) {
-                .uxui-grid {
-                    grid-template-columns: repeat(2, 1fr);
-                    gap: 1rem;
-                }
-                
-                .lightbox-nav {
-                    font-size: 1.5rem;
-                    padding: 0.5rem;
-                }
-                
-                .lightbox-prev {
-                    left: 0;
-                }
-                
-                .lightbox-next {
-                    right: 0;
-                }
-            }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="UniPazar UX/UI Mobile App Case Study — Barış Değirmenci. Second-hand campus marketplace & barter app designed in Figma for Hacettepe University students.">
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('bd-theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') {
+        t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="icon" type="image/png" href="assets/img/bd-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <title>UniPazar UX/UI Case Study — Barış Değirmenci</title>
+</head>
+<body>
 
-            /* Prototype Window Mockup */
-            .prototype-window {
-                background: var(--bg-secondary);
-                border-radius: var(--radius-lg);
-                box-shadow: var(--shadow-lg);
-                overflow: hidden;
-                margin: 2rem auto 4rem;
-                max-width: 1000px;
-                border: 1px solid var(--border-subtle);
-            }
-            
-            .prototype-window-header {
-                background: rgba(15, 23, 42, 0.6);
-                padding: 0.75rem 1.5rem;
-                display: flex;
-                align-items: center;
-                gap: 1.5rem;
-                border-bottom: 1px solid var(--border-subtle);
-            }
-            
-            .prototype-dots {
-                display: flex;
-                gap: 0.5rem;
-            }
-            
-            .prototype-dots .dot {
-                width: 12px;
-                height: 12px;
-                border-radius: 50%;
-                display: inline-block;
-            }
-            
-            .prototype-dots .dot.red { background: #ff5f56; }
-            .prototype-dots .dot.yellow { background: #ffbd2e; }
-            .prototype-dots .dot.green { background: #27c93f; }
-            
-            .prototype-address {
-                flex-grow: 1;
-                background: var(--bg-primary);
-                color: var(--text-secondary);
-                padding: 0.35rem 1rem;
-                border-radius: var(--radius-sm);
-                font-size: var(--fs-xs);
-                font-family: monospace;
-                text-align: center;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                max-width: 500px;
-                margin: 0 auto;
-                border: 1px solid var(--border-subtle);
-            }
-            
-            .prototype-window-body {
-                position: relative;
-                width: 100%;
-                padding-top: 56.25%; /* 16:9 Aspect Ratio */
-                background: var(--bg-tertiary);
-            }
-            
-            .figma-iframe {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                border: none;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="uxui-page">
-            <div class="container">
-                <nav class="breadcrumb">
-                    <a href="index.html">Home</a>
-                    <span class="breadcrumb-separator">/</span>
-                    <a href="index.html#portfolio">Portfolio</a>
-                    <span class="breadcrumb-separator">/</span>
-                    <span>UX/UI Mobile App</span>
-                </nav>
-                
-                <a href="index.html#portfolio" class="back-button">
-                    <i class="uil uil-arrow-left"></i>
-                    Back to Portfolio
-                </a>
-                
-                <div class="uxui-header">
-                    <h1 class="section__title">UX/UI Mobile App Design</h1>
-                    <p class="uxui-description">
-                        A comprehensive mobile application design project showcasing modern UI/UX principles, 
-                        user-centered design, and intuitive navigation patterns. This project includes complete 
-                        user flows for authentication, onboarding, and core application features.
-                    </p>
-                    <div class="uxui-tags">
-                        <span class="uxui-tag">UI Design</span>
-                        <span class="uxui-tag">UX Research</span>
-                        <span class="uxui-tag">Mobile App</span>
-                        <span class="uxui-tag">Figma</span>
-                        <span class="uxui-tag">User Flow</span>
-                    </div>
-                </div>
-                
-                <div class="uxui-section">
-                    <h2 class="uxui-section-title">Interactive Design Canvas</h2>
-                    <div class="prototype-window">
-                        <div class="prototype-window-header">
-                            <div class="prototype-dots">
-                                <span class="dot red"></span>
-                                <span class="dot yellow"></span>
-                                <span class="dot green"></span>
-                            </div>
-                            <div class="prototype-address">https://www.figma.com/design/UniPazar</div>
-                        </div>
-                        <div class="prototype-window-body">
-                            <iframe class="figma-iframe" src="https://embed.figma.com/design/dLirjlg1JqV3MyQyYZFsLa/UniPazar?node-id=2693-16299&embed-host=share" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="uxui-section">
-                    <h2 class="uxui-section-title">Onboarding & Splash Screens</h2>
-                    <div class="uxui-grid">
-                        <div class="uxui-item" onclick="openLightbox(0)">
-                            <img src="assets/img/UI/Splash Screen.png" alt="Splash Screen">
-                            <div class="uxui-item-title">Splash Screen</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="uxui-section">
-                    <h2 class="uxui-section-title">Authentication Flow</h2>
-                    <div class="uxui-grid">
-                        <div class="uxui-item" onclick="openLightbox(1)">
-                            <img src="assets/img/UI/login.png" alt="Login Screen">
-                            <div class="uxui-item-title">Login Screen</div>
-                        </div>
-                        
-                        <div class="uxui-item" onclick="openLightbox(2)">
-                            <img src="assets/img/UI/girişyap.png" alt="Sign In">
-                            <div class="uxui-item-title">Sign In</div>
-                        </div>
-                        
-                        <div class="uxui-item" onclick="openLightbox(3)">
-                            <img src="assets/img/UI/kaydol.png" alt="Register">
-                            <div class="uxui-item-title">Register</div>
-                        </div>
-                        
-                        <div class="uxui-item" onclick="openLightbox(4)">
-                            <img src="assets/img/UI/epostagirişi.png" alt="Email Entry">
-                            <div class="uxui-item-title">Email Entry</div>
-                        </div>
-                        
-                        <div class="uxui-item" onclick="openLightbox(5)">
-                            <img src="assets/img/UI/doğru eposta.png" alt="Valid Email">
-                            <div class="uxui-item-title">Valid Email</div>
-                        </div>
-                        
-                        <div class="uxui-item" onclick="openLightbox(6)">
-                            <img src="assets/img/UI/epostahatalı.png" alt="Invalid Email">
-                            <div class="uxui-item-title">Invalid Email</div>
-                        </div>
-                        
-                        <div class="uxui-item" onclick="openLightbox(7)">
-                            <img src="assets/img/UI/girişbaşarılı.png" alt="Login Success">
-                            <div class="uxui-item-title">Login Success</div>
-                        </div>
-                        
-                        <div class="uxui-item" onclick="openLightbox(8)">
-                            <img src="assets/img/UI/kayıt başarılı.png" alt="Registration Success">
-                            <div class="uxui-item-title">Registration Success</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="uxui-section">
-                    <h2 class="uxui-section-title">Password Recovery</h2>
-                    <div class="uxui-grid">
-                        <div class="uxui-item" onclick="openLightbox(9)">
-                            <img src="assets/img/UI/şifreni mi unuttun.png" alt="Forgot Password">
-                            <div class="uxui-item-title">Forgot Password</div>
-                        </div>
-                        
-                        <div class="uxui-item" onclick="openLightbox(10)">
-                            <img src="assets/img/UI/yenişifreoluştur.png" alt="Create New Password">
-                            <div class="uxui-item-title">Create New Password</div>
-                        </div>
-                        
-                        <div class="uxui-item" onclick="openLightbox(11)">
-                            <img src="assets/img/UI/yenişifreoluştur-1.png" alt="New Password Step 1">
-                            <div class="uxui-item-title">New Password Step 1</div>
-                        </div>
-                        
-                        <div class="uxui-item" onclick="openLightbox(12)">
-                            <img src="assets/img/UI/yenişifreoluştur-2.png" alt="New Password Step 2">
-                            <div class="uxui-item-title">New Password Step 2</div>
-                        </div>
-                        
-                        <div class="uxui-item" onclick="openLightbox(13)">
-                            <img src="assets/img/UI/4kod.png" alt="Verification Code">
-                            <div class="uxui-item-title">Verification Code</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="uxui-section">
-                    <h2 class="uxui-section-title">Additional Screens</h2>
-                    <div class="uxui-grid">
-                        <div class="uxui-item" onclick="openLightbox(14)">
-                            <img src="assets/img/UI/5.png" alt="Screen 5">
-                            <div class="uxui-item-title">App Screen 5</div>
-                        </div>
-                        
-                        <div class="uxui-item" onclick="openLightbox(15)">
-                            <img src="assets/img/UI/6.png" alt="Screen 6">
-                            <div class="uxui-item-title">App Screen 6</div>
-                        </div>
-                        
-                        <div class="uxui-item" onclick="openLightbox(16)">
-                            <img src="assets/img/UI/7.png" alt="Screen 7">
-                            <div class="uxui-item-title">App Screen 7</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-            <div class="lightbox-content">
-                <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
-                <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1, event)">&#8249;</button>
-                <img src="" alt="" class="lightbox-img" id="lightbox-img">
-                <div class="lightbox-title" id="lightbox-title"></div>
-                <button class="lightbox-nav lightbox-next" onclick="changeImage(1, event)">&#8250;</button>
-            </div>
+  <!-- Top Navigation Bar -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <div class="nav__brand-group">
+        <a href="index.html" class="nav__logo">
+          <span class="nav__logo-mark">BD</span>
+          Barış Değirmenci
+        </a>
+      </div>
+
+      <div class="nav__actions">
+        <button type="button" class="cmdk-trigger" data-open-cmdk aria-label="Open Quick Search">
+          <i class="uil uil-search"></i>
+          <span>Search</span>
+          <kbd>Ctrl K</kbd>
+        </button>
+
+        <div class="theme-switch" role="group" aria-label="Theme switcher">
+          <button type="button" class="theme-switch__btn" data-set-theme="light" aria-label="Switch to light mode">
+            <i class="uil uil-sun"></i><span>Light</span>
+          </button>
+          <button type="button" class="theme-switch__btn" data-set-theme="dark" aria-label="Switch to dark mode">
+            <i class="uil uil-moon"></i><span>Dark</span>
+          </button>
         </div>
 
-        <script>
-            const images = [
-                { src: 'assets/img/UI/Splash Screen.png', title: 'Splash Screen' },
-                { src: 'assets/img/UI/login.png', title: 'Login Screen' },
-                { src: 'assets/img/UI/girişyap.png', title: 'Sign In' },
-                { src: 'assets/img/UI/kaydol.png', title: 'Register' },
-                { src: 'assets/img/UI/epostagirişi.png', title: 'Email Entry' },
-                { src: 'assets/img/UI/doğru eposta.png', title: 'Valid Email' },
-                { src: 'assets/img/UI/epostahatalı.png', title: 'Invalid Email' },
-                { src: 'assets/img/UI/girişbaşarılı.png', title: 'Login Success' },
-                { src: 'assets/img/UI/kayıt başarılı.png', title: 'Registration Success' },
-                { src: 'assets/img/UI/şifreni mi unuttun.png', title: 'Forgot Password' },
-                { src: 'assets/img/UI/yenişifreoluştur.png', title: 'Create New Password' },
-                { src: 'assets/img/UI/yenişifreoluştur-1.png', title: 'New Password Step 1' },
-                { src: 'assets/img/UI/yenişifreoluştur-2.png', title: 'New Password Step 2' },
-                { src: 'assets/img/UI/4kod.png', title: 'Verification Code' },
-                { src: 'assets/img/UI/5.png', title: 'App Screen 5' },
-                { src: 'assets/img/UI/6.png', title: 'App Screen 6' },
-                { src: 'assets/img/UI/7.png', title: 'App Screen 7' }
-            ];
-            
-            let currentIndex = 0;
-            
-            function openLightbox(index) {
-                currentIndex = index;
-                document.getElementById('lightbox').classList.add('active');
-                document.getElementById('lightbox-img').src = images[currentIndex].src;
-                document.getElementById('lightbox-title').textContent = images[currentIndex].title;
-                document.body.style.overflow = 'hidden';
-            }
-            
-            function closeLightbox(event) {
-                if (event.target.id === 'lightbox' || event.target.classList.contains('lightbox-close')) {
-                    document.getElementById('lightbox').classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            }
-            
-            function changeImage(direction, event) {
-                event.stopPropagation();
-                currentIndex += direction;
-                if (currentIndex < 0) currentIndex = images.length - 1;
-                if (currentIndex >= images.length) currentIndex = 0;
-                document.getElementById('lightbox-img').src = images[currentIndex].src;
-                document.getElementById('lightbox-title').textContent = images[currentIndex].title;
-            }
-            
-            document.addEventListener('keydown', function(e) {
-                const lightbox = document.getElementById('lightbox');
-                if (lightbox.classList.contains('active')) {
-                    if (e.key === 'ArrowLeft') changeImage(-1, e);
-                    if (e.key === 'ArrowRight') changeImage(1, e);
-                    if (e.key === 'Escape') closeLightbox({ target: lightbox });
-                }
-            });
-        </script>
-    </body>
+        <a href="Baris_Degirmenci_CV.pdf" target="_blank" rel="noopener" class="nav__cv-link">
+          Resume <i class="uil uil-arrow-up-right"></i>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Floating Bottom App Dock -->
+  <nav class="app-dock" aria-label="Studio Module Dock">
+    <a href="index.html" class="dock-item">
+      <i class="uil uil-estate"></i><span>Studio</span>
+    </a>
+    <a href="uxui-showcase.html" class="dock-item active-link">
+      <i class="uil uil-mobile-android"></i><span>UX/UI</span>
+    </a>
+    <a href="game-showcase.html" class="dock-item">
+      <i class="uil uil-game-structure"></i><span>Games</span>
+    </a>
+    <a href="gallery-sketch.html" class="dock-item">
+      <i class="uil uil-brush-alt"></i><span>Art</span>
+    </a>
+    <a href="gallery-community.html" class="dock-item">
+      <i class="uil uil-users-alt"></i><span>Brand</span>
+    </a>
+    <a href="gallery-school.html" class="dock-item">
+      <i class="uil uil-cube"></i><span>3D</span>
+    </a>
+    <a href="documents.html" class="dock-item">
+      <i class="uil uil-file-alt"></i><span>Docs</span>
+    </a>
+    <div class="dock-sep"></div>
+    <button type="button" class="dock-item dock-item--cmdk" data-open-cmdk aria-label="Search modules">
+      <i class="uil uil-command"></i><span>⌘K</span>
+    </button>
+  </nav>
+
+  <main class="subpage">
+    <div class="container">
+
+      <!-- Top Bar -->
+      <div class="subpage__topbar">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Index</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="index.html#portfolio">Work</a>
+          <span class="breadcrumb-sep">/</span>
+          <span>01 · UniPazar UX/UI</span>
+        </nav>
+        <a href="index.html#portfolio" class="back-link">
+          <i class="uil uil-arrow-left"></i> All Work
+        </a>
+      </div>
+
+      <!-- Case Study Masthead -->
+      <div class="subpage__hero reveal">
+        <p class="subpage__kicker">01 / UX/UI Mobile Case Study</p>
+        <h1 class="subpage__title">
+          UniPazar — <em>Campus Marketplace</em>
+        </h1>
+        <p class="subpage__desc">
+          A student-exclusive second-hand marketplace and barter mobile application designed for Hacettepe University. Built around verified .edu.tr email authentication, low-friction onboarding, and clear validation states.
+        </p>
+        <div class="subpage__tags">
+          <span class="badge badge-accent">Product UX/UI</span>
+          <span class="badge">Figma &amp; Adobe XD</span>
+          <span class="badge">iOS Component System</span>
+          <span class="badge">17 Screens</span>
+        </div>
+        <div class="subpage__actions">
+          <a href="https://www.figma.com/design/dLirjlg1JqV3MyQyYZFsLa/UniPazar" target="_blank" rel="noopener" class="btn btn-primary">
+            Open File in Figma <i class="uil uil-arrow-up-right"></i>
+          </a>
+          <a href="#screens" class="btn btn-outline">
+            Browse 17 Screens <i class="uil uil-arrow-down"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Case Metadata Grid -->
+      <div class="case-meta-grid reveal reveal-delay-1">
+        <div class="case-meta-card spotlight-card">
+          <span class="case-meta-card__label">Role</span>
+          <span class="case-meta-card__value">Product &amp; UX/UI Designer</span>
+        </div>
+        <div class="case-meta-card spotlight-card">
+          <span class="case-meta-card__label">Audience</span>
+          <span class="case-meta-card__value">Hacettepe University Students</span>
+        </div>
+        <div class="case-meta-card spotlight-card">
+          <span class="case-meta-card__label">Scope</span>
+          <span class="case-meta-card__value">Onboarding · Auth · Campus Barter</span>
+        </div>
+        <div class="case-meta-card spotlight-card">
+          <span class="case-meta-card__label">Stack</span>
+          <span class="case-meta-card__value">Figma · Adobe XD · Illustrator</span>
+        </div>
+      </div>
+
+      <!-- Interactive Figma Canvas -->
+      <section class="showcase-section reveal">
+        <div class="showcase-section__header">
+          <div>
+            <h2 class="showcase-section__title">Interactive <em>Figma Canvas</em></h2>
+            <p class="showcase-section__sub">Pan and zoom directly inside the live UniPazar component sheet and user flows.</p>
+          </div>
+          <span class="badge">Live Embed</span>
+        </div>
+
+        <div class="prototype-window">
+          <div class="prototype-window-header">
+            <div class="prototype-dots">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <div class="prototype-address">figma.com/design/UniPazar — Flows &amp; Components</div>
+            <a href="https://www.figma.com/design/dLirjlg1JqV3MyQyYZFsLa/UniPazar" target="_blank" rel="noopener" class="prototype-open-link">
+              Open Figma ↗
+            </a>
+          </div>
+          <div class="prototype-window-body">
+            <iframe class="figma-iframe" src="https://embed.figma.com/design/dLirjlg1JqV3MyQyYZFsLa/UniPazar?node-id=2693-16299&embed-host=share" allowfullscreen title="UniPazar Figma Design Canvas"></iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 1: Splash & Onboarding -->
+      <section class="showcase-section" id="screens">
+        <div class="showcase-section__header">
+          <div>
+            <h2 class="showcase-section__title">01 · Splash &amp; <em>Campus Onboarding</em></h2>
+            <p class="showcase-section__sub">Introducing campus-safe trading, peer barter, and verified university membership.</p>
+          </div>
+          <span class="badge">04 Screens · Click to Inspect</span>
+        </div>
+
+        <div class="phone-grid">
+          <div class="phone-card reveal" data-lightbox-item data-src="assets/img/UI/Splash Screen.png" data-title="Splash Screen" data-desc="Brand launch screen featuring the custom UniPazar mortarboard emblem and spacing grid specs.">
+            <div class="phone-card__frame">
+              <img src="assets/img/UI/Splash Screen.png" alt="Splash Screen" loading="lazy">
+              <span class="phone-card__zoom"><i class="uil uil-expand-arrows-alt"></i></span>
+            </div>
+            <div class="phone-card__info">
+              <span class="phone-card__step">Step 01</span>
+              <h3 class="phone-card__title">Splash &amp; Brand Mark</h3>
+            </div>
+          </div>
+
+          <div class="phone-card reveal reveal-delay-1" data-lightbox-item data-src="assets/img/UI/5.png" data-title="Onboarding 1 — Campus Marketplace" data-desc="“Kampüsünde alışveriş başlasın” — Safe second-hand trading right inside campus.">
+            <div class="phone-card__frame">
+              <img src="assets/img/UI/5.png" alt="Onboarding 1 — Campus Marketplace" loading="lazy">
+              <span class="phone-card__zoom"><i class="uil uil-expand-arrows-alt"></i></span>
+            </div>
+            <div class="phone-card__info">
+              <span class="phone-card__step">Step 02</span>
+              <h3 class="phone-card__title">Campus Marketplace Intro</h3>
+            </div>
+          </div>
+
+          <div class="phone-card reveal reveal-delay-2" data-lightbox-item data-src="assets/img/UI/6.png" data-title="Onboarding 2 — Save &amp; Barter" data-desc="“Tasarruf et, cebini koru” — Student-friendly barter and peer-to-peer item exchange.">
+            <div class="phone-card__frame">
+              <img src="assets/img/UI/6.png" alt="Onboarding 2 — Save and Barter" loading="lazy">
+              <span class="phone-card__zoom"><i class="uil uil-expand-arrows-alt"></i></span>
+            </div>
+            <div class="phone-card__info">
+              <span class="phone-card__step">Step 03</span>
+              <h3 class="phone-card__title">Save &amp; Peer Barter</h3>
+            </div>
+          </div>
+
+          <div class="phone-card reveal reveal-delay-3" data-lightbox-item data-src="assets/img/UI/7.png" data-title="Onboarding 3 — Verified University Community" data-desc="“Gerçek üniversite topluluğu” — Custom illustration featuring Hacettepe campus architecture and .edu.tr verification.">
+            <div class="phone-card__frame">
+              <img src="assets/img/UI/7.png" alt="Onboarding 3 — University Community" loading="lazy">
+              <span class="phone-card__zoom"><i class="uil uil-expand-arrows-alt"></i></span>
+            </div>
+            <div class="phone-card__info">
+              <span class="phone-card__step">Step 04</span>
+              <h3 class="phone-card__title">Verified Campus Community</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Authentication & Validation States -->
+      <section class="showcase-section">
+        <div class="showcase-section__header">
+          <div>
+            <h2 class="showcase-section__title">02 · Authentication &amp; <em>Validation States</em></h2>
+            <p class="showcase-section__sub">Sign-up, sign-in, real-time university email validation, error recovery, and confirmation states.</p>
+          </div>
+          <span class="badge">08 Screens</span>
+        </div>
+
+        <div class="phone-grid">
+          <div class="phone-card reveal" data-lightbox-item data-src="assets/img/UI/login.png" data-title="Welcome Hub" data-desc="“Hoş geldin Hacettepeli!” — Clear primary and secondary entry actions for new and returning students.">
+            <div class="phone-card__frame">
+              <img src="assets/img/UI/login.png" alt="Welcome Screen" loading="lazy">
+              <span class="phone-card__zoom"><i class="uil uil-expand-arrows-alt"></i></span>
+            </div>
+            <div class="phone-card__info">
+              <span class="phone-card__step">Auth 01</span>
+              <h3 class="phone-card__title">Welcome Hub</h3>
+            </div>
+          </div>
+
+          <div class="phone-card reveal reveal-delay-1" data-lightbox-item data-src="assets/img/UI/kaydol.png" data-title="Student Registration" data-desc="Account creation flow tailored for university credentials.">
+            <div class="phone-card__frame">
+              <img src="assets/img/UI/kaydol.png" alt="Register Screen" loading="lazy">
+              <span class="phone-card__zoom"><i class="uil uil-expand-arrows-alt"></i></span>
+            </div>
+            <div class="phone-card__info">
+              <span class="phone-card__step">Auth 02</span>
+              <h3 class="phone-card__title">Create Account</h3>
+            </div>
+          </div>
+
+          <div class="phone-card reveal reveal-delay-2" data-lightbox-item data-src="assets/img/UI/girişyap.png" data-title="Sign In" data-desc="Returning user login screen with quick password recovery access.">
+            <div class="phone-card__frame">
+              <img src="assets/img/UI/girişyap.png" alt="Sign In Screen" loading="lazy">
+              <span class="phone-card__zoom"><i class="uil uil-expand-arrows-alt"></i></span>
+            </div>
+            <div class="phone-card__info">
+              <span class="phone-card__step">Auth 03</span>
+              <h3 class="phone-card__title">Sign In</h3>
+            </div>
+          </div>
+
+          <div class="phone-card reveal reveal-delay-3" data-lightbox-item data-src="assets/img/UI/epostagirişi.png" data-title="University Email Input" data-desc="Focused input state for entering student email address.">
+            <div class="phone-card__frame">
+              <img src="assets/img/UI/epostagirişi.png" alt="Email Input" loading="lazy">
+              <span class="phone-card__zoom"><i class="uil uil-expand-arrows-alt"></i></span>
+            </div>
+            <div class="phone-card__info">
+              <span class="phone-card__step">Auth 04</span>
+              <h3 class="phone-card__title">Email Input State</h3>
+            </div>
+          </div>
+
+          <div class="phone-card reveal" data-lightbox-item data-src="assets/img/UI/doğru eposta.png" data-title="Valid Campus Email" data-desc="Positive inline validation feedback confirming valid university domain.">
+            <div class="phone-card__frame">
+              <img src="assets/img/UI/doğru eposta.png" alt="Valid Email State" loading="lazy">
+              <span class="phone-card__zoom"><i class="uil uil-expand-arrows-alt"></i></span>
+            </div>
+            <div class="phone-card__info">
+              <span class="phone-card__step">Auth 05</span>
+              <h3 class="phone-card__title">Valid Email State</h3>
+            </div>
+          </div>
+
+          <div class="phone-card reveal reveal-delay-1" data-lightbox-item data-src="assets/img/UI/epostahatalı.png" data-title="Invalid Email Error State" data-desc="Accessible inline error state guiding users when email format or domain fails validation.">
+            <div class="phone-card__frame">
+              <img src="assets/img/UI/epostahatalı.png" alt="Invalid Email Error" loading="lazy">
+              <span class="phone-card__zoom"><i class="uil uil-expand-arrows-alt"></i></span>
+            </div>
+            <div class="phone-card__info">
+              <span class="phone-card__step">Auth 06</span>
+              <h3 class="phone-card__title">Error Validation</h3>
+            </div>
+          </div>
+
+          <div class="phone-card reveal reveal-delay-2" data-lightbox-item data-src="assets/img/UI/kayıt başarılı.png" data-title="Registration Confirmed" data-desc="Confirmation screen upon completing campus verification.">
+            <div class="phone-card__frame">
+              <img src="assets/img/UI/kayıt başarılı.png" alt="Registration Success" loading="lazy">
+              <span class="phone-card__zoom"><i class="uil uil-expand-arrows-alt"></i></span>
+            </div>
+            <div class="phone-card__info">
+              <span class="phone-card__step">Auth 07</span>
+              <h3 class="phone-card__title">Registration Success</h3>
+            </div>
+          </div>
+
+          <div class="phone-card reveal reveal-delay-3" data-lightbox-item data-src="assets/img/UI/girişbaşarılı.png" data-title="Sign-In Confirmed" data-desc="Smooth transition confirmation into the main marketplace feed.">
+            <div class="phone-card__frame">
+              <img src="assets/img/UI/girişbaşarılı.png" alt="Login Success" loading="lazy">
+              <span class="phone-card__zoom"><i class="uil uil-expand-arrows-alt"></i></span>
+            </div>
+            <div class="phone-card__info">
+              <span class="phone-card__step">Auth 08</span>
+              <h3 class="phone-card__title">Login Success</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Password Recovery & OTP -->
+      <section class="showcase-section">
+        <div class="showcase-section__header">
+          <div>
+            <h2 class="showcase-section__title">03 · Password Recovery &amp; <em>OTP Verification</em></h2>
+            <p class="showcase-section__sub">Account recovery flow with 4-digit verification code and progressive password reset states.</p>
+          </div>
+          <span class="badge">05 Screens</span>
+        </div>
+
+        <div class="phone-grid">
+          <div class="phone-card reveal" data-lightbox-item data-src="assets/img/UI/şifreni mi unuttun.png" data-title="Forgot Password" data-desc="Password reset request screen via verified student email.">
+            <div class="phone-card__frame">
+              <img src="assets/img/UI/şifreni mi unuttun.png" alt="Forgot Password" loading="lazy">
+              <span class="phone-card__zoom"><i class="uil uil-expand-arrows-alt"></i></span>
+            </div>
+            <div class="phone-card__info">
+              <span class="phone-card__step">Recovery 01</span>
+              <h3 class="phone-card__title">Forgot Password</h3>
+            </div>
+          </div>
+
+          <div class="phone-card reveal reveal-delay-1" data-lightbox-item data-src="assets/img/UI/4kod.png" data-title="4-Digit OTP Verification" data-desc="Segmented OTP input for secure email code confirmation.">
+            <div class="phone-card__frame">
+              <img src="assets/img/UI/4kod.png" alt="4-Digit OTP Code" loading="lazy">
+              <span class="phone-card__zoom"><i class="uil uil-expand-arrows-alt"></i></span>
+            </div>
+            <div class="phone-card__info">
+              <span class="phone-card__step">Recovery 02</span>
+              <h3 class="phone-card__title">4-Digit OTP Code</h3>
+            </div>
+          </div>
+
+          <div class="phone-card reveal reveal-delay-2" data-lightbox-item data-src="assets/img/UI/yenişifreoluştur.png" data-title="Create New Password" data-desc="Initial empty state for setting a new password.">
+            <div class="phone-card__frame">
+              <img src="assets/img/UI/yenişifreoluştur.png" alt="Create New Password" loading="lazy">
+              <span class="phone-card__zoom"><i class="uil uil-expand-arrows-alt"></i></span>
+            </div>
+            <div class="phone-card__info">
+              <span class="phone-card__step">Recovery 03</span>
+              <h3 class="phone-card__title">New Password Entry</h3>
+            </div>
+          </div>
+
+          <div class="phone-card reveal reveal-delay-3" data-lightbox-item data-src="assets/img/UI/yenişifreoluştur-1.png" data-title="Password Strength &amp; Match (Step 1)" data-desc="Active typing and password requirement validation state.">
+            <div class="phone-card__frame">
+              <img src="assets/img/UI/yenişifreoluştur-1.png" alt="New Password Step 1" loading="lazy">
+              <span class="phone-card__zoom"><i class="uil uil-expand-arrows-alt"></i></span>
+            </div>
+            <div class="phone-card__info">
+              <span class="phone-card__step">Recovery 04</span>
+              <h3 class="phone-card__title">Validation Feedback</h3>
+            </div>
+          </div>
+
+          <div class="phone-card reveal" data-lightbox-item data-src="assets/img/UI/yenişifreoluştur-2.png" data-title="Password Ready to Save (Step 2)" data-desc="Confirmed match state enabling final password update.">
+            <div class="phone-card__frame">
+              <img src="assets/img/UI/yenişifreoluştur-2.png" alt="New Password Step 2" loading="lazy">
+              <span class="phone-card__zoom"><i class="uil uil-expand-arrows-alt"></i></span>
+            </div>
+            <div class="phone-card__info">
+              <span class="phone-card__step">Recovery 05</span>
+              <h3 class="phone-card__title">Reset Complete State</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cross-Portfolio Index Switcher -->
+      <div class="portfolio-nav-strip reveal">
+        <span class="portfolio-nav-strip__title">Archive Index</span>
+        <div class="portfolio-nav-strip__links">
+          <a href="uxui-showcase.html" class="portfolio-nav-pill current">01 · UniPazar UX/UI</a>
+          <a href="game-showcase.html" class="portfolio-nav-pill">02 · Unity Games</a>
+          <a href="gallery-sketch.html" class="portfolio-nav-pill">03 · Art &amp; Sketches</a>
+          <a href="gallery-community.html" class="portfolio-nav-pill">04 · Community Branding</a>
+          <a href="gallery-school.html" class="portfolio-nav-pill">05 · 3D &amp; Academic</a>
+          <a href="documents.html" class="portfolio-nav-pill">06 · Publications</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom">
+        <p class="footer__copy"><a href="index.html#portfolio" style="color:var(--accent-ink);font-weight:600;">← Back to Selected Work</a></p>
+        <p class="footer__copy">&#169; 2026 Barış Değirmenci · Press Ctrl+K anywhere</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Unified Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Screen preview">
+    <button class="lightbox-close" aria-label="Close preview">&times;</button>
+    <button class="lightbox-nav lightbox-prev" aria-label="Previous screen">&#8249;</button>
+    <div class="lightbox-content">
+      <img src="" alt="" class="lightbox-img" id="lightbox-img">
+      <div class="lightbox-caption-bar">
+        <span class="lightbox-counter" id="lightbox-counter"></span>
+        <div class="lightbox-title" id="lightbox-title"></div>
+        <div class="lightbox-desc" id="lightbox-desc"></div>
+      </div>
+    </div>
+    <button class="lightbox-nav lightbox-next" aria-label="Next screen">&#8250;</button>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
 </html>
-
