@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- a scrap of sketchbook paper -->
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#F3EDE1"/>
+  <!-- highlighter swipe -->
+  <path d="M15 40c10-2 22-2 35-4" fill="none" stroke="#F6E46A" stroke-width="11" stroke-linecap="round"/>
+  <!-- initials in ink -->
+  <text x="32" y="41" text-anchor="middle"
+        font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="800"
+        font-size="24" letter-spacing="-1" fill="#26231D">BD</text>
+  <!-- ballpoint loop around it -->
+  <path d="M41 10C24 7 8 15 7 31c-1 15 13 24 28 23 15-1 23-11 22-24C56 17 46 9 29 11"
+        fill="none" stroke="#2B4AA6" stroke-width="3.2" stroke-linecap="round"/>
+</svg>
