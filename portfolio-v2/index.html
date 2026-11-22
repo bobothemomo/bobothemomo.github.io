@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="tr" data-lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Barış Değirmenci</title>
+  <meta name="description" content="Barış Değirmenci — Ankara'da tasarımcı ve geliştirici. Mobil arayüzler, Unity oyunları, çizim, afiş ve eğitim içerikleri.">
+  <meta name="author" content="Barış Değirmenci">
+  <meta property="og:title" content="Barış Değirmenci">
+  <meta property="og:description" content="Mobil arayüzler, Unity oyunları, çizimler ve basılı işler.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="img/portrait-camera.jpg">
+  <meta name="theme-color" content="#F3EDE1">
+
+  <script>
+    (function () {
+      var d = document.documentElement, l = null, t = null;
+      d.classList.add('js');
+      try { l = localStorage.getItem('bd-lang'); t = localStorage.getItem('bd-theme'); } catch (e) {}
+      if (l !== 'tr' && l !== 'en') l = /^tr\b/i.test(navigator.language || '') ? 'tr' : 'en';
+      if (t !== 'light' && t !== 'dark') t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      d.setAttribute('data-lang', l);
+      d.setAttribute('lang', l);
+      d.setAttribute('data-theme', t);
+    })();
+  </script>
+
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Karla:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=4">
+</head>
+
+<body>
+  <a class="skip" href="#main"><span lang="tr">İçeriğe geç</span><span lang="en">Skip to content</span></a>
+
+  <!-- Hand-drawn doodles -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="d-arrow" viewBox="0 0 120 70"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 10c14-3 36-4 55 6 17 9 30 25 41 44"/><path d="M86 52c6 3 11 6 16 9 1-6 1-12 0-18"/></g></symbol>
+    <symbol id="d-arrow-down" viewBox="0 0 60 90"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M40 4C18 16 10 38 22 58c4 7 9 14 12 24"/><path d="M22 74c4 3 8 6 12 9 3-5 6-9 10-13"/></g></symbol>
+    <symbol id="d-squiggle" viewBox="0 0 220 14" preserveAspectRatio="none"><path d="M3 9c16-7 30 3 48-2s32-6 50 0 30 6 50 0 34-6 48 0 14 2 18 0" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
+    <symbol id="d-circle" viewBox="0 0 100 50" preserveAspectRatio="none"><path d="M62 5C36 1 8 9 5 25c-3 16 26 22 49 21 24-1 43-9 41-23C93 9 68 1 38 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="d-star" viewBox="0 0 40 40"><path d="M20 4v32M6 12l28 16M34 12 6 28" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="d-sun" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16.5 10.2c-3.6-.4-6.4 2.4-6.2 5.9.2 3.3 3 5.8 6.2 5.6 3.3-.2 5.6-3 5.4-6.1-.2-3-2.6-5.2-5.6-5.5"/><path d="M16 3.5v3M16.3 25.6v3M4 16.2h3M25 15.8h3.2M7.4 7.6l2.1 2M22.4 22.5l2.2 2.1M7.6 24.6l2-2M22.6 9.4l2-2.1"/></g></symbol>
+    <symbol id="d-moon" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 5.2c-6.8.3-11.6 6.4-10.3 12.8 1.2 5.8 7.6 9.3 13.3 7.2 1.6-.6 3-1.5 4.1-2.8-5.9.7-10.6-4.2-9.8-10 .4-2.9 1.6-5.4 2.7-7.2z"/><path d="M25 7.5v3M23.5 9h3"/></g></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 6c4 4 9 8 14 13M18 5C13 9 9 13 6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></symbol>
+  </svg>
+
+  <!-- ───────── HEADER ───────── -->
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a href="#top" class="brand">Barış Değirmenci</a>
+
+      <nav class="nav" aria-label="Menu">
+        <a href="#work"><span lang="tr">İşler</span><span lang="en">Work</span></a>
+        <a href="#sketchbook"><span lang="tr">Çizimler</span><span lang="en">Drawings</span></a>
+        <a href="#print"><span lang="tr">Basılı işler</span><span lang="en">Print</span></a>
+        <a href="#about"><span lang="tr">Hakkımda</span><span lang="en">About</span></a>
+        <a href="#contact"><span lang="tr">İletişim</span><span lang="en">Contact</span></a>
+      </nav>
+
+      <div class="header-tools">
+        <button type="button" class="theme-btn" id="theme-toggle" aria-label="Gece / gündüz — dark / light">
+          <svg class="t-sun" aria-hidden="true"><use href="#d-sun"/></svg>
+          <svg class="t-moon" aria-hidden="true"><use href="#d-moon"/></svg>
+        </button>
+        <div class="lang-switch" role="group" aria-label="Dil / Language">
+          <button type="button" data-set-lang="tr" aria-label="Türkçe">TR<svg class="lang-switch__circle" aria-hidden="true"><use href="#d-circle"/></svg></button>
+          <button type="button" data-set-lang="en" aria-label="English">EN<svg class="lang-switch__circle" aria-hidden="true"><use href="#d-circle"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ───────── HERO ───────── -->
+    <section class="hero wrap" id="top">
+      <div class="hero__text">
+        <h1 class="hero__title">
+          <span lang="tr">Merhaba, ben Barış.</span>
+          <span lang="en">Hi, I’m Barış.</span>
+        </h1>
+        <p class="hero__lead" lang="tr">
+          Ankara’da yaşıyorum. Mobil uygulama arayüzleri tasarlıyorum, Unity’de oyun yapıyorum ve
+          fırsat buldukça <mark>çiziyorum</mark>. Hacettepe’de Bilgisayar ve Öğretim Teknolojileri
+          Eğitimi okudum; şu an E12’de dijital öğrenme içerikleri hazırlıyorum.
+        </p>
+        <p class="hero__lead" lang="en">
+          I live in Ankara. I design mobile app interfaces, make games in Unity, and
+          <mark>draw</mark> whenever I can. I studied Computer Education and Instructional Technology at
+          Hacettepe, and I currently make digital learning content at E12.
+        </p>
+        <p class="hero__links">
+          <a href="#work"><span lang="tr">İşlerime bak</span><span lang="en">See my work</span></a>
+          <a href="docs/Baris_Degirmenci_CV.pdf" target="_blank" rel="noopener"><span lang="tr">CV (PDF)</span><span lang="en">CV (PDF)</span></a>
+          <a href="mailto:barisdegirmenci35@gmail.com"><span lang="tr">E-posta</span><span lang="en">Email</span></a>
+        </p>
+      </div>
+
+      <figure class="hero__photo">
+        <div class="photo taped" style="--r: 3deg">
+          <img src="img/portrait-camera.jpg" width="908" height="1209" fetchpriority="high"
+               alt="Karlı bir dağda yüzünün önünde küçük bir fotoğraf makinesi tutan Barış"
+               data-alt-tr="Karlı bir dağda yüzünün önünde küçük bir fotoğraf makinesi tutan Barış"
+               data-alt-en="Barış holding a small camera in front of his face on a snowy mountain">
+        </div>
+        <figcaption class="note note--photo">
+          <svg class="doodle doodle--arrow" aria-hidden="true"><use href="#d-arrow"/></svg>
+          <span lang="tr">kameranın arkasındaki benim</span>
+          <span lang="en">that’s me, behind the camera</span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- ───────── WORK ───────── -->
+    <section class="section wrap" id="work">
+      <header class="section__head">
+        <h2 class="section__title">
+          <span lang="tr">İşler</span><span lang="en">Work</span>
+          <svg class="squiggle" aria-hidden="true"><use href="#d-squiggle"/></svg>
+        </h2>
+        <p class="note">
+          <span lang="tr">birine tıkla, detayları açılır</span>
+          <span lang="en">click one for the details</span>
+        </p>
+      </header>
+
+      <div class="pages">
+
+        <article class="page taped" style="--r: -1.2deg">
+          <button type="button" class="page__hit" data-case="unipazar">
+            <div class="page__img page__img--ui">
+              <img src="img/ui-02-onboard-market.png" alt="" loading="lazy" width="430" height="932">
+              <img src="img/ui-05-welcome.png" alt="" loading="lazy" width="430" height="932">
+              <img src="img/ui-10-email-error.png" alt="" loading="lazy" width="430" height="932">
+            </div>
+            <h3 class="page__title">UniPazar</h3>
+            <p lang="tr">Hacettepe öğrencileri için ikinci el ve takas uygulaması. Kayıt .edu.tr adresiyle yapılıyor; tasarımın çoğu bu doğrulamayı zahmetsiz hale getirmekle ilgiliydi.</p>
+            <p lang="en">A second-hand and swap app for Hacettepe students. You sign up with your .edu.tr address, and most of the design work went into making that check painless.</p>
+            <p class="note note--small"><span lang="tr">Figma · 17 ekran</span><span lang="en">Figma · 17 screens</span></p>
+          </button>
+        </article>
+
+        <article class="page taped page--offset" style="--r: 1.4deg">
+          <button type="button" class="page__hit" data-case="games">
+            <div class="page__img page__img--video">
+              <img src="https://img.youtube.com/vi/M8eoCbo5je8/hqdefault.jpg" alt="" loading="lazy">
+              <span class="play"><svg><use href="#i-play"/></svg></span>
+            </div>
+            <h3 class="page__title"><span lang="tr">Üç Unity oyunu</span><span lang="en">Three Unity games</span></h3>
+            <p lang="tr">Google Oyun ve Uygulama Akademisi’nde ekiple yaptığımız prototipler: Sergio, The Pearl ve Academia of Googlewoods.</p>
+            <p lang="en">Prototypes we built as a team at the Google Game &amp; Application Academy: Sergio, The Pearl and Academia of Googlewoods.</p>
+            <p class="note note--small"><span lang="tr">oynanış videoları içeride</span><span lang="en">gameplay videos inside</span></p>
+          </button>
+        </article>
+
+        <article class="page taped" style="--r: .8deg">
+          <button type="button" class="page__hit" data-case="brand">
+            <div class="page__img page__img--posters">
+              <img src="img/brand-tarot-poster.jpg" alt="" loading="lazy" width="638" height="1017">
+              <img src="img/brand-member-pass.jpg" alt="" loading="lazy" width="638" height="1017">
+              <img src="img/brand-catan-poster.jpg" alt="" loading="lazy" width="1260" height="1800">
+            </div>
+            <h3 class="page__title"><span lang="tr">Knights ve BAM afişleri</span><span lang="en">Knights &amp; BAM posters</span></h3>
+            <p lang="tr">Hacettepe kutu oyunu kulübünü yönetirken kulübün bütün görsellerini ben hazırladım: afiş, flama, QR’lı üyelik kartı. Sonra BAM için Catan turnuvası afişleri.</p>
+            <p lang="en">While running Hacettepe’s board game club I made all of its visuals: posters, a pennant, QR membership cards. Later, Catan tournament posters for BAM.</p>
+            <p class="note note--small">Illustrator · Photoshop</p>
+          </button>
+        </article>
+
+        <article class="page taped page--offset" style="--r: -1.6deg">
+          <button type="button" class="page__hit" data-case="3d">
+            <div class="page__img page__img--3d">
+              <img src="img/3d-render.jpg" alt="" loading="lazy" width="1600" height="900">
+              <img class="inset" src="img/3d-turnaround.jpg" alt="" loading="lazy" width="1600" height="1200">
+            </div>
+            <h3 class="page__title"><span lang="tr">Kâğıttan Blender’a</span><span lang="en">From paper to Blender</span></h3>
+            <p lang="tr">Kâğıda çizdiğim ön ve yan görünüşlerden Blender’da bir karakter modeli. Yanında bir de oltalama (phishing) farkındalık afişi.</p>
+            <p lang="en">A Blender character modelled from front and side views I drew on paper, plus a phishing-awareness poster.</p>
+            <p class="note note--small"><span lang="tr">ders projesi</span><span lang="en">coursework</span></p>
+          </button>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ───────── SKETCHBOOK ───────── -->
+    <section class="section section--sketch wrap" id="sketchbook">
+      <img class="hanging-cat" src="img/art-cat.jpg" alt="" width="525" height="836" loading="lazy">
+
+      <header class="section__head">
+        <h2 class="section__title">
+          <span lang="tr">Defterden</span><span lang="en">From the sketchbook</span>
+          <svg class="squiggle" aria-hidden="true"><use href="#d-squiggle"/></svg>
+        </h2>
+        <p class="note">
+          <span lang="tr">çoğu iş burada başlıyor</span>
+          <span lang="en">most things start here</span>
+        </p>
+      </header>
+
+      <div class="sketches">
+        <figure class="sketch sketch--wide" style="--r: -1deg">
+          <img src="img/art-pencil-to-digital.jpg" alt="Kurşun kalem eskiz ve dijital renkli hali — kaykaycı ve kedi" loading="lazy" width="990" height="708">
+          <figcaption class="note note--small"><span lang="tr">kurşun kalemden dijitale</span><span lang="en">pencil → digital</span></figcaption>
+        </figure>
+        <figure class="sketch sketch--line" style="--r: 1.5deg">
+          <img src="img/art-ink-profile.jpg" alt="Profil mürekkep çalışması" loading="lazy" width="651" height="816">
+          <figcaption class="note note--small"><span lang="tr">tarama çalışması</span><span lang="en">hatching study</span></figcaption>
+        </figure>
+        <figure class="sketch sketch--tall" style="--r: -.6deg">
+          <img src="img/art-cyborg-ninja.jpg" alt="Siborg ninja, dört aşamalı karakter çalışması" loading="lazy" width="1273" height="1800">
+          <figcaption class="note note--small"><span lang="tr">siborg ninja, 4 aşama</span><span lang="en">cyborg ninja, 4 stages</span></figcaption>
+        </figure>
+        <figure class="sketch sketch--line" style="--r: .8deg">
+          <img src="img/art-portrait-line.jpg" alt="Çizgi portre çalışması" loading="lazy" width="1600" height="929">
+          <figcaption class="note note--small"><span lang="tr">çizgi portre</span><span lang="en">line portrait</span></figcaption>
+        </figure>
+        <figure class="sketch sketch--line" style="--r: -1.8deg">
+          <img src="img/art-pose.jpg" alt="Perspektifli poz eskizi" loading="lazy" width="350" height="491">
+          <figcaption class="note note--small"><span lang="tr">poz denemesi</span><span lang="en">pose study</span></figcaption>
+        </figure>
+        <figure class="sketch" style="--r: 1.2deg">
+          <img src="img/art-tee-mockup.jpg" alt="Can't aFord a Car tişört tasarımı" loading="lazy" width="1400" height="1400">
+          <figcaption class="note note--small"><span lang="tr">tişört tasarımı</span><span lang="en">t-shirt design</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ───────── PRINT ───────── -->
+    <section class="section wrap" id="print">
+      <header class="section__head">
+        <h2 class="section__title">
+          <span lang="tr">Basılı işler ve yazılar</span><span lang="en">Print &amp; writing</span>
+          <svg class="squiggle" aria-hidden="true"><use href="#d-squiggle"/></svg>
+        </h2>
+        <p class="note"><span lang="tr">hepsi PDF olarak açılır</span><span lang="en">all open as PDFs</span></p>
+      </header>
+
+      <ul class="ruled">
+        <li><a href="docs/vitaself-catalog.pdf" target="_blank" rel="noopener">
+          <span class="ruled__tag note"><span lang="tr">katalog</span><span lang="en">catalog</span></span>
+          <span class="ruled__main">
+            <strong>Vitaself</strong>
+            <span lang="tr">Matbaaya hazır, çok dilli ürün kataloğu (Kiril alfabesiyle).</span>
+            <span lang="en">Print-ready multilingual product catalog, set in Cyrillic.</span>
+          </span>
+        </a></li>
+        <li><a href="docs/hacettepe-agp-catalog.pdf" target="_blank" rel="noopener">
+          <span class="ruled__tag note"><span lang="tr">katalog</span><span lang="en">catalog</span></span>
+          <span class="ruled__main">
+            <strong><span lang="tr">Hacettepe Akademik Gelişim Programı</span><span lang="en">Hacettepe Academic Development Programme</span></strong>
+            <span lang="tr">Çok sayfalı eğitim kataloğu, 2024.</span>
+            <span lang="en">Multi-page course catalog, 2024.</span>
+          </span>
+        </a></li>
+        <li class="ruled__group">
+          <span class="ruled__tag note"><span lang="tr">raporlar</span><span lang="en">reports</span></span>
+          <span class="ruled__main">
+            <strong><span lang="tr">Hacettepe STL dönem faaliyet raporları</span><span lang="en">Hacettepe STL semester reports</span></strong>
+            <span lang="tr">Dört dönem üst üste tasarladım:</span>
+            <span lang="en">I designed four semesters in a row:</span>
+            <span class="ruled__chips">
+              <a href="docs/stl-report-2022-fall.pdf" target="_blank" rel="noopener"><span lang="tr">Güz 2022</span><span lang="en">Fall 2022</span></a>
+              <a href="docs/stl-report-2023-spring.pdf" target="_blank" rel="noopener"><span lang="tr">Bahar 2023</span><span lang="en">Spring 2023</span></a>
+              <a href="docs/stl-report-2023-fall.pdf" target="_blank" rel="noopener"><span lang="tr">Güz 2023</span><span lang="en">Fall 2023</span></a>
+              <a href="docs/stl-report-2024-spring.pdf" target="_blank" rel="noopener"><span lang="tr">Bahar 2024</span><span lang="en">Spring 2024</span></a>
+            </span>
+          </span>
+        </li>
+        <li><a href="docs/screenwriting-portfolio.pdf" target="_blank" rel="noopener">
+          <span class="ruled__tag note"><span lang="tr">senaryo</span><span lang="en">screenplay</span></span>
+          <span class="ruled__main">
+            <strong><span lang="tr">Senaryo örnekleri</span><span lang="en">Screenwriting samples</span></strong>
+            <span lang="tr">Kendi yazdığım sahneler.</span>
+            <span lang="en">Scenes I wrote.</span>
+          </span>
+        </a></li>
+        <li><a href="docs/visa-screenplay.pdf" target="_blank" rel="noopener">
+          <span class="ruled__tag note"><span lang="tr">kısa senaryo</span><span lang="en">short script</span></span>
+          <span class="ruled__main">
+            <strong>Visa</strong>
+            <span lang="tr">Vize bürokrasisi üzerine kısa bir senaryo.</span>
+            <span lang="en">A short script about visa bureaucracy.</span>
+          </span>
+        </a></li>
+      </ul>
+    </section>
+
+    <!-- ───────── ABOUT ───────── -->
+    <section class="section wrap" id="about">
+      <header class="section__head">
+        <h2 class="section__title">
+          <span lang="tr">Hakkımda</span><span lang="en">About</span>
+          <svg class="squiggle" aria-hidden="true"><use href="#d-squiggle"/></svg>
+        </h2>
+      </header>
+
+      <div class="about">
+        <figure class="about__photo">
+          <div class="photo taped" style="--r: -2.5deg">
+            <img src="img/portrait-paris.jpg" width="788" height="1400" loading="lazy"
+                 alt="Paris'te taş korkulukta oturup Eyfel Kulesi'ni gösteren Barış"
+                 data-alt-tr="Paris'te taş korkulukta oturup Eyfel Kulesi'ni gösteren Barış"
+                 data-alt-en="Barış sitting on a stone balustrade in Paris, pointing at the Eiffel Tower">
+          </div>
+          <figcaption class="note note--small">Paris</figcaption>
+        </figure>
+
+        <div class="about__text">
+          <p lang="tr">
+            Hacettepe’de Bilgisayar ve Öğretim Teknolojileri Eğitimi okudum (2021–2025). Bölüm bana bir
+            arayüzü tasarlarken onu kullanacak kişinin onu nasıl öğreneceğini de düşünmeyi öğretti;
+            yaptığım işlerin çoğu bu yüzden ya bir şey öğretiyor ya da kolay öğrenilmeye çalışıyor.
+          </p>
+          <p lang="en">
+            I studied Computer Education and Instructional Technology at Hacettepe (2021–2025). It taught me
+            to think about how someone will learn an interface while I’m designing it, so most of my work
+            either teaches something or tries hard to be easy to learn.
+          </p>
+          <p lang="tr">
+            Son zamanlarda LLM araçlarını ve yapay zekâyla video üretimini de iş akışıma katmaya
+            çalışıyorum; özellikle senaryodan storyboard’a, oradan videoya giden kısımda.
+          </p>
+          <p lang="en">
+            Lately I’ve been bringing LLM tools and AI video generation into my workflow, mostly for the
+            path from script to storyboard to video.
+          </p>
+
+          <h3 class="about__sub"><span lang="tr">Kullandıklarım</span><span lang="en">What I use</span></h3>
+          <dl class="tools">
+            <div><dt><span lang="tr">Arayüz</span><span lang="en">Interface</span></dt><dd>Figma, Adobe XD, HTML/CSS/JS</dd></div>
+            <div><dt><span lang="tr">Oyun ve 3D</span><span lang="en">Games &amp; 3D</span></dt><dd>Unity, C#, Blender, Git</dd></div>
+            <div><dt><span lang="tr">Grafik ve baskı</span><span lang="en">Graphics &amp; print</span></dt><dd>Illustrator, Photoshop, InDesign, Premiere Pro</dd></div>
+            <div><dt><span lang="tr">Eğitim</span><span lang="en">Learning</span></dt><dd>Articulate Storyline, SCORM, S1000D, Python</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────── EXPERIENCE ───────── -->
+    <section class="section wrap" id="experience">
+      <header class="section__head">
+        <h2 class="section__title">
+          <span lang="tr">Nerelerde çalıştım</span><span lang="en">Where I’ve worked</span>
+          <svg class="squiggle" aria-hidden="true"><use href="#d-squiggle"/></svg>
+        </h2>
+      </header>
+
+      <ul class="ruled ruled--plain">
+        <li>
+          <span class="ruled__tag note"><span lang="tr">2025 – şimdi</span><span lang="en">2025 – now</span></span>
+          <span class="ruled__main">
+            <strong>E12</strong>
+            <span lang="tr">Yaratıcı ve dijital medya uzmanı. Etkileşimli eğitim içerikleri ve görseller.</span>
+            <span lang="en">Creative &amp; digital media specialist. Interactive learning content and visuals.</span>
+          </span>
+        </li>
+        <li>
+          <span class="ruled__tag note"><span lang="tr">2024 yazı</span><span lang="en">summer 2024</span></span>
+          <span class="ruled__main">
+            <strong>BİLTEN</strong>
+            <span lang="tr">Öğretim tasarımı ve teknik doküman stajı. Articulate Storyline ile SCORM eğitimleri, S1000D dokümantasyonu.</span>
+            <span lang="en">Instructional design &amp; technical docs intern. SCORM courses in Articulate Storyline, S1000D documentation.</span>
+          </span>
+        </li>
+        <li>
+          <span class="ruled__tag note">2022 – 2024</span>
+          <span class="ruled__main">
+            <strong>Hacettepe STL</strong>
+            <span lang="tr">Yarı zamanlı grafik ve yayın tasarımcısı. Dönem raporları ve AGP kataloğu.</span>
+            <span lang="en">Part-time graphic &amp; publication designer. Semester reports and the AGP catalog.</span>
+          </span>
+        </li>
+        <li>
+          <span class="ruled__tag note">2022 – 2023</span>
+          <span class="ruled__main">
+            <strong><span lang="tr">Google Oyun ve Uygulama Akademisi</span><span lang="en">Google Game &amp; Application Academy</span></strong>
+            <span lang="tr">Unity ile ekip halinde 2D/3D oyun prototipleri.</span>
+            <span lang="en">Team-built 2D/3D game prototypes in Unity.</span>
+          </span>
+        </li>
+        <li>
+          <span class="ruled__tag note">2022 – 2023</span>
+          <span class="ruled__main">
+            <strong><span lang="tr">Hacettepe Kutu Oyunu Topluluğu (Knights)</span><span lang="en">Hacettepe Board Game Club (Knights)</span></strong>
+            <span lang="tr">Başkan. Turnuvalar düzenledim, kulübün görsel kimliğini tasarladım.</span>
+            <span lang="en">President. Ran tournaments and designed the club’s visual identity.</span>
+          </span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ───────── CONTACT ───────── -->
+    <section class="contact wrap" id="contact">
+      <h2 class="contact__title"><span lang="tr">Bana yaz</span><span lang="en">Write to me</span></h2>
+      <p class="contact__text" lang="tr">Arayüz, oyun ve eğitim teknolojileri alanlarındaki işlere açığım. Ankara’dayım, uzaktan da çalışabilirim.</p>
+      <p class="contact__text" lang="en">I’m open to work in interface design, games and learning technology. I’m based in Ankara and happy to work remotely.</p>
+
+      <div class="contact__mail">
+        <svg class="doodle doodle--down" aria-hidden="true"><use href="#d-arrow-down"/></svg>
+        <a href="mailto:barisdegirmenci35@gmail.com">barisdegirmenci35@gmail.com</a>
+        <button type="button" class="copy note note--small" data-copy="barisdegirmenci35@gmail.com">
+          <span lang="tr" data-copy-label data-done="kopyalandı ✓">kopyala</span><span lang="en" data-copy-label data-done="copied ✓">copy</span>
+        </button>
+      </div>
+
+      <p class="contact__links">
+        <a href="https://www.linkedin.com/in/barış-değirmenci-98559a21b/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/bobothemomo" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.youtube.com/@barisd2695" target="_blank" rel="noopener">YouTube</a>
+        <a href="docs/Baris_Degirmenci_CV.pdf" target="_blank" rel="noopener">CV</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer wrap">
+    <span>© <span id="year">2026</span> Barış Değirmenci</span>
+    <a href="#top"><span lang="tr">yukarı ↑</span><span lang="en">back up ↑</span></a>
+  </footer>
+
+  <!-- ───────── CASE DIALOG ───────── -->
+  <dialog class="case" id="case-dialog">
+    <button type="button" class="case__close" data-close aria-label="Kapat / Close"><svg><use href="#i-close"/></svg></button>
+    <div class="case__body" id="case-body"></div>
+  </dialog>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Görsel / Image">
+    <button type="button" class="case__close lightbox__close" data-close aria-label="Kapat / Close"><svg><use href="#i-close"/></svg></button>
+    <figure><img id="lightbox-img" alt=""><figcaption id="lightbox-cap"></figcaption></figure>
+  </dialog>
+
+  <!-- ───────── CASE CONTENT ───────── -->
+
+  <template id="tpl-unipazar">
+    <h2 class="case__title">UniPazar</h2>
+    <div class="case__intro">
+      <p lang="tr">Hacettepe öğrencilerine özel bir ikinci el ve takas uygulaması. Fikir basitti: herkes .edu.tr adresiyle kayıt olursa, karşındakinin de öğrenci olduğunu bilirsin ve alışveriş yapmak daha güvenli hisseder. Bu yüzden zamanımın çoğunu kayıt, giriş ve şifre kurtarma akışlarına harcadım.</p>
+      <p lang="en">A second-hand and swap app just for Hacettepe students. The idea was simple: if everyone signs up with a .edu.tr address, you know the other person is a student too, and trading feels safer. So I spent most of my time on the sign-up, sign-in and password recovery flows.</p>
+      <p class="case__meta">
+        <span lang="tr">Rolüm: arayüz ve deneyim tasarımı · Araçlar: Figma, Adobe XD, Illustrator</span>
+        <span lang="en">My role: UI/UX design · Tools: Figma, Adobe XD, Illustrator</span>
+      </p>
+      <p><a class="link" href="https://www.figma.com/design/dLirjlg1JqV3MyQyYZFsLa/UniPazar" target="_blank" rel="noopener"><span lang="tr">Figma dosyasını aç</span><span lang="en">Open the Figma file</span></a></p>
+    </div>
+
+    <section class="flow">
+      <h3><span lang="tr">Açılış ve tanıtım</span><span lang="en">Splash &amp; onboarding</span></h3>
+      <p lang="tr">Üç ekranda fikir: satın al, takas yap, bunu doğrulanmış bir kampüs topluluğunda yap.</p>
+      <p lang="en">The idea in three screens: buy, swap, and do it inside a verified campus community.</p>
+      <div class="screens">
+        <figure><img src="img/ui-01-splash.png" alt="Splash" loading="lazy" width="430" height="932"></figure>
+        <figure><img src="img/ui-02-onboard-market.png" alt="Onboarding 1" loading="lazy" width="430" height="932"></figure>
+        <figure><img src="img/ui-03-onboard-barter.png" alt="Onboarding 2" loading="lazy" width="430" height="932"></figure>
+        <figure><img src="img/ui-04-onboard-community.png" alt="Onboarding 3" loading="lazy" width="430" height="932"></figure>
+      </div>
+    </section>
+
+    <section class="flow">
+      <h3><span lang="tr">Kayıt, giriş ve hata durumları</span><span lang="en">Sign-up, sign-in &amp; errors</span></h3>
+      <p lang="tr">E-posta alanı üniversite adresini yazarken kontrol ediyor; hata gönderdikten sonra değil, yazarken görünüyor.</p>
+      <p lang="en">The email field checks the university address as you type, so you see a mistake before you submit, not after.</p>
+      <div class="screens">
+        <figure><img src="img/ui-05-welcome.png" alt="Welcome" loading="lazy" width="430" height="932"></figure>
+        <figure><img src="img/ui-06-signup.png" alt="Sign up" loading="lazy" width="430" height="932"></figure>
+        <figure><img src="img/ui-07-signin.png" alt="Sign in" loading="lazy" width="430" height="932"></figure>
+        <figure><img src="img/ui-08-email-input.png" alt="Email input" loading="lazy" width="430" height="932"></figure>
+        <figure><img src="img/ui-09-email-valid.png" alt="Valid email" loading="lazy" width="430" height="932"></figure>
+        <figure><img src="img/ui-10-email-error.png" alt="Email error" loading="lazy" width="430" height="932"></figure>
+        <figure><img src="img/ui-11-signup-success.png" alt="Signed up" loading="lazy" width="430" height="932"></figure>
+        <figure><img src="img/ui-12-login-success.png" alt="Signed in" loading="lazy" width="430" height="932"></figure>
+      </div>
+    </section>
+
+    <section class="flow">
+      <h3><span lang="tr">Şifre kurtarma</span><span lang="en">Password recovery</span></h3>
+      <p lang="tr">Dört haneli kod ve her adımda geri bildirim veren şifre kuralları.</p>
+      <p lang="en">A four-digit code and password rules that give feedback at every step.</p>
+      <div class="screens">
+        <figure><img src="img/ui-13-forgot.png" alt="Forgot password" loading="lazy" width="430" height="932"></figure>
+        <figure><img src="img/ui-14-otp.png" alt="Code" loading="lazy" width="430" height="932"></figure>
+        <figure><img src="img/ui-15-new-password.png" alt="New password" loading="lazy" width="430" height="932"></figure>
+        <figure><img src="img/ui-16-password-check.png" alt="Password rules" loading="lazy" width="430" height="932"></figure>
+        <figure><img src="img/ui-17-reset-done.png" alt="Done" loading="lazy" width="430" height="932"></figure>
+      </div>
+    </section>
+  </template>
+
+  <template id="tpl-games">
+    <h2 class="case__title"><span lang="tr">Üç Unity oyunu</span><span lang="en">Three Unity games</span></h2>
+    <div class="case__intro">
+      <p lang="tr">Google Oyun ve Uygulama Akademisi’nde (2022–2023) ekip halinde, Scrum ile yaptığımız prototipler. Her biri farklı bir şeyi denemek içindi: oynanış hissi, atmosfer ve bulmaca, ve öğretimi bir göreve dönüştürmek.</p>
+      <p lang="en">Prototypes we made as a team using Scrum at the Google Game &amp; Application Academy (2022–2023). Each was a chance to try something different: game feel, atmosphere and puzzles, and turning a lesson into a quest.</p>
+      <p class="case__meta">Unity 2D/3D · C# · Blender</p>
+    </div>
+
+    <div class="games">
+      <article class="game">
+        <button type="button" class="yt" data-yt="M8eoCbo5je8" aria-label="Sergio — video">
+          <img src="https://img.youtube.com/vi/M8eoCbo5je8/hqdefault.jpg" alt="" loading="lazy">
+          <span class="play"><svg><use href="#i-play"/></svg></span>
+        </button>
+        <div>
+          <h3>Sergio</h3>
+          <p lang="tr">2D aksiyon platform oyunu. Zıplama fiziği, devriye gezip kovalayan düşmanlar, toplanabilir eşyalar ve aşamalı tuzaklar.</p>
+          <p lang="en">A 2D action platformer. Jump physics, enemies that patrol and chase, collectibles and staged hazards.</p>
+        </div>
+      </article>
+      <article class="game">
+        <button type="button" class="yt" data-yt="HBKviZ6l_bE" aria-label="The Pearl — video">
+          <img src="https://img.youtube.com/vi/HBKviZ6l_bE/hqdefault.jpg" alt="" loading="lazy">
+          <span class="play"><svg><use href="#i-play"/></svg></span>
+        </button>
+        <div>
+          <h3>The Pearl</h3>
+          <p lang="tr">3D bulmaca macerası. Oyuncuyu ışıkla yönlendiren mekânsal bulmacalar ve çevreden anlatılan bir hikâye.</p>
+          <p lang="en">A 3D puzzle adventure. Spatial puzzles where lighting guides the player, and a story told through the environment.</p>
+        </div>
+      </article>
+      <article class="game">
+        <button type="button" class="yt" data-yt="3NCzQ8MkVKU" aria-label="Academia of Googlewoods — video">
+          <img src="https://img.youtube.com/vi/3NCzQ8MkVKU/hqdefault.jpg" alt="" loading="lazy">
+          <span class="play"><svg><use href="#i-play"/></svg></span>
+        </button>
+        <div>
+          <h3>Academia of Googlewoods</h3>
+          <p lang="tr">Eğitsel bir RPG. Öğretim tasarımı görev yapısının içine gizlenmiş; NPC diyalogları ve öğrenme görevleriyle.</p>
+          <p lang="en">An educational RPG. The instructional design is hidden inside the quest structure, with NPC dialogue and learning tasks.</p>
+        </div>
+      </article>
+    </div>
+  </template>
+
+  <template id="tpl-brand">
+    <h2 class="case__title"><span lang="tr">Knights ve BAM afişleri</span><span lang="en">Knights &amp; BAM posters</span></h2>
+    <div class="case__intro">
+      <p lang="tr">Hacettepe Kutu Oyunu Topluluğu’nun (Knights) başkanıyken kulübün görsel kimliğini baştan sona ben yaptım: tarot kartından esinlenen ana görsel, stantlar için kesimli flama ve QR kodlu üyelik kartları. Sonra BAM Board Game Café için Catan turnuvası afişleri hazırladım.</p>
+      <p lang="en">As president of Hacettepe’s board game club (Knights) I made the club’s whole visual identity: a tarot-inspired key visual, die-cut pennants for fair stands and QR membership cards. Later I made Catan tournament posters for BAM Board Game Café.</p>
+      <p class="case__meta">Illustrator · Photoshop</p>
+    </div>
+    <div class="gallery">
+      <figure><img src="img/brand-tarot-poster.jpg" alt="Knights tarot poster" loading="lazy" width="638" height="1017"><figcaption class="note note--small"><span lang="tr">Knights ana görsel</span><span lang="en">Knights key visual</span></figcaption></figure>
+      <figure><img src="img/brand-member-pass.jpg" alt="Knights membership card" loading="lazy" width="638" height="1017"><figcaption class="note note--small"><span lang="tr">QR’lı üyelik kartı</span><span lang="en">QR membership card</span></figcaption></figure>
+      <figure><img src="img/brand-pennant.jpg" alt="Knights pennant with print guides" loading="lazy" width="1339" height="1234"><figcaption class="note note--small"><span lang="tr">stant flaması, kesim çizgileriyle</span><span lang="en">stand pennant with cut lines</span></figcaption></figure>
+      <figure><img src="img/brand-catan-poster.jpg" alt="Catan tournament poster" loading="lazy" width="1260" height="1800"><figcaption class="note note--small"><span lang="tr">BAM Catan turnuvası afişi</span><span lang="en">BAM Catan tournament poster</span></figcaption></figure>
+      <figure><img src="img/brand-catan-social.jpg" alt="Catan social post" loading="lazy" width="1600" height="1600"><figcaption class="note note--small"><span lang="tr">aynı turnuva, Instagram için</span><span lang="en">same tournament, for Instagram</span></figcaption></figure>
+    </div>
+  </template>
+
+  <template id="tpl-3d">
+    <h2 class="case__title"><span lang="tr">Kâğıttan Blender’a</span><span lang="en">From paper to Blender</span></h2>
+    <div class="case__intro">
+      <p lang="tr">Bir ders projesi: karakterin önden ve yandan görünüşlerini kâğıda çizdim, sonra bunları referans alarak Blender’da modelledim. Aynı dönemden bir de “Oltaya Gelmeyin!” adlı oltalama farkındalık afişi var; klavyeyi korsan gemisine çevirerek sıkıcı bir konuyu akılda kalır hale getirmeye çalıştım.</p>
+      <p lang="en">Coursework: I drew the character’s front and side views on paper, then modelled it in Blender using them as reference. From the same period, a phishing-awareness poster, “Oltaya Gelmeyin!” (“Don’t take the bait!”), which turns a keyboard into a pirate ship to make a dry topic stick.</p>
+      <p class="case__meta">Blender · Illustrator</p>
+    </div>
+    <div class="gallery">
+      <figure><img src="img/3d-turnaround.jpg" alt="Front and side views on paper" loading="lazy" width="1600" height="1200"><figcaption class="note note--small"><span lang="tr">önce kâğıtta</span><span lang="en">first on paper</span></figcaption></figure>
+      <figure><img src="img/3d-render.jpg" alt="Blender render" loading="lazy" width="1600" height="900"><figcaption class="note note--small"><span lang="tr">sonra Blender’da</span><span lang="en">then in Blender</span></figcaption></figure>
+      <figure><img src="img/3d-render-alt.jpg" alt="Blender render, other angle" loading="lazy" width="1600" height="900"><figcaption class="note note--small"><span lang="tr">başka açıdan</span><span lang="en">another angle</span></figcaption></figure>
+      <figure><img src="img/poster-phishing.jpg" alt="Phishing awareness poster" loading="lazy" width="852" height="1135"><figcaption class="note note--small">“Oltaya Gelmeyin!”</figcaption></figure>
+    </div>
+  </template>
+
+  <script src="js/main.js?v=3"></script>
+</body>
+</html>
