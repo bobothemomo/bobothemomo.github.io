@@ -21,6 +21,10 @@ Sonra http://localhost:8080/ adresine git.
 
 ## İki dil (TR / EN)
 
+> **Şu an Türkçe gizli.** Site İngilizce açılıyor ve TR/EN düğmesi görünmüyor; Türkçe metinler
+> HTML'de duruyor. Geri açmak için `index.html` başındaki `<html ... data-tr-enabled="false">`
+> değerini `"true"` yap — düğme ve Türkçe otomatik geri gelir.
+
 Her metin iki kez yazılır, tarayıcı yalnızca seçili dili gösterir:
 
 ```html
@@ -50,6 +54,8 @@ Yeni bir çizim eklerken siyah-beyazsa `class="sketch sketch--line"` kullan.
   `--r` kartın ne kadar eğik duracağı.
 - **Yeni çizim:** `.sketches` içine bir `<figure class="sketch" style="--r: -1deg">` ekle.
   Beyaz arka planlı çizimler kâğıda otomatik karışır.
+- **Gömülü Figma (veya başka iframe):** vaka şablonuna `<div class="figma-embed" title="..." data-embed="EMBED_URL"></div>`
+  koy. iframe, kutu ekranda tam boyutuna ulaşınca oluşturulur; Figma tuvali başlangıç boyutuna göre ayarladığı için bu gerekli.
 - **Yeni PDF:** dosyayı `docs/` içine koy, `#print` listesine bir `<li>` ekle.
 - **CSS/JS değiştirince:** `index.html`'deki `style.css?v=3` / `main.js?v=2` numarasını artır,
   yoksa tarayıcı eski dosyayı gösterebilir.

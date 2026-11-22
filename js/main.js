@@ -6,19 +6,20 @@
   /* ---------- Language (TR / EN) ---------- */
   var TITLES = { tr: 'Barış Değirmenci', en: 'Barış Değirmenci' };
 
-  function setLang(lang) {
+  function setLang(lang, save) {
     root.setAttribute('data-lang', lang);
     root.setAttribute('lang', lang);
     document.title = TITLES[lang];
     document.querySelectorAll('[data-alt-' + lang + ']').forEach(function (el) {
       el.setAttribute('alt', el.getAttribute('data-alt-' + lang));
     });
-    try { localStorage.setItem('bd-lang', lang); } catch (e) {}
+    if (save) { try { localStorage.setItem('bd-lang', lang); } catch (e) {} }
   }
-  setLang(root.getAttribute('data-lang') === 'en' ? 'en' : 'tr');
+  // initial language is decided in the <head> script (English while TR is hidden)
+  setLang(root.getAttribute('data-lang') === 'tr' ? 'tr' : 'en', false);
 
   document.querySelectorAll('[data-set-lang]').forEach(function (btn) {
-    btn.addEventListener('click', function () { setLang(btn.getAttribute('data-set-lang')); });
+    btn.addEventListener('click', function () { setLang(btn.getAttribute('data-set-lang'), true); });
   });
 
   /* ---------- Theme (paper / night notebook) ---------- */
@@ -69,25 +70,6 @@
     });
   }
 
-  /* ---------- Copy email ---------- */
-  document.querySelectorAll('[data-copy]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var labels = btn.querySelectorAll('[data-copy-label]');
-      var flash = function () {
-        labels.forEach(function (l) {
-          if (!l.dataset.orig) l.dataset.orig = l.textContent;
-          l.textContent = l.dataset.done;
-        });
-        setTimeout(function () {
-          labels.forEach(function (l) { l.textContent = l.dataset.orig; });
-        }, 1800);
-      };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(btn.getAttribute('data-copy')).then(flash, function () {});
-      }
-    });
-  });
-
   /* ---------- Case dialog ---------- */
   var dialog = document.getElementById('case-dialog');
   var body = document.getElementById('case-body');
@@ -103,7 +85,34 @@
     body.scrollTop = 0;
     if (!dialog.open) dialog.showModal();
     document.body.style.overflow = 'hidden';
+    lazyEmbeds();
     if (location.hash !== '#case-' + id) history.replaceState(null, '', '#case-' + id);
+  }
+
+  // Embeds (e.g. Figma) load only when scrolled into view at their real size
+  var embedObs = null;
+  function lazyEmbeds() {
+    if (embedObs) embedObs.disconnect();
+    var boxes = body.querySelectorAll('[data-embed]');
+    if (!boxes.length) return;
+    var load = function (box) {
+      if (box.querySelector('iframe')) return;
+      var f = document.createElement('iframe');
+      f.src = box.getAttribute('data-embed');
+      f.title = box.getAttribute('title') || 'Embed';
+      f.allowFullscreen = true;
+      box.appendChild(f);
+    };
+    if (!('IntersectionObserver' in window)) { boxes.forEach(load); return; }
+    embedObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && e.boundingClientRect.width > 200) {
+          load(e.target);
+          embedObs.unobserve(e.target);
+        }
+      });
+    }, { root: body, threshold: 0.25 });
+    boxes.forEach(function (b) { embedObs.observe(b); });
   }
 
   if (dialog) {
