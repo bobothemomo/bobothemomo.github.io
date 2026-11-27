@@ -501,18 +501,34 @@ dialog { padding: 0; border: 0; color: var(--ink); }
 @media (max-width: 600px) { .figma-embed { aspect-ratio: auto; height: 70vh; } }
 
 /* ---------- Phishing video case ---------- */
-/* card cover: the raw 2025 cut beside the 2026 AI rebuild */
-.page__img--compare { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; background: var(--ink); }
-.page__img--compare figure { position: relative; margin: 0; overflow: hidden; }
-.page__img--compare img { width: 100%; height: 100%; object-fit: cover; }
-.page__img--compare figure:first-child img { filter: saturate(.55) contrast(.95); }
-.page__img--compare figcaption {
-  position: absolute; left: 8px; bottom: 8px;
-  padding: 3px 9px; border-radius: 999px;
-  background: rgba(0, 0, 0, .62); color: #fff;
-  font-size: 12.5px; font-weight: 700; letter-spacing: .01em;
+/* card cover: two uncropped 16:9 prints — the small 2025 cut behind,
+   the 2026 AI rebuild in front — with a pen arrow from one to the other */
+.page__img--compare { background: var(--ui-bg, var(--paper-2)); }
+.page__img--compare figure {
+  position: absolute; margin: 0;
+  border: 5px solid var(--frame); background: var(--frame);
+  box-shadow: 0 10px 22px -10px rgba(0, 0, 0, .55);
+  transition: rotate .4s var(--ease), translate .4s var(--ease);
 }
-.page__img--compare figure:last-child figcaption { background: var(--marker); color: var(--mark-ink); }
+.page__img--compare img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.compare__before { left: 5%; top: 7%; width: 57%; rotate: -4deg; z-index: 1; }
+.compare__after { right: 4%; bottom: 6%; width: 71%; rotate: 2.5deg; z-index: 2; }
+.page__img--compare figcaption {
+  position: absolute; left: 8px; top: 8px;
+  padding: 3px 9px; border-radius: 999px;
+  background: rgba(0, 0, 0, .66); color: #fff;
+  font-size: 12px; font-weight: 700; letter-spacing: .01em; white-space: nowrap;
+}
+/* the new frame's title sits top-left, so its label goes bottom-left */
+.compare__after figcaption { top: auto; bottom: 8px; background: var(--marker); color: var(--mark-ink); }
+.compare__arrow {
+  position: absolute; z-index: 3;
+  left: 8%; top: 54%; width: 40px; height: 60px;
+  color: var(--pen); rotate: -58deg;
+  pointer-events: none;
+}
+.page__hit:hover .compare__before { rotate: -6deg; translate: -4px -3px; }
+.page__hit:hover .compare__after { rotate: 1deg; translate: 3px -4px; }
 
 /* the video player lives in its own page and reports its height (see main.js) */
 .player-embed {
