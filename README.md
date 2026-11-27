@@ -14,6 +14,8 @@ Canlı adres: https://bobothemomo.github.io/ — önceki tasarım `eski-site/` k
 ├── projects/phishing/  "Oltaya Gelmeyin" video oynatıcısı (index.html + media/) ve ham ilk sürüm
 │                       (v1-2025.mp4). Videolar web için küçültüldü (387 MB → 85 MB). Oynatıcı
 │                       sitede gömülüyken ?lang=tr|en alır ve yüksekliğini sayfaya bildirir.
+│                       Telefon/tablette "lite" mod: *_m.mp4 (720p, ~8 MB) videonun kendi sesiyle
+│                       oynar; ayrı ses kanalları (seslendirme/müzik/efekt) yalnızca masaüstünde.
 └── docs/           CV ve PDF yayınlar
 ```
 

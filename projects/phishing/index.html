@@ -47,7 +47,9 @@
   .seg button[aria-pressed="true"] { background: var(--accent); color: #112c4a; }
   .opts { display: flex; gap: 8px; flex-wrap: wrap; }
 
-  .stage { position: relative; background: #000; border-radius: var(--radius); overflow: hidden; box-shadow: 0 18px 50px rgba(0,0,0,.35); }
+  /* flex-shrink: 0 keeps the 16:9 / 9:16 shape; otherwise a tall portrait stage
+     was squeezed to fit the screen and the video got black bars at the sides */
+  .stage { position: relative; flex-shrink: 0; background: #000; border-radius: var(--radius); overflow: hidden; box-shadow: 0 18px 50px rgba(0,0,0,.35); }
   .stage.h { width: min(1100px, 100%); aspect-ratio: 16 / 9; }
   .stage.v { height: min(78vh, 900px); aspect-ratio: 9 / 16; max-width: 100%; }
   video { width: 100%; height: 100%; display: block; background: #000; }
@@ -98,7 +100,11 @@
   /* embedded in the portfolio: the frame's height follows the content, so the
      portrait stage can't be sized from the viewport (vh) without a feedback loop */
   html.embedded, html.embedded body { height: auto; }
-  html.embedded .stage.v { height: min(680px, 150vw); }
+  /* phones/tablets play the video's own mixed sound: no track switches,
+     and the keyboard hints don't apply to touch */
+  html.lite .mixer, html.lite .hint { display: none; }
+  /* sized by width so the 9:16 ratio always holds (at most 680px tall) */
+  html.embedded .stage.v { height: auto; width: min(100%, 382px); }
   @media (max-width: 600px) {
     body { padding: 12px 16px; }
     .vol { display: none; }
@@ -182,6 +188,15 @@
   let on = { voice: true, music: true, sfx: true }, master = 1, masterMuted = false, stemsOk = true;
   const $ = (id) => document.getElementById(id);
   const vid = $("vid"), stage = $("stage"), subsEl = $("subs"), seek = $("seek");
+
+  // Phones & tablets ("lite"): play the lighter 720p file with its own, already
+  // mixed sound. Keeping three separate audio files in sync with a video stutters
+  // on mobile, so the voice/music/effects switches are a desktop feature.
+  const LITE = (() => {
+    try { return matchMedia("(pointer: coarse)").matches || Math.min(screen.width, screen.height) < 820; }
+    catch (e) { return false; }
+  })();
+  if (LITE) document.documentElement.classList.add("lite");
   let lang = "tr", fmt = "h", ccOn = true, lastChunk = -1, seeking = false;
 
   try {
@@ -210,6 +225,12 @@
     document.querySelectorAll(".tog").forEach(b => b.setAttribute("aria-pressed", on[b.dataset.track]));
   }
   function loadStems() {
+    if (LITE) {   // the video's own sound only; separate tracks are never loaded
+      stemsOk = false;
+      TRACKS.forEach(k => { aud[k].pause(); aud[k].removeAttribute("src"); });
+      applyLevels();
+      return;
+    }
     stemsOk = true;
     TRACKS.forEach(k => { aud[k].src = `media/${lang}_${k}.m4a`; aud[k].load(); });
     applyLevels();
@@ -235,7 +256,7 @@
   vid.addEventListener("ended", () => TRACKS.forEach(k => aud[k].pause()));
   vid.addEventListener("ratechange", () => TRACKS.forEach(k => aud[k].playbackRate = vid.playbackRate));
   document.querySelectorAll(".tog").forEach(b => b.onclick = () => { on[b.dataset.track] = !on[b.dataset.track]; save(); applyLevels(); });
-  const src = () => `media/${lang}_${fmt}.mp4`;
+  const src = () => `media/${lang}_${fmt}${LITE ? "_m" : ""}.mp4`;
   const fmtTime = (s) => { s = Math.max(0, s || 0); return Math.floor(s / 60) + ":" + String(Math.floor(s % 60)).padStart(2, "0"); };
 
   function applyUI() {
@@ -340,7 +361,10 @@
     const t = vid.currentTime;
     let idx = -1;
     for (let i = 0; i < data.length; i++) { if (t >= data[i].s - 0.08 && t < data[i].e) { idx = i; break; } }
-    if (idx < 0) { subsEl.innerHTML = ""; lastChunk = -1; return; }
+    if (idx < 0) {
+      if (lastChunk !== -1) { subsEl.innerHTML = ""; lastChunk = -1; wordEls = []; lastWord = -1; }
+      return;
+    }
     const c = data[idx];
     let cur = 0;
     c.t.forEach((x, i) => { if (x <= t) cur = i; });
@@ -349,14 +373,26 @@
       subsEl.innerHTML = `<span class="line">${c.w.map(w => `<span class="w">${esc(w)}</span>`).join(" ")}</span>`;
       subsEl.classList.remove("fade"); void subsEl.offsetWidth; subsEl.classList.add("fade");
       lastChunk = idx;
+      wordEls = subsEl.querySelectorAll(".w");
+      lastWord = -1;
     }
-    subsEl.querySelectorAll(".w").forEach((el, i) => el.classList.toggle("on", i === cur));
+    // touch the DOM only when the spoken word changes, not on every frame
+    if (cur !== lastWord) {
+      if (wordEls[lastWord]) wordEls[lastWord].classList.remove("on");
+      if (wordEls[cur]) wordEls[cur].classList.add("on");
+      lastWord = cur;
+    }
   }
+  let wordEls = [], lastWord = -1, lastTimeText = "", lastSeek = -1;
 
   function update() {
     renderSubs();
-    if (!seeking && vid.duration) seek.value = Math.round(1000 * vid.currentTime / vid.duration);
-    $("time").textContent = fmtTime(vid.currentTime) + " / " + fmtTime(vid.duration);
+    if (!seeking && vid.duration) {
+      const v = Math.round(1000 * vid.currentTime / vid.duration);
+      if (v !== lastSeek) { seek.value = v; lastSeek = v; }
+    }
+    const tt = fmtTime(vid.currentTime) + " / " + fmtTime(vid.duration);
+    if (tt !== lastTimeText) { $("time").textContent = tt; lastTimeText = tt; }
   }
   function tick() { update(); requestAnimationFrame(tick); }
   // rAF arka planda durabilir: olay + zamanlayıcı yedeği
