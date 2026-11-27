@@ -352,6 +352,70 @@ html[data-lang="en"] [data-set-lang="en"] .lang-switch__circle { opacity: 1; }
 .ruled__chips a { font-weight: 700; color: var(--pen); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
 .ruled__chips a:hover { background: var(--marker); color: var(--mark-ink); }
 
+/* ---------- Certificates: small framed documents with a seal ---------- */
+.certs {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: clamp(22px, 3vw, 34px);
+}
+.cert {
+  position: relative;
+  display: grid; align-content: start; gap: 6px;
+  padding: 26px 24px 24px;
+  background: var(--sheet);
+  rotate: var(--r, 0deg);
+  box-shadow: 0 1px 2px rgba(var(--shade), .1), 0 12px 26px -16px rgba(var(--shade), .45);
+  transition: rotate .35s var(--ease), translate .35s var(--ease);
+}
+.cert::before {
+  /* the inner frame of a certificate */
+  content: ""; position: absolute; inset: 8px;
+  border: 1.5px dashed var(--line);
+  pointer-events: none;
+}
+.cert:hover { rotate: 0deg; translate: 0 -3px; }
+.cert__seal {
+  position: absolute; right: 16px; top: -14px;
+  display: grid; place-items: center;
+  width: 46px; height: 46px; border-radius: 50%;
+  background: var(--marker); color: var(--mark-ink);
+  box-shadow: 0 0 0 4px var(--sheet), 0 4px 10px -4px rgba(var(--shade), .5);
+  rotate: 12deg;
+}
+.cert__seal svg { width: 22px; height: 22px; }
+.cert__year { font-size: 22px; }
+.cert__title { font-size: 20px; line-height: 1.3; color: var(--ink); padding-right: 40px; }
+.cert__issuer { color: var(--ink-2); font-size: 16px; }
+.cert__link {
+  justify-self: start; margin-top: 8px;
+  font-weight: 700; font-size: 15.5px;
+  text-decoration: underline; text-decoration-color: var(--marker);
+  text-decoration-thickness: 2px; text-underline-offset: 4px;
+}
+.cert__link:hover { color: var(--accent-text, var(--pen)); }
+
+/* the certificates inside a card */
+.cert__list {
+  list-style: none; margin: 10px 0 0; padding: 10px 0 0;
+  border-top: 1.5px dashed var(--line);
+  display: grid; gap: 7px;
+  font-size: 15.5px; line-height: 1.4;
+}
+.cert__list li { padding-left: 16px; position: relative; }
+.cert__list li::before {
+  content: ""; position: absolute; left: 0; top: .55em;
+  width: 7px; height: 7px; border-radius: 50%; background: var(--marker);
+}
+.cert__list a {
+  color: var(--ink); text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--pen) 35%, transparent);
+  text-decoration-thickness: 1.5px; text-underline-offset: 3px;
+}
+.cert__list a::after { content: " ↗"; color: var(--pen); font-size: .85em; }
+.cert__list a:hover { color: var(--accent-text, var(--pen)); text-decoration-color: currentColor; }
+.cert__meta { color: var(--muted); font-size: 14px; }
+.certs { align-items: start; }
+
 /* ---------- About ---------- */
 .about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); gap: clamp(32px, 6vw, 80px); align-items: start; }
 .about__photo { margin: 0; max-width: 340px; }
