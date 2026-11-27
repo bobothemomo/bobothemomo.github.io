@@ -1,0 +1,170 @@
+/* ==========================================================
+   Colour palettes — "a colour, a neutral, and its opposite on the wheel"
+   Visitors pick one in the header; <html data-palette="leaf|wax|surf">.
+   Loads after style.css. Leaf is the default.
+
+   Light: the neutral is the paper, the base colour is the ink.
+   Dark:  the base colour becomes the page; the accent stays.
+   ========================================================== */
+
+/* ---------- LEAF: forest green + cream + coral (default) ---------- */
+:root[data-palette="leaf"] {
+  --paper: #F6EADA; --paper-2: #EBDDC9; --sheet: #FFF8EE;
+  --ink: #1E2B23; --ink-2: #3C4A41; --muted: #6F7A70;
+  --head: #2E4336;          /* forest */
+  --pen: #2E4336;
+  --marker: #FD8969;        /* coral: the opposite */
+  --accent-text: #E0623F;   /* coral dark enough for large type on cream */
+  --mark-ink: #1E2B23;
+  --rule: #CDD6C6; --margin: #F2A58D;
+  --tape: rgba(253, 137, 105, .38);
+  --frame: #FFFDF8;
+  --line: rgba(30, 43, 35, .2);
+  --ui-bg: #D7E2D3;
+}
+:root[data-palette="leaf"][data-theme="dark"] {
+  --paper: #1F3026; --paper-2: #26392D; --sheet: #2A4033;
+  --ink: #F6EADA; --ink-2: #D8CCBB; --muted: #A3AD9F;
+  --head: #F6EADA;
+  --pen: #FD8969;
+  --marker: #FD8969;
+  --accent-text: #FD8969;
+  --mark-ink: #1E2B23;
+  --rule: rgba(246, 234, 218, .16); --margin: rgba(253, 137, 105, .5);
+  --tape: rgba(246, 234, 218, .32);
+  --frame: #F6EADA;
+  --line: rgba(246, 234, 218, .2);
+  --ui-bg: #33503F;
+}
+
+/* ---------- WAX: dusty purple + charcoal + gold ---------- */
+:root[data-palette="wax"] {
+  --paper: #EEE9F0; --paper-2: #E1DAE6; --sheet: #FBF8FC;
+  --ink: #2B2528; --ink-2: #4A4150; --muted: #7B7184;
+  --head: #6D5C7E;          /* dusty purple */
+  --pen: #6D5C7E;
+  --marker: #F9BD4A;        /* gold: the opposite */
+  --accent-text: #B07A0C;   /* gold dark enough for large type on light paper */
+  --mark-ink: #2B2528;
+  --rule: #D9D0E1; --margin: #E9C27A;
+  --tape: rgba(249, 189, 74, .55);
+  --frame: #FFFFFF;
+  --line: rgba(43, 37, 40, .2);
+  --ui-bg: #DCD3E6;
+}
+:root[data-palette="wax"][data-theme="dark"] {
+  --paper: #2B2528; --paper-2: #352E32; --sheet: #3A3237;   /* charcoal */
+  --ink: #EFE9F2; --ink-2: #CFC5D6; --muted: #A096A8;
+  --head: #9A87B0;
+  --pen: #B9A7CE;
+  --marker: #F9BD4A;
+  --accent-text: #F9BD4A;
+  --mark-ink: #2B2528;
+  --rule: rgba(185, 167, 206, .22); --margin: rgba(249, 189, 74, .5);
+  --tape: rgba(249, 189, 74, .42);
+  --frame: #EFE9F2;
+  --line: rgba(239, 233, 242, .2);
+  --ui-bg: #4A3F55;
+}
+
+/* ---------- SURF: navy + sand + orange ---------- */
+:root[data-palette="surf"] {
+  --paper: #F1E6D3; --paper-2: #E7D7BE; --sheet: #FBF5EA;
+  --ink: #1F2C4A; --ink-2: #3A4664; --muted: #6E7488;
+  --head: #1F2C4A;          /* navy */
+  --pen: #1F2C4A;
+  --marker: #FE9126;        /* orange: the opposite */
+  --accent-text: #D96A00;
+  --mark-ink: #1F2C4A;
+  --rule: #CBD3E3; --margin: #FDB877;
+  --tape: rgba(254, 145, 38, .35);
+  --frame: #FFFFFF;
+  --line: rgba(31, 44, 74, .2);
+  --ui-bg: #D3DCEC;
+}
+:root[data-palette="surf"][data-theme="dark"] {
+  --paper: #1F2C4A; --paper-2: #263557; --sheet: #293A5E;   /* navy */
+  --ink: #F1E6D3; --ink-2: #D3C9B8; --muted: #9EA6BA;
+  --head: #F1E6D3;
+  --pen: #FEA94F;
+  --marker: #FE9126;
+  --accent-text: #FE9126;
+  --mark-ink: #1F2C4A;
+  --rule: rgba(241, 230, 211, .15); --margin: rgba(254, 145, 38, .5);
+  --tape: rgba(241, 230, 211, .3);
+  --frame: #F1E6D3;
+  --line: rgba(241, 230, 211, .2);
+  --ui-bg: #33466F;
+}
+
+/* ==========================================================
+   Shared "poster" treatment
+   ========================================================== */
+:root[data-palette] .hero__title,
+:root[data-palette] .section__title,
+:root[data-palette] .contact__title,
+:root[data-palette] .case__title {
+  font-family: "Anton", "Impact", "Arial Narrow", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: .005em;
+  color: var(--head);
+}
+:root[data-palette] .hero__title { font-size: clamp(60px, 7.6vw, 124px); line-height: .9; }
+:root[data-palette] .section__title { font-size: clamp(44px, 6vw, 78px); line-height: .95; }
+:root[data-palette] .contact__title { font-size: clamp(64px, 11vw, 156px); line-height: .9; }
+:root[data-palette] .case__title { font-size: clamp(44px, 6vw, 76px); line-height: .95; }
+
+/* the second word in the opposite colour */
+:root[data-palette] .hl { color: var(--accent-text); }
+
+/* a disc of the accent colour behind the hero photo */
+:root[data-palette] .hero__text { position: relative; z-index: 1; }
+:root[data-palette] .hero__photo { isolation: isolate; }
+:root[data-palette] .hero__photo::before {
+  content: "";
+  position: absolute; z-index: -1;
+  width: 104%; aspect-ratio: 1; border-radius: 50%;
+  left: -20%; top: 54%; translate: 0 -50%;
+  background: var(--marker);
+  transition: background-color .3s;
+}
+
+/* bits that were hard-coded for the old colours */
+:root[data-palette] .page__img--ui,
+:root[data-palette][data-theme="dark"] .page__img--ui { background: var(--ui-bg); }
+:root[data-palette] .play { background: var(--marker); color: var(--mark-ink); }
+
+/* the longer capital heading pushed its note under the hanging cat */
+:root[data-palette] .section--sketch .section__head { padding-right: clamp(110px, 15vw, 210px); }
+
+/* ==========================================================
+   Palette switch in the header: three swatches
+   ========================================================== */
+.palette-switch { display: flex; align-items: center; gap: 6px; }
+.palette-switch button {
+  position: relative;
+  width: 22px; height: 22px; padding: 0;
+  border: 0; border-radius: 50%; cursor: pointer;
+  /* base colour on the left, its opposite on the right */
+  background: linear-gradient(135deg, var(--sw-a) 0 50%, var(--sw-b) 50% 100%);
+  /* outline keeps a swatch visible on a page of the same colour */
+  box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--ink) 40%, transparent);
+  transition: transform .2s var(--ease, ease);
+}
+.palette-switch button:hover { transform: scale(1.12); }
+.palette-switch button::after {
+  /* ring on the chosen palette */
+  content: ""; position: absolute; inset: -5px; border-radius: 50%;
+  border: 2px solid var(--ink); opacity: 0; transition: opacity .2s;
+}
+.palette-switch button[aria-pressed="true"]::after { opacity: 1; }
+.palette-switch [data-set-palette="leaf"] { --sw-a: #2E4336; --sw-b: #FD8969; }
+.palette-switch [data-set-palette="wax"]  { --sw-a: #6D5C7E; --sw-b: #F9BD4A; }
+.palette-switch [data-set-palette="surf"] { --sw-a: #1F2C4A; --sw-b: #FE9126; }
+
+/* smooth the change of colours when switching */
+:root[data-palette] body,
+:root[data-palette] .site-header,
+:root[data-palette] .page,
+:root[data-palette] .photo { transition: background-color .3s, color .3s; }

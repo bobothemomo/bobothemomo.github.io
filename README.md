@@ -5,7 +5,10 @@ Canlı adres: https://bobothemomo.github.io/ — önceki tasarım `eski-site/` k
 ```
 ./
 ├── index.html      Tek sayfa + vaka pencereleri (<template> içinde)
-├── css/style.css   Tüm stiller; renkler en üstte :root değişkenlerinde
+├── css/style.css   Tüm stiller (yerleşim, eskiz defteri öğeleri)
+├── css/palettes.css  3 renk paleti (Leaf, Wax, Surf), Anton başlıklar ve menüdeki palet düğmeleri.
+│                     Varsayılan: <html data-palette="leaf">; ziyaretçinin seçimi hatırlanır.
+│                     Sekme simgesi palete göre img/favicon-<palet>.svg olur.
 ├── js/main.js      Dil düğmesi, vaka penceresi, lightbox, YouTube, kopyalama
 ├── img/            Web için küçültülmüş görseller (22 MB → 3,6 MB)
 └── docs/           CV ve PDF yayınlar

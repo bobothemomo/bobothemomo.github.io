@@ -24,12 +24,38 @@
 
   /* ---------- Theme (paper / night notebook) ---------- */
   var themeMeta = document.querySelector('meta[name="theme-color"]');
+  function syncThemeColor() {
+    // browser UI colour follows the current paper (theme + palette)
+    var paper = getComputedStyle(root).getPropertyValue('--paper').trim();
+    if (themeMeta && paper) themeMeta.setAttribute('content', paper);
+  }
   function setTheme(theme, save) {
     root.setAttribute('data-theme', theme);
-    if (themeMeta) themeMeta.setAttribute('content', theme === 'dark' ? '#191815' : '#F3EDE1');
+    syncThemeColor();
     if (save) { try { localStorage.setItem('bd-theme', theme); } catch (e) {} }
   }
   setTheme(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light', false);
+
+  /* ---------- Colour palette (leaf / wax / surf) ---------- */
+  var PALETTES = ['leaf', 'wax', 'surf'];
+  var paletteBtns = document.querySelectorAll('[data-set-palette]');
+  var svgIcon = document.querySelector('link[rel="icon"][type="image/svg+xml"]');
+  function setPalette(p, save) {
+    if (PALETTES.indexOf(p) === -1) p = 'leaf';
+    root.setAttribute('data-palette', p);
+    paletteBtns.forEach(function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-set-palette') === p ? 'true' : 'false');
+    });
+    // the tab icon follows the palette too
+    if (svgIcon) svgIcon.setAttribute('href', 'img/favicon-' + p + '.svg?v=3');
+    syncThemeColor();
+    if (save) { try { localStorage.setItem('bd-palette', p); } catch (e) {} }
+  }
+  setPalette(root.getAttribute('data-palette'), false);
+  paletteBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () { setPalette(btn.getAttribute('data-set-palette'), true); });
+  });
+
 
   var themeBtn = document.getElementById('theme-toggle');
   if (themeBtn) {
