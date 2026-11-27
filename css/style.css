@@ -611,3 +611,49 @@ dialog { padding: 0; border: 0; color: var(--ink); }
   .sketches { columns: 1; }
   .hanging-cat { width: 92px; right: 4px; }
 }
+
+/* ---------- Menu: one row on desktop, a panel behind a button on phones ---------- */
+.menu-btn { display: none; }
+.site-menu { display: flex; align-items: center; gap: 28px; margin-left: auto; }
+.site-menu .nav { margin-left: 0; }
+.nav__more { display: none; }   /* Certificates: only in the phone menu */
+
+@media (max-width: 860px) {
+  .menu-btn {
+    display: grid; place-items: center; margin-left: auto;
+    width: 44px; height: 44px; padding: 0;
+    border: 0; background: none; color: var(--ink); cursor: pointer;
+  }
+  .menu-btn svg { width: 26px; height: 26px; }
+  .menu-btn__close { display: none; }
+  .site-header.is-open .menu-btn__open { display: none; }
+  .site-header.is-open .menu-btn__close { display: block; }
+
+  .site-menu {
+    display: none;
+    position: absolute; left: 0; right: 0; top: 100%;
+    flex-direction: column; align-items: stretch; gap: 0;
+    padding: 4px var(--gutter) 20px;
+    background-color: var(--paper); background-image: var(--grain);
+    border-bottom: 1.5px solid var(--line);
+    box-shadow: 0 18px 30px -18px rgba(var(--shade), .45);
+    max-height: calc(100vh - 64px); overflow-y: auto;
+  }
+  .site-header.is-open .site-menu { display: flex; }
+  .site-header.is-open { border-bottom-color: var(--line); }
+
+  .site-menu .nav { display: flex; flex-direction: column; gap: 0; }
+  .site-menu .nav a {
+    display: block; padding: 13px 2px;
+    font-size: 20px; font-weight: 700; color: var(--ink);
+    border-bottom: 1.5px dashed var(--line);
+  }
+  .site-menu .nav a.is-active::after { right: auto; width: 4.5em; bottom: 7px; }
+  .nav__more { display: block; }
+
+  .site-menu .header-tools { margin: 16px 0 0; justify-content: space-between; gap: 12px; }
+  .site-menu .palette-switch { gap: 10px; }
+  .site-menu .palette-switch button { width: 26px; height: 26px; }
+  .site-menu .theme-btn { width: 40px; height: 40px; }
+  .site-menu .lang-switch button { padding: 6px 10px; font-size: 16px; }
+}

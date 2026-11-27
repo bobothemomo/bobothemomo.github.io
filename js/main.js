@@ -80,6 +80,31 @@
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
+  /* ---------- Phone menu: a button opens the nav + settings as a panel ---------- */
+  var menuBtn = document.getElementById('menu-btn');
+  function setMenu(open) {
+    header.classList.toggle('is-open', open);
+    if (menuBtn) menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  if (menuBtn) {
+    menuBtn.addEventListener('click', function () { setMenu(!header.classList.contains('is-open')); });
+    // a section link closes it; the palette/theme/language buttons keep it open
+    document.querySelectorAll('#site-menu .nav a').forEach(function (a) {
+      a.addEventListener('click', function () { setMenu(false); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && header.classList.contains('is-open')) { setMenu(false); menuBtn.focus(); }
+    });
+    document.addEventListener('click', function (e) {
+      if (header.classList.contains('is-open') && !header.contains(e.target)) setMenu(false);
+    });
+    if (window.matchMedia) {
+      var wide = window.matchMedia('(min-width: 861px)');
+      var onWide = function () { if (wide.matches) setMenu(false); };
+      if (wide.addEventListener) wide.addEventListener('change', onWide);
+    }
+  }
+
   var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav a'));
   if ('IntersectionObserver' in window && navLinks.length) {
     var navObs = new IntersectionObserver(function (entries) {

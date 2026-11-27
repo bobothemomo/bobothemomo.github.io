@@ -38,7 +38,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@500;700&family=Karla:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=14">
+  <link rel="stylesheet" href="css/style.css?v=15">
   <link rel="stylesheet" href="css/palettes.css?v=8">
 </head>
 
@@ -62,11 +62,19 @@
     <div class="wrap site-header__inner">
       <a href="#top" class="brand">Barış Değirmenci</a>
 
+      <!-- phones: this button opens the menu below as a panel -->
+      <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="site-menu" aria-label="Menü / Menu">
+        <svg class="menu-btn__open" viewBox="0 0 28 28" aria-hidden="true"><path d="M5 8.5c6-.8 12-.6 18-.2M4.5 14.2c6.4-.5 12.6-.3 19 .3M5.5 19.8c5.6-.6 11.6-.4 17.5.1" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <svg class="menu-btn__close" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+
+      <div class="site-menu" id="site-menu">
       <nav class="nav" aria-label="Menu">
         <a href="#work"><span lang="tr">İşler</span><span lang="en">Work</span></a>
         <a href="#sketchbook"><span lang="tr">Çizimler</span><span lang="en">Drawings</span></a>
         <a href="#print"><span lang="tr">Basılı işler</span><span lang="en">Print</span></a>
         <a href="#about"><span lang="tr">Hakkımda</span><span lang="en">About</span></a>
+        <a href="#certificates" class="nav__more"><span lang="tr">Sertifikalar</span><span lang="en">Certificates</span></a>
         <a href="#contact"><span lang="tr">İletişim</span><span lang="en">Contact</span></a>
       </nav>
 
@@ -85,6 +93,7 @@
           <button type="button" data-set-lang="en" aria-label="English">EN<svg class="lang-switch__circle" aria-hidden="true"><use href="#d-circle"/></svg></button>
         </div>
       </div>
+      </div><!-- /.site-menu -->
     </div>
   </header>
 
@@ -99,13 +108,13 @@
         </h1>
         <p class="hero__lead" lang="tr">
           Ankara’da yaşayan bir tasarımcıyım. Mobil uygulama arayüzleri tasarlıyor, Unity ile oyun
-          geliştiriyor ve fırsat buldukça <mark>çiziyorum</mark>. Hacettepe Üniversitesi Bilgisayar ve
+          geliştiriyor ve fırsat buldukça çiziyorum. Hacettepe Üniversitesi Bilgisayar ve
           Öğretim Teknolojileri Eğitimi mezunuyum; şu an E12’de içerik geliştirme uzmanı olarak
           etkileşimli dersler hazırlıyorum.
         </p>
         <p class="hero__lead" lang="en">
           I’m a designer based in Ankara. I design mobile app interfaces, build games in Unity and
-          <mark>draw</mark> whenever I get the chance. I graduated in Computer Education and Instructional
+          draw whenever I get the chance. I graduated in Computer Education and Instructional
           Technology from Hacettepe University, and I now create interactive lessons as a content
           development specialist at E12.
         </p>
@@ -736,6 +745,6 @@
     </div>
   </template>
 
-  <script src="js/main.js?v=10"></script>
+  <script src="js/main.js?v=11"></script>
 </body>
 </html>
