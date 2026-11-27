@@ -99,7 +99,7 @@
   /* ---------- Case dialog ---------- */
   var dialog = document.getElementById('case-dialog');
   var body = document.getElementById('case-body');
-  var CASES = ['unipazar', 'games', 'brand', '3d'];
+  var CASES = ['phishing', 'unipazar', 'games', 'brand', '3d'];
   var lastTrigger = null;
 
   function openCase(id, trigger) {
@@ -124,9 +124,11 @@
     var load = function (box) {
       if (box.querySelector('iframe')) return;
       var f = document.createElement('iframe');
-      f.src = box.getAttribute('data-embed');
+      // {lang} in the address becomes the page language (the video player uses it)
+      f.src = box.getAttribute('data-embed').replace('{lang}', root.getAttribute('data-lang') || 'en');
       f.title = box.getAttribute('title') || 'Embed';
       f.allowFullscreen = true;
+      f.allow = 'autoplay; fullscreen';
       box.appendChild(f);
     };
     if (!('IntersectionObserver' in window)) { boxes.forEach(load); return; }
@@ -140,6 +142,15 @@
     }, { root: body, threshold: 0.25 });
     boxes.forEach(function (b) { embedObs.observe(b); });
   }
+
+  // The phishing video player (projects/phishing/) reports its own height,
+  // so its frame fits it exactly in both landscape and portrait.
+  window.addEventListener('message', function (e) {
+    if (e.origin !== location.origin || !e.data || e.data.type !== 'phish-player-height') return;
+    document.querySelectorAll('.player-embed iframe').forEach(function (f) {
+      if (f.contentWindow === e.source) f.style.height = Math.max(240, Math.min(e.data.h, 2000)) + 'px';
+    });
+  });
 
   if (dialog) {
     dialog.addEventListener('close', function () {

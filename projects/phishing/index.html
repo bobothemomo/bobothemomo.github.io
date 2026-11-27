@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phishing Oynatıcı</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b1a2c;
+    --panel: #112c4a;
+    --panel-2: #1b3a5e;
+    --text: #eef3fb;
+    --muted: #9fb2cc;
+    --accent: #ffd63c;
+    --red: #c81e2d;
+    --radius: 14px;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #dae1ef;
+      --panel: #ffffff;
+      --panel-2: #e9eef7;
+      --text: #112c4a;
+      --muted: #5a6b84;
+    }
+  }
+  :root[data-theme="dark"] { --bg: #0b1a2c; --panel: #112c4a; --panel-2: #1b3a5e; --text: #eef3fb; --muted: #9fb2cc; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Montserrat, "Segoe UI", Arial, sans-serif;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 16px;
+  }
+  header { width: 100%; max-width: 1100px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+  h1 { font-size: 20px; font-weight: 800; margin: 0; letter-spacing: .5px; }
+  h1 span { color: var(--red); }
+  .seg { display: inline-flex; background: var(--panel); border-radius: 999px; padding: 4px; gap: 2px; }
+  .seg button {
+    border: 0; background: transparent; color: var(--muted); font: 700 13px Montserrat, "Segoe UI", sans-serif;
+    padding: 8px 14px; border-radius: 999px; cursor: pointer;
+  }
+  .seg button[aria-pressed="true"] { background: var(--accent); color: #112c4a; }
+  .opts { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .stage { position: relative; background: #000; border-radius: var(--radius); overflow: hidden; box-shadow: 0 18px 50px rgba(0,0,0,.35); }
+  .stage.h { width: min(1100px, 100%); aspect-ratio: 16 / 9; }
+  .stage.v { height: min(78vh, 900px); aspect-ratio: 9 / 16; max-width: 100%; }
+  video { width: 100%; height: 100%; display: block; background: #000; }
+  .subs {
+    position: absolute; left: 6%; right: 6%; text-align: center; pointer-events: none;
+    font-weight: 700; line-height: 1.45; color: #fff; white-space: normal; overflow-wrap: break-word;
+  }
+  .stage.h .subs { bottom: 7%; }
+  .stage.v .subs { bottom: 16%; left: 5%; right: 5%; }
+  .subs .line {
+    display: inline; padding: .12em .45em; border-radius: .3em;
+    background: rgba(8, 20, 36, .72);
+    -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  }
+  .subs .w { transition: color .1s ease; }
+  .subs .w.on { color: var(--accent); }
+  .subs.fade { animation: fade .18s ease-out; }
+  @keyframes fade { from { opacity: 0; transform: translateY(.3em); } to { opacity: 1; transform: none; } }
+  .big-play {
+    position: absolute; inset: 0; margin: auto; width: 88px; height: 88px; border-radius: 50%;
+    border: 0; background: rgba(200,30,45,.92); color: #fff; cursor: pointer; display: grid; place-items: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,.4);
+  }
+  .big-play svg { width: 36px; height: 36px; margin-left: 6px; }
+  .msg { position: absolute; inset: 0; display: none; place-items: center; text-align: center; padding: 24px; color: #fff; background: rgba(11,26,44,.92); font-weight: 600; }
+
+  .controls {
+    width: 100%; max-width: 1100px; margin-top: 12px; background: var(--panel); border-radius: var(--radius);
+    padding: 10px 14px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  }
+  .stage.v ~ .controls { max-width: 560px; }
+  .icon-btn { width: 40px; height: 40px; border-radius: 10px; border: 0; background: var(--panel-2); color: var(--text); cursor: pointer; display: grid; place-items: center; }
+  .icon-btn svg { width: 20px; height: 20px; }
+  .icon-btn[aria-pressed="true"] { background: var(--accent); color: #112c4a; }
+  .seek { flex: 1 1 200px; accent-color: var(--accent); }
+  .mixer { display: inline-flex; gap: 6px; flex-wrap: wrap; }
+  .tog {
+    display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 12px; border-radius: 10px;
+    border: 2px solid transparent; background: var(--panel-2); color: var(--muted); cursor: pointer;
+    font: 700 12px Montserrat, "Segoe UI", sans-serif; text-decoration: line-through;
+  }
+  .tog svg { width: 18px; height: 18px; }
+  .tog[aria-pressed="true"] { color: var(--text); border-color: var(--accent); text-decoration: none; }
+  @media (max-width: 600px) { .tog span { display: none; } .tog { padding: 0 10px; } }
+  .vol { width: 90px; accent-color: var(--accent); }
+  .time { font: 600 13px Montserrat, "Segoe UI", sans-serif; color: var(--muted); min-width: 92px; text-align: center; }
+  .hint { width: 100%; max-width: 1100px; color: var(--muted); font-size: 12px; margin-top: 10px; text-align: center; }
+  /* embedded in the portfolio: the frame's height follows the content, so the
+     portrait stage can't be sized from the viewport (vh) without a feedback loop */
+  html.embedded, html.embedded body { height: auto; }
+  html.embedded .stage.v { height: min(680px, 150vw); }
+  @media (max-width: 600px) {
+    body { padding: 12px 16px; }
+    .vol { display: none; }
+    .stage.v { height: auto; width: 100%; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>PHISHING <span>·</span> <span id="ttl">OLTALAMA</span></h1>
+  <div class="opts">
+    <div class="seg" role="group" aria-label="Dil / Language">
+      <button data-lang="tr" aria-pressed="true">TR</button>
+      <button data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <div class="seg" role="group" aria-label="Format">
+      <button data-fmt="h" aria-pressed="true" id="fmtH">Yatay 16:9</button>
+      <button data-fmt="v" aria-pressed="false" id="fmtV">Dikey 9:16</button>
+    </div>
+  </div>
+</header>
+
+<div class="stage h" id="stage">
+  <video id="vid" playsinline preload="metadata" muted></video>
+  <audio id="a_voice" preload="auto"></audio>
+  <audio id="a_music" preload="auto"></audio>
+  <audio id="a_sfx" preload="auto"></audio>
+  <div class="subs" id="subs" aria-live="polite"></div>
+  <button class="big-play" id="bigPlay" aria-label="Oynat">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg>
+  </button>
+  <div class="msg" id="msg"></div>
+</div>
+
+<div class="controls">
+  <button class="icon-btn" id="play" aria-label="Oynat/Duraklat">
+    <svg id="icPlay" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg>
+    <svg id="icPause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
+  </button>
+  <span class="time" id="time">0:00 / 0:00</span>
+  <input class="seek" id="seek" type="range" min="0" max="1000" value="0" aria-label="Konum">
+  <button class="icon-btn" id="cc" aria-pressed="true" aria-label="Altyazı" title="Altyazı (C)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 10.5a2 2 0 1 0 0 3M17 10.5a2 2 0 1 0 0 3"/></svg>
+  </button>
+  <div class="mixer" role="group" aria-label="Ses kanalları">
+    <button class="tog" data-track="voice" aria-pressed="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+      <span data-l="voice">Seslendirme</span>
+    </button>
+    <button class="tog" data-track="music" aria-pressed="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>
+      <span data-l="music">Müzik</span>
+    </button>
+    <button class="tog" data-track="sfx" aria-pressed="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>
+      <span data-l="sfx">Efektler</span>
+    </button>
+  </div>
+  <button class="icon-btn" id="mute" aria-label="Ses">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9h4l5-4v14l-5-4H4z"/><path id="wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg>
+  </button>
+  <input class="vol" id="vol" type="range" min="0" max="1" step="0.05" value="1" aria-label="Ses seviyesi">
+  <button class="icon-btn" id="fs" aria-label="Tam ekran" title="Tam ekran (F)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+  </button>
+</div>
+<p class="hint" id="hint">Boşluk: oynat/duraklat · C: altyazı · L: dil · F: tam ekran · ← →: 5 sn</p>
+
+<script src="media/subs_tr.js"></script>
+<script src="media/subs_en.js"></script>
+<script>
+(function () {
+  const UI = {
+    tr: { ttl: "OLTALAMA", h: "Yatay 16:9", v: "Dikey 9:16", hint: "Boşluk: oynat/duraklat · C: altyazı · L: dil · F: tam ekran · ← →: 5 sn · 1/2/3: seslendirme/müzik/efekt",
+          missing: "Video dosyası bulunamadı: ", play: "Oynat", voice: "Seslendirme", music: "Müzik", sfx: "Efektler" },
+    en: { ttl: "PHISHING", h: "Landscape 16:9", v: "Portrait 9:16", hint: "Space: play/pause · C: captions · L: language · F: fullscreen · ← →: 5 s · 1/2/3: voice/music/effects",
+          missing: "Video file not found: ", play: "Play", voice: "Voice", music: "Music", sfx: "Effects" }
+  };
+  const TRACKS = ["voice", "music", "sfx"];
+  const aud = { voice: document.getElementById("a_voice"), music: document.getElementById("a_music"), sfx: document.getElementById("a_sfx") };
+  let on = { voice: true, music: true, sfx: true }, master = 1, masterMuted = false, stemsOk = true;
+  const $ = (id) => document.getElementById(id);
+  const vid = $("vid"), stage = $("stage"), subsEl = $("subs"), seek = $("seek");
+  let lang = "tr", fmt = "h", ccOn = true, lastChunk = -1, seeking = false;
+
+  try {
+    const saved = JSON.parse(localStorage.getItem("phishPlayer") || "{}");
+    if (saved.lang) lang = saved.lang;
+    if (saved.fmt) fmt = saved.fmt;
+    if (typeof saved.cc === "boolean") ccOn = saved.cc;
+    if (saved.on) on = Object.assign(on, saved.on);
+  } catch (e) {}
+  try {
+    if (window.matchMedia("(max-width: 600px)").matches && !localStorage.getItem("phishPlayer")) fmt = "v";
+  } catch (e) {}
+  // portfolio embed: ?lang=tr|en opens the player in the page's language
+  try {
+    const qLang = new URLSearchParams(location.search).get("lang");
+    if (qLang === "tr" || qLang === "en") lang = qLang;
+  } catch (e) {}
+
+  function save() { try { localStorage.setItem("phishPlayer", JSON.stringify({ lang, fmt, cc: ccOn, on })); } catch (e) {} }
+
+  // ---- ayrı ses kanalları (video sessiz; anlatım/müzik/efekt ayrı dosyalardan, videoya senkron)
+  function applyLevels() {
+    TRACKS.forEach(k => { aud[k].volume = master; aud[k].muted = masterMuted || !on[k]; });
+    vid.muted = stemsOk ? true : masterMuted;  // kanal dosyaları yoksa videonun kendi sesi
+    vid.volume = master;
+    document.querySelectorAll(".tog").forEach(b => b.setAttribute("aria-pressed", on[b.dataset.track]));
+  }
+  function loadStems() {
+    stemsOk = true;
+    TRACKS.forEach(k => { aud[k].src = `media/${lang}_${k}.m4a`; aud[k].load(); });
+    applyLevels();
+  }
+  TRACKS.forEach(k => aud[k].addEventListener("error", () => { stemsOk = false; applyLevels(); }));
+  function syncStems(force) {
+    if (!stemsOk) return;
+    TRACKS.forEach(k => {
+      const a = aud[k];
+      if (!a.duration && !force) return;
+      if (force || Math.abs(a.currentTime - vid.currentTime) > 0.12) {
+        try { a.currentTime = Math.min(vid.currentTime, (a.duration || 1e9) - 0.01); } catch (e) {}
+      }
+      if (!vid.paused && a.paused) a.play().catch(() => {});
+      if (vid.paused && !a.paused) a.pause();
+    });
+  }
+  vid.addEventListener("play", () => syncStems(true));
+  vid.addEventListener("playing", () => syncStems(true));
+  vid.addEventListener("pause", () => TRACKS.forEach(k => aud[k].pause()));
+  vid.addEventListener("waiting", () => TRACKS.forEach(k => aud[k].pause()));
+  vid.addEventListener("seeked", () => syncStems(true));
+  vid.addEventListener("ended", () => TRACKS.forEach(k => aud[k].pause()));
+  vid.addEventListener("ratechange", () => TRACKS.forEach(k => aud[k].playbackRate = vid.playbackRate));
+  document.querySelectorAll(".tog").forEach(b => b.onclick = () => { on[b.dataset.track] = !on[b.dataset.track]; save(); applyLevels(); });
+  const src = () => `media/${lang}_${fmt}.mp4`;
+  const fmtTime = (s) => { s = Math.max(0, s || 0); return Math.floor(s / 60) + ":" + String(Math.floor(s % 60)).padStart(2, "0"); };
+
+  function applyUI() {
+    document.documentElement.lang = lang;
+    subsEl.lang = lang;
+    $("ttl").textContent = UI[lang].ttl;
+    $("fmtH").textContent = UI[lang].h;
+    $("fmtV").textContent = UI[lang].v;
+    $("hint").textContent = UI[lang].hint;
+    $("bigPlay").setAttribute("aria-label", UI[lang].play);
+    document.querySelectorAll("[data-l]").forEach(el => el.textContent = UI[lang][el.dataset.l]);
+    document.querySelectorAll("[data-lang]").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
+    document.querySelectorAll("[data-fmt]").forEach(b => b.setAttribute("aria-pressed", b.dataset.fmt === fmt));
+    stage.className = "stage " + fmt;
+    $("cc").setAttribute("aria-pressed", ccOn);
+    subsEl.style.display = ccOn ? "" : "none";
+    sizeSubs();
+  }
+
+  function load(keepRatio) {
+    const ratio = keepRatio && vid.duration ? vid.currentTime / vid.duration : 0;
+    const wasPlaying = !vid.paused;
+    $("msg").style.display = "none";
+    TRACKS.forEach(k => aud[k].pause());
+    vid.src = src();
+    loadStems();
+    vid.addEventListener("loadedmetadata", function once() {
+      vid.removeEventListener("loadedmetadata", once);
+      if (ratio) vid.currentTime = ratio * vid.duration;
+      if (wasPlaying) vid.play().catch(() => {});
+    });
+    lastChunk = -1;
+    renderSubs();
+  }
+
+  vid.addEventListener("error", () => {
+    const m = $("msg");
+    m.textContent = UI[lang].missing + src();
+    m.style.display = "grid";
+  });
+
+  function sizeSubs() {
+    const w = stage.clientWidth;
+    const px = fmt === "v" ? Math.max(13, Math.min(30, w * 0.05)) : Math.max(14, Math.min(34, w * 0.028));
+    subsEl.style.fontSize = px + "px";
+    // satır başına sığan yaklaşık karakter sayısı (2 satıra kadar)
+    const perLine = Math.max(14, Math.floor((w * (fmt === "v" ? 0.9 : 0.88)) / (px * 0.6)));
+    if (perLine !== maxLine) { maxLine = perLine; chunkCache = {}; lastChunk = -1; }
+  }
+  let maxLine = 40, chunkCache = {};
+
+  // kelime zamanlamalarından cümle bazlı, en fazla 2 satırlık altyazı blokları üretir
+  function buildChunks(l) {
+    const key = l + ":" + maxLine;
+    if (chunkCache[key]) return chunkCache[key];
+    const src = (window.SUBS || {})[l] || [];
+    const words = [];
+    src.forEach(c => c.w.forEach((w, i) => words.push({ w, t: c.t[i], e: c.e })));
+    const limit = maxLine * 2;
+    const out = [];
+    // önce cümlelere ayır
+    const sentences = [];
+    let sen = [];
+    words.forEach((x, i) => {
+      sen.push(x);
+      if (/[.!?…]$/.test(x.w) || i === words.length - 1) { sentences.push(sen); sen = []; }
+    });
+    const textLen = (arr) => arr.reduce((n, x, i) => n + x.w.length + (i ? 1 : 0), 0);
+    sentences.forEach((ws) => {
+      const total = textLen(ws);
+      const parts = Math.max(1, Math.ceil(total / limit));
+      // dengeli bölme: her parça hedef uzunluğa en yakın kelimede (tercihen virgülde) biter
+      let start = 0;
+      for (let p = 1; p <= parts; p++) {
+        let end = ws.length;
+        if (p < parts) {
+          const target = total * p / parts;
+          let best = start + 1, bestScore = 1e9, acc = textLen(ws.slice(0, start));
+          for (let j = start; j < ws.length - 1; j++) {
+            acc += ws[j].w.length + (j ? 1 : 0);
+            const score = Math.abs(acc - target) - (/[,;:]$/.test(ws[j].w) ? maxLine * 0.6 : 0);
+            if (acc - textLen(ws.slice(0, start)) > limit) break;
+            if (score < bestScore) { bestScore = score; best = j + 1; }
+          }
+          end = best;
+        }
+        const seg = ws.slice(start, end);
+        const nextW = ws[end] || null;
+        out.push({ s: seg[0].t, e: nextW ? nextW.t : seg[seg.length - 1].e + 0.6, w: seg.map(x => x.w), t: seg.map(x => x.t) });
+        start = end;
+      }
+    });
+    for (let i = 0; i < out.length - 1; i++) out[i].e = Math.max(out[i].e, Math.min(out[i + 1].s, out[i].e + 0.8));
+    chunkCache[key] = out;
+    return out;
+  }
+  window.addEventListener("resize", sizeSubs);
+
+  function renderSubs() {
+    if (!ccOn) return;
+    const data = buildChunks(lang);
+    const t = vid.currentTime;
+    let idx = -1;
+    for (let i = 0; i < data.length; i++) { if (t >= data[i].s - 0.08 && t < data[i].e) { idx = i; break; } }
+    if (idx < 0) { subsEl.innerHTML = ""; lastChunk = -1; return; }
+    const c = data[idx];
+    let cur = 0;
+    c.t.forEach((x, i) => { if (x <= t) cur = i; });
+    if (idx !== lastChunk) {
+      const esc = (s) => s.replace(/[<>&]/g, "");
+      subsEl.innerHTML = `<span class="line">${c.w.map(w => `<span class="w">${esc(w)}</span>`).join(" ")}</span>`;
+      subsEl.classList.remove("fade"); void subsEl.offsetWidth; subsEl.classList.add("fade");
+      lastChunk = idx;
+    }
+    subsEl.querySelectorAll(".w").forEach((el, i) => el.classList.toggle("on", i === cur));
+  }
+
+  function update() {
+    renderSubs();
+    if (!seeking && vid.duration) seek.value = Math.round(1000 * vid.currentTime / vid.duration);
+    $("time").textContent = fmtTime(vid.currentTime) + " / " + fmtTime(vid.duration);
+  }
+  function tick() { update(); requestAnimationFrame(tick); }
+  // rAF arka planda durabilir: olay + zamanlayıcı yedeği
+  vid.addEventListener("timeupdate", update);
+  vid.addEventListener("seeked", update);
+  setInterval(() => { if (!vid.paused) { update(); syncStems(false); } }, 60);
+
+  function setPlayIcon() {
+    const p = vid.paused;
+    $("icPlay").style.display = p ? "" : "none";
+    $("icPause").style.display = p ? "none" : "";
+    $("bigPlay").style.display = p ? "grid" : "none";
+  }
+  const toggle = () => (vid.paused ? vid.play().catch(() => {}) : vid.pause());
+  vid.addEventListener("play", setPlayIcon);
+  vid.addEventListener("pause", setPlayIcon);
+  vid.addEventListener("ended", setPlayIcon);
+  vid.addEventListener("click", toggle);
+  $("play").onclick = toggle;
+  $("bigPlay").onclick = toggle;
+
+  seek.addEventListener("input", () => { seeking = true; if (vid.duration) vid.currentTime = seek.value / 1000 * vid.duration; });
+  seek.addEventListener("change", () => { seeking = false; });
+
+  $("cc").onclick = () => { ccOn = !ccOn; save(); applyUI(); lastChunk = -1; if (ccOn) renderSubs(); };
+  $("mute").onclick = () => { masterMuted = !masterMuted; $("wave").style.display = masterMuted ? "none" : ""; applyLevels(); };
+  $("vol").addEventListener("input", (e) => { master = +e.target.value; masterMuted = master === 0; $("wave").style.display = masterMuted ? "none" : ""; applyLevels(); });
+  $("fs").onclick = () => { document.fullscreenElement ? document.exitFullscreen() : stage.requestFullscreen?.(); };
+  document.addEventListener("fullscreenchange", () => setTimeout(sizeSubs, 50));
+
+  document.querySelectorAll("[data-lang]").forEach(b => b.onclick = () => { if (lang !== b.dataset.lang) { lang = b.dataset.lang; save(); applyUI(); load(true); } });
+  document.querySelectorAll("[data-fmt]").forEach(b => b.onclick = () => { if (fmt !== b.dataset.fmt) { fmt = b.dataset.fmt; save(); applyUI(); load(true); } });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.target.tagName === "INPUT" && e.key !== " ") return;
+    const k = e.key.toLowerCase();
+    if (k === " ") { e.preventDefault(); toggle(); }
+    else if (k === "c") $("cc").click();
+    else if (k === "l") document.querySelector(`[data-lang="${lang === "tr" ? "en" : "tr"}"]`).click();
+    else if (k === "f") $("fs").click();
+    else if (k === "1" || k === "2" || k === "3") document.querySelector(`.tog[data-track="${TRACKS[+k - 1]}"]`).click();
+    else if (k === "arrowright") vid.currentTime = Math.min(vid.duration || 0, vid.currentTime + 5);
+    else if (k === "arrowleft") vid.currentTime = Math.max(0, vid.currentTime - 5);
+  });
+
+  // when embedded in the portfolio, report the player's height to the page
+  if (window.parent !== window) {
+    document.documentElement.classList.add("embedded");
+    const report = () => {
+      // body is height:auto when embedded, so this is the real content height
+      const h = Math.ceil(document.body.getBoundingClientRect().height);
+      parent.postMessage({ type: "phish-player-height", h }, "*");
+    };
+    if ("ResizeObserver" in window) {
+      const ro = new ResizeObserver(report);
+      ro.observe(stage); ro.observe(document.querySelector(".controls"));
+    }
+    window.addEventListener("load", report);
+    window.addEventListener("resize", report);
+    // backup for when ResizeObserver is slow (e.g. a background tab)
+    vid.addEventListener("loadedmetadata", report);
+    document.querySelectorAll("[data-fmt], [data-lang]").forEach(b => b.addEventListener("click", () => setTimeout(report, 60)));
+  }
+
+  applyUI();
+  load(false);
+  setPlayIcon();
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

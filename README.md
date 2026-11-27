@@ -11,6 +11,9 @@ Canlı adres: https://bobothemomo.github.io/ — önceki tasarım `eski-site/` k
 │                     Sekme simgesi palete göre img/favicon-<palet>.svg olur.
 ├── js/main.js      Dil düğmesi, vaka penceresi, lightbox, YouTube, kopyalama
 ├── img/            Web için küçültülmüş görseller (22 MB → 3,6 MB)
+├── projects/phishing/  "Oltaya Gelmeyin" video oynatıcısı (index.html + media/) ve ham ilk sürüm
+│                       (v1-2025.mp4). Videolar web için küçültüldü (387 MB → 85 MB). Oynatıcı
+│                       sitede gömülüyken ?lang=tr|en alır ve yüksekliğini sayfaya bildirir.
 └── docs/           CV ve PDF yayınlar
 ```
 

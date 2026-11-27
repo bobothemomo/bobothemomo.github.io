@@ -38,7 +38,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@500;700&family=Karla:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=10">
+  <link rel="stylesheet" href="css/style.css?v=12">
   <link rel="stylesheet" href="css/palettes.css?v=8">
 </head>
 
@@ -141,7 +141,20 @@
 
       <div class="pages">
 
-        <article class="page taped" style="--r: -1.2deg">
+        <article class="page taped" style="--r: -1deg">
+          <button type="button" class="page__hit" data-case="phishing">
+            <div class="page__img page__img--compare">
+              <figure><img src="img/phishing-v1-frame.jpg" alt="" loading="lazy" width="1280" height="720"><figcaption><span lang="tr">2025 · ham sürüm</span><span lang="en">2025 · raw cut</span></figcaption></figure>
+              <figure><img src="img/phishing-v2-frame.jpg" alt="" loading="lazy" width="1280" height="720"><figcaption><span lang="tr">2026 · yapay zekâ ile</span><span lang="en">2026 · rebuilt with AI</span></figcaption></figure>
+            </div>
+            <h3 class="page__title"><span lang="tr">Oltaya Gelmeyin: oltalama videosu</span><span lang="en">Don’t Take the Bait: a phishing video</span></h3>
+            <p lang="tr">Ocak 2025’te stok görsellerle hazırladığım ham bir bilgilendirme videosunu yapay zekâ araçlarıyla baştan ürettim: yeni senaryo, yapay zekâ seslendirmesi ve kodla çizilen hareketli grafikler.</p>
+            <p lang="en">I took a raw awareness video I made in January 2025 from stock visuals and rebuilt it with AI tools: a new script, an AI voice-over and motion graphics drawn in code.</p>
+            <p class="note note--small"><span lang="tr">önce ve sonra · Türkçe ve İngilizce</span><span lang="en">before &amp; after · Turkish &amp; English</span></p>
+          </button>
+        </article>
+
+        <article class="page taped page--offset" style="--r: -1.2deg">
           <button type="button" class="page__hit" data-case="unipazar">
             <div class="page__img page__img--ui">
               <img src="img/ui-02-onboard-market.png" alt="" loading="lazy" width="430" height="932">
@@ -155,7 +168,7 @@
           </button>
         </article>
 
-        <article class="page taped page--offset" style="--r: 1.4deg">
+        <article class="page taped" style="--r: 1.4deg">
           <button type="button" class="page__hit" data-case="games">
             <div class="page__img page__img--video">
               <img src="https://img.youtube.com/vi/M8eoCbo5je8/hqdefault.jpg" alt="" loading="lazy">
@@ -168,7 +181,7 @@
           </button>
         </article>
 
-        <article class="page taped" style="--r: .8deg">
+        <article class="page taped page--offset" style="--r: .8deg">
           <button type="button" class="page__hit" data-case="brand">
             <div class="page__img page__img--posters">
               <img src="img/brand-tarot-poster.jpg" alt="" loading="lazy" width="638" height="1017">
@@ -182,7 +195,7 @@
           </button>
         </article>
 
-        <article class="page taped page--offset" style="--r: -1.6deg">
+        <article class="page taped" style="--r: -1.6deg">
           <button type="button" class="page__hit" data-case="3d">
             <div class="page__img page__img--3d">
               <img src="img/3d-render.jpg" alt="" loading="lazy" width="1600" height="900">
@@ -525,6 +538,62 @@
 
   <!-- ───────── CASE CONTENT ───────── -->
 
+  <template id="tpl-phishing">
+    <h2 class="case__title"><span lang="tr">Oltaya <span class="hl">Gelmeyin!</span></span><span lang="en">Don’t take <span class="hl">the bait</span></span></h2>
+    <div class="case__intro">
+      <p lang="tr">Oltalama (phishing) saldırılarını anlatan bu videonun ilk sürümünü Ocak 2025’te hazırladım: stok görseller, ekran görüntüleri ve hazır müzikle kurulmuş, 1 dakika 47 saniyelik bir sunum videosu. Kasım 2026’da aynı içeriği ham madde olarak alıp yapay zekâ araçlarıyla baştan ürettim.</p>
+      <p lang="en">I made the first version of this video about phishing attacks in January 2025: a 1 min 47 s presentation built from stock visuals, screenshots and library music. In November 2026 I took that cut as raw material and rebuilt it from scratch with AI tools.</p>
+      <p class="case__meta">
+        <span lang="tr">Rolüm: senaryo, tasarım, kurgu ve oynatıcı · Araçlar: üretken yapay zekâ, ElevenLabs, Python, After Effects</span>
+        <span lang="en">My role: script, design, editing and the player · Tools: generative AI, ElevenLabs, Python, After Effects</span>
+      </p>
+    </div>
+
+    <section class="flow">
+      <h3><span lang="tr">Yeni sürüm</span><span lang="en">The new version</span></h3>
+      <p lang="tr">50 saniyelik kısa sürüm. Oynatıcıyı da ben hazırladım: Türkçe ve İngilizce, yatay ve dikey format arasında geçiş yapabilir; seslendirmeyi, müziği ve efektleri ayrı ayrı açıp kapatabilirsin. Altyazılar konuşulan kelimeyi anlık olarak vurguluyor.</p>
+      <p lang="en">The 50-second short cut. I built the player too: switch between Turkish and English and between landscape and portrait, and turn the voice, music and effects on or off separately. The captions highlight each word as it is spoken.</p>
+      <!-- the player reports its height (see main.js); {lang} becomes the page language -->
+      <div class="player-embed" title="Oltaya Gelmeyin — video"
+           data-embed="projects/phishing/index.html?lang={lang}"></div>
+    </section>
+
+    <section class="flow">
+      <h3><span lang="tr">Ne değişti?</span><span lang="en">What changed</span></h3>
+      <ul class="changes">
+        <li><strong><span lang="tr">Senaryo</span><span lang="en">Script</span></strong>
+          <span lang="tr">Anlatımı yapay zekâ desteğiyle baştan yazdım: daha kısa, somut örneklerle ve “acele ettirme” taktiğini öne çıkararak. Yazım hatalarını düzelttim, sahte doğrulama (ClickFix) tuzağını ekledim.</span>
+          <span lang="en">I rewrote the narration with AI assistance: shorter, with concrete examples and a focus on the “hurry up” tactic. I fixed typos and added the fake-verification (ClickFix) trap.</span></li>
+        <li><strong><span lang="tr">Ses</span><span lang="en">Sound</span></strong>
+          <span lang="tr">Hazır müziğin yanına ElevenLabs ile yapay zekâ seslendirmesi geldi; müzik, anlatım sırasında otomatik olarak kısılıyor.</span>
+          <span lang="en">An AI voice-over made with ElevenLabs joined the music, which now ducks automatically under the narration.</span></li>
+        <li><strong><span lang="tr">Görseller</span><span lang="en">Visuals</span></strong>
+          <span lang="tr">Stok görsellerin ve ekran görüntülerinin yerini, Python ile kare kare çizilen hareketli grafikler aldı; tüm video tek bir lacivert-kırmızı görsel dilde.</span>
+          <span lang="en">Stock images and screenshots gave way to motion graphics drawn frame by frame in Python, all in one navy-and-red visual language.</span></li>
+        <li><strong><span lang="tr">Formatlar</span><span lang="en">Formats</span></strong>
+          <span lang="tr">Tek bir 1:47’lik videodan; Türkçe ve İngilizce, yatay ve dikey, sosyal medyaya uygun 50 saniyelik sürümlere.</span>
+          <span lang="en">From one 1:47 video to 50-second versions in Turkish and English, landscape and portrait, ready for social media.</span></li>
+      </ul>
+    </section>
+
+    <section class="flow">
+      <h3><span lang="tr">Ham sürüm (Ocak 2025)</span><span lang="en">The raw first version (January 2025)</span></h3>
+      <p lang="tr">Başlangıç noktası: stok görseller, ekran görüntüleri ve hazır müzikle hazırladığım ilk video.</p>
+      <p lang="en">The starting point: my first cut, made from stock visuals, screenshots and library music.</p>
+      <video class="raw-video" controls preload="none" playsinline
+             poster="img/phishing-v1-frame.jpg" src="projects/phishing/v1-2025.mp4"></video>
+    </section>
+
+    <section class="flow">
+      <h3><span lang="tr">Afiş</span><span lang="en">The poster</span></h3>
+      <p lang="tr">Aynı konunun basılı ayağı: klavyeyi bir korsan gemisine dönüştüren “Oltaya Gelmeyin!” afişi.</p>
+      <p lang="en">The print side of the same topic: the “Oltaya Gelmeyin!” poster, which turns a keyboard into a pirate ship.</p>
+      <div class="gallery gallery--single">
+        <figure><img src="img/poster-phishing.jpg" alt="Oltaya Gelmeyin! phishing-awareness poster" loading="lazy" width="852" height="1135"><figcaption class="note note--small"><span lang="tr">“Oltaya Gelmeyin!” afişi</span><span lang="en">the “Oltaya Gelmeyin!” poster</span></figcaption></figure>
+      </div>
+    </section>
+  </template>
+
   <template id="tpl-unipazar">
     <h2 class="case__title" lang="en-GB">UniPazar</h2>
     <div class="case__intro">
@@ -666,6 +735,6 @@
     </div>
   </template>
 
-  <script src="js/main.js?v=9"></script>
+  <script src="js/main.js?v=10"></script>
 </body>
 </html>

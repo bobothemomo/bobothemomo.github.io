@@ -500,6 +500,35 @@ dialog { padding: 0; border: 0; color: var(--ink); }
 .figma-embed iframe { display: block; width: 100%; height: 100%; border: 0; }
 @media (max-width: 600px) { .figma-embed { aspect-ratio: auto; height: 70vh; } }
 
+/* ---------- Phishing video case ---------- */
+/* card cover: the raw 2025 cut beside the 2026 AI rebuild */
+.page__img--compare { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; background: var(--ink); }
+.page__img--compare figure { position: relative; margin: 0; overflow: hidden; }
+.page__img--compare img { width: 100%; height: 100%; object-fit: cover; }
+.page__img--compare figure:first-child img { filter: saturate(.55) contrast(.95); }
+.page__img--compare figcaption {
+  position: absolute; left: 8px; bottom: 8px;
+  padding: 3px 9px; border-radius: 999px;
+  background: rgba(0, 0, 0, .62); color: #fff;
+  font-size: 12.5px; font-weight: 700; letter-spacing: .01em;
+}
+.page__img--compare figure:last-child figcaption { background: var(--marker); color: var(--mark-ink); }
+
+/* the video player lives in its own page and reports its height (see main.js) */
+.player-embed {
+  margin-top: 20px; border-radius: 14px; overflow: hidden;
+  background: #0b1a2c; min-height: 240px;
+}
+.player-embed iframe { display: block; width: 100%; height: 720px; border: 0; }
+
+.changes { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 14px; max-width: 46em; }
+.changes li { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 16px; padding-bottom: 14px; border-bottom: 1.5px dashed var(--line); color: var(--ink-2); }
+.changes strong { color: var(--ink); }
+@media (max-width: 600px) { .changes li { grid-template-columns: 1fr; gap: 4px; } }
+
+.raw-video { display: block; width: 100%; max-width: 760px; margin-top: 18px; border-radius: 10px; background: #000; }
+.gallery--single { columns: 1; max-width: 420px; }
+
 .games { display: grid; gap: clamp(32px, 5vw, 56px); margin-top: clamp(36px, 5vw, 56px); }
 .game { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: clamp(20px, 3vw, 36px); align-items: center; }
 .game h3 { font-weight: 800; font-size: clamp(26px, 2.8vw, 34px); letter-spacing: -.02em; margin-bottom: 8px; }
