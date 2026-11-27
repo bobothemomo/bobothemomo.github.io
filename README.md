@@ -24,9 +24,12 @@ Sonra http://localhost:8080/ adresine git.
 
 ## İki dil (TR / EN)
 
-> **Şu an Türkçe gizli.** Site İngilizce açılıyor ve TR/EN düğmesi görünmüyor; Türkçe metinler
-> HTML'de duruyor. Geri açmak için `index.html` başındaki `<html ... data-tr-enabled="false">`
-> değerini `"true"` yap — düğme ve Türkçe otomatik geri gelir.
+> **İki dil açık.** Tarayıcısı Türkçe olan ziyaretçi Türkçe, diğerleri İngilizce görür; menüdeki
+> TR/EN düğmesiyle değişir. Yalnızca İngilizce göstermek için `index.html` başındaki
+> `data-tr-enabled="true"` değerini `"false"` yap.
+>
+> Türkçe başlıklar büyük harfe çevrilirken "i" → "İ" olur. Başlıktaki marka adlarını
+> `<span lang="en-GB">Unity</span>` gibi işaretle, yoksa "UNİTY" çıkar.
 
 Her metin iki kez yazılır, tarayıcı yalnızca seçili dili gösterir:
 
