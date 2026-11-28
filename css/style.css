@@ -310,20 +310,15 @@ html[data-lang="en"] [data-set-lang="en"] .lang-switch__circle { opacity: 1; }
 .sketch img:hover { scale: 1.02; }
 .sketch figcaption { margin-top: 8px; }
 
-/* Night notebook: line art becomes white pen on black paper,
-   colour pieces are pasted in on a light sheet. */
+/* Night notebook: drawings keep their black pencil lines —
+   every piece is pasted in on a light sheet. */
 :root[data-theme="dark"] .sketch img {
   mix-blend-mode: normal;
   background: var(--frame);
   padding: 8px;
   box-shadow: 0 10px 24px -12px rgba(0, 0, 0, .8);
 }
-:root[data-theme="dark"] .sketch--line img,
-:root[data-theme="dark"] .hanging-cat {
-  filter: invert(1) hue-rotate(180deg) brightness(.9);
-  mix-blend-mode: screen;
-  background: none; padding: 0; box-shadow: none;
-}
+:root[data-theme="dark"] .hanging-cat { mix-blend-mode: normal; }
 :root[data-theme="dark"] .page__img--ui { background: #2B3447; }
 
 /* ---------- Ruled lists (print + experience) ---------- */

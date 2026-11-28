@@ -52,11 +52,8 @@ Görsel açıklamaları için `data-alt-tr` / `data-alt-en` kullan.
 Sağ üstteki güneş/ay düğmesiyle değişir. Ziyaretçi seçim yapana kadar işletim sisteminin ayarını takip eder.
 Renkler `css/style.css` içindeki `:root[data-theme="dark"]` bloğunda.
 
-Koyu temada çizimler iki şekilde görünür:
-- `sketch--line` sınıfı olan siyah-beyaz çizimler ters çevrilir, siyah kâğıda beyaz kalemle çizilmiş gibi durur.
-- Renkli çizimler (sınıf yok) açık renk bir kâğıda yapıştırılmış gibi gösterilir.
-
-Yeni bir çizim eklerken siyah-beyazsa `class="sketch sketch--line"` kullan.
+Koyu temada çizimler ters çevrilmez; siyah kalem çizgileri korunur ve her çizim açık renk
+bir kâğıda yapıştırılmış gibi gösterilir.
 
 ## İçerik güncelleme
 
