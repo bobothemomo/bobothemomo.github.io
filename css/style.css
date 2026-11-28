@@ -318,7 +318,14 @@ html[data-lang="en"] [data-set-lang="en"] .lang-switch__circle { opacity: 1; }
   padding: 8px;
   box-shadow: 0 10px 24px -12px rgba(0, 0, 0, .8);
 }
-:root[data-theme="dark"] .hanging-cat { mix-blend-mode: normal; }
+/* the hanging cat has no sheet: its lines are drawn in the palette's accent */
+:root[data-theme="dark"] .hanging-cat {
+  mix-blend-mode: normal;
+  object-position: -9999px 0;   /* hide the photo, keep the box */
+  background: var(--accent-text);
+  -webkit-mask: url("../img/art-cat-lines.png") 0 0 / 100% 100% no-repeat;
+          mask: url("../img/art-cat-lines.png") 0 0 / 100% 100% no-repeat;
+}
 :root[data-theme="dark"] .page__img--ui { background: #2B3447; }
 
 /* ---------- Ruled lists (print + experience) ---------- */
